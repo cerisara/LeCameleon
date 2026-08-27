@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  27 AUG 2026 18:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  27 AUG 2026 18:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2246,7 +2246,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 <figures/transformer.pdf, id=551, 344.31712pt x 415.5525pt>
 File: figures/transformer.pdf Graphic file (type pdf)
 <use figures/transformer.pdf>
-Package pdftex.def Info: figures/transformer.pdf  used on input line 274.
+Package pdftex.def Info: figures/transformer.pdf  used on input line 272.
 (pdftex.def)             Requested size: 252.0pt x 304.13705pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -2260,7 +2260,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 <figures/cost_decoding.pdf, id=642, 462.52798pt x 346.89601pt>
 File: figures/cost_decoding.pdf Graphic file (type pdf)
 <use figures/cost_decoding.pdf>
-Package pdftex.def Info: figures/cost_decoding.pdf  used on input line 350.
+Package pdftex.def Info: figures/cost_decoding.pdf  used on input line 348.
 (pdftex.def)             Requested size: 235.19897pt x 176.40117pt.
 <figures/sliding-window-complexity-comparison-1920w.png, id=643, 1927.2pt x 129
 6.845pt>
@@ -2268,16 +2268,16 @@ File: figures/sliding-window-complexity-comparison-1920w.png Graphic file (type
  png)
 <use figures/sliding-window-complexity-comparison-1920w.png>
 Package pdftex.def Info: figures/sliding-window-complexity-comparison-1920w.png
-  used on input line 354.
+  used on input line 352.
 (pdftex.def)             Requested size: 235.19897pt x 158.26631pt.
 
-Underfull \hbox (badness 2269) in paragraph at lines 355--355
+Underfull \hbox (badness 2269) in paragraph at lines 353--353
 [][]|\T1/pplj/m/n/10 (+20) Sparse-attention de-cod-ing costs and com-pu-ta-tion
  sav-ings.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 355--355
+Underfull \hbox (badness 10000) in paragraph at lines 353--353
 \T1/pplj/m/n/10 (+20) Slid-ing Win-dow At-ten-tion re-duces com-pu-ta-tion, fro
 m
  []
@@ -2304,16 +2304,16 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 File: figures/embedding_parameter_ratio.pdf Graphic file (type pdf)
 <use figures/embedding_parameter_ratio.pdf>
 Package pdftex.def Info: figures/embedding_parameter_ratio.pdf  used on input l
-ine 559.
+ine 557.
 (pdftex.def)             Requested size: 336.0pt x 190.65004pt.
 
-Underfull \hbox (badness 6825) in paragraph at lines 561--561
+Underfull \hbox (badness 6825) in paragraph at lines 559--559
 [][]|\T1/pplj/m/n/10 (+20) Pro-por-tion of the size in MB of em-bed-ding pa-ram
 -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 561--561
+Underfull \hbox (badness 10000) in paragraph at lines 559--559
 \T1/pplj/m/n/10 (+20) e-ters across dif-fer-ent model sizes. Data taken from
  []
 
@@ -2328,18 +2328,18 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 [14]
 
 LaTeX Warning: Citation 'yang2018breakingsoftmaxbottleneck' on page 15 undefine
-d on input line 584.
+d on input line 582.
 
 <figures/figure6_accuracy.png, id=751, 416.2752pt x 298.9569pt>
 File: figures/figure6_accuracy.png Graphic file (type png)
 <use figures/figure6_accuracy.png>
-Package pdftex.def Info: figures/figure6_accuracy.png  used on input line 601.
+Package pdftex.def Info: figures/figure6_accuracy.png  used on input line 599.
 (pdftex.def)             Requested size: 161.27856pt x 115.82634pt.
 <figures/figure6_cross_entropy.png, id=753, 420.3705pt x 298.9569pt>
 File: figures/figure6_cross_entropy.png Graphic file (type png)
 <use figures/figure6_cross_entropy.png>
 Package pdftex.def Info: figures/figure6_cross_entropy.png  used on input line 
-605.
+603.
 (pdftex.def)             Requested size: 161.27856pt x 114.6996pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -2354,20 +2354,20 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 File: figures/wei_emergent_abilities_figure.pdf Graphic file (type pdf)
 <use figures/wei_emergent_abilities_figure.pdf>
 Package pdftex.def Info: figures/wei_emergent_abilities_figure.pdf  used on inp
-ut line 649.
+ut line 647.
 (pdftex.def)             Requested size: 336.0pt x 228.28395pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [17 <./figures/wei_emergent_abilities_figure.pdf>]
-Overfull \hbox (9.92717pt too wide) in paragraph at lines 672--677
+Overfull \hbox (9.92717pt too wide) in paragraph at lines 670--675
 \T1/pplj/m/n/10.95 (-20) https://medium.com/@yayasy-nlp/a-comprehensive-overvie
 w-of-large-
  []
 
 
-Overfull \hbox (9.72481pt too wide) in paragraph at lines 672--677
+Overfull \hbox (9.72481pt too wide) in paragraph at lines 670--675
 \T1/pplj/m/n/10.95 (-20) language-models-compression-methods-8b59dd0ff4f8 An ef
 -fi-cient model
  []
@@ -2377,7 +2377,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [18]
-Overfull \hbox (258.23744pt too wide) in paragraph at lines 734--735
+Overfull \hbox (258.23744pt too wide) in paragraph at lines 732--733
 []\T1/pplj/m/n/10.95 (-20) why pre-fer spec-u-la-tive de-cod-ing over dif-fu-si
 on LLMs: https://x.com/barrowjoseph/status/2086933565560996013?s=20 
  []
@@ -3530,7 +3530,7 @@ st/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/font
 s/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1
 /urw/palatino/uplri8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/z
 apfding/uzdr.pfb>
-Output written on ClassicThesis.pdf (119 pages, 3309314 bytes).
+Output written on ClassicThesis.pdf (119 pages, 3309108 bytes).
 PDF statistics:
  4810 PDF objects out of 5155 (max. 8388607)
  3229 compressed objects within 33 object streams

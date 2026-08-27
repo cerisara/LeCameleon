@@ -264,9 +264,7 @@ text in machine translation, the overall architecture is not easy to scale, just
 While Banhaudeau et al. improved performance by adding attention on top of RNN layers,
 Vaswani propose to fully remove the RNN and keep only the attention. This remove the
 sequential processing imposed by RNN, which make the training parallelisable and hence
-scalable, since attention is full parallelisable. It also remove all the problems
-of RNN such as the instabilities etc. but scalability is what made the main sucess of the
-Transformer. Figure x presents the transformer archicture for language modeling.
+scalable, since attention is full parallelisable. Figure x presents the transformer archicture for language modeling.
 The architecture alterenates between attention and MLP for N layers and then finally the output, the next token prediction, is computed. Let's detail and discuss these 3 components. 
 
 \begin{figure}[ht]
