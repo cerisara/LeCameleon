@@ -1,0 +1,434 @@
+%*****************************************
+\chapter[Cross-lingual MRL]{Cross-lingual Matryoshka Representation Learning across Speech and Text}\label{ch:mrl}
+%*****************************************
+
+\section{Introduction}
+
+\subsection{Motivation}
+Access to information is limited by two major barriers. First, a \emph{language barrier}: most online content is written in a few high-resource languages. Second, a \emph{modality barrier}: retrieval systems generally assume text queries, whereas many under-represented languages are primarily oral. Cascaded automatic speech recognition (ASR) and translation systems are costly and suffer from error propagation. We address both barriers with cross-lingual speech--text Matryoshka representations, enabling direct retrieval of text documents from speech queries with flexible accuracy--cost tradeoffs.
+
+We focus on Wolof and French as a socially grounded case study. Wolof is spoken primarily in Senegal and remains mainly oral. Because of the country's colonial history, much administrative, educational, and informational content relevant to Wolof speakers is available in French, while many Wolof speakers have limited French literacy. Information therefore exists as French text, but the natural query modality is Wolof speech.
+
+This chapter introduces the first bilingual speech--text Matryoshka embedding model for this setting and, to our knowledge, the first application of MRL to speech-to-text retrieval in a low-resource-to-high-resource language setting. We develop data-curation pipelines and new benchmarks, compare late-fusion and dual-encoder architectures, and analyze how embedding dimension affects accuracy, storage, and latency. We also evaluate transfer to keyword spotting and speech intent detection and study the effective rank of Matryoshka representations. The methodological novelty therefore lies less in any individual component than in their application to cross-lingual speech retrieval, the resulting resources, and the analysis of how Matryoshka dimensions encode information.
+
+\subsection{Related Work}
+
+\paragraph{Speech language models.}
+Speech language models extend LLMs with speech understanding through a speech encoder~\citep{llamaspeech,pareras2025revisitingdirectspeechtotexttranslation,slm_methods}. We similarly add speech capabilities to embedding LLMs, an area underexplored relative to generative speech LLMs.
+
+\paragraph{Matryoshka Representation Learning.}
+MRL~\citep{MRL} learns representations at multiple dimensions simultaneously, allowing the embedding dimension to be chosen at inference time. It has been generalized to vision--language and audio--visual models~\citep{hu2024matryoshkaquerytransformerlarge,cai2024matryoshkamultimodalmodels,cappellazzo2025adaptiveaudiovisualspeechrecognition}. We extend it to cross-lingual speech--text retrieval and analyze the performance, cost, and rank of its dimensions.
+
+\paragraph{Multilingual representation models.}
+XLM-R, multilingual BERT, and mBART~\citep{xlmr,mbert,mbart} demonstrate cross-lingual transfer but are not designed primarily for retrieval. NLLB-LLM2Vec~\citep{nllbllm2vec} produces representations for more than 200 languages. We show that a model approximately ten times smaller, augmented with speech and trained mainly on supervised synthetic bilingual data, supports retrieval and transfers to other tasks.
+
+\paragraph{CLIP-style architectures.}
+CLIP~\citep{clip} uses modality-specific encoders with a contrastive objective, and CLAP~\citep{clap} extends the design to audio and text. We find that dual encoders work for transcription retrieval but struggle with semantically demanding cross-lingual speech-to-document retrieval.
+
+\section{Building a Wolof Speech Language Model}
+\label{sec:wolof-speech-lm}
+
+The retrieval system developed later in this chapter assumes a strong Wolof speech encoder. Such an encoder was not readily available: multilingual models cover Wolof only sparsely, and labeled Wolof speech is limited. We therefore first developed a Wolof-specific speech model in two stages. We continued self-supervised pretraining of HuBERT on a large collection of spontaneous Wolof speech, then connected the resulting encoder to a Wolof LLM. This section presents the complete development and evaluation of that model.
+
+\subsection{Background and Motivation}
+
+Self-supervised models such as wav2vec~\citep{wav2vec,wav2vec2} and HuBERT~\citep{hubert} learn general speech representations from unlabeled audio before supervised fine-tuning. wav2vec~2.0 uses a contrastive objective to predict discretized latent targets, requiring careful negative sampling. HuBERT instead clusters intermediate hidden representations and predicts their discrete cluster assignments with cross-entropy. Data2Vec~\citep{baevski2023efficientselfsupervisedlearningcontextualized} removes discretization and predicts masked continuous representations. We select HuBERT because its objective is simple, widely used, and supported by mature fine-tuning tools.
+
+Multilingual models such as XLS-R and multilingual HuBERT~\citep{xlsr,mhubert} transfer representations across languages, and other work specifically targets African languages~\citep{gauthierSSL,afrihubert}. Performance on a particular language nevertheless depends on its share and diversity in the multilingual corpus. Wolof accounts for only about \(0.1\%\) of the African-centric pretraining data considered here. Because self-supervised learning does not require transcripts, scaling language-specific spontaneous audio is a practical alternative to relying on multilingual transfer alone.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{papers/wolof_speech_lm/images/speech-pipeline.pdf}
+    \caption[Wolof speech collection and filtering]{Collection of spontaneous Wolof speech for continued self-supervised pretraining. Raw web audio passes through source separation, speaker diarization, voice activity detection, and speech-quality filtering.}
+    \label{fig:wolof-data-pipeline}
+\end{figure}
+
+\subsection{Wolof-Specific HuBERT Continued Pretraining}
+\label{sec:wolof-hubert}
+
+\subsubsection{Unsupervised Speech Data}
+
+We manually curate 1.4\,TB of raw Wolof audio from public web sources, prioritizing natural, spontaneous speech by native speakers rather than read speech, which may contain hyper-articulation and artificial emotion. The filtering pipeline in Figure~\ref{fig:wolof-data-pipeline}, inspired by Emilia~\citep{emilia,emilialarge,amphion}, applies source separation, speaker diarization, and voice activity detection. We retain 3--30 second utterances with DNSMOS above 3.2~\citep{dnsmos}. The result is 860 hours of intelligible, spontaneous Wolof speech.
+
+\subsubsection{Initialization and Training}
+
+We initialize the 90M-parameter HuBERT-base model~\citep{hubert}, originally pretrained on 960 hours of English LibriSpeech~\citep{librispeech}, and start with a fresh optimizer state because the original optimizer was unavailable. The Wolof corpus is nearly as large as the original English corpus, but initialization allows the model to reuse previously learned acoustic and phonetic structure.
+
+Continued pretraining uses 32 A100 GPUs and the original HuBERT hyperparameters: 33 epochs, learning rate \(5\times10^{-4}\), and batches containing 87.5 seconds of audio. HuBERT-base was originally trained for 528 epochs; the shorter adaptation demonstrates the computational benefit of reusing a mature checkpoint rather than training from scratch.
+
+\begin{insightbox}{Insight 1: Phonetic features transfer well across distant languages for continued pretraining}
+Despite English and Wolof being typologically distant, English-pretrained HuBERT learns general phonetic features that transfer effectively to Wolof and require relatively few additional epochs.
+\end{insightbox}
+
+\subsection{Supervised ASR Fine-Tuning and Evaluation}
+\label{sec:wolof-asr}
+
+\subsubsection{Data and Fine-Tuning}
+
+The supervised corpus combines FLEURS, ALFA~\citep{gauthierSSL}, Common Voice, Kallaama~\citep{kallama}, and Urban Bus~\citep{urbanbus}. We lowercase transcripts, remove punctuation, and convert digits to words. Official FLEURS splits are retained; the remaining corpora use random train/test partitions.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lrrrrrr}
+        \toprule
+        \textbf{Split} & \textbf{FLEURS} & \textbf{ALFA} & \textbf{CV} & \textbf{Kallaama} & \textbf{UB} & \textbf{Total} \\
+        \midrule
+        Train & 8.72 & 16.13 & 34.97 & 33.60 & 4.52 & \textbf{97.94} \\
+        Test & 1.75 & 2.84 & 6.21 & 5.91 & 1.12 & \textbf{17.83} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Hours of supervised Wolof speech used for ASR fine-tuning and evaluation.}
+    \label{tab:wolof-asr-data}
+\end{table}
+
+We convert the continued-pretrained weights to the Hugging Face format and fine-tune with the standard CTC speech-recognition recipe. We compare three encoders fine-tuned on exactly the same supervised data: Meta/\allowbreak HuBERT-base, its Wolof continued-pretrained version, and Orange/\allowbreak HuBERT-base~\citep{afribert}, which was trained from scratch on 65,000 hours of African-language speech.
+
+\subsubsection{Results and Interpretation}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Model} & \textbf{Pretraining hours} & \textbf{WER \(\downarrow\)} \\
+        \midrule
+        Orange/HuBERT-base & 65,000 & 41.11 \\
+        Meta/HuBERT-base & 960 & 39.48 \\
+        Wolof HuBERT & \(960\rightarrow\mathbf{860}\) & \textbf{35.65} \\
+        \bottomrule
+    \end{tabular}
+    \caption{ASR results after identical supervised fine-tuning. The arrow denotes English pretraining followed by Wolof continued pretraining.}
+    \label{tab:wolof-hubert-wer}
+\end{table}
+
+Table~\ref{tab:wolof-hubert-wer} shows that language-specific continued pretraining reduces WER from 39.48 to 35.65 and outperforms the African-centric model despite using far less audio. Initialization transfers useful phonetic features, while the concentrated Wolof corpus is more valuable for Wolof than a much larger multilingual corpus in which Wolof is rare. Absolute WER remains relatively high partly because Wolof orthography is less standardized than that of high-resource written languages.
+
+\begin{insightbox}{Insight 2: Do not rely on multilingualism alone; scale the monolingual corpus}
+Orange/HuBERT-base underperforms on Wolof despite 65,000 hours of multilingual African speech containing Wolof and related languages. Cross-lingual transfer is useful, but scaling high-quality Wolof-specific data provides a stronger target-language model.
+\end{insightbox}
+
+\subsection{From a Speech Encoder to a Wolof Speech LLM}
+\label{sec:wolof-slm}
+
+HuBERT provides strong acoustic representations but its 90M parameters and CTC objective limit higher-level linguistic modeling. We connect it to a Wolof language model both to improve transcription and to enable speech translation.
+
+\subsubsection{Training the Wolof Text LLM}
+
+We adapt Qwen2.5-3B~\citep{qwen2,qwen2.5} using approximately two billion tokens. The mixture emphasizes bidirectional Wolof--English translation so that Wolof inputs can access knowledge learned during English pretraining, and includes high-quality monolingual Wolof text from Wolof-focused websites to improve generation.
+
+\subsubsection{Linking HuBERT to the LLM}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{papers/wolof_speech_lm/images/oolel_speech.pdf}
+    \caption[Wolof Speech LLM architecture]{Wolof Speech LLM architecture. Features from every HuBERT layer are concatenated, projected by a lightweight aligner, combined with instruction-token embeddings, and passed to the LLM. Only the aligner is trained.}
+    \label{fig:wolof-slm-architecture}
+\end{figure}
+
+We use late fusion~\citep{llava,llamaspeech}, illustrated in Figure~\ref{fig:wolof-slm-architecture}. Features from all HuBERT layers are concatenated and projected into the LLM embedding space by a one-hidden-layer MLP with ReLU activation. The projected speech sequence is concatenated with text instruction embeddings and forwarded through the LLM. HuBERT and the LLM remain frozen; only the aligner is optimized. HuBERT already downsamples the waveform substantially, so no additional sequence downsampling is used.
+
+Training examples use an instruction-following format in which the assistant transcribes or translates an audio input. The loss is computed only on assistant completions, with batch size 2 and learning rate \(10^{-4}\). The speech encoder is the CTC-fine-tuned Wolof HuBERT from Table~\ref{tab:wolof-hubert-wer}.
+
+\subsubsection{Multi-step Speech Reasoning}
+
+Besides direct transcription and translation, we test whether intermediate outputs improve performance. For ASR, the model may \textsc{phonemize} or \textsc{translate} before \textsc{transcribe}; phonemes provide an acoustic intermediate representation, whereas translation provides a semantic one. For translation, the model may first \textsc{transcribe} or \textsc{reformulate}. These variants test whether extra generation helps construct a stronger speech representation.
+
+\subsubsection{Speech LLM Results}
+
+We evaluate ASR with WER and character error rate (CER). Speech translation is evaluated on FLEURS using character \(n\)-gram F-score (ChRF) and BERTScore F1 (BS-F1), complementing surface overlap with semantic similarity.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Generation order} & \textbf{WER \(\downarrow\)} & \textbf{CER \(\downarrow\)} \\
+        \midrule
+        \textsc{transcribe} & \textbf{29.09} & \textbf{15.26} \\
+        \textsc{phonemize}\(\rightarrow\)\textsc{transcribe} & 34.05 & 19.08 \\
+        \textsc{translate}\(\rightarrow\)\textsc{transcribe} & 29.48 & 15.95 \\
+        \bottomrule
+    \end{tabular}
+    \caption{ASR results of the Wolof Speech LLM.}
+    \label{tab:wolof-slm-asr}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Generation order} & \textbf{ChRF \(\uparrow\)} & \textbf{BS-F1 \(\uparrow\)} \\
+        \midrule
+        \textsc{translate} & 33.08 & \textbf{79.78} \\
+        \textsc{transcribe}\(\rightarrow\)\textsc{translate} & \textbf{33.79} & 79.73 \\
+        \textsc{reformulate}\(\rightarrow\)\textsc{translate} & 33.59 & 77.54 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Speech-to-text translation results of the Wolof Speech LLM.}
+    \label{tab:wolof-slm-translation}
+\end{table}
+
+Direct Speech LLM transcription obtains 29.09 WER, an 18.4\% relative improvement over the 35.65 WER of the HuBERT-only CTC model. Because HuBERT and the LLM are frozen while only the aligner is trained, the gain indicates that the LLM contributes useful Wolof linguistic knowledge rather than merely increasing acoustic capacity. The model also performs speech translation. Its translations are often semantic paraphrases rather than literal matches, explaining why BS-F1 is strong relative to ChRF.
+
+Multi-step generation provides little benefit. Phonemization sometimes causes repetition loops in the 3B model, and transcription-before-translation yields only a small ChRF increase with essentially unchanged BS-F1. This agrees with evidence that the advantage of chain-of-thought diminishes as speech instruction data scales~\citep{pareras2025revisitingdirectspeechtotexttranslation}; larger language models may also be needed to exploit explicit intermediate reasoning.
+
+\begin{insightbox}{Insight 3: Multi-step chain-of-thought does not improve this Speech LLM}
+The LLM improves direct speech recognition and enables translation, but extra phonemization, transcription, translation, or reformulation steps provide little or no benefit. At this model and data scale, direct task supervision is the stronger operating point.
+\end{insightbox}
+
+\subsection{Implications for Cross-modal Retrieval}
+
+The Wolof Speech LLM establishes the speech foundation used in the remainder of this chapter. Its development yields three practical lessons: collect substantial spontaneous monolingual audio; continue pretraining a strong self-supervised checkpoint instead of training from scratch; and connect a frozen LLM through a small trainable aligner when higher-level linguistic knowledge is needed. For retrieval, we retain the Wolof-adapted HuBERT encoder and late-fusion principle, but replace the generative LLM with a Matryoshka embedding LLM and train the speech projection for contrastive retrieval.
+
+\section{Datasets}\label{sec:dataset-mrl}
+
+Because Wolof speech--French text retrieval data are scarce, we rely mainly on synthetic documents. Here, a \emph{query} is any speech or text input used for retrieval, whether or not it is phrased as a question.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{papers/MRL/images/pipeline.pdf}
+    \caption[Speech data processing pipeline]{\textbf{Speech data pipeline.} Raw data is processed through source separation, diarization, voice activity detection, and quality filtering. Retained speech is transcribed before French stories, dialogues, and blog posts are generated.}
+    \label{fig:pipeline-mrl}
+\end{figure}
+
+\subsection{Training Datasets}
+
+\paragraph{Text data.}
+We combine French mMARCO~\citep{mmarco}, whose queries are translated into Wolof; Senegalese French webpages, for which French queries are generated and translated; and French question-answering datasets with Wolof-translated questions. Wolof--French translation pairs encourage cross-lingual transfer. The result contains 1,176,908 query--document pairs and approximately 593 million document tokens.
+
+\paragraph{Wolof speech queries.}
+We reuse the 860-hour collection developed for Wolof HuBERT continued pretraining in Section~\ref{sec:wolof-hubert}. Figure~\ref{fig:pipeline-mrl} shows how this same filtered speech is extended into a retrieval-data pipeline: after transcription filtering, each query is paired with several kinds of French target documents.
+
+\paragraph{Synthetic French documents.}
+We transcribe queries using a Wolof speech language model~\citep{sy2025speechlanguagemodelsunderrepresented}. Perplexity and lexical-diversity filters retain roughly one quarter of the transcriptions. These are translated into French, and Gemini-2.5-Flash generates stories, dialogues, and web-style blog posts.
+
+Synthetic targets are a practical way to scale supervision when parallel Wolof speech and French documents are unavailable. We considered reversing the pipeline by starting with natural French documents and synthesizing Wolof speech, but this would require a high-quality Wolof text-to-speech system, which is not available. Generating French documents is more reliable because current LLMs perform strongly in French. Using three document genres also reduces dependence on one synthetic style. Gemini's free API tier made generation at this scale affordable; preliminary trials indicated that open-source generators could also produce usable targets, but running them locally would have required substantially more GPU compute.
+
+\paragraph{Instruction-following data.}
+The same speech may be associated with a Wolof transcription, French translation, or French document. Instruction-following embedding models~\citep{peng-etal-2024-answer} resolve this ambiguity through a task description. We train one prompted model for document, translation, and transcription retrieval. The natural ASR corpora used for these additional tasks are detailed in Section~\ref{sec:wolof-asr}.
+
+\subsection{Evaluation Datasets}
+
+\begin{insightbox}{Evaluation artefacts: Wolof-to-French retrieval benchmarks}
+\emph{Kallaama-Retrieval-Eval} and \emph{Fleurs-Retrieval-Eval} evaluate French document retrieval from Wolof speech or text.
+\end{insightbox}
+
+\paragraph{Fleurs-Retrieval-Eval.}
+We begin with SIB-Fleurs~\citep{schmidt2025fleursslumassivelymultilingualbenchmark}, derived from FLEURS~\citep{fleurs}. French translations of Wolof speech are used to retrieve relevant French webpages, and failed or irrelevant results are manually removed. The 166 retained documents remain uncleaned to reflect deployment conditions.
+
+\paragraph{Kallaama-Retrieval-Eval.}
+FLEURS read speech is often hesitant and quiet, so we construct a benchmark from the natural conversations in Kallaama~\citep{kallama}. We select the 150 longest test utterances below 30 seconds, translate them, and use Gemini-2.5-Pro to generate a dialogue, blog post, and story for each. The result contains 150 speech and text queries, each paired with three French documents.
+
+Both benchmarks are modest in size, which limits fine-grained statistical conclusions. Nevertheless, model inference and ranking are deterministic, the FLEURS targets are natural webpages collected from the web, and the Kallaama queries are spontaneous conversations representative of everyday spoken Wolof. We therefore use the two datasets as complementary evidence rather than treating either one as a comprehensive sample of the complete Wolof speech or French document distributions.
+
+\section{Modeling}\label{sec:model-mrl}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{papers/MRL/images/models.pdf}
+    \caption{\textbf{Late-fusion and dual architectures.} Late fusion projects downsampled HuBERT features into the LLM embedding space and concatenates them with prompt embeddings. The dual architecture pools speech features and uses dimension-specific projections.}
+    \label{fig:models-mrl}
+\end{figure}
+
+Given retrieval loss \(\mathcal{L}\) and dimensions \(\mathcal{M}=\{d_1,\ldots,d_m\}\), MRL optimizes
+\begin{equation}
+    \mathcal{L}_{\mathrm{MRL}}
+    =\sum_{d\in\mathcal{M}}\mathcal{L}(\mathbf{Q}_{:d},\mathbf{D}_{:d}),
+    \label{eq:mrl-loss}
+\end{equation}
+where \(\mathbf{Q}\) and \(\mathbf{D}\) are query and document embeddings and \({:d}\) slices the first \(d\) dimensions. We use InfoNCE~\citep{infonce} with in-batch negatives. The InfoNCE loss for a specific Matryoshka dimension is defined as:
+
+\begin{equation}
+    \mathcal{L}_{\mathrm{InfoNCE}}
+    =\frac{\cos(q, d_{i})}{\sum_{d_{j}}\cos(q, d_{j})},
+    \label{eq:infonce}
+\end{equation}
+
+\subsection{Text-only Embeddings}
+We use Qwen3-0.6B-Embedding at dimensions 128, 256, 512, and 1024. It is first fine-tuned on text-only Wolof--French pairs with in-batch InfoNCE, teaching cross-lingual alignment before speech is introduced.
+
+\subsection{Late Modality Fusion}
+Late fusion~\citep{llava,llamaspeech} combines speech features and prompt-token embeddings before the LLM. We use Wolof-adapted HuBERT~\citep{sy2025speechlanguagemodelsunderrepresented}. Features from all 12 layers are concatenated, downsampled by a CNN, projected with \(\mathbf{W}\), concatenated with the prompt, and forwarded through the embedding LLM. Training uses Equation~\ref{eq:mrl-loss}; HuBERT and the LLM remain frozen while the CNN and projection are updated.
+
+\begin{insightbox}{Model artefact: Cross-lingual speech and text representation models}
+We introduce text-only and speech--text cross-lingual Matryoshka retrieval models for Wolof and French.
+\end{insightbox}
+
+\subsection{Dual Modality}
+The dual architecture does not forward speech through the LLM. A learned query \(\mathbf{q}\) pools HuBERT features \(\mathbf{X}\):
+\begin{equation}
+    \operatorname{pool}(\mathbf{X})
+    =\operatorname{softmax}\left(\frac{\mathbf{q}\mathbf{X}^{T}}{\sqrt{d}}\right)\mathbf{X}.
+\end{equation}
+Dimension-specific projections produce Matryoshka embeddings. This design is less expressive and cannot directly process prompts. \emph{Dual--Retrieval} uses InfoNCE while freezing the text model. \emph{Dual--Query Alignment} instead aligns speech with transcript representations using cosine-distance and \(\ell_1\) losses.
+
+\section{Experiments}
+
+\subsection{Setup}
+We implement all four models with Sentence-Transformers. Each trains for one epoch with batch size 16, maximum length 2048, and learning rate \(3\times10^{-4}\). Although a single epoch may appear short, the dataset is large and both late-fusion and dual models plateau during that epoch; additional training produced no significant gains. The comparison therefore measures the architectures under the same compute budget rather than assuming that the dual models are fully optimized in an unconstrained setting. Fine-tuning Qwen3-0.6B uses eight A100 GPUs for approximately two hours, an estimated \$22.40 at \$1.40 per GPU-hour. The speech models train for approximately eight hours on one H100. They are cheaper because the large text model is frozen: late fusion updates only its small speech aligner, whereas the dual architecture updates the speech encoder and projection modules.
+
+\subsection{Document Retrieval}
+We evaluate normalized discounted cumulative gain (nDCG) at ranks 5 and 10. NLLB-LLM2Vec~\citep{nllbllm2vec} is an 8B-parameter text-only baseline with fixed 4096-dimensional embeddings. A pipelined baseline first transcribes speech and then uses our text-only model.
+
+\begin{table}[ht]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lcccccccccc}
+        \toprule
+        \multirow{2}{*}{\textbf{Approach}} & \multicolumn{2}{c}{\textbf{4096}} & \multicolumn{2}{c}{\textbf{1024}} & \multicolumn{2}{c}{\textbf{512}} & \multicolumn{2}{c}{\textbf{256}} & \multicolumn{2}{c}{\textbf{128}} \\
+        \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+        & @5 & @10 & @5 & @10 & @5 & @10 & @5 & @10 & @5 & @10 \\
+        \midrule
+        NLLB-LLM2Vec & 57.98 & 61.53 & -- & -- & -- & -- & -- & -- & -- & -- \\
+        \rowcolor[HTML]{EEE0CC} Late-Fusion & -- & -- & \textbf{69.85} & \textbf{74.49} & 66.86 & 71.04 & 61.58 & 67.05 & 56.13 & 62.30 \\
+        Pipelined & -- & -- & 57.09 & 62.82 & 54.07 & 59.14 & 45.60 & 51.56 & 41.21 & 47.34 \\
+        Dual--Retrieval & -- & -- & 46.96 & 53.70 & 45.27 & 52.48 & 41.97 & 49.78 & 38.47 & 44.40 \\
+        Dual--Alignment & -- & -- & 41.56 & 47.42 & 41.02 & 46.76 & 38.24 & 44.18 & 35.47 & 40.47 \\
+        \bottomrule
+    \end{tabular}}
+    \caption[Kallaama retrieval results]{Document-retrieval nDCG on Kallaama-Retrieval-Eval.}
+    \label{tab:kallaama-results-mrl}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lcccccccccc}
+        \toprule
+        \multirow{2}{*}{\textbf{Approach}} & \multicolumn{2}{c}{\textbf{4096}} & \multicolumn{2}{c}{\textbf{1024}} & \multicolumn{2}{c}{\textbf{512}} & \multicolumn{2}{c}{\textbf{256}} & \multicolumn{2}{c}{\textbf{128}} \\
+        \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+        & @5 & @10 & @5 & @10 & @5 & @10 & @5 & @10 & @5 & @10 \\
+        \midrule
+        NLLB-LLM2Vec & 55.98 & 59.43 & -- & -- & -- & -- & -- & -- & -- & -- \\
+        \rowcolor[HTML]{EEE0CC} Late-Fusion & -- & -- & \textbf{57.89} & \textbf{61.19} & 55.03 & 58.90 & 50.87 & 54.43 & 41.56 & 46.60 \\
+        Dual--Retrieval & -- & -- & 41.28 & 45.54 & 40.18 & 45.06 & 39.84 & 45.17 & 39.24 & 44.34 \\
+        Dual--Alignment & -- & -- & 38.07 & 41.82 & 37.33 & 41.69 & 38.04 & 41.29 & 34.46 & 38.53 \\
+        \bottomrule
+    \end{tabular}}
+    \caption{Document-retrieval nDCG on Fleurs-Retrieval-Eval.}
+    \label{tab:fleurs-results-mrl}
+\end{table}
+
+Tables~\ref{tab:kallaama-results-mrl} and~\ref{tab:fleurs-results-mrl} show that late fusion performs best. On Kallaama, it outperforms NLLB-LLM2Vec despite being ten times smaller with embeddings four times shorter. It also outperforms the ASR pipeline. The dimension gap is larger on FLEURS, suggesting larger representations are more robust to low-quality speech.
+
+The pipelined baseline already includes the first major source of cascading error: speech is transcribed before its text representation is retrieved. Adding machine translation would introduce another imperfect intermediate prediction, as well as additional latency, before retrieval. An ASR--translation--retrieval cascade should therefore be regarded as a less favorable operating point, especially for Wolof, where intermediate ASR and translation models are weaker than their high-resource counterparts. This expectation is an inference from the measured ASR--retrieval result rather than a directly measured three-stage baseline.
+
+\begin{insightbox}{Finding 1: Late fusion outperforms dual architectures for cross-modal adaptation}
+Late fusion provides stronger cross-modal generalization than dual encoders while training fewer parameters.
+\end{insightbox}
+
+\subsection{Speech Keyword Spotting}
+We evaluate Urban Bus~\citep{urbanbus}, retrieving the station or landmark spoken by the user. This is equivalent to transcription retrieval.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{llcccc}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Approach}} & \textbf{1024} & \textbf{512} & \textbf{256} & \textbf{128} \\
+        \midrule
+        \cellcolor[HTML]{EEE0CC} & \cellcolor[HTML]{EEE0CC}F1 & \cellcolor[HTML]{EEE0CC}\textbf{88.79} & \cellcolor[HTML]{EEE0CC}\textbf{84.85} & \cellcolor[HTML]{EEE0CC}\textbf{79.80} & \cellcolor[HTML]{EEE0CC}\textbf{76.86} \\
+        \multirow{-2}{*}{\cellcolor[HTML]{EEE0CC}Late-Fusion} & \cellcolor[HTML]{EEE0CC}Recall & \cellcolor[HTML]{EEE0CC}\textbf{89.79} & \cellcolor[HTML]{EEE0CC}\textbf{86.49} & \cellcolor[HTML]{EEE0CC}\textbf{81.98} & \cellcolor[HTML]{EEE0CC}\textbf{79.88} \\
+        \multirow{2}{*}{Dual--Retrieval} & F1 & 68.64 & 58.33 & 50.86 & 44.59 \\
+        & Recall & 71.17 & 62.76 & 56.76 & 52.25 \\
+        \multirow{2}{*}{Dual--Alignment} & F1 & 76.07 & 67.67 & 67.67 & 65.22 \\
+        & Recall & 77.78 & 70.87 & 70.87 & 68.47 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Keyword-spotting performance across embedding dimensions.}
+    \label{tab:kws-mrl}
+\end{table}
+
+Late fusion performs best at every dimension. Dual encoders nevertheless perform much better here than on document retrieval, and query alignment outperforms direct retrieval training.
+
+\begin{insightbox}{Finding 2: Dual models remain useful for less semantically demanding tasks}
+Dual encoders remain viable for transcription retrieval, which requires less semantic understanding than document retrieval.
+\end{insightbox}
+
+\subsection{Generalization to an Unseen Task}\label{sec:unseen-task-mrl}
+We evaluate speech intent detection on WolBanking77~\citep{wolbanking}, which has ten banking intents. Zero-shot classification selects the label most similar to a speech request. In the \(n\)-shot setting, we follow SetFit~\citep{setfit}: contrastive fine-tuning improves representations before a logistic-regression head is trained.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{\(n\)-shot} & \textbf{F1} & \textbf{Recall} \\
+        \midrule
+        0 & 44.79 & 50.64 \\ 1 & 56.29 & 58.50 \\ 2 & 60.40 & 61.93 \\
+        4 & 87.18 & 88.46 \\ 8 & 92.54 & 92.51 \\ 16 & 96.11 & 96.10 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Few-shot speech intent detection at dimension 1024.}
+    \label{tab:fewshot-mrl}
+\end{table}
+
+Zero-shot F1 is substantially above the 10\% random baseline and reaches 96.11 with 16 examples per class. Figure~\ref{fig:sid-dimensions-mrl} shows that larger embeddings adapt faster, while smaller ones catch up as data increases.
+
+\begin{insightbox}{Finding 3: Large dimensions adapt quickly; smaller dimensions need more data}
+Large dimensions adapt rapidly to new tasks; smaller dimensions require more examples but eventually approach their performance.
+\end{insightbox}
+
+\section{Analysis}\label{sec:analysis-mrl}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{papers/MRL/images/energy_evolution.pdf}
+    \caption[Dimensions needed for an energy ratio]{Dimensions needed for a given energy ratio.}
+    \label{fig:energy-evolution-mrl}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{papers/MRL/images/energy_100p.pdf}
+    \caption{Dimensions needed for full energy.}
+    \label{fig:energy-full-mrl}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{papers/MRL/images/recall_vs_nshot.pdf}
+    \caption{Recall by dimension and examples.}
+    \label{fig:sid-dimensions-mrl}
+\end{figure}
+
+\subsection{Speech Quality in FLEURS}
+FLEURS asks speakers to read translated texts, but Wolof's standardized writing system is not widely taught. Its hesitations thus primarily reflect difficulty reading Wolof rather than the discourse hesitations that naturally occur in spontaneous conversation. Compared with Kallaama, FLEURS contains more hesitations and lower volume. It averages 7.51 characters per second versus 16.88 for Kallaama, while mean loudness is \(-49.01\) dB versus \(-23.81\) dB. This helps explain Table~\ref{tab:fleurs-results-mrl} and the benefit of larger dimensions for low-quality speech.
+
+\begin{insightbox}{Finding 4: Wolof speech in FLEURS is unnatural}
+Read Wolof in FLEURS is less natural, more hesitant, and quieter than spontaneous Kallaama speech.
+\end{insightbox}
+
+\subsection{Prompting}
+Without prompts, late fusion obtains 67.07/71.68 nDCG@5/10 on Kallaama at dimension 1024, compared with 46.96/53.70 for the dual model. Its advantage is therefore not explained only by prompt support. Task-aligned prompts still help: the document prompt produces the best document scores (68.85/74.49), while the transcription prompt produces the best keyword scores (88.79 F1, 89.79 recall).
+
+\subsection{Rank of Matryoshka Dimensions}
+We compute the cumulative energy ratio
+\begin{equation}
+    R(k)=\frac{\sum_{i=1}^{k}\lambda_i}{\sum_{j=1}^{d}\lambda_j},
+\end{equation}
+where the \(\lambda_i\) are descending eigenvalues of the representation covariance matrix on Kallaama. Figure~\ref{fig:energy-evolution-mrl} shows that larger embeddings reach full energy using a smaller fraction of coordinates and are more low-rank. Yet smaller prefix embeddings do not match their accuracy, suggesting slicing discards critical information. Prior work similarly identifies gradient variance and rigid slicing as MRL limitations~\citep{zhang-etal-2025-smec,wen2025matryoshkarevisitingsparsecoding}. Figure~\ref{fig:energy-full-mrl} also shows that documents have higher ranks than speech queries; dimensions 128 and 256 are full-rank.
+
+\begin{insightbox}{Finding 5: Information is distributed unevenly across Matryoshka dimensions}
+Large representations concentrate information in relatively few components, leaving scope for better compression than prefix slicing.
+\end{insightbox}
+
+\subsection{Deployment Costs}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{papers/MRL/images/costs.pdf}
+    \caption{Indexing, storage, query-time, and accuracy tradeoffs across dimensions.}
+    \label{fig:costs-mrl}
+\end{figure}
+We index float16 embeddings with \texttt{chromadb} and measure indexing throughput, disk usage, and single-result query latency. Figure~\ref{fig:costs-mrl} shows diminishing returns: larger embeddings provide smaller accuracy gains while increasing storage. Smaller embeddings accelerate retrieval substantially, although indexing speed improves more gradually. The best dimension depends on the task and compute budget.
+
+The stronger degradation of small dimensions on FLEURS does not imply that low-dimensional embeddings work only with clean or near-perfect recordings. It is the standard efficiency--accuracy tradeoff becoming steeper under more challenging acoustic conditions: larger vectors preserve more information and are more robust, while smaller vectors retain their storage and speed advantages at the cost of a larger accuracy drop. Deployment should therefore select dimension jointly with expected input quality rather than treating one dimension as universally optimal.
+
+\section{Limitations}
+
+\paragraph{Synthetic data.}
+Most documents are generated from transcribed and translated speech. This enables scale but may not reproduce real-world diversity and noise. It also assumes usable ASR and translation systems, which many languages lack.
+
+\paragraph{Beyond Matryoshka slicing.}
+Only a small subset of coordinates represents most information, suggesting prefix slicing is suboptimal. Sparse-coding alternatives~\citep{wen2025matryoshkarevisitingsparsecoding} or dynamic structured sparsity may offer more flexible compression.
+
+\section{Conclusion}
+We introduced cross-lingual speech--text Matryoshka embedding models that retrieve French documents directly from Wolof speech. Late modality fusion consistently outperforms dual encoders and an ASR pipeline, while the learned representations transfer to keyword spotting and intent detection.
+
+The dimension and rank analyses expose a central limitation: information is concentrated in a small number of components, yet prefix-truncated embeddings do not preserve enough of it to match the largest representation. This connects adaptive representation learning to activation sparsity and motivates more flexible mechanisms for selecting informative dimensions at inference time.

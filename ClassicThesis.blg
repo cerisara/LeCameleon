@@ -1,0 +1,86 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: ClassicThesis.aux
+The style file: biblatex.bst
+A level-1 auxiliary file: FrontBackmatter/DirtyTitlepage.aux
+A level-1 auxiliary file: FrontBackmatter/Titlepage.aux
+A level-1 auxiliary file: FrontBackmatter/Titleback.aux
+A level-1 auxiliary file: FrontBackmatter/Dedication.aux
+A level-1 auxiliary file: FrontBackmatter/Abstract.aux
+A level-1 auxiliary file: FrontBackmatter/Publications.aux
+A level-1 auxiliary file: FrontBackmatter/Acknowledgments.aux
+A level-1 auxiliary file: FrontBackmatter/Contents.aux
+A level-1 auxiliary file: Chapters/Chapter01.aux
+A level-1 auxiliary file: Chapters/Chapter02.aux
+A level-1 auxiliary file: Chapters/Chapter03.aux
+A level-1 auxiliary file: Chapters/Chapter04.aux
+A level-1 auxiliary file: Chapters/Chapter0A.aux
+A level-1 auxiliary file: FrontBackmatter/Bibliography.aux
+A level-1 auxiliary file: FrontBackmatter/Declaration.aux
+A level-1 auxiliary file: FrontBackmatter/Colophon.aux
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated field_info (elt_size=4) to 22920 items from 5000.
+Database file #1: ClassicThesis-blx.bib
+Database file #2: Bibliography.bib
+Database file #3: papers/MRL/custom.bib
+Database file #4: AMiede_Publications.bib
+Warning--I didn't find a database entry for "yang2018breakingsoftmaxbottleneck"
+Biblatex version: 3.21
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 127 entries,
+            6402 wiz_defined-function locations,
+            1881 strings with 44214 characters,
+and the built_in function-call counts, 1916263 in all, are:
+= -- 172693
+> -- 20845
+< -- 5037
++ -- 70968
+- -- 9727
+* -- 141397
+:= -- 250239
+add.period$ -- 0
+call.type$ -- 127
+change.case$ -- 126
+chr.to.int$ -- 93
+cite$ -- 252
+duplicate$ -- 212813
+empty$ -- 146882
+format.name$ -- 15234
+if$ -- 365985
+int.to.chr$ -- 0
+int.to.str$ -- 317
+missing$ -- 0
+newline$ -- 7237
+num.names$ -- 5949
+pop$ -- 56228
+preamble$ -- 1
+purify$ -- 3433
+quote$ -- 0
+skip$ -- 29307
+stack$ -- 0
+substring$ -- 325218
+swap$ -- 27200
+text.length$ -- 5140
+text.prefix$ -- 126
+top$ -- 1
+type$ -- 4306
+warning$ -- 0
+while$ -- 32271
+width$ -- 0
+write$ -- 7111
+(There was 1 warning)

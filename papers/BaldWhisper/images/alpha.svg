@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -20 440 300">
+  <!-- Grid (light) -->
+  <g stroke="#eee" stroke-width="1">
+    <line x1="0" y1="0" x2="360" y2="0"/>
+    <line x1="0" y1="50" x2="360" y2="50"/>
+    <line x1="0" y1="100" x2="360" y2="100"/>
+    <line x1="0" y1="150" x2="360" y2="150"/>
+    <line x1="0" y1="200" x2="360" y2="200"/>
+  </g>
+
+  <!-- Axes -->
+  <g stroke="black" stroke-width="2">
+    <!-- Y axis -->
+    <line x1="0" y1="200" x2="0" y2="0"/>
+    <!-- X axis -->
+    <line x1="0" y1="200" x2="360" y2="200"/>
+    <!-- Arrows -->
+    <polygon points="-5,-5 0,-15 5,-5" />
+    <polygon points="355,195 365,200 355,205" />
+  </g>
+
+  <!-- Learning rate curve -->
+  <path d="M 0,50 L 120,50 L 240,200 L 360,200" 
+        stroke="black" 
+        stroke-width="2.5"
+        fill="none"/>
+
+  <!-- Y axis labels -->
+  <g font-family="Arial" font-size="21" text-anchor="end">
+    <text x="-10" y="205">0.0</text>
+    <text x="-10" y="55">1.0</text>
+    <text x="-10" y="20">α</text>
+  </g>
+
+  <!-- X axis labels -->
+  <g font-family="Arial" font-size="21" text-anchor="middle">
+    <text x="0" y="220">0</text>
+    <text x="120" y="220">warmup</text>
+    <text x="240" y="220">decay</text>
+    <text x="360" y="220">total</text>
+    <text x="120" y="240">steps</text>
+    <text x="240" y="240">end</text>
+    <text x="360" y="240">steps</text>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+\section{The Revolution of Large Language Models}
+So far we can go back, the early signs of language modeling can be traced to Shannon's work titled "A Mathematical Theory of Communication" in 1948. He developed the idea of generating symbols by transitioning from one symbol to another following the most probable path.
+If we find a way to estimate the probabilities of transitions between symbols (characters, words or tokens), we can generate sequences of symbols that are likely to occur in a given language. The probability of a symbol $s_t$ given a sequence of previous symbols $s_1, s_2, ..., s_{t-1}$ is defined as $P(s_t | s_1, s_2, ..., s_{t-1}) = \frac{\text{score}(s_1, s_2, ..., s_{t-1}, s_t)}{\sum_{s'} \text{score}(s_1, s_2, ..., s_{t-1}, s')}$.
+A model parameterizes by $\theta$, can estimate those probabilities on a large corpus $\mathcal{C}$ of texts $s$ by maximizing the log-likelihood of the corpus given the model parameters $\theta$:
+\begin{equation}
+\theta^* = \arg\max_\theta \sum_{s \in \mathcal{C}} \sum_{i=1}^{|s|} \log P(s_i | s_1, s_2, ..., s_{i-1}, \theta)
+\end{equation}
+
+The Transformer architecture (Vaswani et al., 2017) introduced a new way to model sequences with multihead attention
+\subsection{The Transformer at the core of LLMs}
+\subsection{An LLM is never enough large}
+\section{How to make an LLM more efficient}
+This part is heavily inspired by the blogpost we wrote in collaboration with the Datacraft team in 2024: https://medium.com/@yayasy-nlp/a-comprehensive-overview-of-large-language-models-compression-methods-8b59dd0ff4f8
+An efficient model minimizes the computations, the GPU memory usage, the weights movement (Bandwidth).
+\subsection{Model compression}
+\subsubsection{Llama small model or how to hack the Chinchilla scaling laws}
+\subsubsection{Train large, then compress}
+\subsubsubsection{Weights Sparsity}
+\subsubsubsection{Structured Pruning}
+\subsubsubsection{Quantization}
+\subsection{Activation Sparsity}
+- Scaling model parameters without increasing computation
+- Mixture of Experts as block activation sparsity
+    - Formulation of MoE Block (routing, gating, experts)
+    - Limitations of MoE:
+        - Load balancing
+        - Dead experts
+        - Variability in expert choice during inference (expert replay in RL training)
+        - TopK: non differentiability, non adaptivity
+- Sparse Memory Layers
+    - Formulation of Sparse Memory Layer (routing, gating, memory)
+    - 
+
+- Matryoshka Representation Learning (MRL) as a block activation sparsity
+    - Formulation of MRL training
+    - MRL as a block sparsity
+    - Limitations of MRL:
+        - Non differentiability of the indexing function
+        - Non adaptivity
+\subsection{Speculative Decoding and Diffusion LLMs: Trading Compute for Memory}
+- New Gemma paper: profilling of AR vs Diffusion
+- why prefer speculative decoding over diffusion LLMs: https://x.com/barrowjoseph/status/2086933565560996013?s=20
