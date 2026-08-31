@@ -1,0 +1,868 @@
+%************************************************
+\chapter{Efficient Language Models}\label{ch:efficient_lm}
+%************************************************
+We've discussed Transformer and how scaling them yields strong improvement in natural language tasks.
+However, scaling a Transformer-based language model is costly in training compute but also in inference
+budget. We present here common approaches to make them efficient to scale during training, but also to serve
+them efficiently during inference.
+
+When talking about \textit{efficiency} in LLMs, there are few concepts to have in head. 
+The first distinction is between \textbf{compute-boundness} and \textbf{memory-boundness}.
+A model or a task is compute-bound when the bottleneck is the number of arithmetic operations
+that can be done per second. In that case, the limitation is not only the theoretical
+peak compute of the hardware, but also how well the model and the implementation can use this compute.
+A model or a task is memory-bound when the bottleneck is instead the movement of data:
+loading weights, reading activations, writing tensors, or moving the KV-cache from the GPU memory.
+Depending on whether we are training, doing prefill, or decoding tokens, these two concepts
+do not have the same consequences.
+
+LLM training is mostly compute-bound, because training is highly parallel. 
+Many tokens are processed at once, and the forward and backward passes are dominated by large matrix multiplications.
+So the key metrics to check are \textbf{FLOPS}, \textbf{MFU} and \textbf{Tokens/s}.
+\textbf{FLOPS} measures how many Floating Point Operations are executed per second,
+while \textbf{MFU} measures how much of the theoretical peak compute of the hardware is really used.
+The goal is to make the model perform a lot of useful operations per second while minimizing communication:
+between GPUs, between CPU and GPU, and between HBM and the compute units of the GPU. 
+This is why training efficiency is not only about reducing the number of parameters.
+It is also about keeping the hardware busy. We will later see that small dense models, sparse models,
+and compressed models do not all use the hardware in the same way. FLOPS and MFU
+are hardware-oriented numbers, so they are often completed by \textbf{Tokens/s}, which measures
+at which speed the model is consuming the training data.
+
+LLM inference can be compute-bound, but is more often memory-bound because tokens are generated token by token.
+At each decoding step, the model has to read its weights and the KV-cache to produce only one new token,
+which creates a lot of memory traffic for a relatively small amount of computation.
+There are two phases in LLM inference. The first is the \textbf{prefill}, where the system prompt,
+the user prompt and the context are fed in parallel to the LLM. This phase is closer to training
+and is often compute-bound. The second phase is \textbf{decoding}, where the model generates the text
+token per token. This is usually the bottleneck, because the model repeatedly accesses the same weights
+and an increasingly large KV-cache. It is important to understand this difference because a model that
+requires more FLOPS can sometimes be faster if it uses the hardware better or moves less memory.
+The key metrics for inference follow these two phases. For prefill, we usually look at
+\textbf{Time To First Token} (TTFT), which measures how long the user waits before seeing the first
+generated token, and \textbf{prefill Tokens/s}, which measures how fast the prompt is processed.
+These two metrics are related, but they are not exactly inverse because TTFT also includes overheads
+and the generation of the first token. For decoding, we look at \textbf{Time Per Output Token} (TPOT),
+which measures the time needed to generate one new token, and \textbf{generated Tokens/s}, which
+measures how many new tokens are produced per second. These two metrics describe the same decoding
+speed with inverse units. Finally, we also care about the \textbf{memory footprint}, especially the
+weights and KV-cache memory.
+
+\begin{table*}[h!]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabularx}{\textwidth}{@{} l l >{\raggedright\arraybackslash}X @{}}
+        \toprule
+        \textbf{Phase}
+        & \textbf{Metric}
+        & \textbf{What it measures} \\
+        \midrule
+        \multirow{3}{*}{Training}
+        & FLOPS~$\uparrow$
+        & Number of floating point operations per second. \\
+        \cmidrule(l){2-3}
+        & MFU~$\uparrow$
+        & Fraction of the theoretical hardware compute that is effectively used. \\
+        \cmidrule(l){2-3}
+        & Tokens/s~$\uparrow$
+        & Number of training tokens processed per second. \\
+        \midrule
+        \multirow{2}{*}{Prefill}
+        & TTFT~$\downarrow$
+        & Time before the first generated token is returned to the user. \\
+        \cmidrule(l){2-3}
+        & Prefill Tokens/s~$\uparrow$
+        & Speed at which the input prompt and context are processed. \\
+        \midrule
+        \multirow{2}{*}{Decoding}
+        & TPOT~$\downarrow$
+        & Time needed to generate one new token. \\
+        \cmidrule(l){2-3}
+        & Generated Tokens/s~$\uparrow$
+        & Number of new tokens generated per second. It is the inverse view of TPOT. \\
+        \midrule
+        Training and inference
+        & Memory footprint~$\downarrow$
+        & Memory occupied by weights, activations, optimizer states during training, and the KV-cache during inference. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Main efficiency metrics for LLM training and inference. Arrows indicate the optimization direction.}
+    \label{tab:efficiency-metrics}
+\end{table*}
+
+This part is heavily inspired by the blogpost we wrote in collaboration with the Datacraft team in 2024: https://medium.com/@yayasy-nlp/a-comprehensive-overview-of-large-language-models-compression-methods-8b59dd0ff4f8
+\section{Model compression}
+An approach to reduce the memory footprint, and sometimes also accelerate inference by reducing the FLOPs,
+is model compression: making the model smaller while trying to preserve most of its performance.
+There is a tension here. Scaling laws usually advocate for more training compute, and often this means
+increasing the number of parameters. Inference efficiency, in contrast, advocates for less compute,
+less memory movement, and a smaller memory footprint.
+
+We present here two ways of thinking about this tension. First, we discuss small LLMs such as Llama,
+where the objective is not only to be compute-optimal during training, but also to account for
+inference-optimality. The idea is to train smaller models much longer than what the training-optimal
+rule would suggest, so that they remain small at inference time while still performing well.
+We then present the approach of \textit{``train large, then compress''}, which consists of 
+training a large model first, then compress it by keeping the most important components of the model, 
+or by distilling the knowledge of large models into smaller ones.
+
+\subsection{Llama small models or how to account inference-optimality}
+The Llama series of models were among the first to strongly push the idea that
+training should also account for inference compute. Instead of only following what
+Chinchilla compute-optimality suggests, they train small models on much more
+tokens. The result is a model that is not training-optimal according to Chinchilla, 
+but is much more efficient at inference time: it is smaller, cheaper to run, and still very performant.
+This point is important for open models. A smaller but strong model can be deployed more
+easily by independent users, especially those who do not have access to large compute
+resources. In 2023, Llama-1 and Llama-2 made the ecosystem of open-source tools
+for local LLM usage much more concrete, with projects such as Llama-cpp, Llama-index,
+and Ollama becoming central for running and using LLMs outside large GPUs clusters.
+Llama-3 pushed this idea further by training models such as the 8B model on
+$16.55$ trillion tokens. In this work they develop their own scaling laws where
+their estimated model size and training tokens compute allocation advocates
+for training smaller models on more tokens. Table \ref{tab:llama_scaling} presents
+the estimated number of parameters that should be trained for a fixed budget
+of $16.55$ trilion tokens by Kaplan, Chinchilla and Llama scaling laws. 
+
+\begin{table}[t]
+    \centering
+    \caption{Model sizes prescribed by different scaling laws for a fixed
+    training-data budget of $16.55$T tokens.}
+    \label{tab:llama_scaling}
+    \begin{tabular}{lccc}
+        \toprule
+        Training tokens
+        & Kaplan $N_{\mathrm{opt}}$
+        & Chinchilla $N_{\mathrm{opt}}$
+        & Llama 3 $N_{\mathrm{opt}}$ \\
+        \midrule
+        $16.55$T
+        & $\sim 100,000$T
+        & $\sim827.5$B
+        & $402$B \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+How can we explain these differences in compute-optimal allocation estimates?
+The history of scaling laws is also a history of scaling the compute used to study them 
+and improving the methods used to fit the experimental results. 
+The resulting scaling laws may also differ depending on the hyperparameters, 
+model architecture, and data quality.
+This explains why the Llama~3 scaling-law estimates differ from those of Kaplan and Chinchilla. 
+By the time Llama~3 was released, the field had evolved considerably in terms of data quality, 
+model design, and optimization techniques for large-scale LLM training.
+
+More importantly, the Llama~3 advocate training small models much longer, beyond what is compute-optimal.
+Figure \ref{fig:chinchilla_llama} presents Llama~3 8B and Llama~3 70B in the chinchila compute-optimal
+estimate. We can see the Llama~3 models are trained beyond of what is compute-optimal.
+While this is costly at training time, the resulting small models are stronger and effient to serve for
+inference.
+
+\begin{figure}[!ht]
+    \centering
+    \definecolor{chinchilla}{HTML}{58C9B9}
+    \definecolor{llamaeight}{HTML}{F2A93B}
+    \definecolor{llamaseventy}{HTML}{8D6BD1}
+    \definecolor{softgrid}{HTML}{D9DDE3}
+    \begin{tikzpicture}
+    \begin{loglogaxis}[
+        width=\textwidth,
+        height=0.64\textwidth,
+        xmin=5, xmax=23000,
+        ymin=0.5, ymax=1300,
+        xlabel={Training tokens},
+        ylabel={Parameters},
+        axis line style={black!55, line width=0.6pt},
+        tick style={black!55},
+        grid=major,
+        grid style={softgrid, line width=0.55pt},
+        tick label style={font=\small},
+        label style={font=\bfseries\small},
+        xtick={10,100,1000,16550},
+        xticklabels={10B,100B,1T,16.55T},
+        ytick={1,10,100,1000},
+        yticklabels={1B,10B,100B,1T},
+        legend style={
+            at={(0.5,-0.17)}, anchor=north,
+            draw=black!35, rounded corners=1pt,
+            fill=white, fill opacity=0.94,
+            text opacity=1, font=\small,
+            inner xsep=7pt, inner ysep=4pt
+        },
+        clip=true
+    ]
+
+    \addplot[black!88, very thick, domain=5:23000, samples=2] {x/20};
+    \addlegendentry{Estimated Chinchilla compute-optimal scaling}
+
+    \addplot[only marks, mark=*, mark size=3.6pt,
+        draw=black!50, fill=black!42]
+        coordinates {
+            (18.2574185835,0.9128709292)
+            (57.7350269190,2.8867513459)
+            (182.5741858351,9.1287092918)
+            (577.3502691896,28.8675134595)
+            (1825.7418583506,91.2870929175)
+            (5773.5026918963,288.6751345948)
+            (18257.4185835055,912.8709291753)
+        };
+    \node[font=\scriptsize, text=black!72, anchor=west, xshift=5pt, yshift=12pt]
+        at (axis cs:5,0.9128709292) {$10^{20}$ FLOPs};
+    \node[font=\small, text=black!72, anchor=east, xshift=-7pt]
+        at (axis cs:57.7350269190,2.8867513459) {$10^{21}$ FLOPs};
+    \node[font=\small, text=black!72, anchor=east, xshift=-7pt]
+        at (axis cs:182.5741858351,9.1287092918) {$10^{22}$ FLOPs};
+    \node[font=\small, text=black!72, anchor=east, xshift=-7pt]
+        at (axis cs:577.3502691896,28.8675134595) {$10^{23}$ FLOPs};
+    \node[font=\small, text=black!72, anchor=east, xshift=-7pt]
+        at (axis cs:1825.7418583506,91.2870929175) {$10^{24}$ FLOPs};
+    \node[font=\small, text=black!72, anchor=east, xshift=-7pt]
+        at (axis cs:5773.5026918963,288.6751345948) {$10^{25}$ FLOPs};
+
+    \addplot[black!40, densely dashed, thick] coordinates {(16550,0.5) (16550,1300)};
+
+    \node[star, star points=5, star point ratio=2.15, inner sep=3.5pt,
+        draw=white, line width=0.8pt, fill=chinchilla]
+        at (axis cs:1400,70) {};
+    \node[font=\bfseries\scriptsize, anchor=north, yshift=-9pt, align=center,
+        fill=white, fill opacity=0.82, text opacity=1, inner sep=1pt]
+        at (axis cs:1400,70) {Chinchilla\\(70B)};
+
+    \node[star, star points=5, star point ratio=2.15, inner sep=3.5pt,
+        draw=white, line width=0.8pt, fill=llamaseventy]
+        at (axis cs:16550,70) {};
+    \node[font=\bfseries\scriptsize, anchor=south, yshift=9pt, align=center,
+        fill=white, fill opacity=0.82, text opacity=1, inner sep=1pt]
+        at (axis cs:16550,70) {Llama 3.1\\(70B)};
+
+    \node[star, star points=5, star point ratio=2.15, inner sep=3.5pt,
+        draw=white, line width=0.8pt, fill=llamaeight]
+        at (axis cs:16550,8) {};
+    \node[font=\bfseries\scriptsize, anchor=north, yshift=-9pt, align=center,
+        fill=white, fill opacity=0.82, text opacity=1, inner sep=1pt]
+        at (axis cs:16550,8) {Llama 3.1\\(8B)};
+
+    \end{loglogaxis}
+    \end{tikzpicture}
+    \caption{Fixed-token scaling view of Chinchilla and Llama 3.1 models.}
+    \label{fig:chinchilla_llama}
+\end{figure}
+\subsection{Pruning}
+Instead of training small for longer, another approach to produce small models is to train
+large models first and then compress it or distill it in afficient architecture. 
+Compressing larger and more powerful pre-trained models is a viable alternative. 
+This can be achieved using many complementary methods: pruning, distillation, quantization, and more.
+
+The intuition of pruning is identifying unimportant weights in the network and removing them when 
+possible or setting them to zero. There are two main pruning methods: \textbf{unstructured pruning} 
+and \textbf{structured pruning}.
+
+\subsubsection{Unstructured Pruning}
+\begin{figure}[!ht]
+    \centering
+    \definecolor{pruningnode}{HTML}{EEE0CC}
+    \begin{tikzpicture}[
+        neuron/.style={circle, draw=black!75, fill=pruningnode, minimum size=7.5mm, inner sep=0pt},
+        kept/.style={black!78, line width=1.05pt},
+        pruned/.style={black!13, line width=1.05pt},
+        flow/.style={-{Latex[length=2.4mm]}, black!70, line width=0.9pt}
+    ]
+        \begin{scope}
+            \node[neuron] (a11) at (0, 0.55) {};
+            \node[neuron] (a12) at (0,-0.55) {};
+            \node[neuron] (a21) at (1.35, 1.00) {};
+            \node[neuron] (a22) at (1.35, 0.00) {};
+            \node[neuron] (a23) at (1.35,-1.00) {};
+            \node[neuron] (a31) at (2.70, 1.00) {};
+            \node[neuron] (a32) at (2.70, 0.00) {};
+            \node[neuron] (a33) at (2.70,-1.00) {};
+            \node[neuron] (a41) at (4.05, 0.55) {};
+            \node[neuron] (a42) at (4.05,-0.55) {};
+
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[kept] (a1\i) -- (a2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2,3}
+                    \draw[kept] (a2\i) -- (a3\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[kept] (a3\i) -- (a4\j);
+
+            \node[font=\small\bfseries, anchor=north] at (2.03,-1.55) {Dense network};
+        \end{scope}
+
+        \node[font=\footnotesize\bfseries, align=center, anchor=south] at (5.50,0.18) {Unstructured\\Pruning};
+        \draw[flow] (4.85,0) -- (6.15,0);
+
+        \begin{scope}[xshift=7.05cm]
+            \node[neuron] (b11) at (0, 0.55) {};
+            \node[neuron] (b12) at (0,-0.55) {};
+            \node[neuron] (b21) at (1.35, 1.00) {};
+            \node[neuron] (b22) at (1.35, 0.00) {};
+            \node[neuron] (b23) at (1.35,-1.00) {};
+            \node[neuron] (b31) at (2.70, 1.00) {};
+            \node[neuron] (b32) at (2.70, 0.00) {};
+            \node[neuron] (b33) at (2.70,-1.00) {};
+            \node[neuron] (b41) at (4.05, 0.55) {};
+            \node[neuron] (b42) at (4.05,-0.55) {};
+
+            \draw[kept] (b11) -- (b21);
+            \draw[pruned] (b11) -- (b22);
+            \draw[kept] (b11) -- (b23);
+            \draw[pruned] (b12) -- (b21);
+            \draw[kept] (b12) -- (b22);
+            \draw[kept] (b12) -- (b23);
+
+            \draw[kept] (b21) -- (b31);
+            \draw[pruned] (b21) -- (b32);
+            \draw[kept] (b21) -- (b33);
+            \draw[kept] (b22) -- (b31);
+            \draw[kept] (b22) -- (b32);
+            \draw[pruned] (b22) -- (b33);
+            \draw[pruned] (b23) -- (b31);
+            \draw[kept] (b23) -- (b32);
+            \draw[kept] (b23) -- (b33);
+
+            \draw[kept] (b31) -- (b41);
+            \draw[pruned] (b31) -- (b42);
+            \draw[kept] (b32) -- (b41);
+            \draw[kept] (b32) -- (b42);
+            \draw[pruned] (b33) -- (b41);
+            \draw[kept] (b33) -- (b42);
+
+            \node[font=\small\bfseries, anchor=north] at (2.03,-1.55) {Pruned network};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Illustration of unstructured pruning. The architecture is unchanged, but individual weights are removed independently.}
+    \label{fig:unstructured}
+\end{figure}
+Unstructured pruning identifies and removes individual unimportant weights from the model. 
+Figure~\ref{fig:unstructured} illustrates this process, where some model weights are individually removed, 
+producing a sparse model.
+It may be more accurate to call these approaches \textbf{weight sparsity}, 
+because setting weights to zero does not directly reduce the dimensions of the model. 
+The sparse weights can only reduce the model's memory footprint when they are stored 
+using a specific sparse format. However, this format must also store the positions of 
+the non-zero weights and therefore usually becomes beneficial only at high sparsity levels. 
+In pretrained LLMs, achieving such high sparsity without significantly 
+degrading performance remains difficult. Similarly, unstructured sparsity can provide 
+speed-ups only at high sparsity levels and with specialized GPU kernels.
+Another approach is \textbf{semi-structured sparsity}, which constrains a \textit{pattern} 
+in the the positions of the removed weights. For example, $2{:}4$ sparsity removes exactly 
+two weights from every group of four. This regular pattern facilitates
+the development of GPU kernel that can accelerate computation in hardware. 
+
+SparseGPT~\citep{frantar2023sparsegpt} and Wanda~\citep{sun2024wanda} are two popular post-training 
+methods that support both unstructured and semi-structured sparsity. 
+SparseGPT uses activations collected from a small calibration dataset to estimate the effect of removing each weight. 
+After pruning a weight, the remainings are adjusted to compensate for the resulting reconstruction error.
+Wanda is much simpler and cheaper: it removes weights that are both small and connected to weakly activated features.
+For each weight $W_{ij}$, Wanda computes the importance score $S_{ij} = \left|W_{ij}\right| \left\|\mathbf{X}_{j}\right\|_{2}$,
+where $\left|W_{ij}\right|$ is the magnitude of the weight and $\left\|\mathbf{X}_{j}\right\|_{2}$ is the $\ell_2$ norm of its corresponding
+input feature over the calibration data. Weights with lower score are removed.
+Beyond SparseGPT and Wanda, many works proposed new unstructured/semi-structured algorithms.
+Some proposing improved weight-importance criteria, such as Plug-and-Play~\citep{zhang2024plugandplay}, 
+non-uniform sparsity allocation across layers, such as OWL~\citep{yin2024owl}, or methods that iteratively
+refine the initial pruning mask, such as DSnoT~\citep{zhang2024dsnot}.
+
+\subsection{Sturcured Pruning}
+Unstructured Pruning works well but the resulting models require specific implementations to accelerate
+inference or reduce memory requirements. To easily achieve acceleration and memory gain out-of-the box,
+it is better to shrink components of the model. This is the purpose of \textbf{Structured Pruning} 
+which is illustrated in Figure \ref{fig:structured}.
+In structured pruning, entire substructures (or blocks) are removed directly, 
+for example, the Attention Heads, Rows/Columns of the matrices, or even whole layers.
+Since entire substructures are pruned, Structure pruning imposes more constraints compared
+to unstructured pruning or semi-structured pruning where individual weights are remove
+more independently and freely. This explains why unstructured pruning usually perform better
+than structured pruning. However, since structured pruning has more potential
+in improving infernce and reducing memory footpring.
+
+\textbf{LLM-Pruner} \citep{ma2023llmpruner} first groups dependent model
+structures that must be removed together. It then uses gradient information to
+estimate their importance and removes the least important groups. The method can
+remove approximately $20\%$ of the parameters of LLaMA-7B while retaining
+$89.8\%$ of its original performance without post-training. A short LoRA
+recovery stage using $50$K samples increases this figure to approximately
+$95\%$. However, more aggressive parameter reduction generally leads to a significant
+performance drop. Therefore, larger reductions often require continued
+training. This is illustrated by \textbf{Sheared Llama}~\citep{xia2024sheared}, 
+which learns binary masks over layers, attention
+heads, MLP dimensions, and hidden dimensions. Since binary masks are not
+directly differentiable, the method uses a continuous reparameterization to
+learn which structures should be removed. The authors prune LLaMA2-7B into
+models containing $2.7$B and $1.3$B parameters, and continue their training on
+$50$B tokens using the language modeling loss. The pruned model converges fastly
+as shown in Figure ~\ref{fig:sheared_llama}, which shows that 
+the pruning recipe maintains main capacities of the base model.
+Although the resulting models do not retain the full performance
+of LLaMA2-7B, they are competitive with models of similar sizes trained on much
+larger datasets. The Minitron approach similarly combines structured pruning with
+knowledge-distillation-based retraining~\citep{muralidharan2024compact,
+sreenivas2024minitron}. It removes complete layers or reduces the hidden,
+attention, and MLP dimensions of a pretrained model. The pruned model is then
+retrained on much more data than in Sheared-Llama, over 380 billion tokens for
+the pruning of Mistral NeMo 12B.
+
+Some LLM releases have also experimented with pruning to produce smaller 
+models from larger ones. For example, the Llama~3.2 1B and 3B models were obtained 
+through one-shot structured pruning of Llama~3.1 8B.\footnote{
+\href{https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/}
+{https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/}
+}
+The pruned models were then trained using knowledge distillation, 
+with the logits of Llama~3.1 8B and 70B used as training targets.
+On the other side, Ministral~3~\citep{liu2026ministral3} uses a cascaded pruning and distillation. Starting from Mistral Small~3.1 24B, the authors successively 
+produce a smaller model at each stage which trained using the logits of the original model. 
+This ``prune--distill--repeat'' procedure is similar to Minitron.
+
+There are some approaches that focus specifically on layer pruning, 
+based on the observation that several Transformer layers are redundant \citep{men2024shortgpt, yang2024laco}.
+For example, \textbf{ShortGPT}~\citep{men2024shortgpt} measures the contribution 
+of each layer using the cosine similarity between its input and output activations. 
+The intuition is that an unimportant layer does not substantially modify 
+its input representation. Therefore, layers whose input and output activations 
+are highly similar can be removed. However, layer pruning incurs a big performance
+drop and the resulting model needs additional training. Layer pruning generally 
+incurs a significant performance drop, and the resulting model often requires 
+additional training to recover. It is therefore interesting to ask whether, 
+in decoder-only LLMs, high layer similarity is a misleading signal for pruning. 
+Information flows progressively through the network, and each layer may add only 
+a small but important update through the residual connection. 
+Although these updates are individually small, they accumulate across dozens 
+of layers. Consequently, a high similarity between the input and output of a 
+layer does not necessarily mean that the layer is useless. 
+Removing several such layers can disrupt this accumulation and degrade 
+performance unless a recovery stage is applied. Later evaluations of one-shot 
+layer pruning have notably found that it can preserve performance on simple or 
+multiple-choice benchmarks while substantially harming open-ended generation 
+and long-chain reasoning capabilities~\citep{wang2025fewerlayers,he2026pop}.
+\footnote{
+    \href{https://www.reddit.com/r/MachineLearning/comments/1bc1638/r_shortgpt_layers_in_large_language_models_are/}{\url{https://www.reddit.com/r/MachineLearning/comments/1bc1638/r_shortgpt_layers_in_large_language_models_are/}}
+}
+
+\begin{figure}[!ht]
+    \centering
+    \definecolor{pruningnode}{HTML}{EEE0CC}
+    \begin{tikzpicture}[
+        neuron/.style={circle, draw=black!75, fill=pruningnode, minimum size=7.5mm, inner sep=0pt},
+        kept/.style={black!78, line width=1.05pt},
+        flow/.style={-{Latex[length=2.4mm]}, black!70, line width=0.9pt}
+    ]
+        \begin{scope}
+            \node[neuron] (a11) at (0, 0.55) {};
+            \node[neuron] (a12) at (0,-0.55) {};
+            \node[neuron] (a21) at (1.35, 1.00) {};
+            \node[neuron] (a22) at (1.35, 0.00) {};
+            \node[neuron] (a23) at (1.35,-1.00) {};
+            \node[neuron] (a31) at (2.70, 1.00) {};
+            \node[neuron] (a32) at (2.70, 0.00) {};
+            \node[neuron] (a33) at (2.70,-1.00) {};
+            \node[neuron] (a41) at (4.05, 0.55) {};
+            \node[neuron] (a42) at (4.05,-0.55) {};
+
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[kept] (a1\i) -- (a2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2,3}
+                    \draw[kept] (a2\i) -- (a3\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[kept] (a3\i) -- (a4\j);
+
+            \node[font=\small\bfseries, anchor=north] at (2.03,-1.55) {Dense network};
+        \end{scope}
+
+        \node[font=\footnotesize\bfseries, align=center, anchor=south] at (5.50,0.18) {Structured\\Pruning};
+        \draw[flow] (4.85,0) -- (6.15,0);
+
+        \begin{scope}[xshift=7.05cm]
+            \node[neuron] (b11) at (0, 0.55) {};
+            \node[neuron] (b12) at (0,-0.55) {};
+            \node[neuron] (b31) at (2.00, 1.00) {};
+            \node[neuron] (b32) at (2.00, 0.00) {};
+            \node[neuron] (b33) at (2.00,-1.00) {};
+            \node[neuron] (b41) at (4.05, 0.55) {};
+            \node[neuron] (b42) at (4.05,-0.55) {};
+
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[kept] (b1\i) -- (b3\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[kept] (b3\i) -- (b4\j);
+
+            \node[font=\small\bfseries, anchor=north] at (2.03,-1.55) {Pruned network};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Illustration of structured pruning. A full layer is removed, together with all its incoming and outgoing weights.}
+    \label{fig:structured}
+\end{figure}
+\subsection{The best training objective for compression}
+We mentionned distillation for compressing large models capacity in small models.
+What are the best training objectives for compressing LLMs and training
+small LLMs. The common training objective for compression is maximum likelihood
+estimation, but small LLMs take time to learn the regularities. Hence,
+it has been proposed to use training objective that give more \textit{learning signal}
+to the small LLM. Let's list them and see how they're used in recent LLM releases.
+
+\subsubsection{Sequence Level Distillation}
+\begin{figure}[!ht]
+    \centering
+    \definecolor{distillnode}{HTML}{EEE0CC}
+    \begin{tikzpicture}[
+        scale=1.12,
+        every node/.style={transform shape},
+        neuron/.style={circle, draw=black!75, fill=distillnode, minimum size=4.4mm, inner sep=0pt},
+        link/.style={black!72, line width=0.72pt},
+        flow/.style={-{Latex[length=2.4mm]}, black!72, line width=0.9pt},
+        module/.style={draw=black!38, rounded corners=1pt, fill=black!2, line width=0.55pt},
+        textnode/.style={font=\small}
+    ]
+        \node[textnode] (x) at (0,1.25) {$x$};
+        \node[textnode] (pair) at (0,-1.35) {$(x,\widehat{y})$};
+
+        \draw[module] (1.15,0.25) rectangle (4.45,2.25);
+        \draw[module] (1.15,-2.35) rectangle (4.45,-0.35);
+
+        \begin{scope}[xshift=1.60cm, yshift=1.25cm]
+            \node[neuron] (t11) at (0, 0.42) {};
+            \node[neuron] (t12) at (0,-0.42) {};
+            \node[neuron] (t21) at (0.80, 0.65) {};
+            \node[neuron] (t22) at (0.80, 0.00) {};
+            \node[neuron] (t23) at (0.80,-0.65) {};
+            \node[neuron] (t31) at (1.60, 0.65) {};
+            \node[neuron] (t32) at (1.60, 0.00) {};
+            \node[neuron] (t33) at (1.60,-0.65) {};
+            \node[neuron] (t41) at (2.40, 0.42) {};
+            \node[neuron] (t42) at (2.40,-0.42) {};
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[link] (t1\i) -- (t2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2,3}
+                    \draw[link] (t2\i) -- (t3\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[link] (t3\i) -- (t4\j);
+            \node[textnode, font=\footnotesize\bfseries, anchor=south] at (1.20,0.95) {Teacher};
+        \end{scope}
+
+        \begin{scope}[xshift=2.10cm, yshift=-1.35cm]
+            \node[neuron] (s11) at (0, 0.35) {};
+            \node[neuron] (s12) at (0,-0.35) {};
+            \node[neuron] (s21) at (0.70, 0.55) {};
+            \node[neuron] (s22) at (0.70, 0.00) {};
+            \node[neuron] (s23) at (0.70,-0.55) {};
+            \node[neuron] (s31) at (1.40, 0.35) {};
+            \node[neuron] (s32) at (1.40,-0.35) {};
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[link] (s1\i) -- (s2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[link] (s2\i) -- (s3\j);
+            \node[textnode, font=\footnotesize\bfseries, anchor=north] at (0.70,-0.95) {Student};
+        \end{scope}
+
+        \node[textnode, anchor=west] (sample) at (5.15,1.25) {$\widehat{y} \sim \mathrm{sample}(p_T(\cdot \mid x))$};
+        \node[textnode, anchor=west] (loss) at (5.15,-1.35) {$-\log p_S(\widehat{y} \mid x)$};
+        \draw[flow] (x) -- (1.15,1.25);
+        \draw[flow] (4.45,1.25) -- (sample.west);
+        \draw[flow] (pair) -- (1.15,-1.35);
+        \draw[flow] (4.45,-1.35) -- (loss.west);
+        \draw[flow, rounded corners=3pt] (sample.south) -- (5.15,-0.05) -- (0.55,-0.05) -- (pair.north);
+    \end{tikzpicture}
+    \caption{Sequence-level distillation. The teacher first generates a complete answer, and the student is then trained on this synthetic sequence.}
+    \label{fig:sequence-level-distillation}
+\end{figure}
+
+In sequence-level distillation, the small model is trained on texts generated by a larger and more capable model. 
+This approach is illustrated in Figure~\ref{fig:sequence-level-distillation}. 
+The concept was introduced by \citet{kim2016sequence} for machine translation, 
+where the translations generated by the teacher are used as targets for the student.
+In the context of LLMs, this approach became popular with Alpaca~\citep{taori2023alpaca}. Alpaca trained a small LLaMA model on $52$K instruction--response 
+pairs generated by the closed-source \texttt{text-davinci-003} model.
+However, generating useful synthetic data is not as that simple. 
+The generated answers must be correct, diverse, sufficiently difficult, 
+and representative of the capabilities that we want to model. 
+The data must also be filtered to remove redundant, low-quality, or unsafe examples. 
+This motivated the development of many methods for automating and improving synthetic-data generation.
+Orca~\citep{mukherjee2023orca}, for example, uses GPT-4 to generate detailed 
+explanations and reasoning traces rather than only short answers. 
+Magpie~\citep{xu2024magpie}, on the other hand, generates both instructions and 
+responses from a chat LLM without requiring human-written seed instructions. 
+Persona Hub~\citep{ge2024persona} improves data diversity by conditioning 
+the generation on a large collection of synthetic personas representing 
+different backgrounds, occupations, and perspectives.
+
+There has also been a debate about whether a student trained on teacher-generated data 
+can outperform its teacher. This appears possible on specific tasks: \citet{hsieh2023distilling}, 
+for example, show that a much smaller model can outperform a few-shot-prompted teacher 
+by learning from both its answers and its rationales. 
+However, this does not mean that the student becomes generally more capable than 
+the teacher. Such improvements often require generating multiple candidate 
+responses and retaining only the best ones through correctness verification, 
+rejection sampling~\citep{yuan2023scaling}, or learned quality and reward functions. 
+
+\subsubsection{Off-policy Knowledge Distillation}
+\begin{figure}[!ht]
+    \centering
+    \definecolor{distillnode}{HTML}{EEE0CC}
+    \begin{tikzpicture}[
+        scale=1.12,
+        every node/.style={transform shape},
+        neuron/.style={circle, draw=black!75, fill=distillnode, minimum size=4.4mm, inner sep=0pt},
+        link/.style={black!72, line width=0.72pt},
+        flow/.style={-{Latex[length=2.4mm]}, black!72, line width=0.9pt},
+        match/.style={<->, dashed, black!60, line width=0.8pt},
+        module/.style={draw=black!38, rounded corners=1pt, fill=black!2, line width=0.55pt},
+        textnode/.style={font=\small}
+    ]
+        \node[textnode] (dataS) at (0,1.25) {$(x,y)$};
+        \node[textnode] (dataT) at (0,-1.25) {$(x,y)$};
+
+        \draw[module] (1.15,0.25) rectangle (4.45,2.25);
+        \draw[module] (1.15,-2.25) rectangle (4.45,-0.25);
+
+        \begin{scope}[xshift=2.10cm, yshift=1.25cm]
+            \node[neuron] (s11) at (0, 0.35) {};
+            \node[neuron] (s12) at (0,-0.35) {};
+            \node[neuron] (s21) at (0.70, 0.55) {};
+            \node[neuron] (s22) at (0.70, 0.00) {};
+            \node[neuron] (s23) at (0.70,-0.55) {};
+            \node[neuron] (s31) at (1.40, 0.35) {};
+            \node[neuron] (s32) at (1.40,-0.35) {};
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[link] (s1\i) -- (s2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[link] (s2\i) -- (s3\j);
+            \node[textnode, font=\footnotesize\bfseries, anchor=south] at (0.70,0.95) {Student};
+        \end{scope}
+
+        \begin{scope}[xshift=1.60cm, yshift=-1.25cm]
+            \node[neuron] (t11) at (0, 0.42) {};
+            \node[neuron] (t12) at (0,-0.42) {};
+            \node[neuron] (t21) at (0.80, 0.65) {};
+            \node[neuron] (t22) at (0.80, 0.00) {};
+            \node[neuron] (t23) at (0.80,-0.65) {};
+            \node[neuron] (t31) at (1.60, 0.65) {};
+            \node[neuron] (t32) at (1.60, 0.00) {};
+            \node[neuron] (t33) at (1.60,-0.65) {};
+            \node[neuron] (t41) at (2.40, 0.42) {};
+            \node[neuron] (t42) at (2.40,-0.42) {};
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[link] (t1\i) -- (t2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2,3}
+                    \draw[link] (t2\i) -- (t3\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[link] (t3\i) -- (t4\j);
+            \node[textnode, font=\footnotesize\bfseries, anchor=north] at (1.20,-0.95) {Teacher};
+        \end{scope}
+
+        \node[textnode] (studentout) at (5.80,1.25) {$p_S(y \mid x)$};
+        \node[textnode] (teacherout) at (5.80,-1.25) {$p_T(y \mid x)$};
+        \draw[flow] (dataS) -- (1.15,1.25);
+        \draw[flow] (4.45,1.25) -- (studentout);
+        \draw[flow] (dataT) -- (1.15,-1.25);
+        \draw[flow] (4.45,-1.25) -- (teacherout);
+        \draw[match] (studentout.south) -- node[right, font=\footnotesize, align=left] {matching\\loss} (teacherout.north);
+    \end{tikzpicture}
+    \caption{Off-policy distillation. The student and the teacher are evaluated on the same data, and the student distribution is trained to match the teacher distribution.}
+    \label{fig:off-policy-distillation}
+\end{figure}
+In sequence-level distillation, the training signal provided by each token is limited, 
+as the student is trained only on the token sampled by the teacher. 
+When the synthetic dataset is sufficiently large, the student can nevertheless 
+approximate the teacher's probability distribution underlying the generated texts.
+A more direct approach to mimicking the teacher's probability distribution 
+is \textbf{logit-based knowledge distillation}. This approach provides a richer 
+training signal because the student learns from the teacher's probability 
+distribution over the vocabulary at every token position, rather than from only 
+the generated token. This process is illustrated in Figure~\ref{fig:off-policy-distillation}.
+The data is forwarded through both the student and the teacher, which produce 
+a probability distribution over the vocabulary at each token position of 
+the gold answer. The student distribution is then compared with the teacher 
+distribution on the same data. The loss can be designed in different ways, 
+but the most common choice is the \textit{Kullback--Leibler divergence}, 
+which encourages the student distribution to match the teacher distribution.
+
+Logit-based distillation has been used to train several open-weight small language 
+models. In particular, Gemma~2 and Gemma~3 were trained by distilling larger teacher 
+models~\citep{gemmateam2024gemma2,gemmateam2025gemma3technicalreport}. 
+And as discussed earlier, knowledge distillation is used as a recovery stage 
+after pruning in small model series such as Llama~3.2 and Ministral~3. Logit-based knowledge distillation usually outperform 
+training on hard targets alone as the teacher's probability distribution provides 
+a richer training signal for every token~\citep{gemmateam2024gemma2,anshumann2025sparselogit}.
+For example, the Gemma~2 ablations show that distillation improves both validation 
+perplexity and downstream performance across several student sizes. This is
+particularly true in low-data regimes~\citep{liu2026understandingkd}.
+
+\subsubsection{On-policy Knowledge Distillation}
+In sequence-level and off-policy knowledge distillation, the student remains passive: 
+it is trained on sequences generated by the teacher or on fixed sequences for which 
+the teacher provides feedback. This creates what is known as the \textit{training--inference mismatch}.
+During training, the student is trained using \textit{teacher forcing}, meaning that 
+the prediction of the $i$-th token is conditioned on the previous tokens from 
+the teacher-generated or gold sequence. At inference time, however, 
+the student must generate its own tokens and condition subsequent predictions 
+on its previous outputs. It may therefore encounter contexts resulting 
+from its own mistakes that were never observed during training.
+\textbf{On-policy distillation} addresses this mismatch by allowing the student to generate 
+sequences during training and using the teacher to provide feedback on the states 
+visited by the student. \citet{agarwal2024onpolicy} show that knowledge distillation 
+is more effective when the student learns from feedback on its own generated sequences. 
+Their method outperforms distillation based only on fixed teacher-generated data.
+
+Figure~\ref{fig:on-policy-distillation} illustrates the process of on-policy distillation. 
+The student takes a prompt and generates an answer, which is then evaluated by 
+the teacher. More precisely, the teacher provides a probability distribution at each 
+token position of the student-generated sequence. The training loss can be designed 
+in different ways, using, for example, the forward or reverse Kullback--Leibler 
+divergence or the Jensen--Shannon divergence.
+On-policy distillation can be understood through the lens of \textbf{reinforcement learning}: 
+the student generations can be seen as actions, while the teacher provides the
+reward on those actions. Since the reward is differentiable, it
+not necessarily use policy-gradient algorithms such as REINFORCE. 
+The student can instead be trained directly by minimizing the token-level divergence 
+from the teacher distribution.
+Following studies have extended on-policy distillation beyond the compression 
+of small models and used it as a post-training framework. Recently, 
+\textbf{On-Policy Self-Distillation} has emerged as a new post-training 
+approach~\citep{zhao2026selfdistilled}. In this setting, the student and 
+the teacher are the same model but receive different information. 
+The teacher is given \textit{privileged information}, such as the gold answer 
+or a verified reasoning trace, whereas the student receives only the original prompt. 
+The student generates its own response, and the privileged version of the model 
+provides dense token-level feedback on this response. 
+A detailed discussion of these new promising approaches goes beyond the scope of this thesis.
+
+\begin{figure}[!ht]
+    \centering
+    \definecolor{distillnode}{HTML}{EEE0CC}
+    \begin{tikzpicture}[
+        scale=1.12,
+        every node/.style={transform shape},
+        neuron/.style={circle, draw=black!75, fill=distillnode, minimum size=4.4mm, inner sep=0pt},
+        link/.style={black!72, line width=0.72pt},
+        flow/.style={-{Latex[length=2.4mm]}, black!72, line width=0.9pt},
+        module/.style={draw=black!38, rounded corners=1pt, fill=black!2, line width=0.55pt},
+        textnode/.style={font=\small}
+    ]
+        \node[textnode] (x) at (0,1.25) {$x$};
+        \node[textnode] (pair) at (0,-1.35) {$(x,\widehat{y})$};
+
+        \draw[module] (1.15,0.25) rectangle (4.45,2.25);
+        \draw[module] (1.15,-2.35) rectangle (4.45,-0.35);
+
+        \begin{scope}[xshift=2.10cm, yshift=1.25cm]
+            \node[neuron] (s11) at (0, 0.35) {};
+            \node[neuron] (s12) at (0,-0.35) {};
+            \node[neuron] (s21) at (0.70, 0.55) {};
+            \node[neuron] (s22) at (0.70, 0.00) {};
+            \node[neuron] (s23) at (0.70,-0.55) {};
+            \node[neuron] (s31) at (1.40, 0.35) {};
+            \node[neuron] (s32) at (1.40,-0.35) {};
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[link] (s1\i) -- (s2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[link] (s2\i) -- (s3\j);
+            \node[textnode, font=\footnotesize\bfseries, anchor=south] at (0.70,0.95) {Student};
+        \end{scope}
+
+        \begin{scope}[xshift=1.60cm, yshift=-1.35cm]
+            \node[neuron] (t11) at (0, 0.42) {};
+            \node[neuron] (t12) at (0,-0.42) {};
+            \node[neuron] (t21) at (0.80, 0.65) {};
+            \node[neuron] (t22) at (0.80, 0.00) {};
+            \node[neuron] (t23) at (0.80,-0.65) {};
+            \node[neuron] (t31) at (1.60, 0.65) {};
+            \node[neuron] (t32) at (1.60, 0.00) {};
+            \node[neuron] (t33) at (1.60,-0.65) {};
+            \node[neuron] (t41) at (2.40, 0.42) {};
+            \node[neuron] (t42) at (2.40,-0.42) {};
+            \foreach \i in {1,2}
+                \foreach \j in {1,2,3}
+                    \draw[link] (t1\i) -- (t2\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2,3}
+                    \draw[link] (t2\i) -- (t3\j);
+            \foreach \i in {1,2,3}
+                \foreach \j in {1,2}
+                    \draw[link] (t3\i) -- (t4\j);
+            \node[textnode, font=\footnotesize\bfseries, anchor=north] at (1.20,-0.95) {Teacher};
+        \end{scope}
+
+        \node[textnode, anchor=west] (sample) at (5.15,1.25) {$\widehat{y} \sim \mathrm{sample}(\cdot \mid x)$};
+        \node[textnode, anchor=west] (teacherout) at (5.15,-1.35) {$\mathrm{loss}\!\left(p_T(\widehat{y} \mid x) \,\Vert\, p_S(\widehat{y} \mid x)\right)$};
+        \draw[flow] (x) -- (1.15,1.25);
+        \draw[flow] (4.45,1.25) -- (sample.west);
+        \draw[flow] (pair) -- (1.15,-1.35);
+        \draw[flow] (4.45,-1.35) -- (teacherout.west);
+        \draw[flow, rounded corners=3pt] (sample.south) -- (5.15,-0.05) -- (0.55,-0.05) -- (pair.north);
+    \end{tikzpicture}
+    \caption{On-policy distillation. The student first samples an output, then the teacher evaluates this student-generated output.}
+    \label{fig:on-policy-distillation}
+\end{figure}
+
+\section{Activation Sparsity}
+\begin{enumerate}
+    \item Scaling model parameters without increasing computation
+\end{enumerate}
+\subsection{Mixture of Experts}
+\begin{enumerate}
+    \item Mixture of Experts as block activation sparsity
+    \item Formulation of MoE Block (routing, gating, experts)
+    \item Limitations of MoE:
+    \begin{enumerate}
+        \item Load balancing
+        \item Dead experts
+        \item Variability in expert choice during inference (expert replay in RL training)
+        \item TopK: non differentiability, non adaptivity
+    \end{enumerate}
+\end{enumerate}
+\subsection{Embedding Memory Layers}
+\subsection{Sparse Memory Layers}
+\begin{enumerate}
+    \item Motivations: extreme granularity, offloading
+    \item Formulation of Sparse Memory Layer (routing, gating, memory)
+    \item PKM, Scaling PKM, Mixture of million Experts
+    \item Don't forget the paper by Sakana AI
+\end{enumerate}
+\subsection{Matryoshka Representation Learning} 
+\begin{enumerate}
+    \item MRL as a block activation sparsity
+    \item Formulation of MRL training
+    \item MRL as a block sparsity
+    \item Limitations of MRL:
+    \begin{enumerate}
+        \item Non differentiability of the indexing function
+        \item Non adaptivity
+    \end{enumerate}
+\end{enumerate}
+\subsubsection{Post-training Activation Sparsity}
+\begin{enumerate}
+    \item Teal
+    \item Cats
+    \item Relufication
+    \item Moefication
+    \item LoSparse
+    \item Learning to be efficient
+\end{enumerate}
+
+\subsection{Speculative Decoding and Diffusion LLMs: Trading Compute for Memory}
+\begin{enumerate}
+    \item New Gemma paper: profilling of AR vs Diffusion
+    \item why prefer speculative decoding over diffusion LLMs: https://x.com/barrowjoseph/status/2086933565560996013?s=20
+\end{enumerate}

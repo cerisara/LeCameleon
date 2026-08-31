@@ -1,64 +1,64 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\mph@setcol{ii:48}{\mph@nr}
+\mph@setcol{ii:58}{\mph@nr}
 \@writefile{lof}{\ttl@tocsep }
 \@writefile{lot}{\ttl@tocsep }
-\def\mph@nr{9}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}{BaldWhisper}}{49}{chapter.3}\protected@file@percent }
-\newlabel{ch:baldwhisper}{{3}{49}{Can an LLM be pre-trained from scratch with low-rank weights?}{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}{Introduction}}{49}{section.3.1}\protected@file@percent }
-\mph@setcol{ii:49}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Layer merging in the Whisper decoder: each student layer is a weighted average of two consecutive teacher layers, then trained with cross-entropy and knowledge distillation.}}{50}{figure.caption.48}\protected@file@percent }
-\newlabel{fig:layermerging-bw}{{3.1}{50}{Layer merging in the Whisper decoder: each student layer is a weighted average of two consecutive teacher layers, then trained with cross-entropy and knowledge distillation}{figure.caption.48}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}{Related Work}}{50}{section.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Deep encoder, shallow decoder.}}{50}{paragraph*.49}\protected@file@percent }
-\mph@setcol{ii:50}{\mph@nr}
-\@writefile{toc}{\contentsline {paragraph}{{Distil-Whisper.}}{51}{paragraph*.50}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Model merging.}}{51}{paragraph*.51}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Vocabulary pruning.}}{51}{paragraph*.52}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Low-rank decomposition.}}{51}{paragraph*.53}\protected@file@percent }
-\mph@setcol{ii:51}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Head shearing of the Whisper embedding through low-rank decomposition. The decomposition is activation-aware because the low-rank weights are subsequently feature-distilled.}}{52}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:headshearing-bw}{{3.2}{52}{Head shearing of the Whisper embedding through low-rank decomposition. The decomposition is activation-aware because the low-rank weights are subsequently feature-distilled}{figure.caption.54}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}{BaldWhisper Approach}}{52}{section.3.3}\protected@file@percent }
-\newlabel{sec:method-bw}{{3.3}{52}{BaldWhisper Approach}{section.3.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{{Motivation.}}{52}{paragraph*.55}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}{Stage 1: Layer Merging}}{52}{subsection.3.3.1}\protected@file@percent }
-\newlabel{eq:merge-bw}{{3.1}{52}{Stage 1: Layer Merging}{equation.3.1}{}}
-\mph@setcol{ii:52}{\mph@nr}
-\newlabel{eq:hs-bw}{{3.2}{53}{Stage 1: Layer Merging}{equation.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}{Stage 2: Activation-Aware Embedding Decomposition}}{53}{subsection.3.3.2}\protected@file@percent }
-\newlabel{eq:distill-bw}{{3.3}{53}{Stage 2: Activation-Aware Embedding Decomposition}{equation.3.3}{}}
-\newlabel{eq:distance-bw}{{3.4}{53}{Stage 2: Activation-Aware Embedding Decomposition}{equation.3.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}{Experiments}}{53}{section.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}{Experimental Setup}}{53}{subsection.3.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Data.}}{53}{paragraph*.56}\protected@file@percent }
-\def\mph@nr{10}
-\mph@setcol{ii:53}{\mph@nr}
-\@writefile{toc}{\contentsline {paragraph}{{Implementation details.}}{54}{paragraph*.57}\protected@file@percent }
 \def\mph@nr{11}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}{Results}}{54}{subsection.3.4.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces \textbf  {Main results.} Accuracy and efficiency after layer merging and head shearing (embedding decomposition). Speed is measured on a MacBook Air M1 while decoding 256 tokens for each utterance in a batch of 10. Bambara's less standardized orthography may partly explain the high absolute WER.}}{54}{table.caption.58}\protected@file@percent }
-\newlabel{tab:results-bw}{{3.1}{54}{\textbf {Main results.} Accuracy and efficiency after layer merging and head shearing (embedding decomposition). Speed is measured on a MacBook Air M1 while decoding 256 tokens for each utterance in a batch of 10. Bambara's less standardized orthography may partly explain the high absolute WER}{table.caption.58}{}}
-\@writefile{toc}{\contentsline {paragraph}{{Performance.}}{54}{paragraph*.59}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Speedup.}}{54}{paragraph*.60}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Comparison with Whisper-tiny.}}{54}{paragraph*.61}\protected@file@percent }
-\mph@setcol{ii:54}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}{Analysis}}{55}{section.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{How should \(\alpha \) and \(\beta \) be chosen?}}{55}{paragraph*.62}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Choice of \(\alpha \) and \(\beta \). Bayesian hyperparameter search indicates that the main constraint is to keep the lower-layer weight \(\alpha \) small.}}{55}{figure.caption.63}\protected@file@percent }
-\newlabel{fig:convergence-bw}{{3.3}{55}{Choice of \(\alpha \) and \(\beta \). Bayesian hyperparameter search indicates that the main constraint is to keep the lower-layer weight \(\alpha \) small}{figure.caption.63}{}}
-\@writefile{toc}{\contentsline {paragraph}{{Why merge adjacent layers?}}{55}{paragraph*.64}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Random pruning and brute-force search.}}{55}{paragraph*.66}\protected@file@percent }
-\mph@setcol{ii:55}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Activation similarities between all decoder-layer pairs. Consecutive layers tend to be more similar, suggesting that they can be merged.}}{56}{figure.caption.65}\protected@file@percent }
-\newlabel{fig:similarities-bw}{{3.4}{56}{Activation similarities between all decoder-layer pairs. Consecutive layers tend to be more similar, suggesting that they can be merged}{figure.caption.65}{}}
-\@writefile{toc}{\contentsline {paragraph}{{Confidence intervals.}}{56}{paragraph*.67}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}{Conclusion}}{56}{section.3.6}\protected@file@percent }
-\mph@setcol{ii:56}{\mph@nr}
-\mph@setcol{ii:57}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}{BaldWhisper}}{59}{chapter.4}\protected@file@percent }
+\newlabel{ch:baldwhisper}{{4}{59}{Can an LLM be pre-trained from scratch with low-rank weights?}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}{Introduction}}{59}{section.4.1}\protected@file@percent }
+\mph@setcol{ii:59}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Layer merging in the Whisper decoder: each student layer is a weighted average of two consecutive teacher layers, then trained with cross-entropy and knowledge distillation.}}{60}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:layermerging-bw}{{4.1}{60}{Layer merging in the Whisper decoder: each student layer is a weighted average of two consecutive teacher layers, then trained with cross-entropy and knowledge distillation}{figure.caption.54}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}{Related Work}}{60}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Deep encoder, shallow decoder.}}{60}{paragraph*.55}\protected@file@percent }
+\mph@setcol{ii:60}{\mph@nr}
+\@writefile{toc}{\contentsline {paragraph}{{Distil-Whisper.}}{61}{paragraph*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Model merging.}}{61}{paragraph*.57}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Vocabulary pruning.}}{61}{paragraph*.58}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Low-rank decomposition.}}{61}{paragraph*.59}\protected@file@percent }
+\mph@setcol{ii:61}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Head shearing of the Whisper embedding through low-rank decomposition. The decomposition is activation-aware because the low-rank weights are subsequently feature-distilled.}}{62}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:headshearing-bw}{{4.2}{62}{Head shearing of the Whisper embedding through low-rank decomposition. The decomposition is activation-aware because the low-rank weights are subsequently feature-distilled}{figure.caption.60}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}{BaldWhisper Approach}}{62}{section.4.3}\protected@file@percent }
+\newlabel{sec:method-bw}{{4.3}{62}{BaldWhisper Approach}{section.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Motivation.}}{62}{paragraph*.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}{Stage 1: Layer Merging}}{62}{subsection.4.3.1}\protected@file@percent }
+\newlabel{eq:merge-bw}{{4.1}{62}{Stage 1: Layer Merging}{equation.4.1}{}}
+\mph@setcol{ii:62}{\mph@nr}
+\newlabel{eq:hs-bw}{{4.2}{63}{Stage 1: Layer Merging}{equation.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}{Stage 2: Activation-Aware Embedding Decomposition}}{63}{subsection.4.3.2}\protected@file@percent }
+\newlabel{eq:distill-bw}{{4.3}{63}{Stage 2: Activation-Aware Embedding Decomposition}{equation.4.3}{}}
+\newlabel{eq:distance-bw}{{4.4}{63}{Stage 2: Activation-Aware Embedding Decomposition}{equation.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}{Experiments}}{63}{section.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}{Experimental Setup}}{63}{subsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Data.}}{63}{paragraph*.62}\protected@file@percent }
+\def\mph@nr{12}
+\mph@setcol{ii:63}{\mph@nr}
+\@writefile{toc}{\contentsline {paragraph}{{Implementation details.}}{64}{paragraph*.63}\protected@file@percent }
+\def\mph@nr{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}{Results}}{64}{subsection.4.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces \textbf  {Main results.} Accuracy and efficiency after layer merging and head shearing (embedding decomposition). Speed is measured on a MacBook Air M1 while decoding 256 tokens for each utterance in a batch of 10. Bambara's less standardized orthography may partly explain the high absolute WER.}}{64}{table.caption.64}\protected@file@percent }
+\newlabel{tab:results-bw}{{4.1}{64}{\textbf {Main results.} Accuracy and efficiency after layer merging and head shearing (embedding decomposition). Speed is measured on a MacBook Air M1 while decoding 256 tokens for each utterance in a batch of 10. Bambara's less standardized orthography may partly explain the high absolute WER}{table.caption.64}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Performance.}}{64}{paragraph*.65}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Speedup.}}{64}{paragraph*.66}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Comparison with Whisper-tiny.}}{64}{paragraph*.67}\protected@file@percent }
+\mph@setcol{ii:64}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}{Analysis}}{65}{section.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{How should \(\alpha \) and \(\beta \) be chosen?}}{65}{paragraph*.68}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Choice of \(\alpha \) and \(\beta \). Bayesian hyperparameter search indicates that the main constraint is to keep the lower-layer weight \(\alpha \) small.}}{65}{figure.caption.69}\protected@file@percent }
+\newlabel{fig:convergence-bw}{{4.3}{65}{Choice of \(\alpha \) and \(\beta \). Bayesian hyperparameter search indicates that the main constraint is to keep the lower-layer weight \(\alpha \) small}{figure.caption.69}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Why merge adjacent layers?}}{65}{paragraph*.70}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Random pruning and brute-force search.}}{65}{paragraph*.72}\protected@file@percent }
+\mph@setcol{ii:65}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Activation similarities between all decoder-layer pairs. Consecutive layers tend to be more similar, suggesting that they can be merged.}}{66}{figure.caption.71}\protected@file@percent }
+\newlabel{fig:similarities-bw}{{4.4}{66}{Activation similarities between all decoder-layer pairs. Consecutive layers tend to be more similar, suggesting that they can be merged}{figure.caption.71}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Confidence intervals.}}{66}{paragraph*.73}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}{Conclusion}}{66}{section.4.6}\protected@file@percent }
+\mph@setcol{ii:66}{\mph@nr}
+\mph@setcol{ii:67}{\mph@nr}
 \@setckpt{Chapters/Chapter03}{
-\setcounter{page}{58}
+\setcounter{page}{68}
 \setcounter{equation}{4}
 \setcounter{enumi}{3}
 \setcounter{enumii}{2}
@@ -67,7 +67,7 @@
 \setcounter{footnote}{2}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{2}
-\setcounter{chapter}{3}
+\setcounter{chapter}{4}
 \setcounter{section}{6}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
@@ -84,7 +84,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{208}
+\setcounter{instcount}{222}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -190,7 +190,7 @@
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{cbx@tempcnta}{0}
-\setcounter{cbx@tempcntb}{120}
+\setcounter{cbx@tempcntb}{129}
 \setcounter{cbx@tempcntc}{0}
 \setcounter{cbx@tempcntd}{-1}
 \setcounter{parentequation}{0}

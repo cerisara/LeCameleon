@@ -104,6 +104,7 @@
 \PassOptionsToPackage{dvipsnames}{xcolor}
 \usepackage{graphicx} %
 \usepackage{tikz}
+\usepackage{pgfplots}
 \usepackage{pifont}
 \usepackage{scrhack} % fix warnings when using KOMA with listings package
 \usepackage{xspace} % to get the spacing after macros right
@@ -116,8 +117,8 @@
   \def\bflabel#1{{\acsfont{#1}\hfill}}
   \def\aclabelfont#1{\acsfont{#1}}
 % ****************************************************************************************************
-%\usepackage{pgfplots} % External TikZ/PGF support (thanks to Andreas Nautsch)
-\usetikzlibrary{arrows.meta,positioning}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
 %\usetikzlibrary{external}
 %\tikzexternalize[mode=list and make, prefix=ext-tikz/]
 % ****************************************************************************************************

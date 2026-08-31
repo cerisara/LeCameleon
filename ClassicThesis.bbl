@@ -226,6 +226,66 @@
     \field{year}{2024}
   \endentry
 
+  \entry{agarwal2024onpolicy}{inproceedings}{}{}
+    \name{author}{7}{}{%
+      {{hash=AR}{%
+         family={Agarwal},
+         familyi={A\bibinitperiod},
+         given={Rishabh},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=VN}{%
+         family={Vieillard},
+         familyi={V\bibinitperiod},
+         given={Nino},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Yongchao},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Stanczyk},
+         familyi={S\bibinitperiod},
+         given={Piotr},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=RS}{%
+         family={Ramos},
+         familyi={R\bibinitperiod},
+         given={Sabela},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Geist},
+         familyi={G\bibinitperiod},
+         given={Matthieu},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BO}{%
+         family={Bachem},
+         familyi={B\bibinitperiod},
+         given={Olivier},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AR+1}
+    \strng{fullhash}{ARVNZYSPRSGMBO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{booktitle}{International Conference on Learning Representations}
+    \field{title}{On-Policy Distillation of Language Models: Learning from
+  Self-Generated Mistakes}
+    \verb{url}
+    \verb https://openreview.net/forum?id=3zKtaqxLhW
+    \endverb
+    \field{year}{2024}
+  \endentry
+
   \entry{aghajanyan2020intrinsic}{misc}{}{}
     \name{author}{3}{}{%
       {{hash=AA}{%
@@ -300,6 +360,81 @@
     \field{pages}{4023\bibrangedash 4027}
     \field{title}{{AfriHuBERT: A self-supervised speech representation model
   for African languages}}
+    \field{year}{2025}
+  \endentry
+
+  \entry{anshumann2025sparselogit}{inproceedings}{}{}
+    \name{author}{8}{}{%
+      {{hash=A}{%
+         family={Anshumann},
+         familyi={A\bibinitperiod},
+      }}%
+      {{hash=ZMA}{%
+         family={Zaidi},
+         familyi={Z\bibinitperiod},
+         given={Mohd\bibnamedelima Abbas},
+         giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Kedia},
+         familyi={K\bibinitperiod},
+         given={Akhil},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AJ}{%
+         family={Ahn},
+         familyi={A\bibinitperiod},
+         given={Jinwoo},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=KT}{%
+         family={Kwon},
+         familyi={K\bibinitperiod},
+         given={Taehwak},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Kangwook},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Haejun},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Joohyung},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Association for Computational Linguistics}%
+    }
+    \strng{namehash}{A+1}
+    \strng{fullhash}{AZMAKAAJKTLKLHLJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{booktitle}{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}
+    \verb{doi}
+    \verb 10.18653/v1/2025.acl-long.885
+    \endverb
+    \field{pages}{18085\bibrangedash 18108}
+    \field{title}{Sparse Logit Sampling: Accelerating Knowledge Distillation in
+  {LLM}s}
+    \verb{url}
+    \verb https://aclanthology.org/2025.acl-long.885/
+    \endverb
+    \list{location}{1}{%
+      {Vienna, Austria}%
+    }
     \field{year}{2025}
   \endentry
 
@@ -542,39 +677,6 @@
     \field{year}{2020}
   \endentry
 
-  \entry{bahdanau2015neural}{inproceedings}{}{}
-    \name{author}{3}{}{%
-      {{hash=BD}{%
-         family={Bahdanau},
-         familyi={B\bibinitperiod},
-         given={Dzmitry},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=CK}{%
-         family={Cho},
-         familyi={C\bibinitperiod},
-         given={Kyunghyun},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=BY}{%
-         family={Bengio},
-         familyi={B\bibinitperiod},
-         given={Yoshua},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{BDCKBY1}
-    \strng{fullhash}{BDCKBY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \field{booktitle}{International Conference on Learning Representations}
-    \field{title}{Neural Machine Translation by Jointly Learning to Align and
-  Translate}
-    \field{year}{2015}
-  \endentry
-
   \entry{beltagy2020longformer}{article}{}{}
     \name{author}{3}{}{%
       {{hash=BI}{%
@@ -605,46 +707,6 @@
     \field{title}{Longformer: The Long-Document Transformer}
     \field{journaltitle}{arXiv preprint arXiv:2004.05150}
     \field{year}{2020}
-  \endentry
-
-  \entry{bengio2003neural}{article}{}{}
-    \name{author}{4}{}{%
-      {{hash=BY}{%
-         family={Bengio},
-         familyi={B\bibinitperiod},
-         given={Yoshua},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=DR}{%
-         family={Ducharme},
-         familyi={D\bibinitperiod},
-         given={Rejean},
-         giveni={R\bibinitperiod},
-      }}%
-      {{hash=VP}{%
-         family={Vincent},
-         familyi={V\bibinitperiod},
-         given={Pascal},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=JC}{%
-         family={Jauvin},
-         familyi={J\bibinitperiod},
-         given={Christian},
-         giveni={C\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{BY+1}
-    \strng{fullhash}{BYDRVPJC1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{B}
-    \field{sortinithash}{B}
-    \field{pages}{1137\bibrangedash 1155}
-    \field{title}{A Neural Probabilistic Language Model}
-    \field{volume}{3}
-    \field{journaltitle}{Journal of Machine Learning Research}
-    \field{year}{2003}
   \endentry
 
   \entry{piqa}{misc}{}{}
@@ -680,7 +742,7 @@
          giveni={Y\bibinitperiod},
       }}%
     }
-    \strng{namehash}{BY+2}
+    \strng{namehash}{BY+1}
     \strng{fullhash}{BYZRBRLGJCY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
@@ -1009,67 +1071,6 @@
   volume~34, pages 29321--29334. Curran Associates, Inc}
     \field{title}{Drone: Data-aware low-rank compression for large nlp models}
     \field{year}{2021}
-  \endentry
-
-  \entry{cho2014learning}{inproceedings}{}{}
-    \name{author}{7}{}{%
-      {{hash=CK}{%
-         family={Cho},
-         familyi={C\bibinitperiod},
-         given={Kyunghyun},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=vMB}{%
-         prefix={van},
-         prefixi={v\bibinitperiod},
-         family={Merrienboer},
-         familyi={M\bibinitperiod},
-         given={Bart},
-         giveni={B\bibinitperiod},
-      }}%
-      {{hash=GC}{%
-         family={Gulcehre},
-         familyi={G\bibinitperiod},
-         given={Caglar},
-         giveni={C\bibinitperiod},
-      }}%
-      {{hash=BD}{%
-         family={Bahdanau},
-         familyi={B\bibinitperiod},
-         given={Dzmitry},
-         giveni={D\bibinitperiod},
-      }}%
-      {{hash=BF}{%
-         family={Bougares},
-         familyi={B\bibinitperiod},
-         given={Fethi},
-         giveni={F\bibinitperiod},
-      }}%
-      {{hash=SH}{%
-         family={Schwenk},
-         familyi={S\bibinitperiod},
-         given={Holger},
-         giveni={H\bibinitperiod},
-      }}%
-      {{hash=BY}{%
-         family={Bengio},
-         familyi={B\bibinitperiod},
-         given={Yoshua},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{CK+1}
-    \strng{fullhash}{CKMBvGCBDBFSHBY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{C}
-    \field{sortinithash}{C}
-    \field{booktitle}{Proceedings of the 2014 Conference on Empirical Methods
-  in Natural Language Processing}
-    \field{pages}{1724\bibrangedash 1734}
-    \field{title}{Learning Phrase Representations using RNN Encoder--Decoder
-  for Statistical Machine Translation}
-    \field{year}{2014}
   \endentry
 
   \entry{chomsky1956three}{article}{}{}
@@ -1652,32 +1653,6 @@
     \field{year}{2022}
   \endentry
 
-  \entry{elman1990finding}{article}{}{}
-    \name{author}{1}{}{%
-      {{hash=EJL}{%
-         family={Elman},
-         familyi={E\bibinitperiod},
-         given={Jeffrey\bibnamedelima L.},
-         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{EJL1}
-    \strng{fullhash}{EJL1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{E}
-    \field{sortinithash}{E}
-    \verb{doi}
-    \verb 10.1207/s15516709cog1402_1
-    \endverb
-    \field{number}{2}
-    \field{pages}{179\bibrangedash 211}
-    \field{title}{Finding Structure in Time}
-    \field{volume}{14}
-    \field{journaltitle}{Cognitive Science}
-    \field{year}{1990}
-  \endentry
-
   \entry{fang2025alphaeditnullspaceconstrainedknowledge}{misc}{}{}
     \name{author}{8}{}{%
       {{hash=FJ}{%
@@ -1775,6 +1750,43 @@
     \field{title}{The lottery ticket hypothesis: Finding sparse, trainable
   neural networks}
     \field{year}{2019}
+  \endentry
+
+  \entry{frantar2023sparsegpt}{inproceedings}{}{}
+    \name{author}{2}{}{%
+      {{hash=FE}{%
+         family={Frantar},
+         familyi={F\bibinitperiod},
+         given={Elias},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=AD}{%
+         family={Alistarh},
+         familyi={A\bibinitperiod},
+         given={Dan},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {PMLR}%
+    }
+    \strng{namehash}{FEAD1}
+    \strng{fullhash}{FEAD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{Proceedings of the 40th International Conference on
+  Machine Learning}
+    \field{pages}{10323\bibrangedash 10337}
+    \field{series}{Proceedings of Machine Learning Research}
+    \field{title}{{SparseGPT}: Massive Language Models Can Be Accurately Pruned
+  in One-Shot}
+    \verb{url}
+    \verb https://proceedings.mlr.press/v202/frantar23a.html
+    \endverb
+    \field{volume}{202}
+    \field{year}{2023}
   \endentry
 
   \entry{frantar2023sparsegptmassivelanguagemodels}{misc}{}{}
@@ -2132,6 +2144,83 @@
       {Torino, Italia}%
     }
     \field{month}{05}
+    \field{year}{2024}
+  \endentry
+
+  \entry{ge2024persona}{article}{}{}
+    \name{author}{6}{}{%
+      {{hash=GT}{%
+         family={Ge},
+         familyi={G\bibinitperiod},
+         given={Tao},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=CX}{%
+         family={Chan},
+         familyi={C\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=WX}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Xiaoyang},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=YD}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Dian},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MH}{%
+         family={Mi},
+         familyi={M\bibinitperiod},
+         given={Haitao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=YD}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Dong},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GT+1}
+    \strng{fullhash}{GTCXWXYDMHYD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{doi}
+    \verb 10.48550/arXiv.2406.20094
+    \endverb
+    \field{title}{Scaling Synthetic Data Creation with 1,000,000,000 Personas}
+    \verb{url}
+    \verb https://arxiv.org/abs/2406.20094
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2406.20094}
+    \field{year}{2024}
+  \endentry
+
+  \entry{gemmateam2024gemma2}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{Gemma Team}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G1}
+    \strng{fullhash}{G1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Gemma 2: Improving Open Language Models at a Practical Size}
+    \verb{url}
+    \verb https://arxiv.org/abs/2408.00118
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2408.00118}
     \field{year}{2024}
   \endentry
 
@@ -2746,6 +2835,86 @@
     \field{year}{2022}
   \endentry
 
+  \entry{hsieh2023distilling}{inproceedings}{}{}
+    \name{author}{9}{}{%
+      {{hash=HCY}{%
+         family={Hsieh},
+         familyi={H\bibinitperiod},
+         given={Cheng-Yu},
+         giveni={C\bibinithyphendelim Y\bibinitperiod},
+      }}%
+      {{hash=LCL}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Chun-Liang},
+         giveni={C\bibinithyphendelim L\bibinitperiod},
+      }}%
+      {{hash=YCK}{%
+         family={Yeh},
+         familyi={Y\bibinitperiod},
+         given={Chih-Kuan},
+         giveni={C\bibinithyphendelim K\bibinitperiod},
+      }}%
+      {{hash=NH}{%
+         family={Nakhost},
+         familyi={N\bibinitperiod},
+         given={Hootan},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=FY}{%
+         family={Fujii},
+         familyi={F\bibinitperiod},
+         given={Yasuhisa},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={Ratner},
+         familyi={R\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Krishna},
+         familyi={K\bibinitperiod},
+         given={Ranjay},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=LCY}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Chen-Yu},
+         giveni={C\bibinithyphendelim Y\bibinitperiod},
+      }}%
+      {{hash=PT}{%
+         family={Pfister},
+         familyi={P\bibinitperiod},
+         given={Tomas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Association for Computational Linguistics}%
+    }
+    \strng{namehash}{HCY+1}
+    \strng{fullhash}{HCYLCLYCKNHFYRAKRLCYPT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{Findings of the Association for Computational
+  Linguistics: ACL 2023}
+    \verb{doi}
+    \verb 10.18653/v1/2023.findings-acl.507
+    \endverb
+    \field{pages}{8003\bibrangedash 8017}
+    \field{title}{Distilling Step-by-Step! Outperforming Larger Language Models
+  with Less Training Data and Smaller Model Sizes}
+    \verb{url}
+    \verb https://aclanthology.org/2023.findings-acl.507
+    \endverb
+    \field{year}{2023}
+  \endentry
+
   \entry{hubert}{article}{}{}
     \name{author}{6}{}{%
       {{hash=HWN}{%
@@ -2931,34 +3100,6 @@
     \field{year}{2020}
   \endentry
 
-  \entry{kalchbrenner2013recurrent}{inproceedings}{}{}
-    \name{author}{2}{}{%
-      {{hash=KN}{%
-         family={Kalchbrenner},
-         familyi={K\bibinitperiod},
-         given={Nal},
-         giveni={N\bibinitperiod},
-      }}%
-      {{hash=BP}{%
-         family={Blunsom},
-         familyi={B\bibinitperiod},
-         given={Phil},
-         giveni={P\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{KNBP1}
-    \strng{fullhash}{KNBP1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{K}
-    \field{sortinithash}{K}
-    \field{booktitle}{Proceedings of the 2013 Conference on Empirical Methods
-  in Natural Language Processing}
-    \field{pages}{1700\bibrangedash 1709}
-    \field{title}{Recurrent Continuous Translation Models}
-    \field{year}{2013}
-  \endentry
-
   \entry{wolbanking}{misc}{}{}
     \name{author}{5}{}{%
       {{hash=KAK}{%
@@ -3137,7 +3278,7 @@
     \field{year}{2021}
   \endentry
 
-  \entry{kim2016sequencelevelknowledgedistillation}{inproceedings}{}{}
+  \entry{kim2016sequence}{inproceedings}{}{}
     \name{author}{2}{}{%
       {{hash=KY}{%
          family={Kim},
@@ -3163,8 +3304,14 @@
     \field{sortinithash}{K}
     \field{booktitle}{Proceedings of the 2016 Conference on Empirical Methods
   in Natural Language Processing}
+    \verb{doi}
+    \verb 10.18653/v1/D16-1139
+    \endverb
     \field{pages}{1317\bibrangedash 1327}
     \field{title}{Sequence-Level Knowledge Distillation}
+    \verb{url}
+    \verb https://aclanthology.org/D16-1139
+    \endverb
     \field{year}{2016}
   \endentry
 
@@ -3656,6 +3803,751 @@
     \field{year}{2022}
   \endentry
 
+  \entry{liu2026ministral3}{misc}{}{}
+    \name{author}{120}{}{%
+      {{hash=LAH}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Alexander\bibnamedelima H.},
+         giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=KK}{%
+         family={Khandelwal},
+         familyi={K\bibinitperiod},
+         given={Kartik},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Subramanian},
+         familyi={S\bibinitperiod},
+         given={Sandeep},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=JV}{%
+         family={Jouault},
+         familyi={J\bibinitperiod},
+         given={Victor},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={Rastogi},
+         familyi={R\bibinitperiod},
+         given={Abhinav},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Sadé},
+         familyi={S\bibinitperiod},
+         given={Adrien},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=JA}{%
+         family={Jeffares},
+         familyi={J\bibinitperiod},
+         given={Alan},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=JA}{%
+         family={Jiang},
+         familyi={J\bibinitperiod},
+         given={Albert},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Cahill},
+         familyi={C\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GA}{%
+         family={Gavaudan},
+         familyi={G\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Sablayrolles},
+         familyi={S\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HA}{%
+         family={Héliou},
+         familyi={H\bibinitperiod},
+         given={Amélie},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=YA}{%
+         family={You},
+         familyi={Y\bibinitperiod},
+         given={Amos},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=EA}{%
+         family={Ehrenberg},
+         familyi={E\bibinitperiod},
+         given={Andy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lo},
+         familyi={L\bibinitperiod},
+         given={Andy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=EA}{%
+         family={Eliseev},
+         familyi={E\bibinitperiod},
+         given={Anton},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Calvi},
+         familyi={C\bibinitperiod},
+         given={Antonia},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Sooriyarachchi},
+         familyi={S\bibinitperiod},
+         given={Avinash},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BB}{%
+         family={Bout},
+         familyi={B\bibinitperiod},
+         given={Baptiste},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=RB}{%
+         family={Rozière},
+         familyi={R\bibinitperiod},
+         given={Baptiste},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=MBD}{%
+         family={Monicault},
+         familyi={M\bibinitperiod},
+         given={Baudouin\bibnamedelima De},
+         giveni={B\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lanfranchi},
+         familyi={L\bibinitperiod},
+         given={Clémence},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=BC}{%
+         family={Barreau},
+         familyi={B\bibinitperiod},
+         given={Corentin},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=CC}{%
+         family={Courtot},
+         familyi={C\bibinitperiod},
+         given={Cyprien},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GD}{%
+         family={Grattarola},
+         familyi={G\bibinitperiod},
+         given={Daniele},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=DD}{%
+         family={Dabert},
+         familyi={D\bibinitperiod},
+         given={Darius},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=dlCD}{%
+         prefix={de\bibnamedelima las},
+         prefixi={d\bibinitperiod\bibinitdelim l\bibinitperiod},
+         family={Casas},
+         familyi={C\bibinitperiod},
+         given={Diego},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=CSE}{%
+         family={Chane-Sane},
+         familyi={C\bibinithyphendelim S\bibinitperiod},
+         given={Elliot},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=AF}{%
+         family={Ahmed},
+         familyi={A\bibinitperiod},
+         given={Faruk},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=BG}{%
+         family={Berrada},
+         familyi={B\bibinitperiod},
+         given={Gabrielle},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=EG}{%
+         family={Ecrepont},
+         familyi={E\bibinitperiod},
+         given={Gaëtan},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=GG}{%
+         family={Guinet},
+         familyi={G\bibinitperiod},
+         given={Gauthier},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=NG}{%
+         family={Novikov},
+         familyi={N\bibinitperiod},
+         given={Georgii},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=KG}{%
+         family={Kunsch},
+         familyi={K\bibinitperiod},
+         given={Guillaume},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LG}{%
+         family={Lample},
+         familyi={L\bibinitperiod},
+         given={Guillaume},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=MG}{%
+         family={Martin},
+         familyi={M\bibinitperiod},
+         given={Guillaume},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=GG}{%
+         family={Gupta},
+         familyi={G\bibinitperiod},
+         given={Gunshi},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Ludziejewski},
+         familyi={L\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RJ}{%
+         family={Rute},
+         familyi={R\bibinitperiod},
+         given={Jason},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Studnia},
+         familyi={S\bibinitperiod},
+         given={Joachim},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=AJ}{%
+         family={Amar},
+         familyi={A\bibinitperiod},
+         given={Jonas},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DJ}{%
+         family={Delas},
+         familyi={D\bibinitperiod},
+         given={Joséphine},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RJS}{%
+         family={Roberts},
+         familyi={R\bibinitperiod},
+         given={Josselin\bibnamedelima Somerville},
+         giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=YK}{%
+         family={Yadav},
+         familyi={Y\bibinitperiod},
+         given={Karmesh},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CK}{%
+         family={Chandu},
+         familyi={C\bibinitperiod},
+         given={Khyathi},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=JK}{%
+         family={Jain},
+         familyi={J\bibinitperiod},
+         given={Kush},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=AL}{%
+         family={Aitchison},
+         familyi={A\bibinitperiod},
+         given={Laurence},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=FL}{%
+         family={Fainsin},
+         familyi={F\bibinitperiod},
+         given={Laurent},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=BL}{%
+         family={Blier},
+         familyi={B\bibinitperiod},
+         given={Léonard},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Lingxiao},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=ML}{%
+         family={Martin},
+         familyi={M\bibinitperiod},
+         given={Louis},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SL}{%
+         family={Saulnier},
+         familyi={S\bibinitperiod},
+         given={Lucile},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=GL}{%
+         family={Gao},
+         familyi={G\bibinitperiod},
+         given={Luyu},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Buyl},
+         familyi={B\bibinitperiod},
+         given={Maarten},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jennings},
+         familyi={J\bibinitperiod},
+         given={Margaret},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Pellat},
+         familyi={P\bibinitperiod},
+         given={Marie},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Prins},
+         familyi={P\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Poirée},
+         familyi={P\bibinitperiod},
+         given={Mathieu},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Guillaumin},
+         familyi={G\bibinitperiod},
+         given={Mathilde},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={Dinot},
+         familyi={D\bibinitperiod},
+         given={Matthieu},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FM}{%
+         family={Futeral},
+         familyi={F\bibinitperiod},
+         given={Matthieu},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={Darrin},
+         familyi={D\bibinitperiod},
+         given={Maxime},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Augustin},
+         familyi={A\bibinitperiod},
+         given={Maximilian},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Chiquier},
+         familyi={C\bibinitperiod},
+         given={Mia},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Schimpf},
+         familyi={S\bibinitperiod},
+         given={Michel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GN}{%
+         family={Grinsztajn},
+         familyi={G\bibinitperiod},
+         given={Nathan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=GN}{%
+         family={Gupta},
+         familyi={G\bibinitperiod},
+         given={Neha},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=RN}{%
+         family={Raghuraman},
+         familyi={R\bibinitperiod},
+         given={Nikhil},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=BO}{%
+         family={Bousquet},
+         familyi={B\bibinitperiod},
+         given={Olivier},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=DO}{%
+         family={Duchenne},
+         familyi={D\bibinitperiod},
+         given={Olivier},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=WP}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Patricia},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=vPP}{%
+         prefix={von},
+         prefixi={v\bibinitperiod},
+         family={Platen},
+         familyi={P\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=JP}{%
+         family={Jacob},
+         familyi={J\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=WP}{%
+         family={Wambergue},
+         familyi={W\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KP}{%
+         family={Kurylowicz},
+         familyi={K\bibinitperiod},
+         given={Paula},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=MPR}{%
+         family={Muddireddy},
+         familyi={M\bibinitperiod},
+         given={Pavankumar\bibnamedelima Reddy},
+         giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=CP}{%
+         family={Chagniot},
+         familyi={C\bibinitperiod},
+         given={Philomène},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Stock},
+         familyi={S\bibinitperiod},
+         given={Pierre},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=AP}{%
+         family={Agrawal},
+         familyi={A\bibinitperiod},
+         given={Pravesh},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=TQ}{%
+         family={Torroba},
+         familyi={T\bibinitperiod},
+         given={Quentin},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Sauvestre},
+         familyi={S\bibinitperiod},
+         given={Romain},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Soletskyi},
+         familyi={S\bibinitperiod},
+         given={Roman},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Menneer},
+         familyi={M\bibinitperiod},
+         given={Rupert},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=VS}{%
+         family={Vaze},
+         familyi={V\bibinitperiod},
+         given={Sagar},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Barry},
+         familyi={B\bibinitperiod},
+         given={Samuel},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gandhi},
+         familyi={G\bibinitperiod},
+         given={Sanchit},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Waghjale},
+         familyi={W\bibinitperiod},
+         given={Siddhant},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gandhi},
+         familyi={G\bibinitperiod},
+         given={Siddharth},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Ghosh},
+         familyi={G\bibinitperiod},
+         given={Soham},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Mishra},
+         familyi={M\bibinitperiod},
+         given={Srijan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AS}{%
+         family={Aithal},
+         familyi={A\bibinitperiod},
+         given={Sumukh},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AS}{%
+         family={Antoniak},
+         familyi={A\bibinitperiod},
+         given={Szymon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=STL}{%
+         family={Scao},
+         familyi={S\bibinitperiod},
+         given={Teven\bibnamedelima Le},
+         giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=CT}{%
+         family={Cachet},
+         familyi={C\bibinitperiod},
+         given={Théo},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=STS}{%
+         family={Sorg},
+         familyi={S\bibinitperiod},
+         given={Theo\bibnamedelima Simon},
+         giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=LT}{%
+         family={Lavril},
+         familyi={L\bibinitperiod},
+         given={Thibaut},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=STN}{%
+         family={Saada},
+         familyi={S\bibinitperiod},
+         given={Thiziri\bibnamedelima Nait},
+         giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=CT}{%
+         family={Chabal},
+         familyi={C\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=FT}{%
+         family={Foubert},
+         familyi={F\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=RT}{%
+         family={Robert},
+         familyi={R\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=WT}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LT}{%
+         family={Lawson},
+         familyi={L\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=BT}{%
+         family={Bewley},
+         familyi={B\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=BT}{%
+         family={Bewley},
+         familyi={B\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ET}{%
+         family={Edwards},
+         familyi={E\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=JU}{%
+         family={Jamil},
+         familyi={J\bibinitperiod},
+         given={Umar},
+         giveni={U\bibinitperiod},
+      }}%
+      {{hash=TU}{%
+         family={Tomasini},
+         familyi={T\bibinitperiod},
+         given={Umberto},
+         giveni={U\bibinitperiod},
+      }}%
+      {{hash=NV}{%
+         family={Nemychnikova},
+         familyi={N\bibinitperiod},
+         given={Valeriia},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=PV}{%
+         family={Phung},
+         familyi={P\bibinitperiod},
+         given={Van},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=MV}{%
+         family={Maladière},
+         familyi={M\bibinitperiod},
+         given={Vincent},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=RV}{%
+         family={Richard},
+         familyi={R\bibinitperiod},
+         given={Virgile},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=BW}{%
+         family={Bouaziz},
+         familyi={B\bibinitperiod},
+         given={Wassim},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=LWD}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Wen-Ding},
+         giveni={W\bibinithyphendelim D\bibinitperiod},
+      }}%
+      {{hash=MW}{%
+         family={Marshall},
+         familyi={M\bibinitperiod},
+         given={William},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=LX}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Xinghui},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=YX}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Xinyu},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=OYE}{%
+         family={Ouahidi},
+         familyi={O\bibinitperiod},
+         given={Yassine\bibnamedelima El},
+         giveni={Y\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Yihan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=TY}{%
+         family={Tang},
+         familyi={T\bibinitperiod},
+         given={Yunhao},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=RZ}{%
+         family={Ramzi},
+         familyi={R\bibinitperiod},
+         given={Zaccharie},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LAH+1}
+  \strng{fullhash}{LAHKKSSJVRASAJAJACAGASAHAYAEALAEACASABBRBMBDLCBCCCGDDDCDdlCSEAFBGEGGGNGKGLGMGGGLJRJSJAJDJRJSYKCKJKALFLBLZLMLSLGLBMJMPMPMPMGMDMFMDMAMCMSMGNGNRNBODOWPPPvJPWPKPMPRCPSPAPTQSRSRMRVSBSGSWSGSGSMSASASSTLCTSTSLTSTNCTFTRTWTLTBTBTETJUTUNVPVMVRVBWLWDMWLXYXOYEWYTYRZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 2601.08584
+    \endverb
+    \field{title}{Ministral 3}
+    \verb{url}
+    \verb https://arxiv.org/abs/2601.08584
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CL}
+    \field{year}{2026}
+  \endentry
+
   \entry{liu2024pruningmergingcompressingllms}{inproceedings}{}{}
     \name{author}{15}{}{%
       {{hash=LD}{%
@@ -3952,7 +4844,73 @@
     \field{year}{2020}
   \endentry
 
-  \entry{ma2023llmpruner}{misc}{}{}
+  \entry{liu2026understandingkd}{article}{}{}
+    \name{author}{8}{}{%
+      {{hash=LX}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Ma},
+         familyi={M\bibinitperiod},
+         given={Simin},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Shujian},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Song},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=ISR}{%
+         family={Indurthi},
+         familyi={I\bibinitperiod},
+         given={Sathish\bibnamedelima Reddy},
+         giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=DH}{%
+         family={Deng},
+         familyi={D\bibinitperiod},
+         given={Haoyun},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Lu},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Kaiqiang},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LX+1}
+    \strng{fullhash}{LXMSLSWSISRDHWLSK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{Understanding Knowledge Distillation in Post-Training: When
+  It Helps and When It Fails}
+    \verb{url}
+    \verb https://arxiv.org/abs/2606.22942
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2606.22942}
+    \field{year}{2026}
+  \endentry
+
+  \entry{ma2023llmpruner}{inproceedings}{}{}
     \name{author}{3}{}{%
       {{hash=MX}{%
          family={Ma},
@@ -3979,10 +4937,81 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{note}{Preprint, arXiv:2305.11627}
-    \field{title}{Llm-pruner: On the structural pruning of large language
-  models}
+    \field{booktitle}{Advances in Neural Information Processing Systems}
+    \field{pages}{21702\bibrangedash 21720}
+    \field{title}{{LLM-Pruner}: On the Structural Pruning of Large Language
+  Models}
+    \verb{url}
+    \verb https://openreview.net/forum?id=J8Ajf9WfXP
+    \endverb
+    \field{volume}{36}
     \field{year}{2023}
+  \endentry
+
+  \entry{men2024shortgpt}{article}{}{}
+    \name{author}{8}{}{%
+      {{hash=MX}{%
+         family={Men},
+         familyi={M\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=XM}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Mingyu},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=ZQ}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Qingyu},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=WB}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Bingning},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Hongyu},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Yaojie},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=HX}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={Xianpei},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=CW}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Weipeng},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MX+1}
+    \strng{fullhash}{MXXMZQWBLHLYHXCW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{{ShortGPT}: Layers in Large Language Models are More
+  Redundant Than You Expect}
+    \verb{url}
+    \verb https://arxiv.org/abs/2403.03853
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2403.03853}
+    \field{year}{2024}
   \endentry
 
   \entry{meng2023locatingeditingfactualassociations}{misc}{}{}
@@ -4120,54 +5149,6 @@
     \field{year}{2018}
   \endentry
 
-  \entry{mikolov2010recurrent}{inproceedings}{}{}
-    \name{author}{5}{}{%
-      {{hash=MT}{%
-         family={Mikolov},
-         familyi={M\bibinitperiod},
-         given={Tomas},
-         giveni={T\bibinitperiod},
-      }}%
-      {{hash=KM}{%
-         family={Karafiat},
-         familyi={K\bibinitperiod},
-         given={Martin},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=BL}{%
-         family={Burget},
-         familyi={B\bibinitperiod},
-         given={Lukas},
-         giveni={L\bibinitperiod},
-      }}%
-      {{hash=CJ}{%
-         family={Cernocky},
-         familyi={C\bibinitperiod},
-         given={Jan},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=KS}{%
-         family={Khudanpur},
-         familyi={K\bibinitperiod},
-         given={Sanjeev},
-         giveni={S\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{MT+2}
-    \strng{fullhash}{MTKMBLCJKS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{M}
-    \field{sortinithash}{M}
-    \field{booktitle}{Proceedings of Interspeech}
-    \verb{doi}
-    \verb 10.21437/Interspeech.2010-343
-    \endverb
-    \field{pages}{1045\bibrangedash 1048}
-    \field{title}{Recurrent Neural Network Based Language Model}
-    \field{year}{2010}
-  \endentry
-
   \entry{mukherjee2023orca}{misc}{}{}
     \name{author}{6}{}{%
       {{hash=MS}{%
@@ -4213,10 +5194,88 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{note}{Preprint, arXiv:2306.02707}
-    \field{title}{Orca: Progressive learning from complex explanation traces of
-  gpt-4}
+    \verb{doi}
+    \verb 10.48550/arXiv.2306.02707
+    \endverb
+    \field{title}{Orca: Progressive Learning from Complex Explanation Traces of
+  {GPT-4}}
+    \verb{url}
+    \verb https://arxiv.org/abs/2306.02707
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2306.02707}
     \field{year}{2023}
+  \endentry
+
+  \entry{muralidharan2024compact}{article}{}{}
+    \name{author}{9}{}{%
+      {{hash=MS}{%
+         family={Muralidharan},
+         familyi={M\bibinitperiod},
+         given={Saurav},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SST}{%
+         family={Sreenivas},
+         familyi={S\bibinitperiod},
+         given={Sharath\bibnamedelima Turuvekere},
+         giveni={S\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=JR}{%
+         family={Joshi},
+         familyi={J\bibinitperiod},
+         given={Raviraj},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Chochowski},
+         familyi={C\bibinitperiod},
+         given={Marcin},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Patwary},
+         familyi={P\bibinitperiod},
+         given={Mostofa},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Shoeybi},
+         familyi={S\bibinitperiod},
+         given={Mohammad},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Catanzaro},
+         familyi={C\bibinitperiod},
+         given={Bryan},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=KJ}{%
+         family={Kautz},
+         familyi={K\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MP}{%
+         family={Molchanov},
+         familyi={M\bibinitperiod},
+         given={Pavlo},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MS+2}
+    \strng{fullhash}{MSSSTJRCMPMSMCBKJMP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{Compact Language Models via Pruning and Knowledge
+  Distillation}
+    \verb{url}
+    \verb https://arxiv.org/abs/2407.14679
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2407.14679}
+    \field{year}{2024}
   \endentry
 
   \entry{infonce}{misc}{}{}
@@ -5412,6 +6471,199 @@
     \field{year}{2024}
   \endentry
 
+  \entry{sreenivas2024minitron}{article}{}{}
+    \name{author}{22}{}{%
+      {{hash=SST}{%
+         family={Sreenivas},
+         familyi={S\bibinitperiod},
+         given={Sharath\bibnamedelima Turuvekere},
+         giveni={S\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Muralidharan},
+         familyi={M\bibinitperiod},
+         given={Saurav},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=JR}{%
+         family={Joshi},
+         familyi={J\bibinitperiod},
+         given={Raviraj},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Chochowski},
+         familyi={C\bibinitperiod},
+         given={Marcin},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MAS}{%
+         family={Mahabaleshwarkar},
+         familyi={M\bibinitperiod},
+         given={Ameya\bibnamedelima Sunil},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SG}{%
+         family={Shen},
+         familyi={S\bibinitperiod},
+         given={Gerald},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=ZJ}{%
+         family={Zeng},
+         familyi={Z\bibinitperiod},
+         given={Jiaqi},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CZ}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Zijia},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=SY}{%
+         family={Suhara},
+         familyi={S\bibinitperiod},
+         given={Yoshi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Diao},
+         familyi={D\bibinitperiod},
+         given={Shizhe},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=YC}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Chenhan},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=CWC}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Wei-Chun},
+         giveni={W\bibinithyphendelim C\bibinitperiod},
+      }}%
+      {{hash=RH}{%
+         family={Ross},
+         familyi={R\bibinitperiod},
+         given={Hayley},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=OO}{%
+         family={Olabiyi},
+         familyi={O\bibinitperiod},
+         given={Oluwatobi},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Aithal},
+         familyi={A\bibinitperiod},
+         given={Ashwath},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KO}{%
+         family={Kuchaiev},
+         familyi={K\bibinitperiod},
+         given={Oleksii},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Korzekwa},
+         familyi={K\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MP}{%
+         family={Molchanov},
+         familyi={M\bibinitperiod},
+         given={Pavlo},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Patwary},
+         familyi={P\bibinitperiod},
+         given={Mostofa},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Shoeybi},
+         familyi={S\bibinitperiod},
+         given={Mohammad},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KJ}{%
+         family={Kautz},
+         familyi={K\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Catanzaro},
+         familyi={C\bibinitperiod},
+         given={Bryan},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SST+1}
+    \strng{fullhash}{SSTMSJRCMMASSGZJCZSYDSYCCWCRHOOAAKOKDMPPMSMKJCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{{LLM} Pruning and Distillation in Practice: The Minitron
+  Approach}
+    \verb{url}
+    \verb https://arxiv.org/abs/2408.11796
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2408.11796}
+    \field{year}{2024}
+  \endentry
+
+  \entry{sun2024wanda}{inproceedings}{}{}
+    \name{author}{4}{}{%
+      {{hash=SM}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={Mingjie},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LZ}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Zhuang},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Bair},
+         familyi={B\bibinitperiod},
+         given={Anna},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KJZ}{%
+         family={Kolter},
+         familyi={K\bibinitperiod},
+         given={J.\bibnamedelima Zico},
+         giveni={J\bibinitperiod\bibinitdelim Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SM+2}
+    \strng{fullhash}{SMLZBAKJZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{The Twelfth International Conference on Learning
+  Representations}
+    \field{title}{A Simple and Effective Pruning Approach for Large Language
+  Models}
+    \verb{url}
+    \verb https://openreview.net/forum?id=PxoFut3dWW
+    \endverb
+    \field{year}{2024}
+  \endentry
+
   \entry{wanda}{misc}{}{}
     \name{author}{4}{}{%
       {{hash=SM}{%
@@ -5449,73 +6701,6 @@
     \field{title}{A simple and effective pruning approach for large language
   models}
     \field{year}{2024}
-  \endentry
-
-  \entry{sutskever2011generating}{inproceedings}{}{}
-    \name{author}{3}{}{%
-      {{hash=SI}{%
-         family={Sutskever},
-         familyi={S\bibinitperiod},
-         given={Ilya},
-         giveni={I\bibinitperiod},
-      }}%
-      {{hash=MJ}{%
-         family={Martens},
-         familyi={M\bibinitperiod},
-         given={James},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=HGE}{%
-         family={Hinton},
-         familyi={H\bibinitperiod},
-         given={Geoffrey\bibnamedelima E.},
-         giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{SIMJHGE1}
-    \strng{fullhash}{SIMJHGE1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{booktitle}{Proceedings of the 28th International Conference on
-  Machine Learning}
-    \field{pages}{1017\bibrangedash 1024}
-    \field{title}{Generating Text with Recurrent Neural Networks}
-    \field{year}{2011}
-  \endentry
-
-  \entry{sutskever2014sequence}{inproceedings}{}{}
-    \name{author}{3}{}{%
-      {{hash=SI}{%
-         family={Sutskever},
-         familyi={S\bibinitperiod},
-         given={Ilya},
-         giveni={I\bibinitperiod},
-      }}%
-      {{hash=VO}{%
-         family={Vinyals},
-         familyi={V\bibinitperiod},
-         given={Oriol},
-         giveni={O\bibinitperiod},
-      }}%
-      {{hash=LQV}{%
-         family={Le},
-         familyi={L\bibinitperiod},
-         given={Quoc\bibnamedelima V.},
-         giveni={Q\bibinitperiod\bibinitdelim V\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{SIVOLQV1}
-    \strng{fullhash}{SIVOLQV1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{S}
-    \field{sortinithash}{S}
-    \field{booktitle}{Advances in Neural Information Processing Systems}
-    \field{title}{Sequence to Sequence Learning with Neural Networks}
-    \field{volume}{27}
-    \field{year}{2014}
   \endentry
 
   \entry{sy2025speechlanguagemodelsunderrepresented}{misc}{}{}
@@ -5687,6 +6872,70 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.CL}
     \field{year}{2020}
+  \endentry
+
+  \entry{taori2023alpaca}{misc}{}{}
+    \name{author}{8}{}{%
+      {{hash=TR}{%
+         family={Taori},
+         familyi={T\bibinitperiod},
+         given={Rohan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=GI}{%
+         family={Gulrajani},
+         familyi={G\bibinitperiod},
+         given={Ishaan},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=ZT}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Tianyi},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=DY}{%
+         family={Dubois},
+         familyi={D\bibinitperiod},
+         given={Yann},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LX}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Xuechen},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Guestrin},
+         familyi={G\bibinitperiod},
+         given={Carlos},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Liang},
+         familyi={L\bibinitperiod},
+         given={Percy},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HTB}{%
+         family={Hashimoto},
+         familyi={H\bibinitperiod},
+         given={Tatsunori\bibnamedelima B.},
+         giveni={T\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TR+1}
+    \strng{fullhash}{TRGIZTDYLXGCLPHTB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{title}{Stanford Alpaca: An Instruction-Following {LLaMA} Model}
+    \verb{url}
+    \verb https://github.com/tatsu-lab/stanford_alpaca
+    \endverb
+    \field{year}{2023}
   \endentry
 
   \entry{qwen2.5}{misc}{}{}
@@ -6530,7 +7779,7 @@
     \field{year}{2023}
   \endentry
 
-  \entry{xia2024sheared}{misc}{}{}
+  \entry{xia2024sheared}{inproceedings}{}{}
     \name{author}{4}{}{%
       {{hash=XM}{%
          family={Xia},
@@ -6563,10 +7812,75 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{X}
     \field{sortinithash}{X}
-    \field{note}{Preprint, arXiv:2310.06694}
-    \field{title}{Sheared llama: Accelerating language model pre-training via
-  structured pruning}
+    \field{booktitle}{The Twelfth International Conference on Learning
+  Representations}
+    \field{title}{Sheared {LLaMA}: Accelerating Language Model Pre-training via
+  Structured Pruning}
+    \verb{url}
+    \verb https://openreview.net/forum?id=09iOdaeOzp
+    \endverb
     \field{year}{2024}
+  \endentry
+
+  \entry{xu2024magpie}{inproceedings}{}{}
+    \name{author}{7}{}{%
+      {{hash=XZ}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Zhangchen},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=JF}{%
+         family={Jiang},
+         familyi={J\bibinitperiod},
+         given={Fengqing},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=NL}{%
+         family={Niu},
+         familyi={N\bibinitperiod},
+         given={Luyao},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=DY}{%
+         family={Deng},
+         familyi={D\bibinitperiod},
+         given={Yuntian},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=PR}{%
+         family={Poovendran},
+         familyi={P\bibinitperiod},
+         given={Radha},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Choi},
+         familyi={C\bibinitperiod},
+         given={Yejin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LBY}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Bill\bibnamedelima Yuchen},
+         giveni={B\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{XZ+1}
+    \strng{fullhash}{XZJFNLDYPRCYLBY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{X}
+    \field{sortinithash}{X}
+    \field{booktitle}{The Thirteenth International Conference on Learning
+  Representations}
+    \field{title}{Magpie: Alignment Data Synthesis from Scratch by Prompting
+  Aligned Large Language Models with Nothing}
+    \verb{url}
+    \verb https://openreview.net/forum?id=G7sN4c7Sw0
+    \endverb
+    \field{year}{2025}
   \endentry
 
   \entry{yadav2023tiesmergingresolvinginterferencemerging}{inproceedings}{}{}
@@ -6981,6 +8295,190 @@
     \field{year}{2024}
   \endentry
 
+  \entry{yang2024laco}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=YY}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Yifei},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CZ}{%
+         family={Cao},
+         familyi={C\bibinitperiod},
+         given={Zouying},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Hai},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YYCZZH1}
+    \strng{fullhash}{YYCZZH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{title}{{LaCo}: Large Language Model Pruning via Layer Collapse}
+    \verb{url}
+    \verb https://arxiv.org/abs/2402.11187
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2402.11187}
+    \field{year}{2024}
+  \endentry
+
+  \entry{yang2018breakingsoftmaxbottleneck}{misc}{}{}
+    \name{author}{4}{}{%
+      {{hash=YZ}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Zhilin},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=DZ}{%
+         family={Dai},
+         familyi={D\bibinitperiod},
+         given={Zihang},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Salakhutdinov},
+         familyi={S\bibinitperiod},
+         given={Ruslan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=CWW}{%
+         family={Cohen},
+         familyi={C\bibinitperiod},
+         given={William\bibnamedelima W.},
+         giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YZ+1}
+    \strng{fullhash}{YZDZSRCWW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \verb{eprint}
+    \verb 1711.03953
+    \endverb
+    \field{title}{Breaking the Softmax Bottleneck: A High-Rank {RNN} Language
+  Model}
+    \verb{url}
+    \verb https://arxiv.org/abs/1711.03953
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CL}
+    \field{year}{2018}
+  \endentry
+
+  \entry{yin2024owl}{inproceedings}{}{}
+    \name{author}{13}{}{%
+      {{hash=YL}{%
+         family={Yin},
+         familyi={Y\bibinitperiod},
+         given={Lu},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={You},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZZ}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Zhenyu},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=HCY}{%
+         family={Hsieh},
+         familyi={H\bibinitperiod},
+         given={Cheng-Yu},
+         giveni={C\bibinithyphendelim Y\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Yaqing},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=JY}{%
+         family={Jia},
+         familyi={J\bibinitperiod},
+         given={Yiling},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LG}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Gen},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=JAK}{%
+         family={Jaiswal},
+         familyi={J\bibinitperiod},
+         given={Ajay\bibnamedelima Kumar},
+         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Pechenizkiy},
+         familyi={P\bibinitperiod},
+         given={Mykola},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Liang},
+         familyi={L\bibinitperiod},
+         given={Yi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Bendersky},
+         familyi={B\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WZ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Zhangyang},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Shiwei},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {PMLR}%
+    }
+    \strng{namehash}{YL+1}
+    \strng{fullhash}{YLWYZZHCYWYJYLGJAKPMLYBMWZLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{booktitle}{Proceedings of the 41st International Conference on
+  Machine Learning}
+    \field{pages}{57101\bibrangedash 57115}
+    \field{series}{Proceedings of Machine Learning Research}
+    \field{title}{Outlier Weighed Layerwise Sparsity ({OWL}): A Missing Secret
+  Sauce for Pruning {LLM}s to High Sparsity}
+    \verb{url}
+    \verb https://proceedings.mlr.press/v235/yin24e.html
+    \endverb
+    \field{volume}{235}
+    \field{year}{2024}
+  \endentry
+
   \entry{yu_compressing_2023}{misc}{}{}
     \name{author}{2}{}{%
       {{hash=YH}{%
@@ -7045,7 +8543,7 @@
     \list{publisher}{1}{%
       {JMLR.org}%
     }
-    \strng{namehash}{YL+1}
+    \strng{namehash}{YL+2}
     \strng{fullhash}{YLYBYHHFLY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
@@ -7056,6 +8554,75 @@
     \field{title}{Language Models Are Super Mario: Absorbing Abilities from
   Homologous Models as a Free Lunch}
     \field{year}{2024}
+  \endentry
+
+  \entry{yuan2023scaling}{article}{}{}
+    \name{author}{8}{}{%
+      {{hash=YZ}{%
+         family={Yuan},
+         familyi={Y\bibinitperiod},
+         given={Zheng},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=YH}{%
+         family={Yuan},
+         familyi={Y\bibinitperiod},
+         given={Hongyi},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Chengpeng},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=DG}{%
+         family={Dong},
+         familyi={D\bibinitperiod},
+         given={Guanting},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Keming},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=TC}{%
+         family={Tan},
+         familyi={T\bibinitperiod},
+         given={Chuanqi},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Chang},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=ZJ}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Jingren},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YZ+2}
+    \strng{fullhash}{YZYHLCDGLKTCZCZJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \verb{doi}
+    \verb 10.48550/arXiv.2308.01825
+    \endverb
+    \field{title}{Scaling Relationship on Learning Mathematical Reasoning with
+  Large Language Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2308.01825
+    \endverb
+    \field{journaltitle}{arXiv preprint arXiv:2308.01825}
+    \field{year}{2023}
   \endentry
 
   \entry{mhubert}{inproceedings}{}{}
@@ -7314,6 +8881,134 @@
     \field{booktitle}{Proc.~of SLT}
     \field{title}{Amphion: An Open-Source Audio, Music and Speech Generation
   Toolkit}
+    \field{year}{2024}
+  \endentry
+
+  \entry{zhang2024plugandplay}{inproceedings}{}{}
+    \name{author}{6}{}{%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yingtao},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=BH}{%
+         family={Bai},
+         familyi={B\bibinitperiod},
+         given={Haoli},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Haokun},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZJ}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Jialin},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Hou},
+         familyi={H\bibinitperiod},
+         given={Lu},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=CCV}{%
+         family={Cannistraci},
+         familyi={C\bibinitperiod},
+         given={Carlo\bibnamedelima Vittorio},
+         giveni={C\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZY+1}
+    \strng{fullhash}{ZYBHLHZJHLCCV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{The Twelfth International Conference on Learning
+  Representations}
+    \field{title}{Plug-and-Play: An Efficient Post-training Pruning Method for
+  Large Language Models}
+    \verb{url}
+    \verb https://openreview.net/forum?id=Tr0lPx9woF
+    \endverb
+    \field{year}{2024}
+  \endentry
+
+  \entry{zhang2024dsnot}{inproceedings}{}{}
+    \name{author}{9}{}{%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yuxin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Lirui},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Mingbao},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SY}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={Yunyun},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yao},
+         familyi={Y\bibinitperiod},
+         given={Yiwu},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=HX}{%
+         family={Han},
+         familyi={H\bibinitperiod},
+         given={Xingjia},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Tanner},
+         familyi={T\bibinitperiod},
+         given={Jared},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Shiwei},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=JR}{%
+         family={Ji},
+         familyi={J\bibinitperiod},
+         given={Rongrong},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZY+2}
+    \strng{fullhash}{ZYZLLMSYYYHXTJLSJR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{The Twelfth International Conference on Learning
+  Representations}
+    \field{title}{Dynamic Sparse No Training: Training-Free Fine-Tuning for
+  Sparse {LLM}s}
+    \verb{url}
+    \verb https://openreview.net/forum?id=1ndDmZdT4g
+    \endverb
     \field{year}{2024}
   \endentry
 
