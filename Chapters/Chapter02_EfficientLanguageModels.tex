@@ -3,8 +3,10 @@
 %************************************************
 We've discussed Transformer and how scaling them yields strong improvement in natural language tasks.
 However, scaling a Transformer-based language model is costly in training compute but also in inference
-budget. We present here common approaches to make them efficient to scale during training, but also to serve
-them efficiently during inference.
+budget. We discuss here LLM efficiency mainly though the lens of \textbf{model compression} and \textbf{activation sparsity},
+since our contributions concern these two aspects. 
+We present here common approaches to make LLMs efficient to scale during training, 
+but also to serve efficiently during inference.
 
 When talking about \textit{efficiency} in LLMs, there are few concepts to have in head. 
 The first distinction is between \textbf{compute-boundness} and \textbf{memory-boundness}.
@@ -14,7 +16,11 @@ peak compute of the hardware, but also how well the model and the implementation
 A model or a task is memory-bound when the bottleneck is instead the movement of data:
 loading weights, reading activations, writing tensors, or moving the KV-cache from the GPU memory.
 Depending on whether we are training, doing prefill, or decoding tokens, these two concepts
-do not have the same consequences.
+do not have the same consequences. This distinction explains why diffusion based
+LLMs such LlaDa or Gemma-Diffusion are much faster than autoregressive LLMs.
+Diffusion LLMs are compute-bound such that they are more FLOP-Intensive than autoregressive LLMs.
+So, since the decoding is parallel it reduces the data-movement compared to autoregressive LLMs,
+and leads to faster generation.
 
 LLM training is mostly compute-bound, because training is highly parallel. 
 Many tokens are processed at once, and the forward and backward passes are dominated by large matrix multiplications.
@@ -69,14 +75,14 @@ weights and KV-cache memory.
         & Tokens/s~$\uparrow$
         & Number of training tokens processed per second. \\
         \midrule
-        \multirow{2}{*}{Prefill}
+        \multirow{2}{*}{Inference - Prefill}
         & TTFT~$\downarrow$
         & Time before the first generated token is returned to the user. \\
         \cmidrule(l){2-3}
         & Prefill Tokens/s~$\uparrow$
         & Speed at which the input prompt and context are processed. \\
         \midrule
-        \multirow{2}{*}{Decoding}
+        \multirow{2}{*}{Inference - Decoding}
         & TPOT~$\downarrow$
         & Time needed to generate one new token. \\
         \cmidrule(l){2-3}
@@ -93,7 +99,7 @@ weights and KV-cache memory.
 \end{table*}
 
 This part is heavily inspired by the blogpost we wrote in collaboration with the Datacraft team in 2024: https://medium.com/@yayasy-nlp/a-comprehensive-overview-of-large-language-models-compression-methods-8b59dd0ff4f8
-\section{Model compression}
+\section{Model compression}\label{sec:llm_compression}
 An approach to reduce the memory footprint, and sometimes also accelerate inference by reducing the FLOPs,
 is model compression: making the model smaller while trying to preserve most of its performance.
 There is a tension here. Scaling laws usually advocate for more training compute, and often this means
@@ -249,7 +255,9 @@ inference.
     \caption{Fixed-token scaling view of Chinchilla and Llama 3.1 models.}
     \label{fig:chinchilla_llama}
 \end{figure}
-\subsection{Pruning}
+
+\subsection{Layer Looping: Increasing expressivity without increasing model parameters}
+\subsection{Unstructured Pruning}
 Instead of training small for longer, another approach to produce small models is to train
 large models first and then compress it or distill it in afficient architecture. 
 Compressing larger and more powerful pre-trained models is a viable alternative. 
@@ -381,13 +389,11 @@ more independently and freely. This explains why unstructured pruning usually pe
 than structured pruning. However, since structured pruning has more potential
 in improving infernce and reducing memory footpring.
 
-\textbf{LLM-Pruner} \citep{ma2023llmpruner} first groups dependent model
-structures that must be removed together. It then uses gradient information to
-estimate their importance and removes the least important groups. The method can
+\textbf{LLM-Pruner} \citep{ma2023llmpruner} uses gradient information to
+estimate the importance and removes the least important groups. The method can
 remove approximately $20\%$ of the parameters of LLaMA-7B while retaining
-$89.8\%$ of its original performance without post-training. A short LoRA
-recovery stage using $50$K samples increases this figure to approximately
-$95\%$. However, more aggressive parameter reduction generally leads to a significant
+$89.8\%$ of its original performance without post-training. 
+However, more aggressive parameter reduction generally leads to a significant
 performance drop. Therefore, larger reductions often require continued
 training. This is illustrated by \textbf{Sheared Llama}~\citep{xia2024sheared}, 
 which learns binary masks over layers, attention
@@ -396,9 +402,10 @@ directly differentiable, the method uses a continuous reparameterization to
 learn which structures should be removed. The authors prune LLaMA2-7B into
 models containing $2.7$B and $1.3$B parameters, and continue their training on
 $50$B tokens using the language modeling loss. The pruned model converges fastly
-as shown in Figure ~\ref{fig:sheared_llama}, which shows that 
-the pruning recipe maintains main capacities of the base model.
-Although the resulting models do not retain the full performance
+as shown in Figure~\ref{fig:sheared_llama}, which shows the speed of convergence
+of the pruned model compared to from scratch training. Hence, pruning larger models then
+continued pre-training can be a good approach for creating small models than training
+them from scratch. Although the resulting models do not retain the full performance
 of LLaMA2-7B, they are competitive with models of similar sizes trained on much
 larger datasets. The Minitron approach similarly combines structured pruning with
 knowledge-distillation-based retraining~\citep{muralidharan2024compact,
@@ -406,6 +413,15 @@ sreenivas2024minitron}. It removes complete layers or reduces the hidden,
 attention, and MLP dimensions of a pretrained model. The pruned model is then
 retrained on much more data than in Sheared-Llama, over 380 billion tokens for
 the pruning of Mistral NeMo 12B.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.92\linewidth]{figures/shearedllama.pdf}
+    \caption{Convergence of Sheared LLaMA after structured pruning and continued pre-training,
+    compared to other models of similar sizes.
+    Plot taken from the original paper ~\citep{xia2024sheared}}
+    \label{fig:sheared_llama}
+\end{figure}
 
 Some LLM releases have also experimented with pruning to produce smaller 
 models from larger ones. For example, the Llama~3.2 1B and 3B models were obtained 
@@ -506,7 +522,7 @@ and long-chain reasoning capabilities~\citep{wang2025fewerlayers,he2026pop}.
 We mentionned distillation for compressing large models capacity in small models.
 What are the best training objectives for compressing LLMs and training
 small LLMs. The common training objective for compression is maximum likelihood
-estimation, but small LLMs take time to learn the regularities. Hence,
+estimation, but small LLMs take time to learn. Hence,
 it has been proposed to use training objective that give more \textit{learning signal}
 to the small LLM. Let's list them and see how they're used in recent LLM releases.
 
@@ -815,51 +831,704 @@ A detailed discussion of these new promising approaches goes beyond the scope of
     \caption{On-policy distillation. The student first samples an output, then the teacher evaluates this student-generated output.}
     \label{fig:on-policy-distillation}
 \end{figure}
-
+\subsubsection{Co-Distillation}
 \section{Activation Sparsity}
+While post-training compression of LLMs has proved to be an effective approach
+to create small LLMs, larger LLMs nevertheless remain largely more performant.
+They generalize better, contain more knowledge, and are much better at
+in-context learning. However, as discussed, they are also more costly to train
+and to serve for inference. Can we get some of the benefits of large models,
+but with a cheaper training and inference cost? Sparse activation is one answer
+to this question. The model dynamically selects which parameters should be used 
+for the current input token. The selected parameters are called \textbf{active parameters}, 
+while the others remain inactive for this specific input.
+When associated with efficient GPU Kernels, sparsity reduces the activation memory, 
+so it gives more room for larger batches and hence higher training and inference \textbf{throughput}. 
+It can also accelerate the end to end decoding speed.
+
+Sparse activations make it possible to partly decouple model size from
+computation, and provide new scaling axes compared to dense models:
+
 \begin{enumerate}
-    \item Scaling model parameters without increasing computation
+    \item \textbf{Sparsity scaling axis}: keeping the number of active parameters per input fixed, 
+    while increasing the total number of model parameters.
+    \item \textbf{Computation scaling axis}: keeping the total number of parameters fixed, 
+    while increasing the computation by activating more parameters per input.
+    \item \textbf{Granularity scaling axis}: increasing the number of experts while keeping 
+    the number of activated parameters and the model parameters fixed.
 \end{enumerate}
-\subsection{Mixture of Experts}
-\begin{enumerate}
-    \item Mixture of Experts as block activation sparsity
-    \item Formulation of MoE Block (routing, gating, experts)
-    \item Limitations of MoE:
-    \begin{enumerate}
-        \item Load balancing
-        \item Dead experts
-        \item Variability in expert choice during inference (expert replay in RL training)
-        \item TopK: non differentiability, non adaptivity
-    \end{enumerate}
-\end{enumerate}
-\subsection{Embedding Memory Layers}
+Training sparse models is difficult because the process of selecting which
+parameters to activate is often discrete and therefore not directly
+differentiable. However, the know-how has evolved a lot, especially for
+sparse Mixture-of-Experts, which is now the most successful class of sparse models at
+scale. We will present different classes of sparse models, their pros and cons,
+and particularly the optimization tricks that make their training possible.
+
+\subsection{Sparse Mixture of Experts (MoE)}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/switch_transformer_figure2.pdf}
+    \caption{Switch Transformer encoder block, where the dense feed-forward layer
+    is replaced by a sparse Switch FFN layer. Figure adapted from
+    \citet{switch}.}
+    \label{fig:switch-transformer-block}
+\end{figure}
+
+\subsubsection{The MoE layer}
+In a sparse MoE, the weight matrix $\mathbf{W}$ is split into $e$ subweights called experts,
+$\mathbf{W}_1, \ldots, \mathbf{W}_e$. The model is trained to decides which
+experts are useful for the current input $\mathbf{x}$, and only computes these
+experts. Thus, the model can contain many parameters, while each token only
+activates a small fraction of them. The selection of the experts is performed 
+by a router network $R_\theta$ and
+the top-$k$ operator. More formally, let $\mathbf{x} \in \mathbb{R}^{d_1}$ be
+the input, and let each expert $\mathbf{W}_j \in \mathbb{R}^{d_1 \times d_e}$.
+The router produces one logit, or score, per expert,
+$\mathbf{r}=R_\theta(\mathbf{x}) \in \mathbb{R}^{e}$. The top-$k$ operator is
+first applied on these router logits to select the subset of active experts,
+$S = \{j \mid r_j \in \mathrm{TopK}(\mathbf{r}, k)\}$. Then, the routing
+weights are computed with a softmax only over these selected experts. Thus, for
+each selected expert $j \in S$, we have
+$g_j = \exp(r_j) / \sum_{\ell \in S} \exp(r_\ell)$.
+The output of a sparse MoE layer is then the weighted sum of these selected
+experts:
+\begin{equation}
+    o = \mathrm{MoE}(\mathbf{x})
+    =
+    \sum_{j \in S}
+    g_j \mathbf{W}_j^\top \mathbf{x}.
+\end{equation}
+The output of the MoE layer is then projected back to the model dimension $d_{model}$
+using a projector weight $\textbf{W}_o \in \mathbb{R}^{d_e \times d_2}$.
+
+\subsubsection{The nice scaling properties of MoEs}
+MoEs give a way to increase the capacity of the model without increasing 
+the computation by the same factor. Switch Transformer~\citep{switch} shows that at FLOP-matched
+budget, increasing the number of experts improves the overall performance.
+This means increasing the model parameters while keeping the same number of
+activated parameters is beneficial. Figure~\ref{fig:switch} illustrates this. 
+On the left plot, we can see that keeping the number of activated paramerers fixed,
+while increasing the number of experts, leads to strong improvement. However,
+it doesn't seem linear, and at some point increasing the number of parameters
+without increasing the number of activated parameters stop being beneficial.
+And since biffer models converges faster, large MoEs accelerate also the training
+as shown by the left plot.
+
+\begin{figure}[!ht]
+    \centering
+    \subfloat[Validation loss as the number of parameters increases.]{
+        \includegraphics[width=0.48\linewidth]{figures/loss_vs_log_params.pdf}
+    }
+    \hfill
+    \subfloat[Negative log-perplexity during training.]{
+        \includegraphics[width=0.48\linewidth]{figures/perp_vs_step.pdf}
+    }
+    \caption{Scaling properties of Switch Transformer. Increasing the number of experts improves performance and sample efficiency at equal computational budget. Figure from \citet{switch}.}
+    \label{fig:switch}
+\end{figure}
+The sparsity has been pushed much farther in recent sparse MoEs. The DeepSeek
+series particularly pushed fine-grained experts and very sparse activation.
+DeepSeek-V3 uses $256$ routed experts and activates only $8$ of them for each
+token, which represents approximately $97\%$ of sparsity~\citep{deepseekai2024deepseekv3}. 
+DeepSeek-V4-Pro pushes this even further: $384$ routed experts and activates only $6$ per
+token, so more than $98\%$ of the routed experts are inactive at each
+step~\citep{deepseekai2026deepseekv4}. Since MoEs decouple parameters
+scaling from computation, recent models therefore scale to
+multi-trillion-parameter sparse MoEs, such as Kimi-K3 with $2.8$T parameters
+and $104$B active parameters~\citep{moonshotai2026kimik3}, or Qwen3.8-Max with
+$2.4$T parameters and $95$B active parameters~\citep{qwen2026qwen38}.
+
+Beyond the scaling axis between active parameters and total parameters, MoEs
+also introduce another important axis: \textbf{granularity}, namely how many
+experts are available. This is different from sparsity. For example,
+with $50\%$ sparsity, one can activate $1$ expert out of $2$, or $1024$ experts
+out of $2048$. Both designs activate the same fraction of experts, and can have
+the same total number of parameters, but the second design is much more
+fine-grained. It gives the router many more possible combinations of experts.
+In \citet{krajewski2024scaling}, the authors study this effect while keeping the
+model size and the number of training tokens fixed. 
+as illustrated in Figure~\ref{fig:fine-grained-moe-granularity}, 
+their main result is that increasing granularity usually improves loss, 
+probably because it gives to the router more flexibility to combine experts. 
+The model can represent a more precise mixture of skills. 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/fine_grained_moe_granularity_figure3a.pdf}
+    \caption{Effect of MoE granularity on loss for fixed model size and number of training tokens. Figure adapted from \citet{krajewski2024scaling}.}
+    \label{fig:fine-grained-moe-granularity}
+\end{figure}
+
+\subsubsection{Stabilizing MoEs}
+While pushing large, sparse and granular MoEs results in strong efficient models,
+it also results in challenging training. This is true in terms of infrastructure,
+since more experts creates a communication overhead between nodes and GPUs, and
+irregular GPUs memory loading when some experts are used more than other.
+But it is also true in terms of optimization dynamics, since the topk-based router
+is not a differentiable operation, it hurts the optimization dynamics and require
+a lot of tricks to optimize training.
+
+\paragraph{Load Balancing.} The router must learn to distribute tokens across experts.
+If most tokens are routed to the same few experts, these experts become
+overloaded, while the other experts are almost not trained. Their hosting GPUs
+also receive more work than the others, which unbalances the GPU cluster.
+Switch Transformer avoids this by adding what is called a \textbf{load balancing}
+auxiliary loss, a loss added to the language modeling loss to encourage more
+uniform token routing at the batch level. There are several load balancing
+approaches. DeepSeek-V2 uses three types of auxiliary load balancing
+losses~\citep{deepseekai2024deepseekv2}:
+\begin{itemize}
+    \item \textit{Expert-level load balance}: encourages tokens to be distributed
+    more uniformly across experts to avoid router collapse, 
+    so that no expert is overloaded and no expert remains undertrained.
+    \item \textit{Device-level load balance}: encourages the total expert load to
+    be balanced across devices, since groups of experts are stored on different
+    GPUs or nodes.
+    \item \textit{Communication balance}: avoids sending too many tokens to the same
+    device during routing.
+\end{itemize}
+These are auxiliary losses added to the main task loss, which is the language
+modeling loss. This can hurt the optimization of the main language modeling
+task, because the model is partly optimized to satisfy a routing constraint
+instead of only predicting the next token. For this reason, recent large sparse
+MoEs often move toward \textbf{auxiliary-loss-free load balancing}, where
+balancing is not directly added to the training loss. 
+DeepSeek-V3 uses a bias-based auxiliary-loss-free balancing strategy
+\citep{deepseekai2024deepseekv3,wang2024auxiliarylossfree}. A bias
+$\mathbf{b} \in \mathbb{R}^{e}$ is added to the router scores for the
+top-$k$ selection. The final routing weights are still computed from the
+original router scores, without this bias. During training, the expert load is
+monitored at each step: if an expert is overloaded, its bias is decreased by a
+small constant; if it is underloaded, its bias is increased. Hence the router is
+progressively pushed toward balanced expert usage, but without creating
+additional gradients for a balancing constraint.
+Kimi-K3 uses a related but more direct approach called \textbf{Quantile
+Balancing}~\citep{moonshotai2026kimik3}, which computes an expert-specific
+threshold from the quantiles of the router scores such that overused experts
+receive a harder threshold and underused experts receive an easier one.
+
+\paragraph{Waking the deads.} Even with load balancing constraints,
+large-scale fine-grained sparse MoEs can lead to instabilities. And some of
+them are silent. In Step 3.5 Flash~\citep{stepfun2026step35flash}, 
+the authors report what they call \textbf{dead experts}, 
+in comparison to the \textbf{dead neurons} phenomenon
+observed in ReLU-like activations. An expert is dead when it
+receives almost no useful training signal. In the simplest case, the router does
+not dispatch tokens to this expert for a long period, so the expert receives
+almost no gradient. But the Step 3.5 Flash report also shows a more subtle case:
+the router statistics can look healthy, while the expert itself is collapsing.
+The expert is selected, but its activations are not meaningful, and its parameter norms
+become stagnant or decay.
+A recent blogpost\footnote{
+    \href{https://alltoall.notion.site/save-lower-layer-moe-experts-llal}{https://alltoall.notion.site/save-lower-layer-moe-experts-llal}
+} on ultra-sparse MoEs makes a similar observation: lower-layer
+experts can silently collapse even when training loss, validation loss and load
+balancing metrics look normal~\citep{jin2026llalmoe}.
+Their proposed solution, \textbf{LM Loss as Auxiliary Loss} (LLAL), is to
+temporarily compute the language modeling based on the output of the collapsing MoE layers, 
+so they are "forced" to become useful.
+
+\subsubsection{Are "experts" really experts?}
+There is a debate about the possibility of experts to specialize in some
+domain. So far, there is no clear observed \textbf{expert specialization} in MoE LLMs,
+at least not in the intuitive sense of "specialization" on domains such as code,
+math, literature, etc. Mixtral is among the first open sparse MoE LLMs to study
+this question directly~\citep{jiang_mixtral_2024}. 
+The authors measure how often each expert is selected on different subsets of
+The Pile, such as ArXiv, GitHub, PubMed, PhilPapers or Wikipedia. If experts
+were domain experts, we would expect some experts to be ofted selected
+for some domains. But this is not what happen. As shown in
+Figure~\ref{fig:mixtral-expert-selection-domains}, the routing to different domains is
+mostly uniform. However, they find that neighboring tokens in the sequence
+tend to be assigned to the same experts.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/mixtral_expert_selection_domains.pdf}
+    \caption{Expert selection proportions in Mixtral across domains and layers.
+    The dashed line corresponds to uniform routing over the eight experts.
+    Figure adapted from \citet{jiang_mixtral_2024}.}
+    \label{fig:mixtral-expert-selection-domains}
+\end{figure}
+
+However, expert specialization can be more salient on surface forms, such as
+scripts and language families. NLLB-200, which is a sequence-to-sequence MoE
+machine translation model, studies this by measuring the similarity between
+languages according to their gating decisions~\citep{nllbteam2022nolanguageleftbehind}.
+As shown in Figure~\ref{fig:nllb-moe-language-similarity}, the late decoder MoE
+layer clearly separates languages: languages from the same family tend to select
+similar experts. The early encoder layer also shows some language-expert
+specialization. This suggests that expert specialization exists, but it is
+not necessarily a clean semantic specialization. This finding is somehow
+validated in OLMoE, where the authors observe a strong vocabulary-level
+specialization of experts~\citep{muennighoff2025olmoe}. Some experts specialize
+in scripts or alphabets, others in punctuation, religious terms, dates, places,
+family words, or technical tokens. In other words, experts can specialize, but
+not always in high-level domains such as math or code. The specialization can
+also reflect scripts, language families, token forms, and vary depending on the
+position of the MoE layer.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/nllb_moe_language_similarity_figure20.pdf}
+    \caption{Cosine similarity between languages based on expert-choice patterns
+    in NLLB-200. Figure adapted from \citet{nllbteam2022nolanguageleftbehind}.}
+    \label{fig:nllb-moe-language-similarity}
+\end{figure}
+
+\begin{table}[!ht]
+    \centering
+    \footnotesize
+    \setlength{\tabcolsep}{2.2pt}
+    \renewcommand{\arraystretch}{0.92}
+    \newcommand{\olmoetok}[1]{\colorbox{insightback}{\strut #1}}
+    \newcommand{\olmoeglyph}[1]{\includegraphics[height=.78em]{figures/olmoe_unicode/#1}}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{p{1.4cm} p{6cm} p{6cm}}
+        \toprule
+        \textbf{Expert ID} & \textbf{Input token IDs} & \textbf{Token IDs generated while the expert is active} \\
+        \midrule
+        27 &
+        \olmoetok{\olmoeglyph{copyright}} (100\%) \olmoetok{\olmoeglyph{latin_l}} (100\%) \olmoetok{$^{3}$} (100\%)
+        \olmoetok{\olmoeglyph{latin_i}} (100\%) \olmoetok{\olmoeglyph{jarai_i}} (100\%)
+        \olmoetok{\olmoeglyph{devanagari_virama}} (100\%) \olmoetok{\olmoeglyph{devanagari_e}} (100\%)
+        \olmoetok{\olmoeglyph{devanagari_ka}} (100\%) \olmoetok{\olmoeglyph{cyrillic_sha}} (100\%)
+        \olmoetok{\olmoeglyph{cyrillic_in}} (100\%) \olmoetok{\olmoeglyph{cyrillic_a}} (100\%) &
+        \olmoetok{\olmoeglyph{slovak_l}} (100\%) \S{} (100\%)
+        \olmoetok{\olmoeglyph{copyright}} (100\%) \olmoeglyph{persian_j} (100\%)
+        \olmoetok{\olmoeglyph{dutch_ij}} (100\%) \olmoetok{\olmoeglyph{chinese_dot}} (100\%)
+        \olmoetok{\olmoeglyph{japanese_no}} (100\%) \olmoetok{\olmoeglyph{devanagari_ra}} (100\%)
+        \olmoetok{\olmoeglyph{devanagari_ka}} (100\%) \olmoetok{\olmoeglyph{devanagari_virama}} (100\%)
+        \olmoetok{\olmoeglyph{devanagari_la}} (100\%) \\
+        \midrule
+        58 &
+        \olmoetok{(``} (100\%) \olmoetok{("} (100\%) \olmoetok{`} (94\%)
+        \olmoetok{'} (92\%) \olmoetok{``} (92\%) \olmoetok{(} (92\%)
+        \olmoetok{"} (90\%) \olmoetok{'} (89\%) \olmoetok{``} (88\%)
+        \olmoetok{\$} (87\%) \olmoetok{[} (87\%) \olmoetok{pound} (86\%) &
+        \olmoetok{such} (100\%) \olmoetok{486} (100\%) \olmoetok{see} (95\%)
+        \olmoetok{which} (91\%) \olmoetok{driving} (91\%) \olmoetok{UK} (90\%)
+        \olmoetok{who} (88\%) \olmoetok{including} (88\%) \olmoetok{normal} (88\%) \\
+        \midrule
+        7 &
+        \olmoetok{Him} (100\%) \olmoetok{inde} (100\%) \olmoetok{Jesus} (98\%)
+        \olmoetok{God} (90\%) \olmoetok{pray} (81\%) \olmoetok{Holy} (80\%)
+        \olmoetok{Quran} (80\%) \olmoetok{God} (77\%) \olmoetok{Lord} (76\%)
+        \olmoetok{glory} (75\%) \olmoetok{Spirit} (66\%) \olmoetok{Christ} (65\%) &
+        \olmoetok{rella} (100\%) \olmoetok{Him} (94\%) \olmoetok{sin} (90\%)
+        \olmoetok{prince} (80\%) \olmoetok{glory} (72\%) \olmoetok{Jesus} (69\%)
+        \olmoetok{Lord} (68\%) \olmoetok{Christ} (65\%) \olmoetok{Spirit} (55\%)
+        \olmoetok{Holy} (53\%) \olmoetok{God} (50\%) \olmoetok{Prayer} (50\%) \\
+        \midrule
+        37 &
+        \olmoetok{Sunday} (100\%) \olmoetok{Tuesday} (100\%) \olmoetok{Thursday} (100\%)
+        \olmoetok{Olympic} (100\%) \olmoetok{Christmas} (100\%) \olmoetok{rugby} (100\%)
+        \olmoetok{Championship} (100\%) \olmoetok{weekends} (100\%) &
+        \olmoetok{days} (91\%) \olmoetok{anniversary} (90\%) \olmoetok{month} (88\%)
+        \olmoetok{week} (84\%) \olmoetok{mpi} (83\%) \olmoetok{semester} (81\%)
+        \olmoetok{mand} (80\%) \olmoetok{Olympics} (78\%) \olmoetok{cent} (76\%)
+        \olmoetok{season} (76\%) \olmoetok{perm} (75\%) \\
+        \midrule
+        3 &
+        \olmoetok{grandmother} (92\%) \olmoetok{brother} (91\%) \olmoetok{Daisy} (83\%)
+        \olmoetok{daughter} (78\%) \olmoetok{mum} (75\%) \olmoetok{father} (72\%)
+        \olmoetok{wife} (70\%) \olmoetok{husband} (70\%) \olmoetok{lady} (63\%)
+        \olmoetok{dad} (62\%) \olmoetok{boy} (61\%) &
+        \olmoetok{hood} (36\%) \olmoetok{mother} (35\%) \olmoetok{inde} (31\%)
+        \olmoetok{boy} (29\%) \olmoetok{girl} (28\%) \olmoetok{married} (27\%)
+        \olmoetok{tri} (21\%) \olmoetok{Gab} (20\%) \olmoetok{died} (18\%)
+        \olmoetok{taught} (14\%) \olmoetok{lived} (13\%) \olmoetok{knew} (10\%) \\
+        \bottomrule
+    \end{tabular}%
+    }
+    \caption{Vocabulary specialization in the seventh layer of OLMoE-1B-7B.
+    Table adapted from \citet{muennighoff2025olmoe}.}
+    \label{tab:olmoe-vocabulary-specialization}
+\end{table}
+
+\subsubsection{On the non-adaptivity of TopK}
+Liam Fedus, first author of Switch Transformer together with Noam Shazeer,
+reports that Shazeer once intuited:
+``Parameters is knowledge, FLOPs is intelligence.''\footnote{
+    \href{https://x.com/LiamFedus/status/2090363702042304847?s=20}
+    {\nolinkurl{https://x.com/LiamFedus/status/}\allowbreak\nolinkurl{2090363702042304847?s=20}}
+}
+In this view, increasing the number of experts while keeping the number of
+activated parameters fixed mainly increases the model's knowledge capacity.
+It does not increase the computation spent on each token. So the gain should
+be weaker on tasks where the bottleneck is more compute than more memorized
+knowledge. The natural next step is therefore to make sparse LLMs adaptive:
+use more experts when the token or the task is hard, and use fewer experts
+when it is not.
+
+This intuition is now well shared in the field, and many works propose ways
+to make MoE routing compute-adaptive\footnote{
+    See this blogpost for an overview of the approaches
+    \href{https://huggingface.co/blog/Spico/dynamic-routing}{https://huggingface.co/blog/Spico/dynamic-routing}
+}. \citet{huang2024hardertasksneedexperts} propose a routing strategy inspired by
+TopP decoding. Contrary to TopK, TopP does not activate a fixed number of experts.
+It sorts the router probabilities and keeps the smallest set of experts whose
+cumulative probability is above a threshold $p$. When the router is confident,
+only a few experts are used. When the distribution is flatter, more experts are
+activated.
+
+Another approach is to replace the hard TopK operation with a continuous ReLU
+router \citep{wang2025remoefullydifferentiablemixtureofexperts}. In that case,
+experts with positive router scores are active, and sparsity is encouraged during
+training with a regularization on these scores. The number of active experts is
+therefore not fixed, but emerges from the input and from training.
+
+The most commonly used adaptive sparse MoE approach at scale is probably the
+\textbf{zero-computation expert}. This method adds identity experts that
+let the input pass through without computation.
+This approach is for example used in LongCat-Flash
+\citep{meituanlongcatteam2025longcatflashtechnicalreport}, 
+where they encourage a sparsity budget by selecting $K$ experts among both
+FFN experts and zero-computation experts. The constraint is 
+on the average number of real FFN experts selected by the router. 
+The auxiliary-free bias is then adjusted
+during training to push this average toward the target budget. In practice, the
+model still routes each token to $K$ experts, 
+but some of these experts cost almost nothing, so the effective compute 
+can change from token to token.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/longcat_flash_architecture.pdf}
+    \caption{LongCat-Flash architecture with zero-computation experts.
+    The router still selects $K$ experts, but some selected experts are
+    identity paths, which makes the effective compute adaptive.
+    Figure from \citet{meituanlongcatteam2025longcatflashtechnicalreport}.}
+    \label{fig:longcat-flash-architecture}
+\end{figure}
+
 \subsection{Sparse Memory Layers}
-\begin{enumerate}
-    \item Motivations: extreme granularity, offloading
-    \item Formulation of Sparse Memory Layer (routing, gating, memory)
-    \item PKM, Scaling PKM, Mixture of million Experts
-    \item Don't forget the paper by Sakana AI
-\end{enumerate}
-\subsection{Matryoshka Representation Learning} 
-\begin{enumerate}
-    \item MRL as a block activation sparsity
-    \item Formulation of MRL training
-    \item MRL as a block sparsity
-    \item Limitations of MRL:
-    \begin{enumerate}
-        \item Non differentiability of the indexing function
-        \item Non adaptivity
-    \end{enumerate}
-\end{enumerate}
-\subsubsection{Post-training Activation Sparsity}
-\begin{enumerate}
-    \item Teal
-    \item Cats
-    \item Relufication
-    \item Moefication
-    \item LoSparse
-    \item Learning to be efficient
-\end{enumerate}
+We discussed \textbf{granularity}, and have shown that increasing the number
+of experts, while keeping both the total model size and the number of activated
+parameters fixed, can greatly improve performance
+(see Figure \ref{fig:fine-grained-moe-granularity}). The extreme case of granularity
+would be at the neuron level: each column of the MLP weights can be seen as a
+small expert, and only a few of them are activated for a given token. Doing so
+turns the dense MLP into a \textbf{sparse memory layer}. 
+We mentioned earlier, in the introduction, that the MLP in a Transformer can be
+seen as a key-value memory, and that several empirical results support this
+view. If this is true, then we can also argue that not all key-value entries are
+needed for every input token. Some entries should be useful for one token, and
+irrelevant for another one. The natural idea is therefore to make the MLP sparse.
+While this approach is less common than MoE to build sparse Transformers, it has
+some interesting advantages.
+
+The idea to augment neural networks with a large memory is not new \citep{weston2015memorynetworks},
+but in the context of LLMs it has been systemized by
+\citet{lample2019largememorylayersproduct}, where the approach is made
+efficient and scalable to modern LLM scale.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/key_value_memory_layer.pdf}
+    \caption{Overview of a key-value memory layer. The input is projected into
+    a query, compared to the memory keys, and only the values associated with
+    the selected keys are used for computation. Figure from \citet{lample2019largememorylayersproduct}.}
+    \label{fig:key-value-memory-layer}
+\end{figure}
+
+Using the notation of \citet{lample2019largememorylayersproduct},
+a memory layer is a function $m:\mathbb{R}^{d}\to\mathbb{R}^{n}$. Given an input
+$x \in \mathbb{R}^{d}$, a query network produces a query vector
+$q(x)\in\mathbb{R}^{d_q}$. This query is compared to a set of trainable keys
+$\mathcal{K}=\{k_1,\ldots,k_{|\mathcal{K}|}\}$, with
+$k_i\in\mathbb{R}^{d_q}$, and each key is associated with a trainable value
+$v_i\in\mathbb{R}^{n}$.
+The memory does not read all values. It first selects the $k$ keys whose inner
+product with the query is the largest:
+\begin{equation}
+    \mathcal{I}
+    = \mathcal{T}_{k}\left(\left(q(x)^\top k_i\right)_{i=1}^{|\mathcal{K}|}\right),
+\end{equation}
+where $\mathcal{T}_{k}$ denotes the TopK operator. Then, the scores of the
+selected keys are normalized:
+\begin{equation}
+    w = \mathrm{Softmax}\left(\left(q(x)^\top k_i\right)_{i\in\mathcal{I}}\right),
+\end{equation}
+and the output of the memory layer is the weighted sum of the selected values:
+\begin{equation}
+    m(x) = \sum_{i\in\mathcal{I}} w_i v_i.
+\end{equation}
+The query decides which memory entries are relevant for the input,
+and only these entries are read and updated.
+The issue is that, in this simple version, selecting the TopK keys requires
+comparing the query to all keys. This is extremely costly for modern
+LLM scaling. And the promise of Sparse Memory Layers is to scale the
+memory database to millions or even billions of entries, which
+is impossible to achieve in the current form.
+There are some efficient alternatives to this, which we will
+present next.
+
+\subsubsection{Scaling Memory Layer}
+\paragraph{Product-Key Memory}
+Product-Key Memory (PKM) \citet{lample2019largememorylayersproduct} 
+makes the keys search scalable by using a product structure.
+Instead of searching through one huge set of keys, PKM trains two smaller sets of keys,
+$\mathcal{K}_1$ and $\mathcal{K}_2$. A full key is not stored directly. It is
+formed by combining one key from the first set and one key from the second set.
+If $|\mathcal{K}_1|=|\mathcal{K}_2|=m$, this gives $m^2$ possible memory
+entries while storing only $2m$ key vectors. The query is also split in two,
+$q(x) = [q_1(x), q_2(x)]$, and the score of a composed key is computed as
+$q_1(x)^\top k_i^1 + q_2(x)^\top k_j^2$. So the system first
+finds the best keys in $\mathcal{K}_1$ and the best keys in $\mathcal{K}_2$,
+then combines these candidates to recover the best pairs. Each selected pair
+points to a value vector, and the output is still the weighted sum of the
+selected values, exactly as in the ordinary memory layer.
+In a standard memory, each memory entry has its own explicit key, 
+and the query must be compared to all keys. The cost of retrieval therefore grows 
+directly with the number of memory entries. 
+In PKM, the memory is still large, but its keys are factorized.
+The model first searches in two small key tables, which is cheap, and only then
+forms a small set of candidate pairs. The expensive comparison with all possible
+composed keys is avoided.
+
+\paragraph{Ultra Sparse Memory}
+Ultra-Sparse Memory, or UltraMem, is a modern attempt to make PKM
+actually competitive at LLM scale \citep{huang2025ultrasparsememorynetwork}
+by improving several practical weak points of PKM.
+First, they increase the diversity of the values that can be activated. 
+They achieve this by halving the value dimension $D_v$, which allows them to double the
+number of values while keeping the number of activated value parameters
+fixed. The model can access to more smaller values, and compose a richer output.
+Second, they observe that PKM is \textbf{memory-bound} during trainnig. A very large
+sparse memory layer is cheap in FLOPS, but it can be expensive in memory access and
+communication. By splitting the huge memory into several smaller memories
+placed across the network, UltraMem avoids concentrating all memory access 
+in a single blocking operation. The memory lookups become smaller and more distributed, 
+making it easier to overlap them with the standard Transformer computation during training.
+Finally, they revisit the product-key decomposition itself with a richer approach
+for the query-key retrieval.
+
+\paragraph{Mixture of Million Experts}
+Another direction is to keep the product-key retrieval mechanism, but remove the
+key-value memory interpretation. This is the idea of PEER (Parameter Efficient
+Expert Retrieval), proposed by \citet{he2024mixturemillionexperts}. Conceptually,
+PEER is similar to a very fine-grained MoE. Instead of a simple linear layer,
+the router uses product keys to retrieve experts efficiently, as in PKM, 
+but each retrieved item is not a value vector stored in memory but a tiny MLP expert.
+Each expert is reduced to the smallest possible MLP: one up
+projection vector, one non-linearity, and one down projection vector. So an
+expert is a single hidden neuron. The layer retrieves only a few of these
+tiny experts and sums their outputs with router weights.
+The difference with PKM is therefore what is retrieved. PKM retrieves
+values from a key-value memory whereas PEER retrieves tiny experts. This makes the
+layer more naturally connected to MoE scaling and granularity: instead of having
+a few large experts, PEER pushes the idea to the extreme by using a large
+number of very small experts, while product-key retrieval keeps the routing cost
+cheap. Listing~\ref{lst:peer-forward} gives the intuition of the forward pass,
+following the pseudo-code of \citet{he2024mixturemillionexperts}.
+
+\begin{lstlisting}[
+  float=tb,
+  language=Python,
+  frame=tb,
+  backgroundcolor=\color{black!3},
+  rulecolor=\color{black!25},
+  keywordstyle=\color{magenta!80!black}\bfseries,
+  commentstyle=\color{green!55!black}\ttfamily,
+  stringstyle=\color{violet!80!black},
+  identifierstyle=\color{black},
+  numbers=none,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  caption={Pseudo-code implementation of a PEER layer forward pass.},
+  label={lst:peer-forward}
+]
+def peer_forward(self, x):
+    # Embedding layers storing the down/up projection weights of all experts
+    self.w_down_embed = nn.Embed(num_embeddings=self.n_experts,
+                                 features=self.d_model)
+    self.w_up_embed = nn.Embed(num_embeddings=self.n_experts,
+                               features=self.d_model)
+
+    # Retrieve the weights of the top matching experts using product keys
+    # indices and scores have shape 'bthk',
+    # where h is the number of heads and k the number of retrieved experts
+    indices, scores = self.get_indices(self.query_proj(x),
+                                       self.sub_keys,
+                                       top_k=self.k)
+    w_down = self.w_down_embed(indices)
+    w_up = self.w_up_embed(indices)
+
+    # Compute weighted average of expert outputs
+    x = jnp.einsum('btd,bthkd->bthk', x, w_down)
+    x = self.activation(x)
+    x = x * nn.softmax(scores)
+    x = jnp.einsum('bthk,bthkd->btd', x, w_up)
+    return x
+\end{lstlisting}
+
+\subsection{Embedding Memory Layers}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/ngram_embedding_layer.pdf}
+    \caption{Architecture of an \textit{n}-gram embedding layer. The token
+    embedding is augmented with hashed \textit{n}-gram embedding branches.
+    Figure from \citet{liu2026scalingembeddingsoutperformsscaling}.}
+    \label{fig:ngram-embedding-layer}
+\end{figure}
+Some solutions exist to augment the LLM memory without the complexity
+and cost of searching in a large key-value store. 
+Embedding memory layers can be seen as a special case of sparse key-value memory
+layers, where the keys are not learned dense vectors but fixed discrete indexes.
+For a standard embedding table, the key is simply the token index, and the value
+is the corresponding embedding vector. During the forward pass, each token
+$x_i$ maps to exactly one index. In that sense, the retrieval is a TopK with
+$K=1$, but without any query-key similarity to compute.
+Embedding memory layers are used in several recent LLMs as a simple trick to
+augment the model memory without increasing the forward cost too much. A simple
+version appears in the modded-nanoGPT speedrun as \textit{value embeddings} where   
+extra token embeddings are summed with the value vectors in the attention
+layers.\footnote{
+    \href{https://github.com/KellerJordan/modded-nanogpt}
+    {\nolinkurl{https://github.com/KellerJordan/modded-nanogpt}}
+}
+More generally, the embedding table can store not only token embeddings, but also
+\textit{n}-gram embeddings
+\citep{roy2022ngrammeraugmentingtransformerslatent,liu2026scalingembeddingsoutperformsscaling}
+to augment the model memory.
+This approach is used and has been studied in many architectures, including
+LongCat-Flash~\citep{liu2026scalingembeddingsoutperformsscaling} or Qwen3.8-Flash-Next
+\footnote{
+    \href{https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf}
+    {\nolinkurl{https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf}}
+}
+Figure~\ref{fig:ngram-embedding-layer} shows how N-gram Embedding is used in
+LongCat-Flash-Lite. The embedding memories are used only in the input embedding
+module, before the Transformer layers. For each token position $i$, the model
+forms left-context n-grams ending at the current token, such as $(B,C)$ or
+$(A,B,C)$. These n-grams are mapped through hash functions to embedding tables.
+The retrieved unigram and n-gram embeddings are projected when needed, averaged,
+and used as the initial hidden representation $x_i^{(0)}$ passed to the
+Transformer stack.
+
+There are several ways to inject embedding-memory information into a Transformer
+architecture. LongCat-Flash-Lite \citep{liu2026scalingembeddingsoutperformsscaling} 
+uses it to construct the input token representations to the Transformer backbone.
+Qwen3.8-Flash-Next instead injects the retrieved n-gram vectors inside the
+Transformer, at a selected layer. 
+The authors find that no single layer position
+They also found that when the n-gram vocabulary is
+scaled by adding extra parameters, loss decreases monotonically, while downstream
+performance stagnates, as shown in Table~\ref{tab:qwen-ngram-vocab-scaling}.
+
+\begin{table}[!ht]
+    \centering
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{lcccccc}
+        \toprule
+        & & \multicolumn{3}{c}{\textbf{Knowledge}} & \multicolumn{2}{c}{\textbf{STEM}} \\
+        \cmidrule(lr){3-5} \cmidrule(lr){6-7}
+        \textbf{Vocab. Scale} & \textbf{Loss} & \textbf{MMLU} & \textbf{MMLU-Pro} & \textbf{SuperGPQA} & \textbf{MATH} & \textbf{GSM8K} \\
+        \midrule
+        None & 1.585 & 62.78 & 33.43 & 20.97 & 32.52 & 59.21 \\
+        $20\times$ & 1.553 & 64.14 & 34.46 & 21.83 & \textbf{37.38} & \textbf{65.09} \\
+        $50\times$ & 1.541 & 64.71 & 35.80 & 21.49 & 37.32 & 64.00 \\
+        $100\times$ & 1.534 & 64.70 & \textbf{35.87} & \textbf{21.93} & 36.98 & 63.08 \\
+        $200\times$ & \textbf{1.526} & \textbf{64.85} & 35.21 & 21.11 & 35.34 & 62.96 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Effect of \textit{n}-gram vocabulary scaling in Qwen3.8-Flash-Next.
+    Vocabulary scales are measured relative to the base tokenizer vocabulary
+    size. Larger vocabularies add parameters. Table adapted from
+    \citet{qwen2026qwen38next}.}
+    \label{tab:qwen-ngram-vocab-scaling}
+\end{table}
+
+\subsection{Post-training Activation Sparsity}
+We presented several approaches that induce activation sparsity during training,
+but sparsity can also be introduced after pre-training. These post-training
+activation-sparsity methods are used to reduce the inference cost of dense
+pre-trained LLMs.
+
+Most modern LLMs use gated MLPs with smooth activation functions such as GELU,
+SiLU, or Swish, which produce few exact zeros. A natural way to recover
+activation sparsity is therefore to replace, after training, these smooth activations with
+ReLU-like activations. This process is called \textbf{ReLUfication}. In gated
+MLPs, this makes parts of the intermediate activation exactly zero, so the
+corresponding intermediate channels in the up and down projections can be skipped
+during inference. However, directly changing the activation function creates a
+distribution shift in the pre-trained model, so additional calibration or
+continued training is usually needed to recover performance.
+
+Instead of replacing the MLP activation function, other approaches exploit
+the fact that many intermediate activations are concentrated near zero and can
+therefore be sparsified by magnitude thresholding. TEAL~\citep{TEAL} applies training-free
+magnitude pruning to input activations of the MLP, using layer-dependent
+thresholds estimated from calibration data. 
+CATS~\citep{lee2024cats} thresholds the absolute value of the gate activation
+$\mathrm{SiLU}(xW_{\mathrm{gate}})$ and sets small values to zero. The resulting
+mask makes it possible to skip the corresponding channels in the up and down
+projections during inference, improving latency. Learn-To-be-Efficient (LTE) proposes
+a training-aware approach to learn sparsity via sigmoid-router
+thresholding~\citep{zheng2024learntobeefficient}.
+
+There are also approaches that transform dense pre-trained models into MoEs.
+\textbf{MoEfication} is a method for converting dense FFN layers into routed experts,
+while \textbf{upcycling} more generally means initializing an MoE from one or several
+dense checkpoints and then continuing training. For example, Qwen1.5-MoE-A2.7B
+is upcycled from Qwen-1.8B, and Qwen2 extends this line with a larger MoE
+model~\citep{qwen2024qwen15moe,qwen2}. Combining several dense models is not
+trivial, because their layers, notably attention layers, can differ a lot.
+Several studies therefore focus on how to combine different dense models into an MoE. 
+BAM~\citep{zhang2024bamjustlikethat} proposes to reuse both
+FFN and attention parameters from dense models, using a mixture-of-attention
+variant. Nexus studies a continual domain-adaptation setting, where new domain
+experts are added to an existing MoE using an adaptive router initialized from
+domain embeddings~\citep{gritsch-etal-2025-nexus}.
+
+\subsection{Matryoshka Learning}
+Activation sparsity reduces the number of parameters used for each token, 
+but it does not reduce the memory footprint of the model,
+since the full model parameters must be hosted in memory. 
+Another line of approach is \textbf{Matryoshka Learning}, where a single model is
+trained to nest multiple model or embedding sizes within it. At inference time,
+it is possible to use the embedding dimension or model size that fits the
+compute and memory budget.
+The idea first emerged in representation learning as \textbf{Matryoshka
+Representation Learning} (MRL)~\citep{MRL}. Given a set of target embedding
+dimensions $\mathcal{D} = \{d_1, d_2, \ldots, d_m\}$, MRL trains these
+dimensions jointly by summing the task loss over the different representation
+sizes: $\mathcal{L}_{\mathrm{MRL}} = \sum_{d \in \mathcal{D}} \mathcal{L}\left(y, f_{d}(x)\right)$
+where $x$ is the full representation and $f_d$ selects or projects it to a
+$d$-dimensional representation. Most of time, this function is simply a slicing operation
+that selects the first $d$ dimensions of the representation, but it can also be a learned projection. 
+MRL framework is illustrated in Figure~\ref{fig:mrl-figure1} and
+is used in a lot in retrieval models. It helps reduce the disk usage of the embedding
+store, and allows a trade off between retrieval speed and accuracy.
+MRL can be seen as an activation sparsity since slicing a vector $x_{[:d]}$
+means implicitly setting the remaining dimensions $x_{[d:]}$ to zero.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/mrl_figure1.pdf}
+    \caption{Matryoshka Representation Learning trains a representation to be
+    useful at several embedding dimensions. Figure adapted from \citet{MRL}.}
+    \label{fig:mrl-figure1}
+\end{figure}
+
+More recent work extends the same principle to LLM architectures. 
+These methods train nested Transformer submodels of different sizes 
+inside a larger model~\citep{devvrit2024matformer}. This design is used in
+Gemma~3n E2B and E4B\footnote{\href{https://developers.googleblog.com/en/introducing-gemma-3n-developer-guide/}{\texttt{https://developers.\allowbreak googleblog.com/\allowbreak en/\allowbreak introducing-\allowbreak gemma-3n-\allowbreak developer-\allowbreak guide/}}.}
+and Gemma~4 E2B and E4B.\footnote{\href{https://ai.google.dev/gemma/docs/core/model_card_4}{\texttt{https://ai.\allowbreak google.dev/\allowbreak gemma/\allowbreak docs/\allowbreak core/\allowbreak model\_card\_4}}.}
+At inference time, it is possible to select a submodel of the desired size
+depending on the compute and memory budget.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/matformer_figure1.pdf}
+    \caption{MatFormer nests several FFN sizes inside the Transformer block and
+    trains the corresponding submodels jointly. Figure from
+    \citet{devvrit2024matformer}.}
+    \label{fig:matformer-figure1}
+\end{figure}
 
 \subsection{Speculative Decoding and Diffusion LLMs: Trading Compute for Memory}
 \begin{enumerate}

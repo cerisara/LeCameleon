@@ -30,7 +30,7 @@ Minitron \cite{minitron} & \cmark & \cmark & \cmark & \xmark & 94B \\
 \end{table*}
 
 
-As discussed earlier, compressing Large Language Models is a crucial challenge that can be achieved with several complementary approaches: quantization, pruning, compression, and distillation. In this section, we introduce a new one-shot compression method that locally distills low-rank weights and satisfies the three objectives:
+As discussed earlier, compressing Large Language Models is a crucial challenge that can be achieved with several complementary approaches: quantization, pruning, and distillation. In this section, we introduce a new one-shot compression method that locally distills low-rank weights and satisfies the three objectives:
 \begin{enumerate}
 \item The compression algorithm must be compute-efficient, e.g., it should require minimal computational resources and run in a reasonable amount of time. For instance, the iterative magnitude pruning algorithm as done in \citet{frankle2019lottery}, is too costly to be applied to large-scale LLMs.
 \item It must achieve fast convergence using as little training data as possible; this objective is often an issue with many model pruning methods that often require significant retraining after pruning to recover the lost performance.
@@ -42,26 +42,16 @@ reducing the required number of gradient steps as well as the calibration datase
 We experimentally show the robustness of our approach by compressing several state-of-the-art small and large Transformers, Mixture-of-Experts, and Mamba LLMs.
 Figure~\ref{fig:overview} gives an intuitive overview of the proposed method, which is detailed in Section~\ref{sec:algo} and validated in Section~\ref{sec:xp}.
 
-\section{Related Works}
+Our approach proposes to overcome some limitations of the compression approaches
+presented in Section \ref{sec:llm_compression}. Compared to unstructured pruning
+and semi-structured pruning, which result in models with sparse weights and do not achieve speedup without specially designed hardware-specific kernels, our approach, which shrinks
+the LLM weights, saves memory across all hardware and leads to speedup, as fewer computations are performed. Structured pruning approaches can be costly: for example, the pruning step of Sheared-LLaMA \citet{xia_sheared_2023} is five times as expensive as standard LM training, according to the authors. In contrast, thanks to local gradient updates, our approach is computationally efficient, allowing us to compress a 47B model within minutes on a single A100 GPU.
 
-We discuss next previous compression methods, highlight their limitations, and explain how our approach addresses them. Table~\ref{tab:litt} positions our approach relative to recent compression methods.
-\subsection{Pruning}
-Pruning methods remove unimportant weights in the pre-trained model \citet{NIPS1989_6c9882bb}, \citet{han2015learning}. Pruning can be applied to models in different ways and there are three pruning families:
-\subsubsection{Unstructured Pruning} 
-In unstructured pruning, individual parameters are removed, which results in a model with sparse weights. As is, this approach does not provide memory savings or speedup without dedicated algorithmic tooling. Since zeros are placed in pre-trained weights in an unstructured and unpredictable way, it is difficult to exploit this on GPU tensor cores. However, when many parameters are pruned, such that there are many zeros in the weight matrix, tensor multiplication can be accelerated with dedicated GPU kernels. Similarly, some tensor storage formats can provide substantial memory gains for an unstructuredly pruned model.
-\subsubsection{Semi-Structured Pruning} 
-Contrary to unstructured pruning, semi-structured pruning enforces fixed local sparsity patterns (e.g., N:M), as in \citet{wanda}, \citet{frantar2023sparsegptmassivelanguagemodels}. These approaches often do not lead to memory gains but can speed up processing on kernels optimized for such sparse patterns. On the other hand, our method, which directly shrinks matrices, saves memory across all hardware and leads to speedup, as fewer computations are performed.
-\subsubsection{Structured Pruning} Structured pruning removes entire groups of parameters, which results in a smaller and faster model. \citet{ma2023llmpruner} propose a gradient-based criterion to eliminate substructures in LLMs, while \citet{xia2024sheared} use a joint loss combining a pruning mask loss with the language modeling loss. However, optimizing these criteria can be computationally intensive. For example, the pruning step of Sheared-LLaMA \citet{xia_sheared_2023} is 5x expensive compared to standard LM training, according to the authors. In contrast, thanks to the local gradient updates, our approach is computationally efficient, allowing us to compress a 47B model within minutes on a single A100 GPU.
+There are also some low-rank decomposition approaches that compress models by approximating the pretrained matrices with lower-dimensional ones. Based on the observation by \citet{li2018measuring} that neural networks have lower intrinsic dimensions, \citet{aghajanyan2020intrinsic} show that Transformer language models also require lower intrinsic dimensions depending on the language task. However, \citet{yu_compressing_2023} and \citet{chen_drone} show that the weights in some pretrained Transformer models are full-rank, unlike their activations, and propose activation-aware compression methods. Our work is related to these approaches, as we also decompose the matrices of the models. However, we apply a lightweight layer-wise feature distillation objective to better recover from compression and propose different distillation strategies to accelerate convergence and improve performance.
 
-\subsection{Low-Rank Decomposition}
-Low-Rank Decomposition compresses a model by approximating its pre-trained matrices with lower-dimension ones. Based on the observation by \citet{li2018measuring} that Neural Networks have lower intrinsic dimensions, \citet{aghajanyan2020intrinsic} show that Transformer language models also require lower intrinsic dimensions depending on the language task. However, \citet{yu_compressing_2023}, \citet{chen_drone} show that the weights in some pretrained Transformer models are full-rank compared to their activations and propose an activation-aware compression method.
-
-Our work is related to these approaches, as we also decompose the matrices of the models. However, we apply a lightweight layer-wise feature distillation objective to better recover from compression and propose different distillation strategies to accelerate convergence and improve performance.
-
-\subsection{Distillation}
-In Knowledge Distillation (KD), a small student model learns to reproduce the outputs of a larger pre-trained model. Standard KD is data-intensive when the student model's parameters are randomly initialized. Many recent open-source LLMs such as Gemma-4 or Llama-4, are distilled from a larger model using trillion of tokens, which is as costly as a standard pretraining stage. 
-
-Another approach is layer-wise distillation, which can be more suitable in some cases, as intermediate layers may contain certain information, such as speaker identity or phonemes in pretrained speech models \citet{baevski2020wav2vec20frameworkselfsupervised}, \citet{pasad2022layerwiseanalysisselfsupervisedspeech}, \citet{chang2022distilhubertspeechrepresentationlearning}, \citet{chang2021explorationselfsupervisedpretrainedrepresentations}. For example, TinyBERT \citet{jiao_tinybert_2020} initializes the student model by removing layers from the teacher and then distills the student on task-specific knowledge, combining layer-wise and global distillation losses, which took 3.5 days to train. This is costly for LLMs. Instead of removing layers, we leverage the observation that layer activations are low-rank and approximate them with fewer parameters. Additionally, we compress the models to remain generalist rather than task-specific.
+Standard knowledge distillation is data-intensive when the student model's parameters are randomly initialized. Hence, this process is as costly as a standard pretraining stage. Layer-wise distillation can be more suitable in some cases, as intermediate layers may contain certain information, such as speaker identity or phonemes in pretrained speech models \citet{baevski2020wav2vec20frameworkselfsupervised}, \citet{pasad2022layerwiseanalysisselfsupervisedspeech}, \citet{chang2022distilhubertspeechrepresentationlearning}, \citet{chang2021explorationselfsupervisedpretrainedrepresentations}. We leverage the observation that layer activations are low-rank and approximate them with fewer parameters by distilling the Transformer layer activations into low-rank weights
+initialized from the SVD of the base weights. This layer-wise distillation approach
+enables us to perform local gradient updates, hence making the distillation process cheaper.
 
 \section{Motivation: Activations are more low-rank than weights}
 \label{ssec:srank}
@@ -81,6 +71,9 @@ This does not only motivate the use of activations for compression, but also exp
     \includegraphics[width=\textwidth]{papers/lillama/stablerank_40p.pdf}
     \caption{\textbf{Activations are low-rank.} Comparison of the stable rank of weights (\texttt{*\_proj}) and layer activations (\texttt{layer\_activations}). Each bar is the average stable rank across all layers.}
     \label{fig:srank}
+    \begin{insightbox}{Observation 1: Transformer layer activations are extremely low-rank}
+    Transformer layer activations have extremely low stable rank compared to the weights. This extends the previous observations discussed above, which focused on linear activations, to the outputs of entire Transformer layers. Interestingly, the key projection weights also appear to have low stable rank.
+    \end{insightbox}
 \end{figure*}
 
 \section{Background: Low-Rank Approximation of Transformer Models}
@@ -119,10 +112,13 @@ Compared to the low-rank matrices in the SVD equation above, $A$ and $B$ weights
 \section{Proposed Approach}
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.30\linewidth]{papers/lillama/Teacher.pdf}\hfill
-    \includegraphics[width=0.30\linewidth]{papers/lillama/Student.pdf}\hfill
-    \includegraphics[width=0.30\linewidth]{papers/lillama/Teacher+Student.pdf}
-    \caption{\textbf{Accelerating convergence through a joint loss}. We compare three distillation strategies: (a) Teacher, (b) Student, and (c) Teacher+Student.}
+    \subfloat[Teacher\label{fig:distillation_teacher}]{%
+        \includegraphics[width=0.30\linewidth]{papers/lillama/Teacher.pdf}}\hfill
+    \subfloat[Student\label{fig:distillation_student}]{%
+        \includegraphics[width=0.30\linewidth]{papers/lillama/Student.pdf}}\hfill
+    \subfloat[Teacher+Student\label{fig:distillation_joint}]{%
+        \includegraphics[width=0.30\linewidth]{papers/lillama/Teacher+Student.pdf}}
+    \caption[Accelerating convergence through a joint loss]{\textbf{Accelerating convergence by learning from \protect\colorbox{insightframe}{Teacher} and \protect\colorbox{insightback}{Student} activations through a joint loss.} We compare three distillation strategies: \textbf{(a) Teacher}: the input to the compressed student layer comes from the output of the previous teacher layer; \textbf{(b) Student}: the input to the compressed student layer comes from the output of the previous student layer; \textbf{(c) Teacher+Student}: the compressed student layer is applied separately to the output of the previous teacher layer and to the output of the previous student layer, and the joint loss is the sum of the two corresponding distillation losses.}
     \label{fig:distillaton}
 \end{figure}
 We identify and handle next three potential limitations of the approach presented in Section \ref{ssec:pca}.
@@ -246,7 +242,7 @@ When compressing the models using Algorithm~\ref{alg:two}, we set a minimum rank
 We apply the Teacher+Student loss, as illustrated in Figure~\hyperref[fig:distillaton]{2c}, to all models, as we found that this loss converges faster and generally performs better. Additionally, we use the bottom-first compression strategy, which proved to be effective and less memory-intensive than other strategies.
 
 \subsubsection{Evaluation.}
-To measure inference speed, we measure the \textit{Time to First Token}, which is the time to forward a batch of prompts through the entire model and present the results in tokens per second. Using lm-evaluation-harness \citet{eval-harness}, we evaluate zero-shot performance on 9 downstream tasks: TruthfulQA (TruQA) \citet{lin-etal-2022-truthfulqa}, Social IQa (SIQA) \citet{sap2019social}, LogiQA \citet{liu2020logiqa}, WinoGrande (WinoG) \citet{sakaguchi2019winogrande}, ARC Easy (ARC-E) \citet{arc}, ARC Challenge (ARC-C) \citet{arc}, BoolQ \citet{boolq}, PIQA \citet{piqa}, and OpenBookQA (OBQA) \citet{obqa}. We compare non-compressed (0\%) and compressed variants.
+To measure inference speed, we measure the \textit{prefell speed}, which is the time to forward a batch of prompts through the entire model and present the results in tokens per second. Using lm-evaluation-harness \citet{eval-harness}, we evaluate zero-shot performance on 9 downstream tasks: TruthfulQA (TruQA) \citet{lin-etal-2022-truthfulqa}, Social IQa (SIQA) \citet{sap2019social}, LogiQA \citet{liu2020logiqa}, WinoGrande (WinoG) \citet{sakaguchi2019winogrande}, ARC Easy (ARC-E) \citet{arc}, ARC Challenge (ARC-C) \citet{arc}, BoolQ \citet{boolq}, PIQA \citet{piqa}, and OpenBookQA (OBQA) \citet{obqa}. We compare non-compressed (0\%) and compressed variants.
 We provide in Table~\ref{tab:task_metric_map} the metrics we used to evaluate the models in Section \ref{sec:xp}.
 \begin{table}[!ht]
 \centering
@@ -281,6 +277,10 @@ We compressed Phi-2 3B to 1.7B (40\% parameter reduction) and compare its perfor
 
 \paragraph{Compressed models recover well with fine-tuning.}
 Table~\ref{tab:ft_result} shows that fine-tuning these compressed models leads to performance recovery.
+
+\begin{insightbox}{Observation 2: Low-rank compressed LLMs can continue to improve}
+As shown by the Mistral fine-tuning results in Table~\ref{tab:ft_result}, the bottleneck representation created by the low-rank structure does not seem to prevent the model from improving. With longer fine-tuning, it could potentially recover most of the lost performance.
+\end{insightbox}
 
 \begin{table*}[t]
     \resizebox{\textwidth}{!}{%
@@ -516,6 +516,10 @@ In this section, we give some ablation studies. In all experiments, the models a
 
 Table~\ref{tab:losses} shows that the joint loss depicted in Figure~\hyperref[fig:distillaton]{2c} generally produces the best results. Although the differences between the Student and Teacher+Student losses may not seem significant, Figure~\ref{fig:losses} shows that the Teacher+Student loss leads to faster convergence than the Student loss alone. It also generally results in a lower final perplexity than using the Teacher loss only.
 
+\begin{insightbox}{Observation 3: Combining Teacher and Student activations improves average performance}
+Combining Teacher and Student activations in a joint loss achieves the highest average zero-shot score across the evaluated models (Table~\ref{tab:losses}). It also converges faster than the Student-only loss and generally reaches a lower final perplexity than the Teacher-only loss (Figure~\ref{fig:losses}).
+\end{insightbox}
+
 As shown in Figure~\ref{fig:losses}, the Teacher+Student loss combines the best of both worlds: fast convergence due to the Teacher activations and high performance at inference thanks to the Student activations. We illustrate this in Table~\ref{tab:logs} for the first 2M training tokens. It shows that the Teacher+Student loss converges faster than the Student-only loss. While the Teacher-only loss also converges fast, it reaches a higher plateau and does not converge beyond that point.
 
 \begin{table}[!ht]
@@ -588,6 +592,10 @@ The bottom-first compression strategy allows compressing all models, including M
     \caption{Compression times for the three compression strategies at 20\% parameter reduction on a single A100 GPU. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref{sec:xp}.}
     \label{tab:ctime-ch2}
 \end{table}
+
+\begin{insightbox}{Observation 4: Bottom-first compression is faster and more memory efficient}
+Bottom-first compression reduces computation and GPU memory requirements by processing only the required bottom layers. It is the fastest strategy across all evaluated models (Table~\ref{tab:ctime-ch2}). It is also the only strategy that compresses Mixtral 47B on a single A100 GPU, taking 47 minutes.
+\end{insightbox}
 
 \paragraph{Differences in performances.}
 Table~\ref{tab:cacc-ch2} presents the mean accuracies for each compression strategy. The bottom-first compression strategy performs well and is also more memory efficient. The top-first strategy does not improve accuracy while having higher time and memory complexity compared to the bottom-first approach.
@@ -713,7 +721,7 @@ Table~\ref{tab:comparisons} shows that our approach outperforms SliceGPT \citet{
 \subsection{Can this approach work for low-resource and under-represented languages?}
 \label{sec:hausa-ch2}
 
-For most human languages, there is not enough data (generally less than 1B tokens) to pretrain large LLMs. In such cases, data-efficient approaches are preferred. We experimented compressing a tiny language model for Hausa, a low-resource language for which there is not billions of tokens available for continued pretraining. We used InkubaLM~\citep{tonja2024inkubalm}, a 422M parameter language model designed for five low-resource languages. Since 60\% of the parameters are in the embeddings, we focused on compressing the input embedding $W_{e}$ and the prediction head $W_{o}$. This is easily achieved with our approach by locally distilling the low-rank embeddings and prediction head:
+For most human languages, there is not enough data (generally less than 1B tokens) to pretrain large LLMs. In such cases, data-efficient compression approaches are preferred. We experimented compressing a tiny language model for Hausa, a low-resource language for which there is not billions of tokens available for continued pretraining. We used InkubaLM~\citep{tonja2024inkubalm}, a 422M parameter language model designed for five low-resource languages. Since 60\% of the parameters are in the embeddings, we focused on compressing the input embedding $W_{e}$ and the prediction head $W_{o}$. We will discuss later on the use of low-rank structure in the LM head, as it appears to contradict some empirical observations from previous studies. For now, let's focus on compressing the input and output modules using applying our approach through local distillation of the low-rank embeddings and prediction head:
 
 \[
 \widehat{\Delta W} = \underset{{\Delta W}}{\mathrm{argmin}} \;\; \mathcal{L}(Wx, \Delta Wx)

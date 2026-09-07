@@ -2,163 +2,162 @@
 \providecommand\hyper@newdestlabel[2]{}
 \@writefile{lof}{\ttl@tocsep }
 \@writefile{lot}{\ttl@tocsep }
-\def\mph@nr{8}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}{Lillama}}{33}{chapter.3}\protected@file@percent }
-\newlabel{ch:lillama}{{3}{33}{Speculative Decoding and Diffusion LLMs: Trading Compute for Memory}{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}{Introduction}}{33}{section.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces \textbf  {Lillama approach}: \textbf  {STEP 1} selects layers to compress for a target compression ratio (e.g., N\%) using various strategies (see Section \ref {sec:algo}). \textbf  {STEP 2} compresses and initializes the chosen parameters via SVD. \textbf  {STEP 3} distills the low-rank weights with a small calibration dataset.}}{33}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:overview}{{3.1}{33}{\textbf {Lillama approach}: \textbf {STEP 1} selects layers to compress for a target compression ratio (e.g., N\%) using various strategies (see Section \ref {sec:algo}). \textbf {STEP 2} compresses and initializes the chosen parameters via SVD. \textbf {STEP 3} distills the low-rank weights with a small calibration dataset}{figure.caption.17}{}}
-\mph@setcol{ii:33}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Positioning of our approach within the compression literature. \textbf  {No Custom Kernel} indicates that a custom GPU kernel is not required to observe speedup and \textbf  {No Ampere-only} is whether the method requires Ampere GPU to achieve speedup. \textbf  {Calib. Data} is the total number of tokens in billions used for compression.}}{34}{table.caption.18}\protected@file@percent }
-\newlabel{tab:litt}{{3.1}{34}{Positioning of our approach within the compression literature. \textbf {No Custom Kernel} indicates that a custom GPU kernel is not required to observe speedup and \textbf {No Ampere-only} is whether the method requires Ampere GPU to achieve speedup. \textbf {Calib. Data} is the total number of tokens in billions used for compression}{table.caption.18}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}{Related Works}}{34}{section.3.2}\protected@file@percent }
-\mph@setcol{ii:34}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}{Pruning}}{35}{subsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1.1}{Unstructured Pruning}}{35}{subsubsection.3.2.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1.2}{Semi-Structured Pruning}}{35}{subsubsection.3.2.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1.3}{Structured Pruning}}{35}{subsubsection.3.2.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}{Low-Rank Decomposition}}{35}{subsection.3.2.2}\protected@file@percent }
-\mph@setcol{ii:35}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}{Distillation}}{36}{subsection.3.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}{Motivation: Activations are more low-rank than weights}}{36}{section.3.3}\protected@file@percent }
-\newlabel{ssec:srank}{{3.3}{36}{Motivation: Activations are more low-rank than weights}{section.3.3}{}}
-\mph@setcol{ii:36}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces \textbf  {Activations are low-rank.} Comparison of the stable rank of weights (\texttt  {*\_proj}) and layer activations (\texttt  {layer\_activations}). Each bar is the average stable rank across all layers.}}{37}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:srank}{{3.2}{37}{\textbf {Activations are low-rank.} Comparison of the stable rank of weights (\texttt {*\_proj}) and layer activations (\texttt {layer\_activations}). Each bar is the average stable rank across all layers}{figure.caption.19}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}{Background: Low-Rank Approximation of Transformer Models}}{37}{section.3.4}\protected@file@percent }
-\mph@setcol{ii:37}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}{Low-Rank Approximation from Weights}}{38}{subsection.3.4.1}\protected@file@percent }
-\newlabel{eq:svd}{{3.3}{38}{Low-Rank Approximation from Weights}{equation.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}{Low-Rank Approximation from Feature}}{38}{subsection.3.4.2}\protected@file@percent }
-\newlabel{ssec:pca}{{3.4.2}{38}{Low-Rank Approximation from Feature}{subsection.3.4.2}{}}
-\mph@setcol{ii:38}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces \textbf  {Accelerating convergence through a joint loss}. We compare three distillation strategies: (a) Teacher, (b) Student, and (c) Teacher+Student.}}{39}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:distillaton}{{3.3}{39}{\textbf {Accelerating convergence through a joint loss}. We compare three distillation strategies: (a) Teacher, (b) Student, and (c) Teacher+Student}{figure.caption.20}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}{Proposed Approach}}{39}{section.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}{Non-linear Feature Approximation.}}{39}{subsection.3.5.1}\protected@file@percent }
-\mph@setcol{ii:39}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}{Beyond Teacher-only Activations.}}{40}{subsection.3.5.2}\protected@file@percent }
-\mph@setcol{ii:40}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}{Module-wise Distillation.}}{41}{subsection.3.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}{Fast and Memory-Efficient Compression}}{41}{section.3.6}\protected@file@percent }
-\newlabel{sec:algo}{{3.6}{41}{Fast and Memory-Efficient Compression}{section.3.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}{Uniform Weights Compression}}{41}{subsection.3.6.1}\protected@file@percent }
-\mph@setcol{ii:41}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Illustration of 20\% compression when using the three strategies: bottom, top, and uniform. Green boxes are compressed layers with low-rank matrices while gray boxes are non-compressed ones. $l_{1}$, $l_{2}$, ..., $l_{n-1}$, $l_{n}$ are the layer indexes.}}{42}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:strategies}{{3.4}{42}{Illustration of 20\% compression when using the three strategies: bottom, top, and uniform. Green boxes are compressed layers with low-rank matrices while gray boxes are non-compressed ones. $l_{1}$, $l_{2}$, ..., $l_{n-1}$, $l_{n}$ are the layer indexes}{figure.caption.21}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}{Top Layers First Compression}}{42}{subsection.3.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}{Bottom Layers First Compression}}{42}{subsection.3.6.3}\protected@file@percent }
-\mph@setcol{ii:42}{\mph@nr}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Bottom Layers First Compression Algorithm}}{43}{algocf.1}\protected@file@percent }
-\newlabel{alg:two}{{1}{43}{Bottom Layers First Compression}{algocf.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.4}{Ease of Implementation of the approach}}{43}{subsection.3.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}{Experiments on Transformers}}{43}{section.3.7}\protected@file@percent }
-\newlabel{sec:xp}{{3.7}{43}{Experiments on Transformers}{section.3.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}{Setup}}{43}{subsection.3.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1.1}{Models.}}{43}{subsubsection.3.7.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1.2}{Data.}}{43}{subsubsection.3.7.1.2}\protected@file@percent }
-\mph@setcol{ii:43}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Example of PyTorch implementation of our approach using the Teacher-only distillation strategy.}}{44}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:pseudocode_impl}{{3.5}{44}{Example of PyTorch implementation of our approach using the Teacher-only distillation strategy}{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1.3}{Implementation Details.}}{44}{subsubsection.3.7.1.3}\protected@file@percent }
-\mph@setcol{ii:44}{\mph@nr}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1.4}{Evaluation.}}{45}{subsubsection.3.7.1.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Benchmarks and corresponding metrics that were used to evaluate the models.}}{45}{table.caption.24}\protected@file@percent }
-\newlabel{tab:task_metric_map}{{3.2}{45}{Benchmarks and corresponding metrics that were used to evaluate the models}{table.caption.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}{Results}}{45}{subsection.3.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Zero-shot evaluation under different compression ratios.}}{45}{paragraph*.25}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Low-rank models are lighter and faster.}}{45}{paragraph*.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Our approach can efficiently create small language models.}}{45}{paragraph*.27}\protected@file@percent }
-\mph@setcol{ii:45}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces \textbf  {Zero-shot evaluation results} for the base non-compressed models (0\%), and the 20\%, 25\%, and 30\% compressed models.}}{46}{table.caption.29}\protected@file@percent }
-\newlabel{tab:main_result}{{3.3}{46}{\textbf {Zero-shot evaluation results} for the base non-compressed models (0\%), and the 20\%, 25\%, and 30\% compressed models}{table.caption.29}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces \textbf  {Compressed models save memory and speedup computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 using a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All the models were loaded in bf16 and used Flash-Attention2. OOM stands for Out-Of-Memory.}}{46}{table.caption.30}\protected@file@percent }
-\newlabel{tab:mem-speed}{{3.4}{46}{\textbf {Compressed models save memory and speedup computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 using a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All the models were loaded in bf16 and used Flash-Attention2. OOM stands for Out-Of-Memory}{table.caption.30}{}}
-\@writefile{toc}{\contentsline {paragraph}{{Compressed models recover well with fine-tuning.}}{46}{paragraph*.28}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}{Other Architectures and Modalities}}{46}{section.3.8}\protected@file@percent }
-\mph@setcol{ii:46}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces \textbf  {40\% compressed Phi-2 3B competes with models of similar size while being compressed using only 13M tokens.} Compressing Phi-2 3B to 1.7B (by removing 40\% of the parameters) and comparing its zero-shot performance to other recent language models of similar sizes.}}{47}{table.caption.31}\protected@file@percent }
-\newlabel{tab:smollm}{{3.5}{47}{\textbf {40\% compressed Phi-2 3B competes with models of similar size while being compressed using only 13M tokens.} Compressing Phi-2 3B to 1.7B (by removing 40\% of the parameters) and comparing its zero-shot performance to other recent language models of similar sizes}{table.caption.31}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces \textbf  {Compressed models recover well when finetuned.} Zero-shot performances of the base non-compressed models (0\%) and the 40\% compressed models, without and with fine-tuning (FT). Models were fine-tuned on the whole Slim-Orca dataset (191 million tokens).}}{47}{table.caption.32}\protected@file@percent }
-\newlabel{tab:ft_result}{{3.6}{47}{\textbf {Compressed models recover well when finetuned.} Zero-shot performances of the base non-compressed models (0\%) and the 40\% compressed models, without and with fine-tuning (FT). Models were fine-tuned on the whole Slim-Orca dataset (191 million tokens)}{table.caption.32}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}{Mamba Architecture}}{47}{subsection.3.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Method.}}{47}{paragraph*.33}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Results.}}{47}{paragraph*.34}\protected@file@percent }
+\def\mph@nr{15}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}{Lillama}}{47}{chapter.3}\protected@file@percent }
+\newlabel{ch:lillama}{{3}{47}{Speculative Decoding and Diffusion LLMs: Trading Compute for Memory}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}{Introduction}}{47}{section.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces \textbf  {Lillama approach}: \textbf  {STEP 1} selects layers to compress for a target compression ratio (e.g., N\%) using various strategies (see Section \ref {sec:algo}). \textbf  {STEP 2} compresses and initializes the chosen parameters via SVD. \textbf  {STEP 3} distills the low-rank weights with a small calibration dataset.}}{47}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:overview}{{3.1}{47}{\textbf {Lillama approach}: \textbf {STEP 1} selects layers to compress for a target compression ratio (e.g., N\%) using various strategies (see Section \ref {sec:algo}). \textbf {STEP 2} compresses and initializes the chosen parameters via SVD. \textbf {STEP 3} distills the low-rank weights with a small calibration dataset}{figure.caption.37}{}}
 \mph@setcol{ii:47}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.7}{\ignorespaces \textbf  {Mamba-based Language Models can be efficiently compressed}. Zero-shot evaluation results for the non-compressed (0\%) and for the compressed Mamba-based Language Models (20\%)}}{48}{table.caption.35}\protected@file@percent }
-\newlabel{tab:ssm}{{3.7}{48}{\textbf {Mamba-based Language Models can be efficiently compressed}. Zero-shot evaluation results for the non-compressed (0\%) and for the compressed Mamba-based Language Models (20\%)}{table.caption.35}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.8}{\ignorespaces \textbf  {Compressing mamba models saves memory and speeds up computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 with a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All models were loaded in bf16 and used Flash-Attention2.}}{48}{table.caption.36}\protected@file@percent }
-\newlabel{tab:mem-speed-mamba-ch2}{{3.8}{48}{\textbf {Compressing mamba models saves memory and speeds up computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 with a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All models were loaded in bf16 and used Flash-Attention2}{table.caption.36}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}{Speech modality: Whisper}}{48}{subsection.3.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Method.}}{48}{paragraph*.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Data.}}{48}{paragraph*.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Results.}}{48}{paragraph*.39}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Positioning of our approach within the compression literature. \textbf  {No Custom Kernel} indicates that a custom GPU kernel is not required to observe speedup and \textbf  {No Ampere-only} is whether the method requires Ampere GPU to achieve speedup. \textbf  {Calib. Data} is the total number of tokens in billions used for compression.}}{48}{table.caption.38}\protected@file@percent }
+\newlabel{tab:litt}{{3.1}{48}{Positioning of our approach within the compression literature. \textbf {No Custom Kernel} indicates that a custom GPU kernel is not required to observe speedup and \textbf {No Ampere-only} is whether the method requires Ampere GPU to achieve speedup. \textbf {Calib. Data} is the total number of tokens in billions used for compression}{table.caption.38}{}}
 \mph@setcol{ii:48}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.9}{\ignorespaces \textbf  {The 37\% compressed Whisper is faster, 1.46$\times $ lighter.} The WER is computed on the English test subset of the Fleurs dataset. The speed (tokens/second) corresponds to the transcription of 400 tokens from a dataset containing 2,048 speech examples, using a batch size of 128. A single A100 GPU is used and the model is loaded in FP32, without Flash-Attention. We also give the GPU Memory (VRAM) occupied by each model.}}{49}{table.caption.40}\protected@file@percent }
-\newlabel{tab:wer}{{3.9}{49}{\textbf {The 37\% compressed Whisper is faster, 1.46$\times $ lighter.} The WER is computed on the English test subset of the Fleurs dataset. The speed (tokens/second) corresponds to the transcription of 400 tokens from a dataset containing 2,048 speech examples, using a batch size of 128. A single A100 GPU is used and the model is loaded in FP32, without Flash-Attention. We also give the GPU Memory (VRAM) occupied by each model}{table.caption.40}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.9}{Analysis}}{49}{section.3.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}{Which distillation loss to use?}}{49}{subsection.3.9.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.10}{\ignorespaces \textbf  {The joint loss generally performs better}: Zero-shot performances of the three losses using the same setup for each model, as described in Section~\ref {sec:xp}.}}{49}{table.caption.44}\protected@file@percent }
-\newlabel{tab:losses}{{3.10}{49}{\textbf {The joint loss generally performs better}: Zero-shot performances of the three losses using the same setup for each model, as described in Section~\ref {sec:xp}}{table.caption.44}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}{Motivation: Activations are more low-rank than weights}}{49}{section.3.2}\protected@file@percent }
+\newlabel{ssec:srank}{{3.2}{49}{Motivation: Activations are more low-rank than weights}{section.3.2}{}}
 \mph@setcol{ii:49}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces \textbf  {Higher ranks give generally better results.} Mean accuracy over our test benchmarks as a function of the minimum rank $k$ in Algorithm~\ref {alg:two}}}{50}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:ranks}{{3.6}{50}{\textbf {Higher ranks give generally better results.} Mean accuracy over our test benchmarks as a function of the minimum rank $k$ in Algorithm~\ref {alg:two}}{figure.caption.41}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}{How to choose the rank?}}{50}{subsection.3.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}{Is SVD initialization necessary?}}{50}{subsection.3.9.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces \textbf  {Activations are low-rank.} Comparison of the stable rank of weights (\texttt  {*\_proj}) and layer activations (\texttt  {layer\_activations}). Each bar is the average stable rank across all layers.}}{50}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:srank}{{3.2}{50}{\textbf {Activations are low-rank.} Comparison of the stable rank of weights (\texttt {*\_proj}) and layer activations (\texttt {layer\_activations}). Each bar is the average stable rank across all layers}{figure.caption.39}{}}
 \mph@setcol{ii:50}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces \textbf  {SVD Initialization improves the sample-efficiency}. Convergence when initializing low-rank weights randomly (without SVD) or with SVD.}}{51}{figure.caption.42}\protected@file@percent }
-\newlabel{fig:w_wo_svd}{{3.7}{51}{\textbf {SVD Initialization improves the sample-efficiency}. Convergence when initializing low-rank weights randomly (without SVD) or with SVD}{figure.caption.42}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces \textbf  {The joint loss converges generally better}. Convergence of the three losses illustrated in Figure~\ref {fig:distillaton}, evaluated on the Wikitext2 test corpus perplexity during distillation.}}{51}{figure.caption.43}\protected@file@percent }
-\newlabel{fig:losses}{{3.8}{51}{\textbf {The joint loss converges generally better}. Convergence of the three losses illustrated in Figure~\ref {fig:distillaton}, evaluated on the Wikitext2 test corpus perplexity during distillation}{figure.caption.43}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}{Cost.}}{51}{subsection.3.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{{Differences in running time and memory.}}{51}{paragraph*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}{Background: Low-Rank Approximation of Transformer Models}}{51}{section.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}{Low-Rank Approximation from Weights}}{51}{subsection.3.3.1}\protected@file@percent }
+\newlabel{eq:svd}{{3.3}{51}{Low-Rank Approximation from Weights}{equation.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}{Low-Rank Approximation from Feature}}{51}{subsection.3.3.2}\protected@file@percent }
+\newlabel{ssec:pca}{{3.3.2}{51}{Low-Rank Approximation from Feature}{subsection.3.3.2}{}}
 \mph@setcol{ii:51}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.11}{\ignorespaces Comparing the Wikitext perplexity convergence of the three losses for 2M training tokens.}}{52}{table.caption.45}\protected@file@percent }
-\newlabel{tab:logs}{{3.11}{52}{Comparing the Wikitext perplexity convergence of the three losses for 2M training tokens}{table.caption.45}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.12}{\ignorespaces Compression times for the three compression strategies at 20\% parameter reduction on a single A100 GPU. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}.}}{52}{table.caption.47}\protected@file@percent }
-\newlabel{tab:ctime-ch2}{{3.12}{52}{Compression times for the three compression strategies at 20\% parameter reduction on a single A100 GPU. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}}{table.caption.47}{}}
-\@writefile{toc}{\contentsline {paragraph}{{Differences in performances.}}{52}{paragraph*.48}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.5}{Examples of generated texts}}{52}{subsection.3.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}{Proposed Approach}}{52}{section.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}{Non-linear Feature Approximation.}}{52}{subsection.3.4.1}\protected@file@percent }
 \mph@setcol{ii:52}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.13}{\ignorespaces Average zero-shot performance for the three compression strategies at 20\% compression. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}.}}{53}{table.caption.49}\protected@file@percent }
-\newlabel{tab:cacc-ch2}{{3.13}{53}{Average zero-shot performance for the three compression strategies at 20\% compression. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}}{table.caption.49}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.14}{\ignorespaces \textbf  {Comparison of our method with SliceGPT on zero-shot task evaluation for Phi-2 3B.} We give the evaluation scores before compression (0\%), both as reported by SliceGPT and as reproduced by us. Both methods use the Alpaca calibration dataset for compression.}}{53}{table.caption.50}\protected@file@percent }
-\newlabel{tab:comparisons}{{3.14}{53}{\textbf {Comparison of our method with SliceGPT on zero-shot task evaluation for Phi-2 3B.} We give the evaluation scores before compression (0\%), both as reported by SliceGPT and as reproduced by us. Both methods use the Alpaca calibration dataset for compression}{table.caption.50}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.6}{Comparisons.}}{53}{subsection.3.9.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.7}{Can this approach work for low-resource and under-represented languages?}}{53}{subsection.3.9.7}\protected@file@percent }
-\newlabel{sec:hausa-ch2}{{3.9.7}{53}{Can this approach work for low-resource and under-represented languages?}{subsection.3.9.7}{}}
+\newlabel{fig:distillation_teacher}{{3.3a}{53}{Proposed Approach}{subfigure.3.3.1}{}}
+\newlabel{fig:distillation_student}{{3.3b}{53}{Proposed Approach}{subfigure.3.3.2}{}}
+\newlabel{fig:distillation_joint}{{3.3c}{53}{Proposed Approach}{subfigure.3.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Accelerating convergence through a joint loss}}{53}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:distillaton}{{3.3}{53}{Accelerating convergence through a joint loss}{figure.caption.40}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Teacher}}}{53}{subfigure.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Student}}}{53}{subfigure.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Teacher+Student}}}{53}{subfigure.3.3}\protected@file@percent }
 \mph@setcol{ii:53}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.15}{\ignorespaces Steve Jobs Story by the 20\% and 40\% compressed Phi-2 3B models, without \textit  {any} finetuning. \textbf  {Prompt: "Here the story of Steve Jobs:"}}}{54}{table.caption.51}\protected@file@percent }
-\newlabel{tab:sj}{{3.15}{54}{Steve Jobs Story by the 20\% and 40\% compressed Phi-2 3B models, without \textit {any} finetuning. \textbf {Prompt: "Here the story of Steve Jobs:"}}{table.caption.51}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}{Beyond Teacher-only Activations.}}{54}{subsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}{Module-wise Distillation.}}{54}{subsection.3.4.3}\protected@file@percent }
 \mph@setcol{ii:54}{\mph@nr}
-\@writefile{lot}{\contentsline {table}{\numberline {3.16}{\ignorespaces The Civil War Story by the 20\% and 40\% compressed models, without \textit  {any} finetuning. \textbf  {Prompt: "What is the cause of the Civil War? Here is the story."}}}{55}{table.caption.52}\protected@file@percent }
-\newlabel{tab:cw}{{3.16}{55}{The Civil War Story by the 20\% and 40\% compressed models, without \textit {any} finetuning. \textbf {Prompt: "What is the cause of the Civil War? Here is the story."}}{table.caption.52}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}{Fast and Memory-Efficient Compression}}{55}{section.3.5}\protected@file@percent }
+\newlabel{sec:algo}{{3.5}{55}{Fast and Memory-Efficient Compression}{section.3.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Illustration of 20\% compression when using the three strategies: bottom, top, and uniform. Green boxes are compressed layers with low-rank matrices while gray boxes are non-compressed ones. $l_{1}$, $l_{2}$, ..., $l_{n-1}$, $l_{n}$ are the layer indexes.}}{55}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:strategies}{{3.4}{55}{Illustration of 20\% compression when using the three strategies: bottom, top, and uniform. Green boxes are compressed layers with low-rank matrices while gray boxes are non-compressed ones. $l_{1}$, $l_{2}$, ..., $l_{n-1}$, $l_{n}$ are the layer indexes}{figure.caption.41}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}{Uniform Weights Compression}}{55}{subsection.3.5.1}\protected@file@percent }
 \mph@setcol{ii:55}{\mph@nr}
-\def\mph@nr{9}
-\def\mph@nr{10}
-\@writefile{lot}{\contentsline {table}{\numberline {3.17}{\ignorespaces Zero-shot performance on afrimmlu for the 30\% compressed InkubaLM model for the Hausa language.}}{56}{table.caption.53}\protected@file@percent }
-\newlabel{tab:inkuba-ch2}{{3.17}{56}{Zero-shot performance on afrimmlu for the 30\% compressed InkubaLM model for the Hausa language}{table.caption.53}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.10}{Limitations}}{56}{section.3.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}{Compatibility with quantization:}}{56}{subsection.3.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.2}{Compromise between specificity and genericity:}}{56}{subsection.3.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}{Top Layers First Compression}}{56}{subsection.3.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}{Bottom Layers First Compression}}{56}{subsection.3.5.3}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Bottom Layers First Compression Algorithm}}{56}{algocf.1}\protected@file@percent }
+\newlabel{alg:two}{{1}{56}{Bottom Layers First Compression}{algocf.1}{}}
 \mph@setcol{ii:56}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {3.11}{Conclusion}}{57}{section.3.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.12}{Open Questions}}{57}{section.3.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.12.1}{If the weights are full rank, why still compressing them?}}{57}{subsection.3.12.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.12.2}{Can an LLM be pre-trained from scratch with low-rank weights?}}{57}{subsection.3.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.4}{Ease of Implementation of the approach}}{57}{subsection.3.5.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Example of PyTorch implementation of our approach using the Teacher-only distillation strategy.}}{57}{figure.caption.43}\protected@file@percent }
+\newlabel{fig:pseudocode_impl}{{3.5}{57}{Example of PyTorch implementation of our approach using the Teacher-only distillation strategy}{figure.caption.43}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}{Experiments on Transformers}}{57}{section.3.6}\protected@file@percent }
+\newlabel{sec:xp}{{3.6}{57}{Experiments on Transformers}{section.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}{Setup}}{57}{subsection.3.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.1}{Models.}}{57}{subsubsection.3.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.2}{Data.}}{57}{subsubsection.3.6.1.2}\protected@file@percent }
 \mph@setcol{ii:57}{\mph@nr}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.3}{Implementation Details.}}{58}{subsubsection.3.6.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.4}{Evaluation.}}{58}{subsubsection.3.6.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}{Results}}{58}{subsection.3.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Zero-shot evaluation under different compression ratios.}}{58}{paragraph*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Low-rank models are lighter and faster.}}{58}{paragraph*.46}\protected@file@percent }
+\mph@setcol{ii:58}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Benchmarks and corresponding metrics that were used to evaluate the models.}}{59}{table.caption.44}\protected@file@percent }
+\newlabel{tab:task_metric_map}{{3.2}{59}{Benchmarks and corresponding metrics that were used to evaluate the models}{table.caption.44}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Our approach can efficiently create small language models.}}{59}{paragraph*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Compressed models recover well with fine-tuning.}}{59}{paragraph*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}{Other Architectures and Modalities}}{59}{section.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}{Mamba Architecture}}{59}{subsection.3.7.1}\protected@file@percent }
+\mph@setcol{ii:59}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces \textbf  {Zero-shot evaluation results} for the base non-compressed models (0\%), and the 20\%, 25\%, and 30\% compressed models.}}{60}{table.caption.49}\protected@file@percent }
+\newlabel{tab:main_result}{{3.3}{60}{\textbf {Zero-shot evaluation results} for the base non-compressed models (0\%), and the 20\%, 25\%, and 30\% compressed models}{table.caption.49}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces \textbf  {Compressed models save memory and speedup computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 using a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All the models were loaded in bf16 and used Flash-Attention2. OOM stands for Out-Of-Memory.}}{60}{table.caption.50}\protected@file@percent }
+\newlabel{tab:mem-speed}{{3.4}{60}{\textbf {Compressed models save memory and speedup computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 using a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All the models were loaded in bf16 and used Flash-Attention2. OOM stands for Out-Of-Memory}{table.caption.50}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Method.}}{60}{paragraph*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Results.}}{60}{paragraph*.54}\protected@file@percent }
+\mph@setcol{ii:60}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces \textbf  {40\% compressed Phi-2 3B competes with models of similar size while being compressed using only 13M tokens.} Compressing Phi-2 3B to 1.7B (by removing 40\% of the parameters) and comparing its zero-shot performance to other recent language models of similar sizes.}}{61}{table.caption.51}\protected@file@percent }
+\newlabel{tab:smollm}{{3.5}{61}{\textbf {40\% compressed Phi-2 3B competes with models of similar size while being compressed using only 13M tokens.} Compressing Phi-2 3B to 1.7B (by removing 40\% of the parameters) and comparing its zero-shot performance to other recent language models of similar sizes}{table.caption.51}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces \textbf  {Compressed models recover well when finetuned.} Zero-shot performances of the base non-compressed models (0\%) and the 40\% compressed models, without and with fine-tuning (FT). Models were fine-tuned on the whole Slim-Orca dataset (191 million tokens).}}{61}{table.caption.52}\protected@file@percent }
+\newlabel{tab:ft_result}{{3.6}{61}{\textbf {Compressed models recover well when finetuned.} Zero-shot performances of the base non-compressed models (0\%) and the 40\% compressed models, without and with fine-tuning (FT). Models were fine-tuned on the whole Slim-Orca dataset (191 million tokens)}{table.caption.52}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.7}{\ignorespaces \textbf  {Mamba-based Language Models can be efficiently compressed}. Zero-shot evaluation results for the non-compressed (0\%) and for the compressed Mamba-based Language Models (20\%)}}{61}{table.caption.55}\protected@file@percent }
+\newlabel{tab:ssm}{{3.7}{61}{\textbf {Mamba-based Language Models can be efficiently compressed}. Zero-shot evaluation results for the non-compressed (0\%) and for the compressed Mamba-based Language Models (20\%)}{table.caption.55}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}{Speech modality: Whisper}}{61}{subsection.3.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Method.}}{61}{paragraph*.57}\protected@file@percent }
+\mph@setcol{ii:61}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.8}{\ignorespaces \textbf  {Compressing mamba models saves memory and speeds up computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 with a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All models were loaded in bf16 and used Flash-Attention2.}}{62}{table.caption.56}\protected@file@percent }
+\newlabel{tab:mem-speed-mamba-ch2}{{3.8}{62}{\textbf {Compressing mamba models saves memory and speeds up computation.} Inference speed was measured on a single A100 GPU, using the whole test split of Wikitext2 with a batch size of 4 and by varying the sequence length from 512 to 16384 tokens. All models were loaded in bf16 and used Flash-Attention2}{table.caption.56}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Data.}}{62}{paragraph*.58}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Results.}}{62}{paragraph*.59}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.9}{\ignorespaces \textbf  {The 37\% compressed Whisper is faster, 1.46$\times $ lighter.} The WER is computed on the English test subset of the Fleurs dataset. The speed (tokens/second) corresponds to the transcription of 400 tokens from a dataset containing 2,048 speech examples, using a batch size of 128. A single A100 GPU is used and the model is loaded in FP32, without Flash-Attention. We also give the GPU Memory (VRAM) occupied by each model.}}{62}{table.caption.60}\protected@file@percent }
+\newlabel{tab:wer}{{3.9}{62}{\textbf {The 37\% compressed Whisper is faster, 1.46$\times $ lighter.} The WER is computed on the English test subset of the Fleurs dataset. The speed (tokens/second) corresponds to the transcription of 400 tokens from a dataset containing 2,048 speech examples, using a batch size of 128. A single A100 GPU is used and the model is loaded in FP32, without Flash-Attention. We also give the GPU Memory (VRAM) occupied by each model}{table.caption.60}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}{Analysis}}{62}{section.3.8}\protected@file@percent }
+\mph@setcol{ii:62}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces \textbf  {Higher ranks give generally better results.} Mean accuracy over our test benchmarks as a function of the minimum rank $k$ in Algorithm~\ref {alg:two}}}{63}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:ranks}{{3.6}{63}{\textbf {Higher ranks give generally better results.} Mean accuracy over our test benchmarks as a function of the minimum rank $k$ in Algorithm~\ref {alg:two}}{figure.caption.61}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.10}{\ignorespaces \textbf  {The joint loss generally performs better}: Zero-shot performances of the three losses using the same setup for each model, as described in Section~\ref {sec:xp}.}}{63}{table.caption.64}\protected@file@percent }
+\newlabel{tab:losses}{{3.10}{63}{\textbf {The joint loss generally performs better}: Zero-shot performances of the three losses using the same setup for each model, as described in Section~\ref {sec:xp}}{table.caption.64}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}{Which distillation loss to use?}}{63}{subsection.3.8.1}\protected@file@percent }
+\mph@setcol{ii:63}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces \textbf  {SVD Initialization improves the sample-efficiency}. Convergence when initializing low-rank weights randomly (without SVD) or with SVD.}}{64}{figure.caption.62}\protected@file@percent }
+\newlabel{fig:w_wo_svd}{{3.7}{64}{\textbf {SVD Initialization improves the sample-efficiency}. Convergence when initializing low-rank weights randomly (without SVD) or with SVD}{figure.caption.62}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces \textbf  {The joint loss converges generally better}. Convergence of the three losses illustrated in Figure~\ref {fig:distillaton}, evaluated on the Wikitext2 test corpus perplexity during distillation.}}{64}{figure.caption.63}\protected@file@percent }
+\newlabel{fig:losses}{{3.8}{64}{\textbf {The joint loss converges generally better}. Convergence of the three losses illustrated in Figure~\ref {fig:distillaton}, evaluated on the Wikitext2 test corpus perplexity during distillation}{figure.caption.63}{}}
+\mph@setcol{ii:64}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.11}{\ignorespaces Comparing the Wikitext perplexity convergence of the three losses for 2M training tokens.}}{65}{table.caption.65}\protected@file@percent }
+\newlabel{tab:logs}{{3.11}{65}{Comparing the Wikitext perplexity convergence of the three losses for 2M training tokens}{table.caption.65}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}{How to choose the rank?}}{65}{subsection.3.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}{Is SVD initialization necessary?}}{65}{subsection.3.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}{Cost.}}{65}{subsection.3.8.4}\protected@file@percent }
+\mph@setcol{ii:65}{\mph@nr}
+\@writefile{toc}{\contentsline {paragraph}{{Differences in running time and memory.}}{66}{paragraph*.66}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.12}{\ignorespaces Compression times for the three compression strategies at 20\% parameter reduction on a single A100 GPU. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}.}}{66}{table.caption.67}\protected@file@percent }
+\newlabel{tab:ctime-ch2}{{3.12}{66}{Compression times for the three compression strategies at 20\% parameter reduction on a single A100 GPU. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}}{table.caption.67}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Differences in performances.}}{66}{paragraph*.68}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.5}{Examples of generated texts}}{66}{subsection.3.8.5}\protected@file@percent }
+\mph@setcol{ii:66}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.13}{\ignorespaces Average zero-shot performance for the three compression strategies at 20\% compression. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}.}}{67}{table.caption.69}\protected@file@percent }
+\newlabel{tab:cacc-ch2}{{3.13}{67}{Average zero-shot performance for the three compression strategies at 20\% compression. For the bottom and top-first compression strategies, we used the same hyperparameters as in Section~\ref {sec:xp}}{table.caption.69}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.14}{\ignorespaces \textbf  {Comparison of our method with SliceGPT on zero-shot task evaluation for Phi-2 3B.} We give the evaluation scores before compression (0\%), both as reported by SliceGPT and as reproduced by us. Both methods use the Alpaca calibration dataset for compression.}}{67}{table.caption.70}\protected@file@percent }
+\newlabel{tab:comparisons}{{3.14}{67}{\textbf {Comparison of our method with SliceGPT on zero-shot task evaluation for Phi-2 3B.} We give the evaluation scores before compression (0\%), both as reported by SliceGPT and as reproduced by us. Both methods use the Alpaca calibration dataset for compression}{table.caption.70}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.6}{Comparisons.}}{67}{subsection.3.8.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.7}{Can this approach work for low-resource and under-represented languages?}}{67}{subsection.3.8.7}\protected@file@percent }
+\newlabel{sec:hausa-ch2}{{3.8.7}{67}{Can this approach work for low-resource and under-represented languages?}{subsection.3.8.7}{}}
+\mph@setcol{ii:67}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.15}{\ignorespaces Steve Jobs Story by the 20\% and 40\% compressed Phi-2 3B models, without \textit  {any} finetuning. \textbf  {Prompt: "Here the story of Steve Jobs:"}}}{68}{table.caption.71}\protected@file@percent }
+\newlabel{tab:sj}{{3.15}{68}{Steve Jobs Story by the 20\% and 40\% compressed Phi-2 3B models, without \textit {any} finetuning. \textbf {Prompt: "Here the story of Steve Jobs:"}}{table.caption.71}{}}
+\mph@setcol{ii:68}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {3.16}{\ignorespaces The Civil War Story by the 20\% and 40\% compressed models, without \textit  {any} finetuning. \textbf  {Prompt: "What is the cause of the Civil War? Here is the story."}}}{69}{table.caption.72}\protected@file@percent }
+\newlabel{tab:cw}{{3.16}{69}{The Civil War Story by the 20\% and 40\% compressed models, without \textit {any} finetuning. \textbf {Prompt: "What is the cause of the Civil War? Here is the story."}}{table.caption.72}{}}
+\mph@setcol{ii:69}{\mph@nr}
+\def\mph@nr{16}
+\def\mph@nr{17}
+\@writefile{lot}{\contentsline {table}{\numberline {3.17}{\ignorespaces Zero-shot performance on afrimmlu for the 30\% compressed InkubaLM model for the Hausa language.}}{70}{table.caption.73}\protected@file@percent }
+\newlabel{tab:inkuba-ch2}{{3.17}{70}{Zero-shot performance on afrimmlu for the 30\% compressed InkubaLM model for the Hausa language}{table.caption.73}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.9}{Limitations}}{70}{section.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}{Compatibility with quantization:}}{70}{subsection.3.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}{Compromise between specificity and genericity:}}{70}{subsection.3.9.2}\protected@file@percent }
+\mph@setcol{ii:70}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {3.10}{Conclusion}}{71}{section.3.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.11}{Open Questions}}{71}{section.3.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.11.1}{If the weights are full rank, why still compressing them?}}{71}{subsection.3.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.11.2}{Can an LLM be pre-trained from scratch with low-rank weights?}}{71}{subsection.3.11.2}\protected@file@percent }
+\mph@setcol{ii:71}{\mph@nr}
 \@setckpt{Chapters/Chapter02}{
-\setcounter{page}{58}
+\setcounter{page}{72}
 \setcounter{equation}{11}
 \setcounter{enumi}{3}
-\setcounter{enumii}{2}
+\setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
 \setcounter{footnote}{2}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{2}
 \setcounter{chapter}{3}
-\setcounter{section}{12}
+\setcounter{section}{11}
 \setcounter{subsection}{2}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
@@ -174,7 +173,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{206}
+\setcounter{instcount}{315}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -292,18 +291,18 @@
 \setcounter{continuedfloat}{0}
 \setcounter{KVtest}{0}
 \setcounter{subfigure}{0}
-\setcounter{subfigure@save}{2}
+\setcounter{subfigure@save}{3}
 \setcounter{lofdepth}{1}
 \setcounter{subtable}{0}
 \setcounter{subtable@save}{0}
 \setcounter{lotdepth}{1}
-\setcounter{lstnumber}{1}
+\setcounter{lstnumber}{23}
 \setcounter{section@level}{0}
-\setcounter{Item}{29}
+\setcounter{Item}{8}
 \setcounter{bookmark@seq@number}{0}
-\setcounter{tcbbreakpart}{0}
+\setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{0}
+\setcounter{tcolorbox@number}{4}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}
