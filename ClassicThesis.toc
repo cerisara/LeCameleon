@@ -9,8 +9,8 @@
 \contentsline {section}{\numberline {1.2}{The Transformer, the best machine language learner?}}{6}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}{Attention}}{6}{subsection.1.2.1}%
 \contentsline {subsection}{\numberline {1.2.2}{Multilayer Perceptron}}{8}{subsection.1.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.2.1}{Language Modeling Head}}{11}{subsubsection.1.2.2.1}%
-\contentsline {subsection}{\numberline {1.2.3}{A Transformer is never enough large}}{13}{subsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.2.1}{Language Modeling Head}}{9}{subsubsection.1.2.2.1}%
+\contentsline {subsection}{\numberline {1.2.3}{A Transformer is never enough large}}{12}{subsection.1.2.3}%
 \contentsline {chapter}{\numberline {2}{Background on Efficient Language Models}}{15}{chapter.2}%
 \contentsline {section}{\numberline {2.1}{Model compression}}{16}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}{Llama small models or how to account inference-optimality}}{17}{subsection.2.1.1}%

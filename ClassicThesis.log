@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  15 SEP 2026 00:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  15 SEP 2026 00:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2370,14 +2370,20 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 ]
+LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <9> not available
+(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 99.
+LaTeX Font Info:    Font shape `T1/fvm/m/sl' will be
+(Font)              scaled to size 7.65005pt on input line 99.
+
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [4]
-LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <9> not available
-(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 115.
-LaTeX Font Info:    Font shape `T1/fvm/m/sl' will be
-(Font)              scaled to size 7.65005pt on input line 115.
+Overfull \hbox (8.54797pt too wide) in paragraph at lines 139--139
+|[]\T1/pplj/m/sc/10.95/80ls (-20) the trans-former, the best ma-chine lan-guage
+ learner?| 
+ []
+
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplj/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -2386,29 +2392,28 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [5]
-Overfull \hbox (8.54797pt too wide) in paragraph at lines 155--155
-|[]\T1/pplj/m/sc/10.95/80ls (-20) the trans-former, the best ma-chine lan-guage
- learner?| 
- []
-
-<figures/transformer.pdf, id=618, 344.31712pt x 415.5525pt>
+<figures/transformer.pdf, id=619, 344.31712pt x 415.5525pt>
 File: figures/transformer.pdf Graphic file (type pdf)
 <use figures/transformer.pdf>
-Package pdftex.def Info: figures/transformer.pdf  used on input line 169.
+Package pdftex.def Info: figures/transformer.pdf  used on input line 153.
 (pdftex.def)             Requested size: 252.0pt x 304.13705pt.
 LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 
-176.
-(/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ufplmbb.fd
+160.
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[6]
+[6 <./figures/transformer.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[7 <./figures/transformer.pdf>]
+[7]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -2417,24 +2422,20 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [9]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[10]
-<figures/embedding_parameter_ratio.pdf, id=755, 1174.87308pt x 666.65627pt>
+<figures/embedding_parameter_ratio.pdf, id=752, 1174.87308pt x 666.65627pt>
 File: figures/embedding_parameter_ratio.pdf Graphic file (type pdf)
 <use figures/embedding_parameter_ratio.pdf>
 Package pdftex.def Info: figures/embedding_parameter_ratio.pdf  used on input l
-ine 443.
+ine 427.
 (pdftex.def)             Requested size: 336.0pt x 190.65004pt.
 
-Underfull \hbox (badness 6825) in paragraph at lines 445--445
+Underfull \hbox (badness 6825) in paragraph at lines 429--429
 [][]|\T1/pplj/m/n/10 (+20) Pro-por-tion of the size in MB of em-bed-ding pa-ram
 -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 445--445
+Underfull \hbox (badness 10000) in paragraph at lines 429--429
 \T1/pplj/m/n/10 (+20) e-ters across dif-fer-ent model sizes. Data taken from
  []
 
@@ -2442,19 +2443,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 445--445
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[11 <./figures/embedding_parameter_ratio.pdf>]
-<figures/figure6_accuracy.png, id=822, 416.2752pt x 298.9569pt>
+[10]
+<figures/figure6_accuracy.png, id=766, 416.2752pt x 298.9569pt>
 File: figures/figure6_accuracy.png Graphic file (type png)
 <use figures/figure6_accuracy.png>
-Package pdftex.def Info: figures/figure6_accuracy.png  used on input line 486.
+Package pdftex.def Info: figures/figure6_accuracy.png  used on input line 470.
 (pdftex.def)             Requested size: 161.27856pt x 115.82634pt.
-<figures/figure6_cross_entropy.png, id=824, 420.3705pt x 298.9569pt>
+<figures/figure6_cross_entropy.png, id=768, 420.3705pt x 298.9569pt>
 File: figures/figure6_cross_entropy.png Graphic file (type png)
 <use figures/figure6_cross_entropy.png>
 Package pdftex.def Info: figures/figure6_cross_entropy.png  used on input line 
-490.
+474.
 (pdftex.def)             Requested size: 161.27856pt x 114.6996pt.
 
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[11 <./figures/embedding_parameter_ratio.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -2463,21 +2468,20 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 File: figures/wei_emergent_abilities_figure.pdf Graphic file (type pdf)
 <use figures/wei_emergent_abilities_figure.pdf>
 Package pdftex.def Info: figures/wei_emergent_abilities_figure.pdf  used on inp
-ut line 531.
+ut line 515.
 (pdftex.def)             Requested size: 336.0pt x 228.28395pt.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[13]
+[13 <./figures/wei_emergent_abilities_figure.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[14 <./figures/wei_emergent_abilities_figure.pdf>]
+[14]
 \openout2 = `Chapters/Chapter02_EfficientLanguageModels.aux'.
 
-
-(./Chapters/Chapter02_EfficientLanguageModels.tex
+ (./Chapters/Chapter02_EfficientLanguageModels.tex
 Chapter 2.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -4050,7 +4054,7 @@ Package logreq Info: Writing requests to 'ClassicThesis.run.xml'.
 Here is how much of TeX's memory you used:
  64915 strings out of 467525
  1494097 string characters out of 5418983
- 3037617 words of memory out of 5000000
+ 3037618 words of memory out of 5000000
  90476 multiletter control sequences out of 15000+600000
  846023 words of font info for 1387 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
@@ -4076,7 +4080,7 @@ f-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts
 urw/palatino/uplr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/pal
 atino/uplri8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/zapfding/
 uzdr.pfb>
-Output written on ClassicThesis.pdf (149 pages, 4184395 bytes).
+Output written on ClassicThesis.pdf (149 pages, 4182802 bytes).
 PDF statistics:
  6100 PDF objects out of 6186 (max. 8388607)
  4096 compressed objects within 41 object streams

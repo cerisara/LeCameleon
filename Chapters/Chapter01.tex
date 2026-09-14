@@ -88,22 +88,6 @@ implement structural biases that help learn and generalize linguistic structures
 Chomsky's theory holds that human linguistic competence depends on internal constraints 
 that cannot be inferred from experience alone.
 
-So it is difficult to pinpoint when the expression \textit{language modeling} became established, 
-and what exactly was originally meant by it. From a Chomskian perspective, a model of a language should 
-explain the structure of that language; Chomsky explicitly rejected the idea that a statistical model 
-fitted to linguistic data could constitute such a model. Shannon, meanwhile, developed statistical 
-models of English but, importantly, did not call them \textit{language models}.
-The story takes a different turn in the early 1970s. In 1974, a team at IBM working 
-on speech recognition described a statistical model closely related to Shannon's formulation and explicitly 
-called it a \textit{language model}. In their probabilistic decomposition of speech recognition, 
-the language model is simply the component that assigns probabilities to possible 
-word sequences---that is, a model of which utterances are more or less likely in a given language. 
-As they put it, ``it is the function of the language model (LM) to provide us with $\Pr\{W \mid L\}$,'' 
-where $W$ denotes a word sequence and $L$ the language. 
-This work is therefore probably one of the earliest uses of the expression \textit{language model} 
-in essentially its modern statistical sense: a probability distribution over linguistic sequences 
-estimated from language data.
-
 It is not straightforward, however, to translate this notion of innateness into 
 the language of machine learning. Does Chomsky's argument imply that general-purpose 
 learning architectures are inherently incapable of acquiring language from data alone? 
