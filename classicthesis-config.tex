@@ -173,6 +173,8 @@
 % ********************************************************************
 \PassOptionsToPackage{hyperfootnotes=false}{hyperref}
 \usepackage{classicthesis}
+% Allow full printed URLs to wrap automatically, including in narrow margin notes.
+\usepackage{xurl}
 % Keep numbered explanatory notes in the outer margin throughout the thesis.
 \renewcommand{\footnote}[1]{%
   \refstepcounter{footnote}%
@@ -183,20 +185,21 @@
 \usepackage{colortbl}
 \definecolor{insightframe}{HTML}{BA6A4C}
 \definecolor{insightback}{HTML}{EEE0CC}
-\newtcolorbox{insightbox}[1]{
+\newtcolorbox{insightbox}[2][]{
   enhanced,
   colback=insightback,
   colframe=insightframe,
   colbacktitle=insightframe,
   coltitle=black,
   fonttitle=\bfseries,
-  title={#1},
+  title={#2},
   arc=2mm,
   boxrule=0.8pt,
   left=8pt,
   right=8pt,
   top=7pt,
-  bottom=7pt
+  bottom=7pt,
+  #1
 }
 
 

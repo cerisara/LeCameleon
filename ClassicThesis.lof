@@ -13,61 +13,59 @@
 \ttl@tocsep 
 \ttl@tocsep 
 \ttl@tocsep 
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Decoder-only Transformer architecture.}}{7}{figure.caption.3}%
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Sparse-attention decoding costs and computation savings. (a) DeepSeek Sparse Attention (DeepSeek-v3.2) vs DeepSeek with full attention (DeepSeek-v3.1-Terminus) \blx@tocontentsinit {0}\cite {deepseekai2025deepseekv32pushingfrontieropen}. (b) How Sliding Window Attention reduces computation, from https://mbrenndoerfer.com/writing/sliding-window-attention}}{9}{figure.caption.4}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DeepSeek Sparse Attention.}}}{9}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Sliding Window Attention.}}}{9}{subfigure.2.2}%
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Proportion of the size in MB of embedding parameters across different model sizes. Data taken from \href {https://blog.squeezebits.com/vocabulary-trimming-methods}{https://blog.squeezebits.com/vocabulary-trimming-methods}.}}{13}{figure.caption.7}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Effect of reducing the LM Head rank on accuracy and cross-entropy. Figures from \citet {godey2024smalllanguagemodelsunderperform}.}}{14}{figure.caption.8}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Accuracy.}}}{14}{subfigure.4.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Cross-entropy.}}}{14}{subfigure.4.2}%
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Examples of emergent abilities in large language models. Figure from \citet {wei2022emergent}. A capacity is emergent when the score surpasses the random baseline while it wasn't at smaller scale.}}{15}{figure.caption.9}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Decoder-only Transformer architecture.}}{7}{figure.caption.2}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Proportion of the size in MB of embedding parameters across different model sizes. Data taken from \href {https://blog.squeezebits.com/vocabulary-trimming-methods}{https://blog.squeezebits.com/vocabulary-trimming-methods}.}}{11}{figure.caption.5}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Effect of reducing the LM Head rank on accuracy and cross-entropy. Figures from \citet {godey2024smalllanguagemodelsunderperform}.}}{12}{figure.caption.6}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Accuracy.}}}{12}{subfigure.3.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Cross-entropy.}}}{12}{subfigure.3.2}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Examples of emergent abilities in large language models. Figure from \citet {wei2022emergent}. A capacity is emergent when the score surpasses the random baseline while it wasn't at smaller scale.}}{14}{figure.caption.7}%
 \ttl@tocsep 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Fixed-token scaling view of Chinchilla and Llama 3.1 models.}}{21}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Illustration of unstructured pruning. The architecture is unchanged, but individual weights are removed independently.}}{21}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Convergence of Sheared LLaMA after structured pruning and continued pre-training, compared to other models of similar sizes. Plot taken from the original paper ~\citep {xia2024sheared}}}{23}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Illustration of structured pruning. A full layer is removed, together with all its incoming and outgoing weights.}}{24}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Sequence-level distillation. The teacher first generates a complete answer, and the student is then trained on this synthetic sequence.}}{25}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Off-policy distillation. The student and the teacher are evaluated on the same data, and the student distribution is trained to match the teacher distribution.}}{26}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces On-policy distillation. The student first samples an output, then the teacher evaluates this student-generated output.}}{28}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Switch Transformer encoder block, where the dense feed-forward layer is replaced by a sparse Switch FFN layer. Figure adapted from \citet {switch}.}}{29}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Scaling properties of Switch Transformer. Increasing the number of experts improves performance and sample efficiency at equal computational budget. Figure from \citet {switch}.}}{30}{figure.caption.20}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Validation loss as the number of parameters increases.}}}{30}{subfigure.9.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Negative log-perplexity during training.}}}{30}{subfigure.9.2}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Effect of MoE granularity on loss for fixed model size and number of training tokens. Figure adapted from \citet {krajewski2024scaling}.}}{31}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Expert selection proportions in Mixtral across domains and layers. The dashed line corresponds to uniform routing over the eight experts. Figure adapted from \citet {jiang_mixtral_2024}.}}{34}{figure.caption.24}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Cosine similarity between languages based on expert-choice patterns in NLLB-200. Figure adapted from \citet {nllbteam2022nolanguageleftbehind}.}}{35}{figure.caption.25}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces LongCat-Flash architecture with zero-computation experts. The router still selects $K$ experts, but some selected experts are identity paths, which makes the effective compute adaptive. Figure from \citet {meituanlongcatteam2025longcatflashtechnicalreport}.}}{37}{figure.caption.27}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Overview of a key-value memory layer. The input is projected into a query, compared to the memory keys, and only the values associated with the selected keys are used for computation. Figure from \citet {lample2019largememorylayersproduct}.}}{37}{figure.caption.28}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Architecture of an \textit {n}-gram embedding layer. The token embedding is augmented with hashed \textit {n}-gram embedding branches. Figure from \citet {liu2026scalingembeddingsoutperformsscaling}.}}{39}{figure.caption.33}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces Matryoshka Representation Learning trains a representation to be useful at several embedding dimensions. Figure adapted from \citet {MRL}.}}{43}{figure.caption.35}%
-\contentsline {figure}{\numberline {2.17}{\ignorespaces MatFormer nests several FFN sizes inside the Transformer block and trains the corresponding submodels jointly. Figure from \citet {devvrit2024matformer}.}}{43}{figure.caption.36}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Fixed-token scaling view of Chinchilla and Llama 3.1 models. Adapted from \url {https://deepmind.google/blog/an-empirical-analysis-of-compute-optimal-large-language-model-training/}}}{19}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Illustration of unstructured pruning. The architecture is unchanged, but individual weights are removed independently.}}{19}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Convergence of Sheared LLaMA after structured pruning and continued pre-training, compared to other models of similar sizes. Plot taken from the original paper ~\citep {xia2024sheared}}}{21}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Illustration of structured pruning. A full layer is removed, together with all its incoming and outgoing weights.}}{22}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Sequence-level distillation. The teacher first generates a complete answer, and the student is then trained on this synthetic sequence.}}{23}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Off-policy distillation. The student and the teacher are evaluated on the same data, and the student distribution is trained to match the teacher distribution.}}{24}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces On-policy distillation. The student first samples an output, then the teacher evaluates this student-generated output.}}{26}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Switch Transformer encoder block, where the dense feed-forward layer is replaced by a sparse Switch FFN layer. Figure adapted from \citet {switch}.}}{28}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Scaling properties of Switch Transformer. Increasing the number of experts improves performance and sample efficiency at equal computational budget. Figure from \citet {switch}.}}{29}{figure.caption.18}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Validation loss as the number of parameters increases.}}}{29}{subfigure.9.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Negative log-perplexity during training.}}}{29}{subfigure.9.2}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Effect of MoE granularity on loss for fixed model size and number of training tokens. Figure adapted from \citet {krajewski2024scaling}.}}{30}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Expert selection proportions in Mixtral across domains and layers. The dashed line corresponds to uniform routing over the eight experts. Figure adapted from \citet {jiang_mixtral_2024}.}}{32}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Cosine similarity between languages based on expert-choice patterns in NLLB-200. Figure adapted from \citet {nllbteam2022nolanguageleftbehind}.}}{33}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces LongCat-Flash architecture with zero-computation experts. The router still selects $K$ experts, but some selected experts are identity paths, which makes the effective compute adaptive. Figure from \citet {meituanlongcatteam2025longcatflashtechnicalreport}.}}{35}{figure.caption.25}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Overview of a key-value memory layer. The input is projected into a query, compared to the memory keys, and only the values associated with the selected keys are used for computation. Figure from \citet {lample2019largememorylayersproduct}.}}{36}{figure.caption.26}%
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Architecture of an \textit {n}-gram embedding layer. The token embedding is augmented with hashed \textit {n}-gram embedding branches. Figure from \citet {liu2026scalingembeddingsoutperformsscaling}.}}{39}{figure.caption.31}%
+\contentsline {figure}{\numberline {2.16}{\ignorespaces Matryoshka Representation Learning trains a representation to be useful at several embedding dimensions. Figure adapted from \citet {MRL}.}}{41}{figure.caption.33}%
+\contentsline {figure}{\numberline {2.17}{\ignorespaces MatFormer nests several FFN sizes inside the Transformer block and trains the corresponding submodels jointly. Figure from \citet {devvrit2024matformer}.}}{42}{figure.caption.34}%
 \ttl@tocsep 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \textbf {Lillama approach}: \textbf {STEP 1} selects layers to compress for a target compression ratio (e.g., N\%) using various strategies (see Section \ref {sec:algo}). \textbf {STEP 2} compresses and initializes the chosen parameters via SVD. \textbf {STEP 3} distills the low-rank weights with a small calibration dataset.}}{47}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces \textbf {Activations are low-rank.} Comparison of the stable rank of weights (\texttt {*\_proj}) and layer activations (\texttt {layer\_activations}). Each bar is the average stable rank across all layers.}}{50}{figure.caption.39}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Accelerating convergence through a joint loss}}{53}{figure.caption.40}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Teacher}}}{53}{subfigure.3.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Student}}}{53}{subfigure.3.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Teacher+Student}}}{53}{subfigure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Illustration of 20\% compression when using the three strategies: bottom, top, and uniform. Green boxes are compressed layers with low-rank matrices while gray boxes are non-compressed ones. $l_{1}$, $l_{2}$, ..., $l_{n-1}$, $l_{n}$ are the layer indexes.}}{55}{figure.caption.41}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Example of PyTorch implementation of our approach using the Teacher-only distillation strategy.}}{57}{figure.caption.43}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces \textbf {Higher ranks give generally better results.} Mean accuracy over our test benchmarks as a function of the minimum rank $k$ in Algorithm~\ref {alg:two}}}{63}{figure.caption.61}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces \textbf {SVD Initialization improves the sample-efficiency}. Convergence when initializing low-rank weights randomly (without SVD) or with SVD.}}{64}{figure.caption.62}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces \textbf {The joint loss converges generally better}. Convergence of the three losses illustrated in Figure~\ref {fig:distillaton}, evaluated on the Wikitext2 test corpus perplexity during distillation.}}{64}{figure.caption.63}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \textbf {Lillama approach}: \textbf {STEP 1} selects layers to compress for a target compression ratio (e.g., N\%) using various strategies (see Section \ref {sec:algo}). \textbf {STEP 2} compresses and initializes the chosen parameters via SVD. \textbf {STEP 3} distills the low-rank weights with a small calibration dataset.}}{45}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces \textbf {Activations are low-rank.} Comparison of the stable rank of weights (\texttt {*\_proj}) and layer activations (\texttt {layer\_activations}). Each bar is the average stable rank across all layers.}}{48}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Accelerating convergence through a joint loss}}{51}{figure.caption.38}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Teacher}}}{51}{subfigure.3.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Student}}}{51}{subfigure.3.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Teacher+Student}}}{51}{subfigure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Illustration of 20\% compression when using the three strategies: bottom, top, and uniform. Green boxes are compressed layers with low-rank matrices while gray boxes are non-compressed ones. $l_{1}$, $l_{2}$, ..., $l_{n-1}$, $l_{n}$ are the layer indexes.}}{53}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Example of PyTorch implementation of our approach using the Teacher-only distillation strategy.}}{55}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces \textbf {Higher ranks give generally better results.} Mean accuracy over our test benchmarks as a function of the minimum rank $k$ in Algorithm~\ref {alg:two}}}{61}{figure.caption.59}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces \textbf {SVD Initialization improves the sample-efficiency}. Convergence when initializing low-rank weights randomly (without SVD) or with SVD.}}{62}{figure.caption.60}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces \textbf {The joint loss converges generally better}. Convergence of the three losses illustrated in Figure~\ref {fig:distillaton}, evaluated on the Wikitext2 test corpus perplexity during distillation.}}{62}{figure.caption.61}%
 \ttl@tocsep 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Layer merging in the Whisper decoder: each student layer is a weighted average of two consecutive teacher layers, then trained with cross-entropy and knowledge distillation.}}{74}{figure.caption.74}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Head shearing of the Whisper embedding through low-rank decomposition. The decomposition is activation-aware because the low-rank weights are subsequently feature-distilled.}}{76}{figure.caption.80}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Choice of \(\alpha \) and \(\beta \). Bayesian hyperparameter search indicates that the main constraint is to keep the lower-layer weight \(\alpha \) small.}}{79}{figure.caption.89}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Activation similarities between all decoder-layer pairs. Consecutive layers tend to be more similar, suggesting that they can be merged.}}{80}{figure.caption.91}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Layer merging in the Whisper decoder: each student layer is a weighted average of two consecutive teacher layers, then trained with cross-entropy and knowledge distillation.}}{72}{figure.caption.72}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Head shearing of the Whisper embedding through low-rank decomposition. The decomposition is activation-aware because the low-rank weights are subsequently feature-distilled.}}{74}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Choice of \(\alpha \) and \(\beta \). Bayesian hyperparameter search indicates that the main constraint is to keep the lower-layer weight \(\alpha \) small.}}{77}{figure.caption.87}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Activation similarities between all decoder-layer pairs. Consecutive layers tend to be more similar, suggesting that they can be merged.}}{78}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Training loss of Qwen2.5-0.5B on the smol-smoltalk corpus, comparing a 75\% reduction in embedding parameters with the uncompressed baseline.}}{79}{figure.caption.93}%
 \ttl@tocsep 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Wolof speech collection and filtering}}{87}{figure.caption.98}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Wolof Speech LLM architecture}}{90}{figure.caption.101}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Speech data processing pipeline}}{92}{figure.caption.104}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces \textbf {Late-fusion and dual architectures.} Late fusion projects downsampled HuBERT features into the LLM embedding space and concatenates them with prompt embeddings. The dual architecture pools speech features and uses dimension-specific projections.}}{94}{figure.caption.111}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Dimensions needed for an energy ratio}}{98}{figure.caption.116}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Dimensions needed for full energy.}}{99}{figure.caption.117}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Recall by dimension and examples.}}{100}{figure.caption.118}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Indexing, storage, query-time, and accuracy tradeoffs across dimensions.}}{101}{figure.caption.119}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Wolof speech collection and filtering}}{85}{figure.caption.94}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Wolof Speech LLM architecture}}{88}{figure.caption.97}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Speech data processing pipeline}}{90}{figure.caption.100}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \textbf {Late-fusion and dual architectures.} Late fusion projects downsampled HuBERT features into the LLM embedding space and concatenates them with prompt embeddings. The dual architecture pools speech features and uses dimension-specific projections.}}{93}{figure.caption.107}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Dimensions needed for an energy ratio}}{97}{figure.caption.112}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Dimensions needed for full energy.}}{98}{figure.caption.113}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Recall by dimension and examples.}}{99}{figure.caption.114}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Indexing, storage, query-time, and accuracy tradeoffs across dimensions.}}{99}{figure.caption.115}%
 \def \@chapapp {\appendixname }
 \ttl@tocsep 
 \ttl@tocsep 

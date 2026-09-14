@@ -6,18 +6,16 @@
 
 In the previsous chapter we showed that our proposed low-rank compression significantly speedup the \textit{Time to First Token} (TTF), i.e., the \textit{prefiling phase} while still maintaining most of the base performance.
 However the method shows limited speedup the end-to-end \textit{decoding} latency. For example, on Whisper the overall latency speedup is only $1.13\times$.
-
-This difference stems from the distinct hardware bottlnecks of \textit{prefilling} and \textit{decoding}.
-During prefilling, inference is mainly \textit{compute-bound}: the GPU spends most of its time performing large matrix multiplications over the entire input sequence,
-making the runtime proportional to the number of floating-point operations (FLOPs). Hence, since reducing the rank of the weight matrices directly reduces the computational cost and it leads to substance substantial prefilling speedups.
-In contrast, autoregressive decoding is mostly \textit{memory-bound}. At each decoding step, the model processes only a single token. Instead, the dominant cost comes from repeatedly loading the model weights and KV-cache from GPU memory. 
+This is because autoregressive decoding is mostly \textit{memory-bound}. At each decoding step, the model processes only a single token. Instead, the dominant cost comes from repeatedly loading the model weights and KV-cache from GPU memory. 
 Since memory bandwidth, rather than compute throughput, becomes the limiting factor, reducing the number of arithmetic operations in the linear layers alone has only a modest impact on decoding latency.
-We can also notice that the low-rank architecture can further introduce memory bandwith bottleneck since the instead of a single linear matrix multiplication $xW$ we do $(xW_{1})W_{2}$. This further introduces intermediate activations and data movement.
+We can also notice that the low-rank architecture can further introduce memory bandwith bottleneck since instead of a single linear matrix multiplication $xW$ we do $(xW_{1})W_{2}$. 
+This further introduces intermediate activations and data movement. Specific GPU kernels
+are needed to achieve substantial speedup with this compression approach.
 
-To further accelerate end-to-end inference, we need to reduce not only the computational complexity of the model but also the amount of data transferred from memory.
-Motivated by these observations, this chapter introduces a compression method that achieve substantial speedup by combining low-rank compression and layer merging to reduce the number of KV-cache layers hence improving the memory footprint during decoding, 
+To further accelerate end-to-end inference without any GPU kernel, we need to reduce not only the computational complexity of the model but also the amount of data transferred from memory.
+Motivated by these observations, this chapter introduces a compression method that achieve substantial speedup by combining low-rank compression and layer merging to reduce the number of KV-cache layers, 
 leading to significantly larger end-to-end speedups. The method, named \emph{BaldWhisper}, is a two-stage decoder compression method designed to preserve accuracy in the data-scarce setting.
-Reducing decoder depth both lowers weight traffic and reduces the number of key--value cache layers used during generation. Second, we compress Whisper's shared input/output embedding matrix through activation-aware low-rank decomposition followed.
+First, we reduce the decoder depth which lowers weight traffic and reduces the number of key--value cache layers used during generation. Second, we compress Whisper's shared input/output embedding matrix through activation-aware low-rank decomposition.
 This matrix accounts for more than half of the decoder parameters in small multilingual Whisper models.
 
 Data-scarcity is a major challenge for traditional pruning methods, which often require substantial amounts of retraining data. For example, Distill-Whisper \cite{distill-whisper} prunes the English-only version of Whisper \cite{whisper} and further retrained on 21k hours of ASR data, a quantity not available for many languages. This leads us to a central question: \emph{How to compress a pre-trained ASR model (Whisper) when only a small quantity of supervised data is available?}
@@ -30,7 +28,7 @@ We study this questin through the compression of Whisper for Bambara, a low-reso
     \label{fig:layermerging-bw}
 \end{figure}
 
-\section{Related Work}
+Before presenting our method, we discuss some approaches related to this work.
 
 \paragraph{Deep encoder, shallow decoder.}
 We take inspiration from \cite{kasai2021deepencodershallowdecoder}, who show that the decoder part of an encoder--decoder architecture can be very shallow while remaining accurate and becoming faster. We likewise compress primarily the decoder of Whisper. In contrast to their approach, which trains encoder--decoder models from scratch, we begin with a pretrained Whisper model and compress its decoder.
@@ -159,11 +157,59 @@ Although any subset of layers could in principle be merged, exhaustively explori
     \label{fig:similarities-bw}
 \end{figure}
 
-\paragraph{Random pruning and brute-force search.}
-We compare layer merging with random pruning by deleting three layers at random and training and evaluating each pruned model with the same amount of data. On average, layer merging converges faster in WER and is more reliable; random pruning has high variance and depends strongly on the layers removed. Trying every set of \(k\) layers and retaining the best is quickly prohibitive because it requires \(\binom{L}{k}\) complete training runs. For Whisper-large with \(L=32\) and \(k=3\), this would require \(\binom{32}{3}=4960\) runs.
+\paragraph{Comparison to brute-force search.}
+On approach is search which layer to remove by testing all combinations. Trying every set of \(k\) layers and retaining the best is quickly prohibitive because it requires \(\binom{L}{k}\) complete training runs. For Whisper-large with \(L=32\) and \(k=3\), this would require \(\binom{32}{3}=4960\) runs.
+On the other side, with our approach, 10 to 20 small training runs are sufficient to determine the
+weights of layer merging.
 
 \paragraph{Confidence intervals.}
 At a \(1.54\times\) speedup, layer merging obtains a WER of \(34.77\%\pm2.44\%\), statistically indistinguishable from the \(33.11\%\pm2.41\%\) baseline. Even at a \(2.15\times\) speedup, the WER of \(36.49\%\pm2.47\%\) represents a modest and predictable degradation.
+
+\section{Extreme Head Shearing of LLMs}
+So far, we have studied compression only on Whisper, but the same process can be applied to
+autoregressive language models. Compressing the input/output embedding is particularly
+justified for recent small language models, where it can account for up to 50\% of the total
+parameters. We compressed Qwen2.5-0.5B and Gemma3-270M-it by reducing the number of parameters
+in their tied input/output embeddings by $4\times$. For Gemma3-270M-it, this results
+in a model with 140M parameters, roughly 50\% smaller than the original. We then applied
+a short recovery fine-tuning stage on the smol-smoltalk corpus, using a language modeling
+loss without knowledge distillation.
+
+Figure~\ref{fig:baldqwen-training-loss} compares the training loss of the compressed and
+non-compressed Qwen2.5-0.5B models. We can see that the compressed model converges well,
+with both models reaching a loss of approximately 1.10.
+Table~\ref{tab:gemma-head-shearing} compares the evaluation results of the compressed
+Gemma3-270M-it model with those of the non-compressed model. Although compression degrades
+performance, longer fine-tuning combined with knowledge distillation could help recover
+some of the lost performance.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{lcc}
+    \toprule
+    \textbf{Benchmark} & \textbf{Gemma} & \textbf{Compressed Gemma} \\
+    \midrule
+    HellaSwag & 38.90 & 26.80 \\
+    BoolQ & 55.72 & 41.99 \\
+    PIQA & 66.81 & 51.80 \\
+    ARC-Challenge & 27.73 & 24.23 \\
+    WinoGrande & 52.17 & 47.99 \\
+    \bottomrule
+    \end{tabular}
+    \caption{\textbf{Extreme head shearing of Gemma.} Scores are percentages
+    (higher is better). We report normalized accuracy for HellaSwag, PIQA,
+    and ARC-Challenge, and accuracy for BoolQ and WinoGrande.}
+    \label{tab:gemma-head-shearing}
+\end{table}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/baldqwen.jpg}
+    \caption{Training loss of Qwen2.5-0.5B on the smol-smoltalk corpus,
+    comparing a 75\% reduction in embedding parameters with the uncompressed
+    baseline.}
+    \label{fig:baldqwen-training-loss}
+\end{figure}
 
 \section{Conclusion}
 
