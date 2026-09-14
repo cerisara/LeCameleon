@@ -3,8 +3,8 @@
 \babel@toc {american}{}\relax 
 \babel@toc {ngerman}{}\relax 
 \babel@toc {american}{}\relax 
-\contentsline {part}{\numberline {i}{Some Kind of Manual}}{1}{part.1}%
-\contentsline {chapter}{\numberline {1}{Introduction: Modeling the Language}}{3}{chapter.1}%
+\contentsline {part}{\numberline {i}{Introduction}}{1}{part.1}%
+\contentsline {chapter}{\numberline {1}{Modeling the Language}}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}{A dialog between Shannon and Chomsky}}{3}{section.1.1}%
 \contentsline {section}{\numberline {1.2}{The Transformer, the best machine language learner?}}{6}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}{Attention}}{6}{subsection.1.2.1}%
