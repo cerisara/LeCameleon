@@ -28,16 +28,16 @@
 \newlabel{sec:zon-sparse_gating}{{6.3}{107}{Learning to Select Key-Value Pairs Adaptively}{section.6.3}{}}
 \mph@setcol{ii:107}{\mph@nr}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}{ZeroNeuron Sparse Activation Gating}}{108}{subsection.6.3.1}\protected@file@percent }
-\newlabel{eq:zon-lg}{{6.5}{108}{ZeroNeuron Sparse Activation Gating}{equation.6.5}{}}
 \mph@setcol{ii:108}{\mph@nr}
 \newlabel{lst:zon-mlp}{{6.1}{109}{Simplified implementation of the ZoN MLP training forward pass}{lstlisting.6.1}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {6.1}{\ignorespaces Simplified implementation of the ZoN MLP training forward pass.}}{109}{lstlisting.6.1}\protected@file@percent }
+\newlabel{eq:zon-lg}{{6.5}{109}{ZeroNeuron Sparse Activation Gating}{equation.6.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}{Structured Activation Sparsity of the MLP}}{109}{subsection.6.3.2}\protected@file@percent }
 \mph@setcol{ii:109}{\mph@nr}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.1}{Local and Global Sparsity Constraints}}{110}{subsubsection.6.3.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.2}{Parameterizing the Gate Network}}{110}{subsubsection.6.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.3}{Computational Efficiency}}{110}{subsubsection.6.3.2.3}\protected@file@percent }
 \mph@setcol{ii:110}{\mph@nr}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.3}{On the efficiency of ZoN}}{111}{subsubsection.6.3.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6.4}{Experiments}}{111}{section.6.4}\protected@file@percent }
 \newlabel{sec:zon-results}{{6.4}{111}{Experiments}{section.6.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}{Experimental Setup}}{111}{subsection.6.4.1}\protected@file@percent }
@@ -61,9 +61,9 @@
 \mph@setcol{ii:114}{\mph@nr}
 \@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Evaluation of Dense-1.2B (Dense) and ZoN-1.2B-A600M (Sparse). All entries are percentages; CORE is the mean centered score. $\%0$ measures the fraction of zeros predicted by ZoN MLP gates during inference. BB denotes BIG-bench.}}{115}{table.caption.130}\protected@file@percent }
 \newlabel{tab:zon-tasks}{{6.4}{115}{Evaluation of Dense-1.2B (Dense) and ZoN-1.2B-A600M (Sparse). All entries are percentages; CORE is the mean centered score. $\%0$ measures the fraction of zeros predicted by ZoN MLP gates during inference. BB denotes BIG-bench}{table.caption.130}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.5}{Generalization to Embedding Language Models}}{115}{section.6.5}\protected@file@percent }
-\newlabel{sec:zon-embedding_models}{{6.5}{115}{Generalization to Embedding Language Models}{section.6.5}{}}
 \mph@setcol{ii:115}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}{Generalization to Embedding Language Models}}{116}{section.6.5}\protected@file@percent }
+\newlabel{sec:zon-embedding_models}{{6.5}{116}{Generalization to Embedding Language Models}{section.6.5}{}}
 \@writefile{toc}{\contentsline {paragraph}{{Experimental setup.}}{116}{paragraph*.131}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Performance of NV-Embed representations on classification and retrieval tasks. Scores are percentages. $k$ is the number of coordinates retained at inference; dense representations use all $d_{\text  {model}}$ coordinates. The dense baseline uses NV-Embed with a projector fine-tuned on each task and retains all coordinates. The best score in each column is bold and the second-highest distinct score is underlined.}}{116}{table.caption.132}\protected@file@percent }
 \newlabel{tab:zon-embedding_results}{{6.5}{116}{Performance of NV-Embed representations on classification and retrieval tasks. Scores are percentages. $k$ is the number of coordinates retained at inference; dense representations use all $d_{\text {model}}$ coordinates. The dense baseline uses NV-Embed with a projector fine-tuned on each task and retains all coordinates. The best score in each column is bold and the second-highest distinct score is underlined}{table.caption.132}{}}
@@ -98,7 +98,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{306}
+\setcounter{instcount}{308}
 \setcounter{maxnames}{2}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}

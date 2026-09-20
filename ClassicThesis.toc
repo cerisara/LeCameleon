@@ -170,14 +170,14 @@
 \contentsline {subsection}{\numberline {6.3.2}{Structured Activation Sparsity of the MLP}}{109}{subsection.6.3.2}%
 \contentsline {subsubsection}{\numberline {6.3.2.1}{Local and Global Sparsity Constraints}}{110}{subsubsection.6.3.2.1}%
 \contentsline {subsubsection}{\numberline {6.3.2.2}{Parameterizing the Gate Network}}{110}{subsubsection.6.3.2.2}%
-\contentsline {subsubsection}{\numberline {6.3.2.3}{Computational Efficiency}}{110}{subsubsection.6.3.2.3}%
+\contentsline {subsubsection}{\numberline {6.3.2.3}{On the efficiency of ZoN}}{111}{subsubsection.6.3.2.3}%
 \contentsline {section}{\numberline {6.4}{Experiments}}{111}{section.6.4}%
 \contentsline {subsection}{\numberline {6.4.1}{Experimental Setup}}{111}{subsection.6.4.1}%
 \contentsline {paragraph}{{Implementation.}}{111}{paragraph*.124}%
 \contentsline {paragraph}{{Models.}}{112}{paragraph*.126}%
 \contentsline {paragraph}{{Evaluation.}}{112}{paragraph*.127}%
 \contentsline {subsection}{\numberline {6.4.2}{Results}}{113}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}{Generalization to Embedding Language Models}}{115}{section.6.5}%
+\contentsline {section}{\numberline {6.5}{Generalization to Embedding Language Models}}{116}{section.6.5}%
 \contentsline {paragraph}{{Experimental setup.}}{116}{paragraph*.131}%
 \contentsline {paragraph}{{Results.}}{116}{paragraph*.133}%
 \contentsline {section}{\numberline {6.6}{Conclusion}}{117}{section.6.6}%

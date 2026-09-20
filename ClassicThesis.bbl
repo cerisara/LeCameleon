@@ -1898,6 +1898,126 @@
     \field{year}{2025}
   \endentry
 
+  \entry{elango2026latentmoeoptimalaccuracyflop}{misc}{}{}
+    \name{author}{16}{}{%
+      {{hash=EV}{%
+         family={Elango},
+         familyi={E\bibinitperiod},
+         given={Venmugil},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Bhatia},
+         familyi={B\bibinitperiod},
+         given={Nidhi},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=WR}{%
+         family={Waleffe},
+         familyi={W\bibinitperiod},
+         given={Roger},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Shafipour},
+         familyi={S\bibinitperiod},
+         given={Rasoul},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Asida},
+         familyi={A\bibinitperiod},
+         given={Tomer},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Khattar},
+         familyi={K\bibinitperiod},
+         given={Abhinav},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AN}{%
+         family={Assaf},
+         familyi={A\bibinitperiod},
+         given={Nave},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Golub},
+         familyi={G\bibinitperiod},
+         given={Maximilian},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GJ}{%
+         family={Guman},
+         familyi={G\bibinitperiod},
+         given={Joey},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MT}{%
+         family={Mitra},
+         familyi={M\bibinitperiod},
+         given={Tiyasa},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ZR}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Ritchie},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Borkar},
+         familyi={B\bibinitperiod},
+         given={Ritika},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=ZR}{%
+         family={Zilberstein},
+         familyi={Z\bibinitperiod},
+         given={Ran},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Patwary},
+         familyi={P\bibinitperiod},
+         given={Mostofa},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Shoeybi},
+         familyi={S\bibinitperiod},
+         given={Mohammad},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RB}{%
+         family={Rouhani},
+         familyi={R\bibinitperiod},
+         given={Bita},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{EV+1}
+    \strng{fullhash}{EVBNWRSRATKAANGMGJMTZRBRZRPMSMRB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \verb{eprint}
+    \verb 2601.18089
+    \endverb
+    \field{title}{LatentMoE: Toward Optimal Accuracy per FLOP and Parameter in
+  Mixture of Experts}
+    \verb{url}
+    \verb https://arxiv.org/abs/2601.18089
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2026}
+  \endentry
+
   \entry{clap}{misc}{}{}
     \name{author}{4}{}{%
       {{hash=EB}{%
@@ -9565,7 +9685,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2024}
-    \field{extradate}{1}
     \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
@@ -9650,6 +9769,7 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2023}
+    \field{extradate}{1}
     \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
@@ -9828,14 +9948,20 @@
     \strng{fullhash}{LJPPCTGHKYAB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2024}
-    \field{extradate}{2}
+    \field{labelyear}{2025}
     \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
-    \field{note}{Preprint, arXiv:2408.14690}
-    \field{title}{Training-free activation sparsity in large language models}
-    \field{year}{2024}
+    \verb{eprint}
+    \verb 2408.14690
+    \endverb
+    \field{title}{Training-Free Activation Sparsity in Large Language Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2408.14690
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CL}
+    \field{year}{2025}
   \endentry
 
   \entry{liu2020logiqa}{misc}{}{}
@@ -9958,6 +10084,97 @@
     \endverb
     \field{journaltitle}{arXiv preprint arXiv:2606.22942}
     \field{year}{2026}
+  \endentry
+
+  \entry{liu2023dejavucontextualsparsity}{misc}{}{}
+    \name{author}{11}{}{%
+      {{hash=LZ}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Zichang},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Jue},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DT}{%
+         family={Dao},
+         familyi={D\bibinitperiod},
+         given={Tri},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ZT}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Tianyi},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=YB}{%
+         family={Yuan},
+         familyi={Y\bibinitperiod},
+         given={Binhang},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=SZ}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Zhao},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Shrivastava},
+         familyi={S\bibinitperiod},
+         given={Anshumali},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Ce},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=TY}{%
+         family={Tian},
+         familyi={T\bibinitperiod},
+         given={Yuandong},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=RC}{%
+         family={Re},
+         familyi={R\bibinitperiod},
+         given={Christopher},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Beidi},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LZ+3}
+    \strng{fullhash}{LZWJDTZTYBSZSAZCTYRCCB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 2310.17157
+    \endverb
+    \field{title}{Deja Vu: Contextual Sparsity for Efficient LLMs at Inference
+  Time}
+    \verb{url}
+    \verb https://arxiv.org/abs/2310.17157
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2023}
   \endentry
 
   \entry{louizos2018learning}{inproceedings}{}{}

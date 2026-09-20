@@ -19,10 +19,10 @@ For post-training \textbf{model compression}, we propose \textbf{Lillama}, a met
 activations of Transformer layers into low-rank weights. This local optimization makes
 the approach more efficient than prior work: it enables compressing, on a single GPU,
 LLMs that would not otherwise fit on one. To achieve speedup, the method does not require
-specialized GPU kernels, unlike weight-sparsity approaches such as Wanda or SparseGPT.
+specialized GPU kernels, unlike weight-sparsity approaches such as SparseGPT~\citep{frantar2023sparsegpt} or Wanda~\citep{sun2024wanda}.
 The approach is also sample-efficient, requiring only 13M tokens, compared to methods
-like Sheared-Llama, which uses 50B tokens for compression, or Minitron, which uses over
-100B. Sample efficiency is an important property in post-training compression, as it
+like Sheared-Llama \citep{xia2024sheared}, or Minitron \citep{muralidharan2024compact,
+sreenivas2024minitron}, which uses over 50B tokens for compression. Sample efficiency is an important property in post-training compression, as it
 directly affects the fairness of the approach---for instance, its viability for
 under-represented languages. This is why we specifically studied Whisper compression in
 a low-resource setting, using Bambara as a case study. In this work, \textbf{BaldWhisper}, we
@@ -48,7 +48,12 @@ These observations motivate an approach where the MLP has a large intermediate
 dimension but each token select only the needed intermediate coordinates adaptively 
 rather than activating the whole available space.
 We introduce \textbf{ZeroNeuron (ZoN)}, an input-dependent
-gating mechanism that learns which coordinates to activate while constraining. 
+gating mechanism that learns which coordinates to activate while constraining.
+Compared to finegrained sparse mixture-of-experts and sparse memory layers,
+ZoN get rid of the TopK and makes point-wise sparsity prediction, which
+make it not only more compute-adaptive but also more communication efficient
+in distributed training, compared to TopK-based sparse mixture-of-experts and
+sparse memory layers that require an all-to-all token dispatch and all-to-all return.
 With approximately 600M active parameters per
 token, the 1.2B ZoN model matches the aggregate performance of its dense
 counterpart and outperforms a dense model of comparable active parameters.
@@ -57,18 +62,19 @@ the parameters activated for each input, and the such sparsity
 can be exploited by GPU Kernels to accelerate training and inference.
 
 \section{Future Work}
-We believe in sparsity, and we expect the most performant neural systems
+We believe in sparsity, and we expect the most performant machine learning systems
 of the future to be sparsely activated. The remaining question is how
 this sparsity should be designed. We do not believe that TopK-based
 mixtures of experts or sparse memory layers are the right long-term
 answer: there is no reason to impose the same activation budget on
-every token, regardless of the task or its difficulty. Moreover, under
+every token, regardless of the task and its difficulty. Moreover, under
 current hardware constraints, distributed TopK routing incurs substantial
 Cross-GPU expert communication is one of the biggest challenges in
-scaling fine-grained sparsity, and approaches such as LatentMoE are
-trying to address it. Maybe this will not be a problem
-in few years with the next generation of hardware where a single GPU 
-with TB of vRAM that can train multi-trillion parameters LLMs on a single GPU. 
+scaling fine-grained sparsity, and approaches such as LatentMoE
+~\citep{elango2026latentmoeoptimalaccuracyflop} are trying to address
+it. Maybe this will not be a problem in few years with the next generation
+of hardware where a single GPU with TB of vRAM that can train
+multi-trillion parameters LLMs on a single GPU. 
 But beyond the engineering issues, TopK-based
 routing also faces the stability problems discussed earlier, including
 dead experts and expert collapse. Rather than putting patches everywhere

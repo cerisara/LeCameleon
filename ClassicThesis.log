@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  20 SEP 2026 19:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  20 SEP 2026 23:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3674,19 +3674,19 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [112]
-<papers/zon/figures/figs/sparsity_rampup.pdf, id=5428, 296.83649pt x 210.21599p
+<papers/zon/figures/figs/sparsity_rampup.pdf, id=5425, 296.83649pt x 210.21599p
 t>
 File: papers/zon/figures/figs/sparsity_rampup.pdf Graphic file (type pdf)
 <use papers/zon/figures/figs/sparsity_rampup.pdf>
 Package pdftex.def Info: papers/zon/figures/figs/sparsity_rampup.pdf  used on i
-nput line 644.
+nput line 648.
 (pdftex.def)             Requested size: 161.27856pt x 114.2174pt.
-<papers/zon/figures/figs/expected_sparsity.pdf, id=5429, 296.97765pt x 210.2159
+<papers/zon/figures/figs/expected_sparsity.pdf, id=5426, 296.97765pt x 210.2159
 9pt>
 File: papers/zon/figures/figs/expected_sparsity.pdf Graphic file (type pdf)
 <use papers/zon/figures/figs/expected_sparsity.pdf>
 Package pdftex.def Info: papers/zon/figures/figs/expected_sparsity.pdf  used on
- input line 649.
+ input line 653.
 (pdftex.def)             Requested size: 161.27856pt x 114.16287pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -3746,11 +3746,11 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 
-])
+]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[122]
+[122])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -3863,16 +3863,16 @@ Overfull \hbox (38.20804pt too wide) in paragraph at lines 18--18
  []
 
 
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[134]
 Overfull \hbox (14.4513pt too wide) in paragraph at lines 18--18
 \T1/pplj/m/n/10.95 (-20) Smith (2021). \T1/pplj/m/it/10.95 (-20) Deep en-coder,
  shal-low de-coder: Reeval-u-at-ing non-autoregressive
  []
 
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[134]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -3932,16 +3932,16 @@ plj/m/it/10.95 (-20) arXiv preprint arXiv:2402.11187\T1/pplj/m/n/10.95 (-20) .
  []
 
 
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[142]
 Overfull \hbox (9.1227pt too wide) in paragraph at lines 18--18
 \T1/pplj/m/n/10.95 (-20) Vol. 235. Pro-ceed-ings of Ma-chine Learn-ing Re-searc
 h. PMLR, pp. 57101^^U
  []
 
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[142]
 Overfull \hbox (48.22662pt too wide) in paragraph at lines 18--18
 [][]\T1/pplj/m/n/10.95 (-20) Zhang, Biao, Lixin Chen, Tong Liu, and Bo Zheng (N
 ov. 2025). ^^P  SMEC:Rethinking
@@ -4304,10 +4304,10 @@ Package logreq Info: Writing requests to 'ClassicThesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67291 strings out of 467525
- 1544643 string characters out of 5418983
- 3103761 words of memory out of 5000000
- 92648 multiletter control sequences out of 15000+600000
+ 67311 strings out of 467525
+ 1545382 string characters out of 5418983
+ 3107084 words of memory out of 5000000
+ 92666 multiletter control sequences out of 15000+600000
  856434 words of font info for 1439 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,23n,128p,11216b,3548s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -4339,10 +4339,10 @@ ic/cm-super/sfss0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
 tino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/up
 lr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on ClassicThesis.pdf (169 pages, 4535309 bytes).
+Output written on ClassicThesis.pdf (169 pages, 4537439 bytes).
 PDF statistics:
- 6625 PDF objects out of 7423 (max. 8388607)
- 4514 compressed objects within 46 object streams
- 797 named destinations out of 1000 (max. 500000)
+ 6639 PDF objects out of 7423 (max. 8388607)
+ 4528 compressed objects within 46 object streams
+ 799 named destinations out of 1000 (max. 500000)
  223712 words of extra memory for PDF output out of 266212 (max. 10000000)
 

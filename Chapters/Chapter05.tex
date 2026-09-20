@@ -47,7 +47,8 @@ Approaches such as PKM \citep{lample2019largememorylayersproduct}
 and UltraSparse \citep{huang2025ultrasparsememorynetwork} reduce this cost through decomposition,
 but TopK selection still adds computational cost as the candidate set grows.
 When the memory is distributed across GPUs, tokens need to be sent to
-the GPUs hosting their selected memory slots. These data transfers make sparse
+the GPUs hosting their selected memory slots. 
+TopK-based sparsity require all-to-all communication and these data transfers make sparse
 memory layers communication-bound, eespecially when the memory spans many GPUs.
 Moreover, the discrete selection made by TopK is not differentiable,
 which can make routing harder to optimize at fine-grained high sparsity.
@@ -68,7 +69,8 @@ We go beyond standard sparse memory designs and TopK with the following contribu
     The sparse gating is adaptive and applied pointwise, which is advantageous
     in distributed training as it allows each GPU to activate
     its local memory slots without needing to dispatch token representation as in TopK-based routing.
-    This enables retaining the communication pattern of a dense tensor-parallel MLP in distributed training.
+    This enables retaining the communication pattern of a dense tensor-parallel MLP in distributed training,
+    which is simply an all-reduce and not the all-to-all in TopK-based activation sparsity.
 \end{enumerate}
 Section~\ref{sec:zon-memory} presents the key-value memory view and analyzes
 intermediate activation rank in dense and sparse models.
@@ -476,17 +478,19 @@ intermediate dimensions. In contrast, a softmax produces a probability
 distribution jointly over the intermediate dimensions, which may require a
 larger routing network to model these dependencies.
 
-\subsubsection{Computational Efficiency}
+\subsubsection{On the efficiency of ZoN}
 The proposed sparse activation gating offers several opportunities to reduce training and
-inference computation relative to dense models.
+inference costs relative to dense models and other TopK-based sparse models such
+as MoEs and sparse memory layers.
 
 First, the approach is a trainable structured activation sparsity. The sparsity
 emerges quickly during training and a sparse GPU kernel can exploit this to skip
 computation of the zeroed-out coordinates to accelerate training and inference.
 Given the predicted sparse gates $\mathbf{z} \in \mathbb{R}^{t \times d_{\text{inter}}}$ for $t$ tokens,
 the corresponding predicted zero gates in $W_\text{k}$ and $W_\text{v}$ can be skipped
-during the MLP forward. There are many sparse GPU kernels in the literature
-that can be adapted to accelerate training and inference, such as DejaVU or TEAL.
+during the MLP forward and backward. There are many sparse GPU kernels in the literature
+that can be adapted to accelerate training and inference, such as DejaVu
+~\citep{liu2023dejavucontextualsparsity} or TEAL~\citep{TEAL}.
 
 Second, the proposed sparsification approach is pointwise:
 the sigmoid and stretching apply independently
@@ -501,7 +505,7 @@ $\mathbf{y}_i$ to the output. An all-reduce then sums these contributions across
 GPUs and gives each GPU the full output $\mathbf{y}=\sum_{i=1}^{N}\mathbf{y}_i$.
 This is the same output communication used in a dense tensor-parallel MLP.
 This approach uses therefore less communication than TopK-based
-sparse memory layer that needs to dispatch token representations to the
+routing that needs to dispatch token representations to the
 GPU hosting their selected memory slots.
 
 The main possible disadvantage of the proposed approach is
