@@ -1,0 +1,114 @@
+\begin{figure}[t]
+\centering
+\setlength{\abovecaptionskip}{2pt}
+\pgfplotstableread[col sep=comma]{data/model_ratio99.csv}\ratiodata
+\begin{subfigure}[t]{0.58\columnwidth}
+\phantomsubcaption\label{fig:model_ratio99_activation}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\linewidth,height=5.5cm,font=\sffamily\scriptsize,
+    title={(\thesubfigure)},title style={font=\sffamily\small},
+    ymin=0,ymax=1,xmin=-0.6,xmax=5.6,
+    ylabel={Mean Ratio@0.99},ytick={0,0.2,0.4,0.6,0.8,1},
+    ymajorgrids,grid style={black!10},
+    axis x line*=bottom,axis y line*=left,axis line style={black!60},
+    xtick={0,1,2,3,4,5},
+    xticklabels={{Qwen3\\30B-A3B},{GPT-OSS\\20B},{Monad\\57M},{Qwen3\\1.7B},{Qwen3\\4B},{Qwen3\\32B}},
+    x tick label style={align=center,anchor=north},tick align=outside,
+    ybar,bar width=20pt,nodes near coords,
+    nodes near coords style={font=\sffamily\scriptsize,text=black},
+    every node near coord/.append style={/pgf/number format/.cd,fixed,precision=2,fixed zerofill},
+]
+\newcommand{\rankbar}[3]{%
+    \pgfplotstablegetelem{#1}{MeanRatio99}\of\ratiodata
+    \edef\rankplot{\noexpand\addplot+[bar shift=0pt,fill=#3,draw=black!80]
+        coordinates {(#2,\pgfplotsretval)};}%
+    \rankplot
+}
+\rankbar{0}{0}{ratioMoE}
+\rankbar{5}{1}{ratioDenseA}
+\rankbar{1}{2}{ratioMoE!75!white}
+\rankbar{2}{3}{ratioDenseB}
+\rankbar{3}{4}{ratioDenseC}
+\rankbar{4}{5}{ratioDenseD}
+
+\node[anchor=north east,fill=white,inner sep=3pt,
+      font=\sffamily\fontsize{6}{7}\selectfont] at (rel axis cs:0.99,0.99) {%
+    \setlength{\tabcolsep}{2.5pt}%
+    \renewcommand{\arraystretch}{1.1}%
+    \begin{tabular}{@{}lrrr@{}}
+        \toprule
+        Model & $d_{\text{model}}$ & $d_{\text{inter}}$ & $e_{\text{inter}}$ \\
+        \midrule
+        Qwen3-30B-A3B & 2048 & 98304 & 768 \\
+        GPT-OSS-20B & 2880 & 92160 & 2880 \\
+        Monad-57M & 256 & 768 & -- \\
+        Qwen3-1.7B & 2048 & 6144 & -- \\
+        Qwen3-4B & 2560 & 9728 & -- \\
+        Qwen3-32B & 5120 & 25600 & -- \\
+        \bottomrule
+    \end{tabular}%
+};
+\end{axis}
+\end{tikzpicture}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.38\columnwidth}
+\phantomsubcaption\label{fig:model_ratio99_width}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\linewidth,height=5.5cm,font=\sffamily\scriptsize,
+    title={(\thesubfigure)},title style={font=\sffamily\small},
+    xlabel={$e_{\text{inter}}/d_{\text{model}}$},
+    xmin=0.3,xmax=1.07,ymin=0,ymax=1,
+    xtick={0.4,0.6,0.8,1},
+    ytick={0,0.2,0.4,0.6,0.8,1},ymajorgrids,grid style={black!10},
+    axis x line*=bottom,axis y line*=left,axis line style={black!60},
+    tick align=outside,clip=false,
+]
+% Average the two Liquid models only for the connecting line.
+\addplot[ratioMoE,line width=1.2pt] coordinates {
+    (0.375,0.8317743937174479) (0.5,0.8135395050048828)
+    (0.75,0.6788917054521276)
+    (0.875,0.6796655658766693) (1,0.5262378833912037)
+};
+% All six measured values are retained as markers.
+\addplot[only marks,mark=*,mark size=3.2pt,color=ratioMoE,
+    mark options={fill=white,draw=ratioMoE,line width=0.8pt}]
+    table[x=WidthRatio,y=MeanRatio99,col sep=comma]{data/moe_width_ratio99.csv};
+% Dashed leaders link the labels to their hollow markers.
+\node[anchor=south west,yshift=8pt,align=left,font=\sffamily\tiny,inner sep=1pt] (qwenlabel)
+    at (axis cs:0.375,0.8317743937174479) {Qwen3\\30B-A3B};
+\node[anchor=north east,yshift=-8pt,align=right,font=\sffamily\tiny,inner sep=1pt] (olmoelabel)
+    at (axis cs:0.5,0.8135395050048828) {OLMoE\\1B-7B};
+\node[anchor=north east,yshift=-8pt,align=right,font=\sffamily\tiny,inner sep=1pt] (glmlabel)
+    at (axis cs:0.75,0.6788917054521276) {GLM-4.7\\Flash};
+\node[anchor=south,yshift=8pt,align=center,font=\sffamily\tiny,inner sep=1pt] (lfmlabel)
+    at (axis cs:0.875,0.6796655658766693) {LFM2/2.5\\8B-A1B};
+\node[anchor=north east,yshift=-8pt,align=right,font=\sffamily\tiny,inner sep=1pt] (gptlabel)
+    at (axis cs:1,0.5262378833912037) {GPT-OSS\\20B};
+\begin{scope}[draw=ratioMoE,dash pattern=on 0.7pt off 0.9pt,line width=0.75pt,shorten >=0.5pt,shorten <=3.6pt]
+\draw (axis cs:0.375,0.8317743937174479) -- (qwenlabel.south);
+\draw (axis cs:0.5,0.8135395050048828) -- (olmoelabel.north);
+\draw (axis cs:0.75,0.6788917054521276) -- (glmlabel.north);
+\draw (axis cs:0.875,0.6796655658766693) -- (lfmlabel.south);
+\draw (axis cs:1,0.5262378833912037) -- (gptlabel.north);
+\end{scope}
+\end{axis}
+\end{tikzpicture}
+\end{subfigure}
+
+\caption{Mean $R@0.99$ across models (left) and its relationship to relative
+expert width across six MoEs (right). Higher $R@0.99$ means that more
+activation components are needed to represent 99\% of the activation energy.
+The table gives dimensions for each model.
+For MoEs, $e_{\text{inter}}$ is the intermediate dimension per expert and
+$d_{\text{inter}}$ is the number of experts times $e_{\text{inter}}$.
+MoE ratios are measured within each expert, relative to $e_{\text{inter}}$.
+The line is a visual guide, averaging the two Liquid models at their shared
+width ratio; both measurements are shown as markers.}
+\label{fig:model_ratio99}
+\end{figure}

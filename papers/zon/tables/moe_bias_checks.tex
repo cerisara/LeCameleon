@@ -1,0 +1,19 @@
+\begin{wraptable}{l}{0.5\textwidth}
+    \setlength{\abovecaptionskip}{3pt}
+    \caption{We check biases in the energy ratio measurement on Qwen3-30B-A3B.
+    $n$ denotes routed tokens per expert and $r$ denotes Ratio@0.99
+    (defined in the text); $\mu$ denotes the mean, $\tilde{n}$ the median
+    routed tokens per expert, and $\rho$ the correlation.}
+    \label{tab:moe_bias_checks}
+    \centering
+    \begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \toprule
+    Metric & Value \\
+    \midrule
+    Mean Ratio@0.99 across experts & 0.8318 \\
+    Mean routed tokens per expert & 126{,}988.05 \\
+    Median routed tokens per expert & 96{,}432.50 \\
+    $\rho$ amount of routed tokens vs. ratio & 0.0799 \\
+    \bottomrule
+    \end{tabularx}
+\end{wraptable}

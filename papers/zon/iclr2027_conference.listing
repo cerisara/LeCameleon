@@ -1,0 +1,21 @@
+def mlp_zon(x, W_k, W_v, act_fn, a, beta=1.0, l=-0.01):
+    """
+    x: [batch * seq_len, d_model]
+    K: [d_model, d_inter]
+    V: [d_inter, d_model]
+    a: gate network, d_model -> d_inter
+    """
+    log_alpha = a(x) # shape: [batch * seq_len, d_inter]
+
+    # Sample gates
+    u = torch.empty_like(log_alpha).uniform_(eps, 1 - eps)
+    s = torch.sigmoid((torch.logit(u) + log_alpha) / beta)
+    # stretch beyond zero and clamp to 0.0
+    z = (s + l * (1 - s)).clamp(min=0.0)
+    # Expected number of active gates per token
+    num_active = torch.sigmoid(log_alpha - beta * math.log(-l)).sum(-1)
+
+    h = act_fn((x @ W_k) * z)
+    o = h @ W_v
+
+    return o, num_active

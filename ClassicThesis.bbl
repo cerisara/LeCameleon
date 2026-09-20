@@ -41,10 +41,12 @@
     \list{publisher}{1}{%
       {Association for Computational Linguistics}%
     }
-    \strng{namehash}{AAPCSG1}
+    \strng{namehash}{AA+1}
     \strng{fullhash}{AAPCSG1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{booktitle}{Proceedings of SustaiNLP: Workshop on Simple and
@@ -218,6 +220,8 @@
   \strng{fullhash}{ADIOJAIAZJYAJOHXOMHSBALESACCBHSBKGMJKSYFSMNLONMRMSHOSSSGTKSP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{note}{Preprint, arXiv:2406.03368}
@@ -275,6 +279,8 @@
     \strng{fullhash}{ARVNZYSPRSGMBO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{booktitle}{International Conference on Learning Representations}
@@ -307,10 +313,12 @@
          giveni={S\bibinitperiod},
       }}%
     }
-    \strng{namehash}{AAZLGS1}
+    \strng{namehash}{AA+2}
     \strng{fullhash}{AAZLGS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{note}{Preprint, arXiv:2012.13255}
@@ -350,6 +358,8 @@
     \strng{fullhash}{AJOLXKDYJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{booktitle}{{Interspeech 2025}}
@@ -419,6 +429,8 @@
     \strng{fullhash}{AZMAKAAJKTLKLHLJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{booktitle}{Proceedings of the 63rd Annual Meeting of the Association
@@ -452,6 +464,8 @@
     \strng{fullhash}{A1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{{2022}}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{booktitle}{{Interspeech 2022}}
@@ -504,6 +518,8 @@
     \strng{fullhash}{ASCMLNMGdHTHJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{note}{arXiv preprint; ArXiv:2401.15024 [cs]}
@@ -543,6 +559,8 @@
     \strng{fullhash}{BABAHWNAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \verb{eprint}
@@ -589,6 +607,9 @@
     \strng{fullhash}{BAZHMAAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{note}{Preprint, arXiv:2006.11477}
@@ -663,6 +684,9 @@
     \strng{fullhash}{BAZYMAAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -698,10 +722,12 @@
          giveni={Y\bibinitperiod},
       }}%
     }
-    \strng{namehash}{BDCKBY1}
+    \strng{namehash}{BD+1}
     \strng{fullhash}{BDCKBY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{booktitle}{International Conference on Learning Representations}
@@ -747,6 +773,8 @@
     \strng{fullhash}{BYZRBRLGJCY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{note}{In Thirty-Fourth AAAI Conference on Artificial Intelligence}
@@ -786,6 +814,8 @@
     \strng{fullhash}{BLHCILRNR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{title}{{mMARCO}: A Multilingual Version of {MS MARCO} Passage
@@ -825,6 +855,8 @@
     \strng{fullhash}{CMYJGJLYJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \verb{eprint}
@@ -860,10 +892,12 @@
          giveni={S\bibinitperiod},
       }}%
     }
-    \strng{namehash}{CUKMPS1}
+    \strng{namehash}{CU+1}
     \strng{fullhash}{CUKMPS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \verb{eprint}
@@ -898,6 +932,8 @@
     \strng{fullhash}{CAGE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \verb{eprint}
@@ -938,10 +974,12 @@
          giveni={H\bibinitperiod},
       }}%
     }
-    \strng{namehash}{CHJYSwLHy1}
+    \strng{namehash}{CHJ+1}
     \strng{fullhash}{CHJYSwLHy1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{note}{Preprint, arXiv:2110.01900}
@@ -1027,6 +1065,8 @@
     \strng{fullhash}{CXMTGPSJLYJSASWTYSwTYLHyWS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{note}{Preprint, arXiv:2110.04590}
@@ -1066,6 +1106,8 @@
     \strng{fullhash}{CPYHFDIHCJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{note}{In Advances in Neural Information Processing Systems,
@@ -1087,6 +1129,8 @@
     \strng{fullhash}{CN1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{1956}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \verb{doi}
@@ -1116,6 +1160,8 @@
     \strng{fullhash}{CN1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{1965}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{title}{Aspects of the Theory of Syntax}
@@ -1168,6 +1214,9 @@
     \strng{fullhash}{CCLKCMWKTCMTK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{note}{ArXiv, abs/1905.10044}
@@ -1210,6 +1259,9 @@
     \strng{fullhash}{CKKULOMCD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{booktitle}{Proceedings of the 2019 ACL Workshop BlackboxNLP:
@@ -1274,6 +1326,8 @@
     \strng{fullhash}{CPCIEOKTSASCTO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{note}{ArXiv, abs/1803.05457}
@@ -1295,6 +1349,8 @@
     \strng{fullhash}{CT1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{title}{Redpajama: An open source recipe to reproduce llama training
@@ -1369,6 +1425,8 @@
     \strng{fullhash}{CAKKGNCVWGGFGEOMZLSV1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \verb{eprint}
@@ -1445,6 +1503,8 @@
     \strng{fullhash}{CAMMKSZYAVDSRJRCBA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{title}{FLEURS: Few-shot Learning Evaluation of Universal
@@ -1472,6 +1532,8 @@
     \strng{fullhash}{DTI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \verb{doi}
@@ -1528,6 +1590,8 @@
     \strng{fullhash}{DDDLHYSZCBWF1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \verb{eprint}
@@ -1553,6 +1617,9 @@
     \strng{fullhash}{D1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \verb{eprint}
@@ -1579,6 +1646,9 @@
     \strng{fullhash}{D1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \verb{eprint}
@@ -1604,6 +1674,8 @@
     \strng{fullhash}{D1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \verb{eprint}
@@ -1638,6 +1710,8 @@
     \strng{fullhash}{DLA+1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \verb{eprint}
@@ -1684,6 +1758,8 @@
     \strng{fullhash}{DJCMLKTK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \verb{eprint}
@@ -1771,6 +1847,8 @@
     \strng{fullhash}{DKSKADTCKDITYHHKSFAJP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -1805,10 +1883,12 @@
          giveni={L\bibinithyphendelim M\bibinitperiod},
       }}%
     }
-    \strng{namehash}{DTNMPNLM1}
+    \strng{namehash}{DT+1}
     \strng{fullhash}{DTNMPNLM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \field{booktitle}{Interspeech 2025}
@@ -1849,6 +1929,8 @@
     \strng{fullhash}{EBDSIMAWH1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{E}
     \field{sortinithash}{E}
     \verb{eprint}
@@ -1921,6 +2003,8 @@
     \strng{fullhash}{FJJHWKMYJSWXHXCTs1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{F}
     \field{sortinithash}{F}
     \verb{eprint}
@@ -1962,10 +2046,12 @@
     }
     \keyw{mixture-of-experts, natural language processing, sparsity,
   large-scale machine learning, distributed computing}
-    \strng{namehash}{FWZBSN1}
+    \strng{namehash}{FW+1}
     \strng{fullhash}{FWZBSN1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{F}
     \field{sortinithash}{F}
     \field{issn}{1532-4435}
@@ -1997,6 +2083,8 @@
     \strng{fullhash}{FJCM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{F}
     \field{sortinithash}{F}
     \field{note}{Preprint, arXiv:1803.03635}
@@ -2027,6 +2115,9 @@
     \strng{fullhash}{FEAD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{F}
     \field{sortinithash}{F}
     \field{booktitle}{Proceedings of the 40th International Conference on
@@ -2061,6 +2152,9 @@
     \strng{fullhash}{FEAD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{F}
     \field{sortinithash}{F}
     \field{note}{Preprint, arXiv:2301.00774}
@@ -2092,10 +2186,12 @@
          giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
       }}%
     }
-    \strng{namehash}{GSPPvRAM1}
+    \strng{namehash}{GS+1}
     \strng{fullhash}{GSPPvRAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{note}{Preprint, arXiv:2311.00430}
@@ -2255,6 +2351,8 @@
     \strng{fullhash}{GLTJABBSBSDAFCGLHJNALLHMKMNOCPJRLSHSASLTETAWBWKZA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{title}{A framework for few-shot language model evaluation}
@@ -2298,6 +2396,8 @@
     \strng{fullhash}{GEBLVSMMEUP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{title}{Collecting Resources in Sub-Saharan African Languages for
@@ -2359,10 +2459,12 @@
       {ELRA}%
       {ICCL}%
     }
-    \strng{namehash}{GENAGA1}
+    \strng{namehash}{GE+1}
     \strng{fullhash}{GENAGA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{abstract}{%
@@ -2443,6 +2545,8 @@
     \strng{fullhash}{GTCXWXYDMHYD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \verb{doi}
@@ -2467,6 +2571,8 @@
     \strng{fullhash}{G1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{title}{Gemma 2: Improving Open Language Models at a Practical Size}
@@ -2539,6 +2645,8 @@
     \strng{fullhash}{GMSRBJLO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{booktitle}{Proceedings of the 2021 Conference on Empirical Methods
@@ -2578,6 +2686,8 @@
     \strng{fullhash}{GNAY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \verb{eprint}
@@ -2616,10 +2726,12 @@
          giveni={B\bibinitperiod},
       }}%
     }
-    \strng{namehash}{GNCEdlSB1}
+    \strng{namehash}{GN+1}
     \strng{fullhash}{GNCEdlSB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \verb{eprint}
@@ -6006,6 +6118,8 @@
   \strng{fullhash}{GADAJAPAKAADALAMASAVAYAFAGAHAYAMASAKAHARAZARAGASARBBBTBCBCCNCBCMCMCKCTCWCWCFCCNCADSDPDLDWDEDCDMDGODPDHDLEAELEDESEMRFGFZFSGLGAGLTGNGMGPGCGNHKHXHTHZIIIAKIMIEIZJCJLJGJVJPJMJSJLJvdBJHJLJFJCJHJLJWJYJBJSJPJRJJJSJJJAKVPKUKPKLKHKSKEAKIKMKCKBKLKRYLMLvdCLTLJLMLMLMLBLLLOLdMMPMSMPMKMTMOMRMPMKMLMSMSMKHMGNTNBNBNCNZNDOÃOAPZPLPVPWPBPDPKPKPSXPHQDQSRGRCRCRSSRRRMRGRPRSRPRSRTRSRHRWRHSCSSSBSKSSESNSNSRSSSWSBSZSVSBSWSSSCSGSBSHTFTSTGTSTSTMTXTKUGVGVRVKVGVDVVVAVPVCWXWFWMWMXWXWXTXEXXXXJXWXGYGYBYWYSYZYLYMYCZDYZCZPZSASAJAKA}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \verb{eprint}
@@ -6082,10 +6196,12 @@
     \list{publisher}{1}{%
       {Association for Computational Linguistics}%
     }
-    \strng{namehash}{GN+1}
+    \strng{namehash}{GN+2}
     \strng{fullhash}{GNZQLAHSUA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{booktitle}{Findings of the Association for Computational
@@ -6125,6 +6241,8 @@
     \strng{fullhash}{GADT1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{G}
     \field{sortinithash}{G}
     \field{note}{Preprint, arXiv:2312.00752}
@@ -6224,6 +6342,8 @@
     \strng{fullhash}{HHSZWCLXGYHHLLYCLJSPWYCKZPWZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \field{booktitle}{Proc.~of SLT}
@@ -6323,6 +6443,8 @@
     \strng{fullhash}{HHSZWCLXGYHHLLYCLJSPWYCKZPWZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \field{booktitle}{arXiv:2501.15907}
@@ -6362,6 +6484,8 @@
     \strng{fullhash}{HJFZWJLQ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{eprint}
@@ -6390,6 +6514,8 @@
     \strng{fullhash}{HXO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{eprint}
@@ -6425,10 +6551,12 @@
          giveni={J\bibinitperiod},
       }}%
     }
-    \strng{namehash}{HGVODJ1}
+    \strng{namehash}{HG+1}
     \strng{fullhash}{HGVODJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \field{note}{Preprint, arXiv:1503.02531}
@@ -6579,6 +6707,8 @@
     \strng{fullhash}{HJBSMABECTRELCDdHLAWJCAHTNEMKDGvdDBGAOSSKEERJWVOSL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{eprint}
@@ -6657,6 +6787,8 @@
     \strng{fullhash}{HCYLCLYCKNHFYRAKRLCYPT1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \field{booktitle}{Findings of the Association for Computational
@@ -6720,6 +6852,8 @@
     \strng{fullhash}{HWNBBTYHHLKSRMA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{doi}
@@ -6781,6 +6915,8 @@
     \strng{fullhash}{HWDZYLLHKAPNCKW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{eprint}
@@ -6869,6 +7005,8 @@
     \strng{fullhash}{HQAZZNTMZCJYXKXKCLHSFY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{eprint}
@@ -6933,6 +7071,8 @@
     \strng{fullhash}{HZMQHHZDZYGRZX1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{eprint}
@@ -7112,6 +7252,8 @@
   \strng{fullhash}{JAQSARAMASBBCCDSCDdlHEBBFLGBGLGLLRSLLMASPSSYSASSTLGTLTWTLTSWE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{J}
     \field{sortinithash}{J}
     \field{note}{arXiv preprint; ArXiv:2401.04088 [cs]}
@@ -7177,6 +7319,8 @@
     \strng{fullhash}{JHLLHXLXWHZTYQHB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{J}
     \field{sortinithash}{J}
     \field{title}{Mitigate Silent Expert Death In Ultra-Sparse MoE}
@@ -7225,6 +7369,8 @@
     \strng{fullhash}{KAKPFBCNSNA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \verb{eprint}
@@ -7307,6 +7453,8 @@
     \strng{fullhash}{KJMSHTBTBCBCRGSRAWJAD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \verb{eprint}
@@ -7358,6 +7506,8 @@
     \strng{fullhash}{KJPNPHCJSNA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \field{note}{Preprint, arXiv:2006.10369}
@@ -7388,6 +7538,8 @@
     \strng{fullhash}{KYRAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \field{booktitle}{Proceedings of the 2016 Conference on Empirical Methods
@@ -7414,6 +7566,8 @@
     \strng{fullhash}{K1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \verb{eprint}
@@ -7444,6 +7598,8 @@
     \strng{fullhash}{KDE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{1974}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \field{number}{12}
@@ -7491,6 +7647,8 @@
     \strng{fullhash}{KORARARA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \field{booktitle}{Proceedings of the 2019 Conference on Empirical Methods
@@ -7586,6 +7744,8 @@
     \strng{fullhash}{KJLJAKPMKMASCKKKOTSPCMJS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \verb{eprint}
@@ -7714,6 +7874,8 @@
     \strng{fullhash}{KABGRAWMSARVHSWCKKSJPFA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -7787,6 +7949,8 @@
     \strng{fullhash}{LTKGMPSBLHB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{booktitle}{Proceedings of the 2025 Conference of the Nations of the
@@ -7846,6 +8010,8 @@
     \strng{fullhash}{LGSARMDLJH1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \verb{eprint}
@@ -7903,6 +8069,8 @@
     \strng{fullhash}{LZCMGSGKSPSR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \verb{eprint}
@@ -7955,6 +8123,8 @@
     \strng{fullhash}{LDLJYZGTMMA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \verb{eprint}
@@ -8001,11 +8171,391 @@
     \strng{fullhash}{LCFHLRYJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{note}{Preprint, arXiv:1804.08838}
     \field{title}{Measuring the intrinsic dimension of objective landscapes}
     \field{year}{2018}
+  \endentry
+
+  \entry{li2025datacomplmsearchgenerationtraining}{misc}{}{}
+    \name{author}{59}{}{%
+      {{hash=LJ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Jeffrey},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Fang},
+         familyi={F\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SG}{%
+         family={Smyrnis},
+         familyi={S\bibinitperiod},
+         given={Georgios},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=IM}{%
+         family={Ivgi},
+         familyi={I\bibinitperiod},
+         given={Maor},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jordan},
+         familyi={J\bibinitperiod},
+         given={Matt},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gadre},
+         familyi={G\bibinitperiod},
+         given={Samir},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BH}{%
+         family={Bansal},
+         familyi={B\bibinitperiod},
+         given={Hritik},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=GE}{%
+         family={Guha},
+         familyi={G\bibinitperiod},
+         given={Etash},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=KS}{%
+         family={Keh},
+         familyi={K\bibinitperiod},
+         given={Sedrick},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AK}{%
+         family={Arora},
+         familyi={A\bibinitperiod},
+         given={Kushal},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Garg},
+         familyi={G\bibinitperiod},
+         given={Saurabh},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=XR}{%
+         family={Xin},
+         familyi={X\bibinitperiod},
+         given={Rui},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MN}{%
+         family={Muennighoff},
+         familyi={M\bibinitperiod},
+         given={Niklas},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={Heckel},
+         familyi={H\bibinitperiod},
+         given={Reinhard},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Mercat},
+         familyi={M\bibinitperiod},
+         given={Jean},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Mayee},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gururangan},
+         familyi={G\bibinitperiod},
+         given={Suchin},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WM}{%
+         family={Wortsman},
+         familyi={W\bibinitperiod},
+         given={Mitchell},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Albalak},
+         familyi={A\bibinitperiod},
+         given={Alon},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BY}{%
+         family={Bitton},
+         familyi={B\bibinitperiod},
+         given={Yonatan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=NM}{%
+         family={Nezhurina},
+         familyi={N\bibinitperiod},
+         given={Marianna},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Abbas},
+         familyi={A\bibinitperiod},
+         given={Amro},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HCY}{%
+         family={Hsieh},
+         familyi={H\bibinitperiod},
+         given={Cheng-Yu},
+         giveni={C\bibinithyphendelim Y\bibinitperiod},
+      }}%
+      {{hash=GD}{%
+         family={Ghosh},
+         familyi={G\bibinitperiod},
+         given={Dhruba},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=GJ}{%
+         family={Gardner},
+         familyi={G\bibinitperiod},
+         given={Josh},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kilian},
+         familyi={K\bibinitperiod},
+         given={Maciej},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Hanlin},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Shao},
+         familyi={S\bibinitperiod},
+         given={Rulin},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Pratt},
+         familyi={P\bibinitperiod},
+         given={Sarah},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Sanyal},
+         familyi={S\bibinitperiod},
+         given={Sunny},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=IG}{%
+         family={Ilharco},
+         familyi={I\bibinitperiod},
+         given={Gabriel},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=DG}{%
+         family={Daras},
+         familyi={D\bibinitperiod},
+         given={Giannis},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Marathe},
+         familyi={M\bibinitperiod},
+         given={Kalyani},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=GA}{%
+         family={Gokaslan},
+         familyi={G\bibinitperiod},
+         given={Aaron},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ZJ}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Jieyu},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CK}{%
+         family={Chandu},
+         familyi={C\bibinitperiod},
+         given={Khyathi},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=NT}{%
+         family={Nguyen},
+         familyi={N\bibinitperiod},
+         given={Thao},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=VI}{%
+         family={Vasiljevic},
+         familyi={V\bibinitperiod},
+         given={Igor},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=KS}{%
+         family={Kakade},
+         familyi={K\bibinitperiod},
+         given={Sham},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Shuran},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Sanghavi},
+         familyi={S\bibinitperiod},
+         given={Sujay},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=FF}{%
+         family={Faghri},
+         familyi={F\bibinitperiod},
+         given={Fartash},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=OS}{%
+         family={Oh},
+         familyi={O\bibinitperiod},
+         given={Sewoong},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zettlemoyer},
+         familyi={Z\bibinitperiod},
+         given={Luke},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Lo},
+         familyi={L\bibinitperiod},
+         given={Kyle},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ENA}{%
+         family={El-Nouby},
+         familyi={E\bibinithyphendelim N\bibinitperiod},
+         given={Alaaeldin},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PH}{%
+         family={Pouransari},
+         familyi={P\bibinitperiod},
+         given={Hadi},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Toshev},
+         familyi={T\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Stephanie},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GD}{%
+         family={Groeneveld},
+         familyi={G\bibinitperiod},
+         given={Dirk},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SL}{%
+         family={Soldaini},
+         familyi={S\bibinitperiod},
+         given={Luca},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=KPW}{%
+         family={Koh},
+         familyi={K\bibinitperiod},
+         given={Pang\bibnamedelima Wei},
+         giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=JJ}{%
+         family={Jitsev},
+         familyi={J\bibinitperiod},
+         given={Jenia},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=KT}{%
+         family={Kollar},
+         familyi={K\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=DAG}{%
+         family={Dimakis},
+         familyi={D\bibinitperiod},
+         given={Alexandros\bibnamedelima G.},
+         giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Carmon},
+         familyi={C\bibinitperiod},
+         given={Yair},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=DA}{%
+         family={Dave},
+         familyi={D\bibinitperiod},
+         given={Achal},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SL}{%
+         family={Schmidt},
+         familyi={S\bibinitperiod},
+         given={Ludwig},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SV}{%
+         family={Shankar},
+         familyi={S\bibinitperiod},
+         given={Vaishaal},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LJ+1}
+  \strng{fullhash}{LJFASGIMJMGSBHGEKSAKGSXRMNHRMJCMGSWMAABYNMAAHCYGDGJKMZHSRPSSSIGDGMKGAZJCKNTVIKSSSSSFFOSZLLKENAPHTAWSGDSLKPWJJKTDAGCYDASLSV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 2406.11794
+    \endverb
+    \field{title}{{DataComp-LM}: In search of the next generation of training
+  sets for language models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2406.11794
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2025}
   \endentry
 
   \entry{li2020trainlargecompressrethinking}{misc}{}{}
@@ -8057,6 +8607,8 @@
     \strng{fullhash}{LZWESSLKKKKDGJE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \verb{eprint}
@@ -8119,6 +8671,8 @@
     \strng{fullhash}{LWWGGBPECAVCT1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{title}{Slimorca: An open dataset of gpt-4 augmented flan reasoning
@@ -8147,10 +8701,12 @@
          giveni={O\bibinitperiod},
       }}%
     }
-    \strng{namehash}{LSHJEO1}
+    \strng{namehash}{LS+1}
     \strng{fullhash}{LSHJEO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{note}{In Proceedings of the 60th Annual Meeting of the Association
@@ -8891,6 +9447,9 @@
   \strng{fullhash}{LAHKKSSJVRASAJAJACAGASAHAYAEALAEACASABBRBMBDLCBCCCGDDDCDdlCSEAFBGEGGGNGKGLGMGGGLJRJSJAJDJRJSYKCKJKALFLBLZLMLSLGLBMJMPMPMPMGMDMFMDMAMCMSMGNGNRNBODOWPPPvJPWPKPMPRCPSPAPTQSRSRMRVSBSGSWSGSGSMSASASSTLCTSTSLTSTNCTFTRTWTLTBTBTETJUTUNVPVMVRVBWLWDMWLXYXOYEWYTYRZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \verb{eprint}
@@ -9005,6 +9564,9 @@
     \strng{fullhash}{LDQZWHYZWZRFLQHYLBCXFCLZCDTZSD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{booktitle}{Proceedings of the 2024 Conference on Empirical Methods
@@ -9087,6 +9649,8 @@
     \strng{fullhash}{LHLCWQLYJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -9203,6 +9767,9 @@
     \strng{fullhash}{LHZJWCHXLLSJYXWBLFQYSLSYLRPPXYCX1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \verb{eprint}
@@ -9257,10 +9824,13 @@
          giveni={B\bibinitperiod},
       }}%
     }
-    \strng{namehash}{LJ+1}
+    \strng{namehash}{LJ+2}
     \strng{fullhash}{LJPPCTGHKYAB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{note}{Preprint, arXiv:2408.14690}
@@ -9307,10 +9877,12 @@
          giveni={Y\bibinitperiod},
       }}%
     }
-    \strng{namehash}{LJ+2}
+    \strng{namehash}{LJ+3}
     \strng{fullhash}{LJCLLHHDWYZY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{note}{Preprint, arXiv:2007.08124}
@@ -9374,6 +9946,9 @@
     \strng{fullhash}{LXMSLSWSISRDHWLSK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{extradate}{3}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{title}{Understanding Knowledge Distillation in Post-Training: When
@@ -9383,6 +9958,44 @@
     \endverb
     \field{journaltitle}{arXiv preprint arXiv:2606.22942}
     \field{year}{2026}
+  \endentry
+
+  \entry{louizos2018learning}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=LC}{%
+         family={Louizos},
+         familyi={L\bibinitperiod},
+         given={Christos},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=WM}{%
+         family={Welling},
+         familyi={W\bibinitperiod},
+         given={Max},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KDP}{%
+         family={Kingma},
+         familyi={K\bibinitperiod},
+         given={Diederik\bibnamedelima P.},
+         giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LC+2}
+    \strng{fullhash}{LCWMKDP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{International Conference on Learning Representations}
+    \field{title}{Learning Sparse Neural Networks through {$L_0$}
+  Regularization}
+    \verb{url}
+    \verb https://arxiv.org/abs/1712.01312
+    \endverb
+    \field{year}{2018}
   \endentry
 
   \entry{ma2023llmpruner}{inproceedings}{}{}
@@ -9406,10 +10019,12 @@
          giveni={X\bibinitperiod},
       }}%
     }
-    \strng{namehash}{MXFGWX1}
+    \strng{namehash}{MX+1}
     \strng{fullhash}{MXFGWX1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -9436,6 +10051,8 @@
     \strng{fullhash}{MA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \verb{doi}
@@ -10545,6 +11162,8 @@
   \strng{fullhash}{MBLBLBWBRBWCZCGCZCSCHCXCZCPCQCZCCCWCMDPDBDZDKDLDHFLFZFDGLGXGLGTGLGJHFHYHWHZHLHSHHHTHLHSHLJLJLJYJWJYJTJSJZJFJYJHJQJWJHJKJMJLKHKZKWKHKGLSLMLQLKLSLLLGLYLYLXMGMZMZMSMTMZMLPPPZPJPSPGQLQLQHQDQMRWRSRLRWSLSWSDSFTLTCTBTZTXTHWHWLWSWWWWWZWZWSWNXSXLXMXJXXXHXLXFXLXWXCXCXLXLXSXLXWXCXHXMXHXZXHXCXCXYXFYBYCYYYHYSYLYZYZYZYLYYYLYZYYYXYSYZYWYQYLYTYZYYZZZYZZZXZZZZZSZCZZZWZJZZZWZSZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \verb{eprint}
@@ -10610,10 +11229,12 @@
          giveni={W\bibinitperiod},
       }}%
     }
-    \strng{namehash}{MX+1}
+    \strng{namehash}{MX+2}
     \strng{fullhash}{MXXMZQWBLHLYHXCW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{title}{{ShortGPT}: Layers in Large Language Models are More
@@ -10656,6 +11277,9 @@
     \strng{fullhash}{MKBDAABY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \verb{eprint}
@@ -10707,6 +11331,9 @@
     \strng{fullhash}{MKSASAABYBD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \verb{eprint}
@@ -10745,10 +11372,12 @@
     \list{publisher}{1}{%
       {Curran Associates, Inc.}%
     }
-    \strng{namehash}{MPLONG1}
+    \strng{namehash}{MP+1}
     \strng{fullhash}{MPLONG1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -10792,6 +11421,8 @@
     \strng{fullhash}{MTCPKTSA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{note}{In EMNLP}
@@ -10855,6 +11486,8 @@
     \strng{fullhash}{MIAKMSDMCCTOSGRMFM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \verb{eprint}
@@ -11021,6 +11654,8 @@
     \strng{fullhash}{MNSLGDLKMJMSSWWPTOLNGYASBASDWDWAHBDTKDFASNAKPWSAHH1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \verb{eprint}
@@ -11078,6 +11713,8 @@
     \strng{fullhash}{MSMAJGASPHAA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \verb{doi}
@@ -11153,6 +11790,8 @@
     \strng{fullhash}{MSSSTJRCMPMSMCBKJMP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{title}{Compact Language Models via Pruning and Knowledge
@@ -11403,6 +12042,8 @@
   \strng{fullhash}{NCjMRCJCOEMHKHKKELJLDMJSAWSWGYAABBLGGMHPHJJSSKRRDSSTCAPANFBSESFAGCGVGFKPMARCSSSHWJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{N}
     \field{sortinithash}{N}
     \verb{eprint}
@@ -11441,10 +12082,12 @@
          giveni={O\bibinitperiod},
       }}%
     }
-    \strng{namehash}{OAvdLYVO1}
+    \strng{namehash}{OAvd+1}
     \strng{fullhash}{OAvdLYVO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{O}
     \field{sortinithash}{O}
     \verb{eprint}
@@ -11493,6 +12136,8 @@
     \strng{fullhash}{PVCGPDKS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{}
     \field{sortinit}{P}
     \field{sortinithash}{P}
     \field{booktitle}{2015 IEEE International Conference on Acoustics, Speech
@@ -11543,6 +12188,8 @@
     \strng{fullhash}{POGGICFEBCHJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{P}
     \field{sortinithash}{P}
     \verb{eprint}
@@ -11579,10 +12226,12 @@
          giveni={K\bibinitperiod},
       }}%
     }
-    \strng{namehash}{PACJCLK1}
+    \strng{namehash}{PA+1}
     \strng{fullhash}{PACJCLK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{P}
     \field{sortinithash}{P}
     \field{note}{Preprint, arXiv:2107.04734}
@@ -11663,6 +12312,8 @@
     \strng{fullhash}{PLZYWZSJLGWZSJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{P}
     \field{sortinithash}{P}
     \field{abstract}{%
@@ -11746,6 +12397,8 @@
     \strng{fullhash}{POWL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{}
     \field{sortinit}{P}
     \field{sortinithash}{P}
     \field{abstract}{%
@@ -11787,6 +12440,8 @@
     \strng{fullhash}{Q1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{Q}
     \field{sortinithash}{Q}
     \field{howpublished}{\url{https://qwenlm.github.io/blog/qwen-moe/}}
@@ -11807,6 +12462,9 @@
     \strng{fullhash}{Q1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{Q}
     \field{sortinithash}{Q}
     \verb{eprint}
@@ -11833,6 +12491,9 @@
     \strng{fullhash}{Q1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{Q}
     \field{sortinithash}{Q}
     \field{howpublished}{\url{https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B}}
@@ -11883,6 +12544,9 @@
     \strng{fullhash}{RAKJWXTBGMCSI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \field{note}{Preprint, arXiv:2212.04356}
@@ -11933,6 +12597,9 @@
     \strng{fullhash}{RAKJWXTBGMCSI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \field{note}{Preprint, arXiv:2212.04356}
@@ -12019,6 +12686,8 @@
     \strng{fullhash}{RAKJWHCRAGGASSGAAMPCJKGSI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \verb{eprint}
@@ -12056,10 +12725,12 @@
          giveni={R\bibinitperiod},
       }}%
     }
-    \strng{namehash}{RCKAGVCR1}
+    \strng{namehash}{RCKA+1}
     \strng{fullhash}{RCKAGVCR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \verb{eprint}
@@ -12174,6 +12845,8 @@
     \strng{fullhash}{RAARLGLBZJZSWSZYWSSRTYDPFCCZWY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \verb{eprint}
@@ -12219,6 +12892,8 @@
     \strng{fullhash}{SKBRLBCCY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{note}{arXiv preprint arXiv:1907.10641}
@@ -12264,6 +12939,8 @@
     \strng{fullhash}{SMRHCDBRLCY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{note}{In Proceedings of the 2019 Conference on Empirical Methods in
@@ -12327,6 +13004,8 @@
     \strng{fullhash}{SFDBPVIGG1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{booktitle}{Findings of the Association for Computational
@@ -12378,6 +13057,8 @@
     \strng{fullhash}{SFDVIGGADI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \verb{eprint}
@@ -12424,6 +13105,8 @@
     \strng{fullhash}{SSBACRAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \verb{eprint}
@@ -12451,6 +13134,8 @@
     \strng{fullhash}{SCE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{1948}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{number}{3}
@@ -12474,6 +13159,8 @@
     \strng{fullhash}{SN1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{note}{Preprint, arXiv:2002.05202}
@@ -12686,6 +13373,8 @@
   \strng{fullhash}{SSVFDDKBFMAKWYSHPJMDOLZMHRWJMMMLSKDFHEIOIAAMOAZCVMRSGSAEAGSMNBMKJÃAFMHS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{note}{Preprint, arXiv:2402.06619}
@@ -12731,6 +13420,8 @@
     \strng{fullhash}{SAAAGSSSGJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \verb{eprint}
@@ -12807,6 +13498,9 @@
     \strng{fullhash}{SSTMSJRCMPMSMCBKJMP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{note}{Preprint, arXiv:2408.11796}
@@ -12954,6 +13648,9 @@
     \strng{fullhash}{SSTMSJRCMMASSGZJCZSYDSYCCWCRHOOAAKOKDMPPMSMKJCB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{title}{{LLM} Pruning and Distillation in Practice: The Minitron
@@ -12976,6 +13673,8 @@
     \strng{fullhash}{S1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \verb{eprint}
@@ -13022,6 +13721,9 @@
     \strng{fullhash}{SMLZBAKJZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{booktitle}{The Twelfth International Conference on Learning
@@ -13065,6 +13767,9 @@
     \strng{fullhash}{SMLZBAKJZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{note}{Preprint, arXiv:2306.11695}
@@ -13104,6 +13809,8 @@
     \strng{fullhash}{SYDDCCII1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \verb{eprint}
@@ -13174,6 +13881,8 @@
     \strng{fullhash}{TYTCLXCPJGNCVGJFA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \verb{eprint}
@@ -13241,6 +13950,8 @@
     \strng{fullhash}{TRGIZTDYLXGCLPHTB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \field{title}{Stanford Alpaca: An Instruction-Following {LLaMA} Model}
@@ -13263,6 +13974,8 @@
     \strng{fullhash}{TQ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \field{title}{Qwen2.5: A Party of Foundation Models}
@@ -13334,6 +14047,8 @@
     \strng{fullhash}{TOVAKSCHARMFMBTXEPKFS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \field{note}{Preprint, arXiv:2402.16840}
@@ -13415,6 +14130,8 @@
     \strng{fullhash}{TALDBFOJRJTFWEPAAMPAJMVae1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \field{note}{arXiv preprint arXiv:2408.17024}
@@ -13514,6 +14231,9 @@
     \strng{fullhash}{THLTIGMXLMALTRBGNHEAFRAJAGELG1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \verb{eprint}
@@ -13943,6 +14663,9 @@
   \strng{fullhash}{THMLSKAPAABYBNBSBPBSBDBLFCCCMCGEDFJFJFWFBGCGVGNHAHSHRIHKMKVKMKIKAKPSLMALTLJLDLYMYMXMTMPMINYPARJRRSKSASRSEMSRTXETBTRWAKJXXPYZZIZYFAKMNSRASRESST1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \verb{eprint}
@@ -14012,6 +14735,8 @@
     \strng{fullhash}{TLRNJUESBLKDWMPO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \verb{doi}
@@ -14079,6 +14804,8 @@
     \strng{fullhash}{VASNPNUJJLGANKLPI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{}
     \field{sortinit}{V}
     \field{sortinithash}{V}
     \verb{eprint}
@@ -14133,6 +14860,8 @@
     \strng{fullhash}{VETDMFSRTI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
     \field{sortinit}{V}
     \field{sortinithash}{V}
     \field{booktitle}{Proceedings of the 57th Annual Meeting of the Association
@@ -14198,6 +14927,9 @@
     \strng{fullhash}{WKLTSGGJYLCMLS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \verb{eprint}
@@ -14250,6 +14982,9 @@
     \strng{fullhash}{WLGHZCSXDD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \verb{eprint}
@@ -14296,12 +15031,90 @@
     \strng{fullhash}{WXZYWZZM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \field{note}{arXiv preprint arXiv:2403.07378}
     \field{title}{SVD-LLM: Truncation-aware Singular Value Decomposition for
   Large Language Model Compression}
     \field{year}{2024}
+  \endentry
+
+  \entry{wang-etal-2020-structured}{inproceedings}{}{}
+    \name{author}{3}{}{%
+      {{hash=WZ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Ziheng},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Wohlwend},
+         familyi={W\bibinitperiod},
+         given={Jeremy},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LT}{%
+         family={Lei},
+         familyi={L\bibinitperiod},
+         given={Tao},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \name{editor}{4}{}{%
+      {{hash=WB}{%
+         family={Webber},
+         familyi={W\bibinitperiod},
+         given={Bonnie},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=CT}{%
+         family={Cohn},
+         familyi={C\bibinitperiod},
+         given={Trevor},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=HY}{%
+         family={He},
+         familyi={H\bibinitperiod},
+         given={Yulan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Yang},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Association for Computational Linguistics}%
+    }
+    \strng{namehash}{WZ+1}
+    \strng{fullhash}{WZWJLT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{booktitle}{Proceedings of the 2020 Conference on Empirical Methods
+  in Natural Language Processing (EMNLP)}
+    \verb{doi}
+    \verb 10.18653/v1/2020.emnlp-main.496
+    \endverb
+    \field{pages}{6151\bibrangedash 6162}
+    \field{title}{Structured Pruning of Large Language Models}
+    \verb{url}
+    \verb https://aclanthology.org/2020.emnlp-main.496/
+    \endverb
+    \list{location}{1}{%
+      {Online}%
+    }
+    \field{month}{11}
+    \field{year}{2020}
   \endentry
 
   \entry{wang2025remoefullydifferentiablemixtureofexperts}{misc}{}{}
@@ -14325,10 +15138,13 @@
          giveni={J\bibinitperiod},
       }}%
     }
-    \strng{namehash}{WZZJCJ1}
+    \strng{namehash}{WZ+2}
     \strng{fullhash}{WZZJCJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \verb{eprint}
@@ -14447,6 +15263,8 @@
     \strng{fullhash}{WJTYBRRCZBBSYDBMZDMDCEHHTVOLPDJFW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \verb{eprint}
@@ -14528,6 +15346,8 @@
     \strng{fullhash}{WTWYZZPZSYLXCBLHJSYC1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \verb{eprint}
@@ -14564,10 +15384,12 @@
          giveni={A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{WJCSBA1}
+    \strng{namehash}{WJ+2}
     \strng{fullhash}{WJCSBA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \verb{eprint}
@@ -14723,6 +15545,8 @@
     \strng{fullhash}{WTDLSVCJDCMACPRTLRFMDJSSPPvMCJYPJXCSTLGSDMLQRAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \field{note}{Preprint, arXiv:1910.03771}
@@ -14807,6 +15631,8 @@
     \strng{fullhash}{WMIGGSYRRGLRMASNHFACYKSSL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \field{booktitle}{Proceedings of the 39th International Conference on
@@ -14887,10 +15713,12 @@
          giveni={Y\bibinitperiod},
       }}%
     }
-    \strng{namehash}{WJ+2}
+    \strng{namehash}{WJ+3}
     \strng{fullhash}{WJGYCZZLZYWTLJLSRBLLWY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \verb{eprint}
@@ -14937,6 +15765,8 @@
     \strng{fullhash}{XMGTZZCD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{X}
     \field{sortinithash}{X}
     \field{note}{arXiv preprint; ArXiv:2310.06694 [cs]}
@@ -14976,6 +15806,8 @@
     \strng{fullhash}{XMGTZZCD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{X}
     \field{sortinithash}{X}
     \field{booktitle}{The Twelfth International Conference on Learning
@@ -15037,6 +15869,8 @@
     \strng{fullhash}{XZJFNLDYPRCYLBY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{X}
     \field{sortinithash}{X}
     \field{booktitle}{The Thirteenth International Conference on Learning
@@ -15086,6 +15920,8 @@
     \strng{fullhash}{YPTDCLRCBM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -15454,6 +16290,9 @@
   \strng{fullhash}{YAYBHBZBYBZCLCLCLDHFDGWHLHTJWJYJTJZJMJXJZJBJHJLJDKLKCKYKLMXMNNZPWPPRMRGRLRWSBSTSZTLTLTGWDXZXRXZXWXRXFYYYZYWYCYLYCZZZFZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \field{title}{Qwen2 Technical Report}
@@ -15482,10 +16321,13 @@
          giveni={H\bibinitperiod},
       }}%
     }
-    \strng{namehash}{YYCZZH1}
+    \strng{namehash}{YY+1}
     \strng{fullhash}{YYCZZH1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \field{title}{{LaCo}: Large Language Model Pruning via Layer Collapse}
@@ -15527,6 +16369,8 @@
     \strng{fullhash}{YZDZSRCWW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \verb{eprint}
@@ -15630,6 +16474,8 @@
     \strng{fullhash}{YLWYZZHCYWYJYLGJAKPMLYBMWZLS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \field{booktitle}{Proceedings of the 41st International Conference on
@@ -15664,6 +16510,8 @@
     \strng{fullhash}{YHWJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \field{note}{Proceedings of the AAAI Conference on Artificial Intelligence,
@@ -15713,6 +16561,8 @@
     \strng{fullhash}{YLYBYHHFLY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \field{booktitle}{Proceedings of the 41st International Conference on
@@ -15777,6 +16627,8 @@
     \strng{fullhash}{YZYHLCDGLKTCZCZJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2023}
+    \field{labeldatesource}{}
     \field{sortinit}{Y}
     \field{sortinithash}{Y}
     \verb{doi}
@@ -15828,6 +16680,8 @@
     \strng{fullhash}{ZMIVLNBLCI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \field{booktitle}{{Interspeech 2024}}
@@ -15900,6 +16754,8 @@
     \strng{fullhash}{ZBCLLTZB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \field{booktitle}{Proceedings of the 2025 Conference on Empirical Methods
@@ -15994,6 +16850,9 @@
     \strng{fullhash}{ZQGNGDGSCDVBFJBPRSUALA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -16129,6 +16988,9 @@
     \strng{fullhash}{ZXXLGYWYLJHHWCSTCXFZCHZJTTYZLWMHJCKLHWZ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \field{booktitle}{Proc.~of SLT}
@@ -16180,6 +17042,9 @@
     \strng{fullhash}{ZYBHLHZJHLCCV1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{3}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \field{booktitle}{The Twelfth International Conference on Learning
@@ -16253,6 +17118,9 @@
     \strng{fullhash}{ZYZLLMSYYYHXTJLSJR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{extradate}{4}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \field{booktitle}{The Twelfth International Conference on Learning
@@ -16314,6 +17182,8 @@
     \strng{fullhash}{ZSXZLMHJPGCFGA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2026}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \verb{eprint}
@@ -16378,6 +17248,8 @@
     \strng{fullhash}{ZHBXLXMZMCBLFPA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2024}
+    \field{labeldatesource}{}
     \field{sortinit}{Z}
     \field{sortinithash}{Z}
     \field{booktitle}{Advances in Neural Information Processing Systems}
@@ -16407,6 +17279,8 @@
     \strng{fullhash}{aGTe1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2025}
+    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{note}{Preprint, arXiv:2503.19786}

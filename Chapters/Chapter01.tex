@@ -6,7 +6,7 @@ It is curious that we still don't know where the expression \textit{language mod
 Not the notion of what is a \textit{language model} but the \textit{expression} itself. 
 Because for the notion, we know that the idea of language model is quite old and one of the earliest 
 formulations closely related to what we now call language modeling can be found in Shannon's 
-work on information theory~\citet{shannon1948mathematical}\footnote{
+work on information theory~\citep{shannon1948mathematical}\footnote{
     This intuition was already explored by Markov in 1913~\citep{1913_lm};
     Shannon later provided a more fully developed formalization.
 }. 
@@ -54,7 +54,7 @@ a linguistic model of a language. But does a better statistical model of English
 The idea that statistical learning can capture linguistic structure is compatible 
 with usage-based and connectionist approaches. Nativist approaches, 
 however, question whether statistical learning alone is sufficient to explain linguistic knowledge.
-In \textit{Three Models for the Description of Language}, Chomsky states~\citet[p.~113]{chomsky1956three}:
+In \textit{Three Models for the Description of Language}, Chomsky states~\citep[p.~113]{chomsky1956three}:
 
 
 \begin{quote}
@@ -79,8 +79,8 @@ Yet practical models still operate with bounded context and memory,
 so the distinction highlighted by Chomsky between 
 unbounded linguistic structure and bounded computational memory remains relevant. 
 Second, even if we consider a statistical model with unbounded memory, 
-Chomsky's criticism goes beyond model capacity. His broader claim is that \textbf{language innate},
-biologically programmed in the human brain~\citet{chomsky1965aspects} and 
+Chomsky's criticism goes beyond model capacity. His broader claim is that \textbf{language is innate},
+biologically programmed in the human brain~\citep{chomsky1965aspects} and 
 cannot be learned simply by accumulating statistics over observed linguistic data.
 The main argument is the \textit{poverty of stimulus}: a child learns its native language rapidly, 
 despite being exposed to limited, noisy, and incomplete examples. This is possible because the infants
@@ -137,8 +137,8 @@ and knowledge acquisition, and discuss how scaling this architecture leads to fu
 in knowledge and linguistic competence.
 
 \section{The Transformer, the best machine language learner?}
-While \citet{bahdanau2015neural} improved neural machine translation by adding attention
-to an RNN-based encoder--decoder, \citet{vaswani2017attention} proposed replacing recurrence
+While \citep{bahdanau2015neural} improved neural machine translation by adding attention
+to an RNN-based encoder--decoder, \citep{vaswani2017attention} proposed replacing recurrence
 with attention in the Transformer. Removing recurrent dependencies allows all token positions
 within a layer to be processed in parallel during training, making the architecture more
 parallelisable and easier to scale. Figure~\ref{fig:decoder-only-transformer} presents the
@@ -230,7 +230,7 @@ query heads share the same keys and values. GQA is the compromise between the tw
 KV-Cache while keeping several different key-value heads.
 While GQA reduces KV-cache memory, it does not reduce the attention computation. 
 Nowadays, GQA is often combined with \textbf{Sparse Attention}, 
-such as DeepSeek Sparse Attention~\cite{deepseekai2025deepseekv32pushingfrontieropen}, to reduce this compute 
+such as DeepSeek Sparse Attention~\citep{deepseekai2025deepseekv32pushingfrontieropen}, to reduce this compute 
 by allowing each query to attend to only a subset of previous tokens.
 
 
@@ -279,7 +279,7 @@ We can see that SiLU activation gives better results, this explains why many LLM
     \label{tab:gated_mlp}
 \end{table*}
 It is difficult to explain why gated MLP with work better with some activations than other. 
-Citing \citet{shazeer2020gluvariants}, the author of gated MLPs:
+Citing \citep{shazeer2020gluvariants}, the author of gated MLPs:
 \begin{quote}
     \small\itshape
     ``We offer no explanation as to why these architectures seem to work; we attribute their
@@ -291,7 +291,7 @@ Citing \citet{shazeer2020gluvariants}, the author of gated MLPs:
 \end{quote}
 In modern LLM architectures, the MLP parameters can occupy over to $90\%$ of the total model parameters. 
 It has been shown that MLP layers play an important role in storing knowledge acquired during web-scale pretraining. 
-\citet{geva-etal-2021-transformer} interpret the MLP as a key--value memory:
+\citep{geva-etal-2021-transformer} interpret the MLP as a key--value memory:
 each column of \(\mathbf{W}_{\text{up}}\) in the MLP represents a key
 \(\mathbf{k}_i\) that detects linguistic patterns seen during training, while
 each row of \(\mathbf{W}_{\text{down}}\) represents the corresponding value
@@ -378,7 +378,7 @@ more strongly to the MLP output. This mechanism can be schematized as follows:
 
     \caption{
     Examples of MLP key--value memory pairs identified by
-    \citet{geva-etal-2021-transformer}.
+    \citep{geva-etal-2021-transformer}.
     For each value vector $\mathbf{v}^{\ell}_{i}$, \emph{Top prediction}
     is the vocabulary token receiving the highest score when the value is
     projected through the model's output embedding.
@@ -395,9 +395,9 @@ with factual knowledge. When a key detecting the prefix \textit{The capital of F
 is strongly associated with a value representing \textit{Paris}, this lexical key--value memory 
 turns out to also encode world knowledge. 
 Hence, more broadly, it is widely believed that MLPs play a central role in storing the knowledge acquired during pretraining
-\citet{geva-etal-2021-transformer,dai-etal-2022-knowledge}.
+\citep{geva-etal-2021-transformer,dai-etal-2022-knowledge}.
 This view is also reflected in many knowledge-editing methods, which often directly target MLP weights
-\citet{meng2023locatingeditingfactualassociations,meng2023masseditingmemorytransformer, fang2025alphaeditnullspaceconstrainedknowledge}.
+\citep{meng2023locatingeditingfactualassociations,meng2023masseditingmemorytransformer, fang2025alphaeditnullspaceconstrainedknowledge}.
 If we view the MLP as a key--value memory, it is reasonable to expect that each input token 
 requires access to only a subset of its key--value pairs. We will later discuss how this 
 intuition can guide the design of an adaptive sparse memory layer.
@@ -453,10 +453,10 @@ Some works have identified what is known as the
 \textit{softmax bottleneck}~\citep{yang2018breakingsoftmaxbottleneck}:
 a low-dimensional LM head can only produce a limited variety of output
 distributions. Therefore, reducing its rank too aggressively can limit the
-model's ability to predict complex token distributions. \citet{godey2024smalllanguagemodelsunderperform}
+model's ability to predict complex token distributions. \citep{godey2024smalllanguagemodelsunderperform}
 studied this by compressing the LM Head rank dimension at different sizes and found that smaller rank
 hurts performance and limits the expressiviness of the probability distribution as shown in Figure \ref{fig:lm_head_botlnck}. 
-More importantly, this also hurts the learning signal during training \citet{godey2026lostbackpropagationlmhead}.
+More importantly, this also hurts the learning signal during training \citep{godey2026lostbackpropagationlmhead}.
 There are many solutions to avoid the \textit{softmax bottleneck}. Since this phenomen arises mainly when
 $r \ll V$, an obvious solution is to augment $r$ or reduce $V$ the voabulary size. Reducing the vocabulary size can be
 achieved using a tokenizer with few tokens or falling back to a character or bytes tokenizers.
@@ -473,7 +473,7 @@ later, which proposes to reduce the rank of the LM Head instead of pruning token
         \includegraphics[width=0.48\linewidth]{figures/figure6_cross_entropy.png}
     }
     \caption{Effect of reducing the LM Head rank on accuracy and cross-entropy.
-    Figures from \citet{godey2024smalllanguagemodelsunderperform}.}
+    Figures from \citep{godey2024smalllanguagemodelsunderperform}.}
     \label{fig:lm_head_botlnck}
 \end{figure}
 
@@ -493,7 +493,7 @@ and the training compute by $C$, the compute cost of a dense Transformer can be
 approximated as $C \approx 6ND$. So given a training budget $C$ fixed 
 (how many training flops is available for training), how much
 the model size should take in this compute and how much the training tokens should take in this budget.
-Both Kaplan \cite{kaplan2020scaling} and Chinchilla \cite{hoffmann2022training} 
+Both Kaplan \citep{kaplan2020scaling} and Chinchilla \citep{hoffmann2022training} 
 scaling find that the compute-optimal model size and dataset size  follow power laws 
 in the compute budget: $N_{\mathrm{opt}} \propto C^{\alpha}$ and $D_{\mathrm{opt}} \propto C^{\beta}$.
 \textbf{Kaplan scaling laws} estimate that the compute-optimal allocation with 
@@ -508,13 +508,13 @@ Beyond guiding compute allocation, scaling laws also reveal how model capabiliti
 evolve with scale. While performance often improves predictably as training compute
 increases, some abilities appear only after the model reaches a certain scale. The
 model may remain close to random performance across several scales before suddenly
-crossing a plateau and acquiring a new ability. \citet{wei2022emergent} identify
+crossing a plateau and acquiring a new ability. \citep{wei2022emergent} identify
 several such \textit{emergent abilities} as shown in Figure~\ref{fig:wei-emergent-abilities}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/wei_emergent_abilities_figure.pdf}
     \caption{Examples of emergent abilities in large language models.
-    Figure from \citet{wei2022emergent}. 
+    Figure from \citep{wei2022emergent}. 
     A capacity is emergent when the score surpasses the random baseline 
     while it wasn't at smaller scale.}
     \label{fig:wei-emergent-abilities}
@@ -528,7 +528,7 @@ Classical scaling laws predict \textit{diminishing returns}: test loss continues
 to decrease with scale, but each additional increase in model size produces a
 smaller improvement~\citep{kaplan2020scaling,hoffmann2022training}. However,
 whether this implies diminishing returns in model capabilities depends on how
-performance is measured. \citet{sinha2026illusion} argue that short-task
+performance is measured. \citep{sinha2026illusion} argue that short-task
 benchmarks may create an illusion of saturation. Even small improvements in
 single-step accuracy can compound into large improvements in the length of tasks
 that a model can reliably execute. Therefore, diminishing returns on loss or

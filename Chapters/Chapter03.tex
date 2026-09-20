@@ -18,7 +18,7 @@ leading to significantly larger end-to-end speedups. The method, named \emph{Bal
 First, we reduce the decoder depth which lowers weight traffic and reduces the number of key--value cache layers used during generation. Second, we compress Whisper's shared input/output embedding matrix through activation-aware low-rank decomposition.
 This matrix accounts for more than half of the decoder parameters in small multilingual Whisper models.
 
-Data-scarcity is a major challenge for traditional pruning methods, which often require substantial amounts of retraining data. For example, Distill-Whisper \cite{distill-whisper} prunes the English-only version of Whisper \cite{whisper} and further retrained on 21k hours of ASR data, a quantity not available for many languages. This leads us to a central question: \emph{How to compress a pre-trained ASR model (Whisper) when only a small quantity of supervised data is available?}
+Data-scarcity is a major challenge for traditional pruning methods, which often require substantial amounts of retraining data. For example, Distill-Whisper \citep{distill-whisper} prunes the English-only version of Whisper \citep{whisper} and further retrained on 21k hours of ASR data, a quantity not available for many languages. This leads us to a central question: \emph{How to compress a pre-trained ASR model (Whisper) when only a small quantity of supervised data is available?}
 We study this questin through the compression of Whisper for Bambara, a low-resource language with limited amount of ASR dataset at the time of this work. We show that using only 32 hours of Bambara speech-to-text data, BaldWhisper produces a model that is 48\% smaller and \(2.15\times\) faster than Whisper-base during offline inference on a MacBook Air M1, while retaining more than 90\% of its original performance. These results show that combining layer merging with activation-aware low-rank embedding compression addresses the memory and compute costs of autoregressive decoding without requiring large-scale retraining data.
 
 \begin{figure}[ht]
@@ -31,19 +31,19 @@ We study this questin through the compression of Whisper for Bambara, a low-reso
 Before presenting our method, we discuss some approaches related to this work.
 
 \paragraph{Deep encoder, shallow decoder.}
-We take inspiration from \cite{kasai2021deepencodershallowdecoder}, who show that the decoder part of an encoder--decoder architecture can be very shallow while remaining accurate and becoming faster. We likewise compress primarily the decoder of Whisper. In contrast to their approach, which trains encoder--decoder models from scratch, we begin with a pretrained Whisper model and compress its decoder.
+We take inspiration from \citep{kasai2021deepencodershallowdecoder}, who show that the decoder part of an encoder--decoder architecture can be very shallow while remaining accurate and becoming faster. We likewise compress primarily the decoder of Whisper. In contrast to their approach, which trains encoder--decoder models from scratch, we begin with a pretrained Whisper model and compress its decoder.
 
 \paragraph{Distil-Whisper.}
-Distil-Whisper~\cite{distill-whisper} compresses Whisper-large by removing 30 of its 32 decoder layers. The pruned model is then retrained on approximately 21,000 hours of speech using sequence-level knowledge distillation~\cite{kim2016sequence}. Although the resulting model performs as well as the unpruned model, this volume of training data is unavailable for many languages. Instead of removing layers, we merge them to limit the performance loss.
+Distil-Whisper~\citep{distill-whisper} compresses Whisper-large by removing 30 of its 32 decoder layers. The pruned model is then retrained on approximately 21,000 hours of speech using sequence-level knowledge distillation~\citep{kim2016sequence}. Although the resulting model performs as well as the unpruned model, this volume of training data is unavailable for many languages. Instead of removing layers, we merge them to limit the performance loss.
 
 \paragraph{Model merging.}
-Our decoder compression is related to model-merging approaches used either to combine models trained for different tasks~\cite{wortsman2022modelsoupsaveragingweights,yadav2023tiesmergingresolvinginterferencemerging} or to reduce model size~\cite{liu2024pruningmergingcompressingllms}. The latter method uses manifold learning to align activations before merging layers. BaldWhisper uses a simpler procedure: motivated by the similarity of adjacent-layer activations, it compresses the decoder through a weighted average of adjacent layers. We study different weighting values and find that assigning greater weight to the upper layer produces better results.
+Our decoder compression is related to model-merging approaches used either to combine models trained for different tasks~\citep{wortsman2022modelsoupsaveragingweights,yadav2023tiesmergingresolvinginterferencemerging} or to reduce model size~\citep{liu2024pruningmergingcompressingllms}. The latter method uses manifold learning to align activations before merging layers. BaldWhisper uses a simpler procedure: motivated by the similarity of adjacent-layer activations, it compresses the decoder through a weighted average of adjacent layers. We study different weighting values and find that assigning greater weight to the upper layer produces better results.
 
 \paragraph{Vocabulary pruning.}
-In small multilingual models, the embedding matrix accounts for a large proportion of the parameters because of the multilingual vocabulary. In Whisper-tiny, for instance, this matrix represents 51\% of all parameters. Vocabulary pruning~\cite{abdaoui-etal-2020-load,vocabprune} removes tokens not used in the target language, but it is risky in the presence of out-of-vocabulary words and code-switching, where foreign-language tokens must remain available. Bambara speakers, for example, frequently mix French in francophone regions such as Mali and English in anglophone regions such as The Gambia. We therefore replace vocabulary pruning with low-rank decomposition and feature distillation.
+In small multilingual models, the embedding matrix accounts for a large proportion of the parameters because of the multilingual vocabulary. In Whisper-tiny, for instance, this matrix represents 51\% of all parameters. Vocabulary pruning~\citep{abdaoui-etal-2020-load,vocabprune} removes tokens not used in the target language, but it is risky in the presence of out-of-vocabulary words and code-switching, where foreign-language tokens must remain available. Bambara speakers, for example, frequently mix French in francophone regions such as Mali and English in anglophone regions such as The Gambia. We therefore replace vocabulary pruning with low-rank decomposition and feature distillation.
 
 \paragraph{Low-rank decomposition.}
-Low-rank decomposition is a common dimensionality-reduction technique. Recent work has shown that pretrained Transformer activations are low-rank, motivating activation-aware low-rank decomposition~\cite{yu_compressing_2023,chen_drone}. Whisper's embedding matrix is particularly large because of its multilingual vocabulary. We compress it using activation information rather than relying only on a standard SVD, training the low-rank embeddings through gradient-based feature distillation.
+Low-rank decomposition is a common dimensionality-reduction technique. Recent work has shown that pretrained Transformer activations are low-rank, motivating activation-aware low-rank decomposition~\citep{yu_compressing_2023,chen_drone}. Whisper's embedding matrix is particularly large because of its multilingual vocabulary. We compress it using activation information rather than relying only on a standard SVD, training the low-rank embeddings through gradient-based feature distillation.
 
 \section{BaldWhisper Approach}
 \label{sec:method-bw}
@@ -70,7 +70,7 @@ We merge each pair through a weighted average:
 \end{equation}
 where \(j=i+1\), and \(\alpha\) and \(\beta\) control each layer's contribution. Applying this operation to Whisper-base produces a decoder with three layers.
 
-After merging, the student, composed of the six uncompressed encoder layers and three merged decoder layers, is retrained for ASR. We also distill the compressed student from the frozen, uncompressed teacher, since distillation is effective for speech recognition~\cite{distillation,distill-whisper}. Only the student encoder and decoder are updated. The training objective is
+After merging, the student, composed of the six uncompressed encoder layers and three merged decoder layers, is retrained for ASR. We also distill the compressed student from the frozen, uncompressed teacher, since distillation is effective for speech recognition~\citep{distillation,distill-whisper}. Only the student encoder and decoder are updated. The training objective is
 \begin{equation}
     \label{eq:hs-bw}
     \mathcal{L}^{(1)} = \lambda \mathcal{L}_{\mathrm{CE}} + \gamma \mathcal{L}_{\mathrm{KD}},
@@ -158,7 +158,7 @@ Although any subset of layers could in principle be merged, exhaustively explori
 \end{figure}
 
 \paragraph{Comparison to brute-force search.}
-On approach is search which layer to remove by testing all combinations. Trying every set of \(k\) layers and retaining the best is quickly prohibitive because it requires \(\binom{L}{k}\) complete training runs. For Whisper-large with \(L=32\) and \(k=3\), this would require \(\binom{32}{3}=4960\) runs.
+One approach is to search which layer to remove by testing all combinations. Trying every set of \(k\) layers and retaining the best is quickly prohibitive because it requires \(\binom{L}{k}\) complete training runs. For Whisper-large with \(L=32\) and \(k=3\), this would require \(\binom{32}{3}=4960\) runs.
 On the other side, with our approach, 10 to 20 small training runs are sufficient to determine the
 weights of layer merging.
 
@@ -215,4 +215,4 @@ some of the lost performance.
 
 We introduced BaldWhisper, a compression approach for Whisper in low-resource settings. Merging adjacent decoder layers rather than simply pruning them limits the performance loss, while low-rank feature distillation compresses the large shared embedding matrix without discarding vocabulary items needed for code-switching. Using only 32 hours of Bambara speech, the final model is \(2.15\times\) faster and 48\% smaller than Whisper-base while retaining more than 90\% of its performance.
 
-Several directions could further improve this tradeoff. The merging weights \(\alpha\) and \(\beta\) could be specialized per layer, and more sophisticated merging functions~\cite{yadav2023tiesmergingresolvinginterferencemerging,yu2024languagemodelssupermario} could replace the weighted average. Because the method operates on standard Whisper Transformer blocks, it should transfer to other languages; validating that transfer remains future work.
+Several directions could further improve this tradeoff. The merging weights \(\alpha\) and \(\beta\) could be specialized per layer, and more sophisticated merging functions~\citep{yadav2023tiesmergingresolvinginterferencemerging,yu2024languagemodelssupermario} could replace the weighted average. Because the method operates on standard Whisper Transformer blocks, it should transfer to other languages; validating that transfer remains future work.

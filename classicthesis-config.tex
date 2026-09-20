@@ -85,15 +85,24 @@
   %backend=biber,bibencoding=utf8, %instead of bibtex
   backend=bibtex8,bibencoding=auto,% ascii
   language=auto,%
-  style=numeric-comp,%
-  %style=authoryear-comp, % Author 1999, 2010
-  %bibstyle=authoryear,dashed=false, % dashed: substitute rep. author with ---
+  style=authoryear,
+  maxcitenames=2,mincitenames=1,
+  uniquename=false,uniquelist=false,
+  dashed=false,
   sorting=nyt, % name, year, title
   maxbibnames=10, % default: 3, et al.
   %backref=true,%
   natbib=true % natbib compatibility mode (\citep and \citet still work)
 }{biblatex}
     \usepackage{biblatex}
+% Parenthetical author--year citations: (Author and Author, 2023; Author, 2024).
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+% Link the complete author--year text, rather than the year alone.
+\letbibmacro{thesis:cite}{cite}
+\renewbibmacro*{cite}{%
+  \printtext[bibhyperref]{%
+    \DeclareFieldAlias{bibhyperref}{default}%
+    \usebibmacro{thesis:cite}}}
 
 \PassOptionsToPackage{fleqn}{amsmath}       % math environments and more by the AMS
   \usepackage{amsmath}
@@ -103,8 +112,10 @@
 % ********************************************************************
 \PassOptionsToPackage{dvipsnames}{xcolor}
 \usepackage{graphicx} %
+\usepackage{pdfpages}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
 \usepackage{pifont}
 \usepackage{scrhack} % fix warnings when using KOMA with listings package
 \usepackage{xspace} % to get the spacing after macros right
@@ -173,6 +184,8 @@
 % ********************************************************************
 \PassOptionsToPackage{hyperfootnotes=false}{hyperref}
 \usepackage{classicthesis}
+% Match citations to the maroon used for URLs in margin footnotes.
+\colorlet{CTcitation}{CTurl}
 % Allow full printed URLs to wrap automatically, including in narrow margin notes.
 \usepackage{xurl}
 % Keep numbered explanatory notes in the outer margin throughout the thesis.

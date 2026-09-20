@@ -1,0 +1,13 @@
+# Fdb version 4
+["pdflatex"] 1789858672.51202 "papers/TUL/exemple.tex" "exemple.pdf" "exemple" 1789858672.78663 2
+  "/usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf" 1770478701 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
+  "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1778240468 3636769 242fa31e12acae27b56e7e0e23ec59aa ""
+  "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
+  "exemple.aux" 1789858634.1441 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "papers/TUL/exemple.tex" 1789858671.85576 4605 72b3fa78188953f94af825ac4e52df89 ""
+  "thesul.cls" 0 -1 0 ""
+  (generated)
+  "exemple.aux"
+  "exemple.log"
+  "exemple.pdf"
+  (rewritten before read)

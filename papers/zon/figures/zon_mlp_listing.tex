@@ -1,0 +1,59 @@
+\begingroup
+\definecolor{zonCodeBackground}{HTML}{FAF5F0}
+\definecolor{zonCodeRule}{HTML}{B08968}
+\definecolor{zonCodeKeyword}{HTML}{B64080}
+\definecolor{zonCodeComment}{HTML}{008000}
+\begin{figure}[t]
+\refstepcounter{lstlisting}
+\label{fig:zon_mlp_listing}
+\begin{center}
+Listing~\thelstlisting: Minimal PyTorch implementation of the ZoN MLP training forward pass.
+\end{center}
+\begin{tcblisting}{
+    enhanced,
+    listing only,
+    colback=zonCodeBackground,
+    colframe=zonCodeRule,
+    boxrule=0.6pt,
+    arc=8pt,
+    boxsep=0pt,
+    left=8pt,right=8pt,top=8pt,bottom=8pt,
+    listing options={
+        language=Python,
+        basicstyle=\fontencoding{T1}\fontfamily{pcr}\selectfont\small,
+        keywordstyle=\color{zonCodeKeyword}\bfseries,
+        commentstyle=\color{zonCodeComment},
+        stringstyle=\color{purple},
+        frame=none,
+        aboveskip=0pt,belowskip=0pt,
+        showstringspaces=false,
+        columns=fullflexible,
+        keepspaces=true,
+        upquote=true,
+        numbers=none
+    }
+}
+def mlp_zon(x, W_k, W_v, act_fn, a, beta=1.0, l=-0.01):
+    """
+    x: [batch * seq_len, d_model]
+    K: [d_model, d_inter]
+    V: [d_inter, d_model]
+    a: gate network, d_model -> d_inter
+    """
+    log_alpha = a(x) # shape: [batch * seq_len, d_inter]
+
+    # Sample gates
+    u = torch.empty_like(log_alpha).uniform_(eps, 1 - eps)
+    s = torch.sigmoid((torch.logit(u) + log_alpha) / beta)
+    # stretch beyond zero and clamp to 0.0
+    z = (s + l * (1 - s)).clamp(min=0.0)
+    # Expected number of active gates per token
+    num_active = torch.sigmoid(log_alpha - beta * math.log(-l)).sum(-1)
+
+    h = act_fn((x @ W_k) * z)
+    o = h @ W_v
+
+    return o, num_active
+\end{tcblisting}
+\end{figure}
+\endgroup

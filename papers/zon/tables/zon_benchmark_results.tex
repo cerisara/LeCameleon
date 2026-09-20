@@ -1,0 +1,48 @@
+\begin{table}[t]
+\caption{Benchmark accuracy (\%) for the dense and sparse models.
+CORE reports the mean centered score (\%). BB denotes BIG-bench.}
+\label{tab:zon_benchmarks}
+\begin{center}
+\small
+\setlength{\tabcolsep}{2pt}
+% Use the row strut: baselineskip is zero inside a tabular cell.
+% Keep this helper local to the table; no template changes are needed.
+\newcommand{\zoncategorymultirow}[2]{%
+  \raisebox{\dimexpr-#1\ht\strutbox/2-#1\dp\strutbox/2+\ht\strutbox/2+\dp\strutbox/2\relax}[0pt][0pt]{%
+    \parbox[c]{82pt}{\raggedright\itshape #2}}}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Category} & \textbf{Benchmark (n-shot)} & \textbf{Dense-600M} & \textbf{Dense-1.2B} & \textbf{ZoN-1.2B-A600M} \\
+\midrule
+\zoncategorymultirow{6}{Commonsense reasoning} & PIQA (10) & 74.37 & 76.93 & 75.35 \\
+ & WinoGrande (0) & 56.91 & 60.30 & 60.77 \\
+ & ARC-Easy (10) & 69.40 & 72.10 & 70.67 \\
+ & ARC-Challenge (10) & 40.10 & 42.66 & 40.96 \\
+ & HellaSwag (0) & 57.02 & 61.79 & 60.52 \\
+ & HellaSwag (10) & 57.24 & 62.05 & 61.24 \\
+\midrule
+\zoncategorymultirow{6}{Commonsense reasoning and reading comprehension} & COPA (0) & 66.00 & 64.00 & 68.00 \\
+ & CommonsenseQA (10) & 21.38 & 32.02 & 28.67 \\
+ & OpenBookQA (0) & 40.40 & 43.20 & 41.40 \\
+ & Winograd (0) & 69.23 & 68.13 & 73.63 \\
+ & BoolQ (10) & 61.62 & 63.79 & 61.31 \\
+ & SQuAD (10) & 45.69 & 46.34 & 48.20 \\
+\midrule
+\zoncategorymultirow{6}{Reading comprehension, language modeling, and knowledge} & CoQA (0) & 33.30 & 34.22 & 35.04 \\
+ & LAMBADA (OpenAI) (0) & 43.22 & 46.81 & 46.96 \\
+ & Jeopardy (10) & 9.40 & 15.21 & 15.07 \\
+ & BB: QA Wikidata (10) & 46.44 & 51.30 & 50.51 \\
+ & BB: Language identification (10) & 24.98 & 24.77 & 24.81 \\
+ & AGI Eval: LSAT-AR (3) & 26.96 & 22.17 & 22.17 \\
+\midrule
+\zoncategorymultirow{4}{Symbolic reasoning} & BB: Dyck languages (10) & 12.20 & 13.10 & 11.60 \\
+ & BB: CS algorithms (10) & 44.32 & 39.39 & 44.32 \\
+ & BB: Operators (10) & 18.57 & 17.62 & 19.05 \\
+ & BB: Repeat copy logic (10) & 3.12 & 0.00 & 0.00 \\
+\midrule
+\rowcolor{ratioDenseD!40!white}
+ & CORE & 27.3510 & 29.6130 & 29.7722 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}

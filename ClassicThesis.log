@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  15 SEP 2026 00:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  20 SEP 2026 19:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -348,7 +348,7 @@ Package biblatex Info: ... file 'blx-dm.def' found.
 File: blx-dm.def 2025/07/10 v3.21 biblatex datamodel (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'numeric-comp.dbx' not found.
+Package biblatex Info: ... file 'authoryear.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count351
@@ -476,16 +476,11 @@ File: blx-natbib.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
 Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
  overwriting.
 )
-Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
-Package biblatex Info: ... file 'numeric-comp.bbx' found.
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
 
-(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
-File: numeric-comp.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
-Package biblatex Info: Trying to load bibliography style 'numeric'...
-Package biblatex Info: ... file 'numeric.bbx' found.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
-File: numeric.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
+File: authoryear.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
@@ -493,27 +488,19 @@ Package biblatex Info: ... file 'standard.bbx' found.
 File: standard.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count428
 \c@bbx:relatedtotal=\count429
-)))
-Package biblatex Info: Trying to load citation style 'numeric-comp'...
-Package biblatex Info: ... file 'numeric-comp.cbx' found.
+))
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
 
-(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/cbx/numeric-comp.cbx
-File: numeric-comp.cbx 2025/07/10 v3.21 biblatex citation style (PK/MW)
-\c@cbx@tempcnta=\count430
-\c@cbx@tempcntb=\count431
-\c@cbx@tempcntc=\count432
-\c@cbx@tempcntd=\count433
+(/usr/local/texlive/2026/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+File: authoryear.cbx 2025/07/10 v3.21 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
 Package biblatex Info: Redefining '\footcitetext'.
 Package biblatex Info: Redefining '\smartcite'.
-Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
-Package biblatex Info: Redefining '\cites'.
-Package biblatex Info: Redefining '\parencites'.
-Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -529,7 +516,7 @@ Package: expl3 2026-01-19 L3 programming layer (loader)
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count434
+\l__color_backend_stack_int=\count430
 ))
 Package biblatex Info: ... and expl3
 (biblatex)             2026-01-19 L3 programming layer (loader) 
@@ -542,6 +529,9 @@ Package: xparse 2025-10-09 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2025/07/10 v3.21 expl3 case changing code for biblatex
 ))
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
+ overwriting on input line 99.
+
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip88
@@ -562,14 +552,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count435
+\inf@bad=\count431
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count436
-\leftroot@=\count437
+\uproot@=\count432
+\leftroot@=\count433
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count438
-\DOTSCASE@=\count439
+\classnum@=\count434
+\DOTSCASE@=\count435
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -582,20 +572,20 @@ LaTeX Info: Redefining \Bigg on input line 724.
 \big@size=\dimen152
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count440
+\macc@depth=\count436
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count441
+\c@MaxMatrixCols=\count437
 \dotsspace@=\muskip22
-\c@parentequation=\count442
-\dspbrk@lvl=\count443
+\c@parentequation=\count438
+\dspbrk@lvl=\count439
 \tag@help=\toks30
-\row@=\count444
-\column@=\count445
-\maxfields@=\count446
+\row@=\count440
+\column@=\count441
+\maxfields@=\count442
 \andhelp@=\toks31
 \eqnshift@=\dimen153
 \alignsep@=\dimen154
@@ -630,79 +620,28 @@ File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 \Gin@req@height=\dimen159
 \Gin@req@width=\dimen160
 )
-(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
-x
-\pgfutil@everybye=\toks34
-\pgfutil@tempdima=\dimen161
-\pgfutil@tempdimb=\dimen162
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2025/07/23 v0.6g Insert pages of external PDF documents (AM)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count443
+\calc@Bcount=\count444
+\calc@Adimen=\dimen161
+\calc@Bdimen=\dimen162
+\calc@Askip=\skip91
+\calc@Bskip=\skip92
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count445
+\calc@Cskip=\skip93
 )
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box57
-) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/pgf.revision.tex)
-Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
-))
-Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2025/12/10 v3.0d eso-pic (RN)
+\ESO@tempdima=\dimen163
+\ESO@tempdimb=\dimen164
 
-(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks35
-\pgfkeys@temptoks=\toks36
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
-tered.code.tex
-\pgfkeys@tmptoks=\toks37
-))
-\pgf@x=\dimen163
-\pgf@y=\dimen164
-\pgf@xa=\dimen165
-\pgf@ya=\dimen166
-\pgf@xb=\dimen167
-\pgf@yb=\dimen168
-\pgf@xc=\dimen169
-\pgf@yc=\dimen170
-\pgf@xd=\dimen171
-\pgf@yd=\dimen172
-\w@pgf@writea=\write4
-\r@pgf@reada=\read4
-\c@pgf@counta=\count447
-\c@pgf@countb=\count448
-\c@pgf@countc=\count449
-\c@pgf@countd=\count450
-\t@pgf@toka=\toks38
-\t@pgf@tokb=\toks39
-\t@pgf@tokc=\toks40
-\pgf@sys@id@count=\count451
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
-)
-Driver file for pgf: pgfsys-pdftex.def
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
-ef
-File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
-df.def
-File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
-)))
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
-code.tex
-File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfsyssoftpath@smallbuffer@items=\count452
-\pgfsyssoftpath@bigbuffer@items=\count453
-)
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
-code.tex
-File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)) (/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -723,18 +662,107 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
+\AM@pagewidth=\dimen165
+\AM@pageheight=\dimen166
+\AM@fboxrule=\dimen167
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2025/07/23 v0.6g Pdfpages driver for pdfTeX (AM)
 )
+\pdfpages@includegraphics@status=\count446
+\AM@pagebox=\box57
+\AM@global@opts=\toks34
+\AM@pagecnt=\count447
+\AM@toc@title=\toks35
+\AM@lof@heading=\toks36
+\c@AM@survey=\count448
+\AM@templatesizebox=\box58
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks37
+\pgfutil@tempdima=\dimen168
+\pgfutil@tempdimb=\dimen169
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box59
+) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks38
+\pgfkeys@temptoks=\toks39
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex
+\pgfkeys@tmptoks=\toks40
+))
+\pgf@x=\dimen170
+\pgf@y=\dimen171
+\pgf@xa=\dimen172
+\pgf@ya=\dimen173
+\pgf@xb=\dimen174
+\pgf@yb=\dimen175
+\pgf@xc=\dimen176
+\pgf@yc=\dimen177
+\pgf@xd=\dimen178
+\pgf@yd=\dimen179
+\w@pgf@writea=\write4
+\r@pgf@reada=\read4
+\c@pgf@counta=\count449
+\c@pgf@countb=\count450
+\c@pgf@countc=\count451
+\c@pgf@countd=\count452
+\t@pgf@toka=\toks41
+\t@pgf@tokb=\toks42
+\t@pgf@tokc=\toks43
+\pgf@sys@id@count=\count453
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count454
+\pgfsyssoftpath@bigbuffer@items=\count455
+)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen173
-\pgfmath@count=\count454
-\pgfmath@box=\box58
-\pgfmath@toks=\toks41
-\pgfmath@stack@operand=\toks42
-\pgfmath@stack@operation=\toks43
+\pgfmath@dimen=\dimen180
+\pgfmath@count=\count456
+\pgfmath@box=\box60
+\pgfmath@toks=\toks44
+\pgfmath@stack@operand=\toks45
+\pgfmath@stack@operation=\toks46
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex)
@@ -756,57 +784,57 @@ code.tex)
 erarithmetics.code.tex)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count455
+\c@pgfmathroundto@lastzeros=\count457
 )) (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@picminx=\dimen174
-\pgf@picmaxx=\dimen175
-\pgf@picminy=\dimen176
-\pgf@picmaxy=\dimen177
-\pgf@pathminx=\dimen178
-\pgf@pathmaxx=\dimen179
-\pgf@pathminy=\dimen180
-\pgf@pathmaxy=\dimen181
-\pgf@xx=\dimen182
-\pgf@xy=\dimen183
-\pgf@yx=\dimen184
-\pgf@yy=\dimen185
-\pgf@zx=\dimen186
-\pgf@zy=\dimen187
+\pgf@picminx=\dimen181
+\pgf@picmaxx=\dimen182
+\pgf@picminy=\dimen183
+\pgf@picmaxy=\dimen184
+\pgf@pathminx=\dimen185
+\pgf@pathmaxx=\dimen186
+\pgf@pathminy=\dimen187
+\pgf@pathmaxy=\dimen188
+\pgf@xx=\dimen189
+\pgf@xy=\dimen190
+\pgf@yx=\dimen191
+\pgf@yy=\dimen192
+\pgf@zx=\dimen193
+\pgf@zy=\dimen194
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@path@lastx=\dimen188
-\pgf@path@lasty=\dimen189
+\pgf@path@lastx=\dimen195
+\pgf@path@lasty=\dimen196
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@shorten@end@additional=\dimen190
-\pgf@shorten@start@additional=\dimen191
+\pgf@shorten@end@additional=\dimen197
+\pgf@shorten@start@additional=\dimen198
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfpic=\box59
-\pgf@hbox=\box60
-\pgf@layerbox@main=\box61
-\pgf@picture@serial@count=\count456
+\pgfpic=\box61
+\pgf@hbox=\box62
+\pgf@layerbox@main=\box63
+\pgf@picture@serial@count=\count458
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgflinewidth=\dimen192
+\pgflinewidth=\dimen199
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@pt@x=\dimen193
-\pgf@pt@y=\dimen194
-\pgf@pt@temp=\dimen195
+\pgf@pt@x=\dimen256
+\pgf@pt@y=\dimen257
+\pgf@pt@temp=\dimen258
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -823,14 +851,14 @@ File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowsep=\dimen196
+\pgfarrowsep=\dimen259
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@max=\dimen197
-\pgf@sys@shading@range@num=\count457
-\pgf@shadingcount=\count458
+\pgf@max=\dimen260
+\pgf@sys@shading@range@num=\count459
+\pgf@shadingcount=\count460
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -839,7 +867,7 @@ File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfexternal@startupbox=\box62
+\pgfexternal@startupbox=\box64
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
@@ -860,7 +888,7 @@ File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfnodeparttextbox=\box63
+\pgfnodeparttextbox=\box65
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
@@ -869,8 +897,8 @@ File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@nodesepstart=\dimen198
-\pgf@nodesepend=\dimen199
+\pgf@nodesepstart=\dimen261
+\pgf@nodesepend=\dimen262
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -883,10 +911,10 @@ Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
-\pgffor@iter=\dimen256
-\pgffor@skip=\dimen257
-\pgffor@stack=\toks44
-\pgffor@toks=\toks45
+\pgffor@iter=\dimen263
+\pgffor@skip=\dimen264
+\pgffor@stack=\toks47
+\pgffor@toks=\toks48
 ))
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
@@ -895,34 +923,34 @@ Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@plot@mark@count=\count459
-\pgfplotmarksize=\dimen258
+\pgf@plot@mark@count=\count461
+\pgfplotmarksize=\dimen265
 )
-\tikz@lastx=\dimen259
-\tikz@lasty=\dimen260
-\tikz@lastxsaved=\dimen261
-\tikz@lastysaved=\dimen262
-\tikz@lastmovetox=\dimen263
-\tikz@lastmovetoy=\dimen264
-\tikzleveldistance=\dimen265
-\tikzsiblingdistance=\dimen266
-\tikz@figbox=\box64
-\tikz@figbox@bg=\box65
-\tikz@tempbox=\box66
-\tikz@tempbox@bg=\box67
-\tikztreelevel=\count460
-\tikznumberofchildren=\count461
-\tikznumberofcurrentchild=\count462
-\tikz@fig@count=\count463
+\tikz@lastx=\dimen266
+\tikz@lasty=\dimen267
+\tikz@lastxsaved=\dimen268
+\tikz@lastysaved=\dimen269
+\tikz@lastmovetox=\dimen270
+\tikz@lastmovetoy=\dimen271
+\tikzleveldistance=\dimen272
+\tikzsiblingdistance=\dimen273
+\tikz@figbox=\box66
+\tikz@figbox@bg=\box67
+\tikz@tempbox=\box68
+\tikz@tempbox@bg=\box69
+\tikztreelevel=\count462
+\tikznumberofchildren=\count463
+\tikznumberofcurrentchild=\count464
+\tikz@fig@count=\count465
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfmatrixcurrentrow=\count464
-\pgfmatrixcurrentcolumn=\count465
-\pgf@matrix@numberofcolumns=\count466
+\pgfmatrixcurrentrow=\count466
+\pgfmatrixcurrentcolumn=\count467
+\pgf@matrix@numberofcolumns=\count468
 )
-\tikz@expandcount=\count467
+\tikz@expandcount=\count469
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -933,12 +961,12 @@ File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 Package: pgfplots 2025/08/14 v1.18.2 Data Visualization (1.18.2)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-\t@pgfplots@toka=\toks46
-\t@pgfplots@tokb=\toks47
-\t@pgfplots@tokc=\toks48
-\pgfplots@tmpa=\dimen267
-\c@pgfplots@coordindex=\count468
-\c@pgfplots@scanlineindex=\count469
+\t@pgfplots@toka=\toks49
+\t@pgfplots@tokb=\toks50
+\t@pgfplots@tokc=\toks51
+\pgfplots@tmpa=\dimen274
+\c@pgfplots@coordindex=\count470
+\c@pgfplots@scanlineindex=\count471
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
 .code.tex))
@@ -958,14 +986,14 @@ liststructure.code.tex)
 liststructureext.code.tex)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 array.code.tex
-\c@pgfplotsarray@tmp=\count470
+\c@pgfplotsarray@tmp=\count472
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 matrix.code.tex)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
 shared.code.tex
-\c@pgfplotstable@counta=\count471
-\t@pgfplotstable@a=\toks49
+\c@pgfplotstable@counta=\count473
+\t@pgfplotstable@a=\toks52
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 deque.code.tex)
@@ -977,7 +1005,7 @@ ta.code.tex))
 .code.tex)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
 s.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count472
+\c@pgfplotslibrarysurf@no=\count474
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
 .surfshading.pgfsys-pdftex.def)))
@@ -1009,16 +1037,16 @@ x)
 s/tikzlibrarydecorations.code.tex
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/modules/pgfmoduledecoration
 s.code.tex
-\pgfdecoratedcompleteddistance=\dimen268
-\pgfdecoratedremainingdistance=\dimen269
-\pgfdecoratedinputsegmentcompleteddistance=\dimen270
-\pgfdecoratedinputsegmentremainingdistance=\dimen271
-\pgf@decorate@distancetomove=\dimen272
-\pgf@decorate@repeatstate=\count473
-\pgfdecorationsegmentamplitude=\dimen273
-\pgfdecorationsegmentlength=\dimen274
+\pgfdecoratedcompleteddistance=\dimen275
+\pgfdecoratedremainingdistance=\dimen276
+\pgfdecoratedinputsegmentcompleteddistance=\dimen277
+\pgfdecoratedinputsegmentremainingdistance=\dimen278
+\pgf@decorate@distancetomove=\dimen279
+\pgf@decorate@repeatstate=\count475
+\pgfdecorationsegmentamplitude=\dimen280
+\pgfdecorationsegmentlength=\dimen281
 )
-\tikz@lib@dec@box=\box68
+\tikz@lib@dec@box=\box70
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarydecorations.pathmorphing.code.tex
@@ -1030,13 +1058,13 @@ s/tikzlibrarydecorations.pathreplacing.code.tex
 brarydecorations.pathreplacing.code.tex))
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
 ts.contourlua.code.tex)
-\pgfplots@numplots=\count474
-\pgfplots@xmin@reg=\dimen275
-\pgfplots@xmax@reg=\dimen276
-\pgfplots@ymin@reg=\dimen277
-\pgfplots@ymax@reg=\dimen278
-\pgfplots@zmin@reg=\dimen279
-\pgfplots@zmax@reg=\dimen280
+\pgfplots@numplots=\count476
+\pgfplots@xmin@reg=\dimen282
+\pgfplots@xmax@reg=\dimen283
+\pgfplots@ymin@reg=\dimen284
+\pgfplots@ymax@reg=\dimen285
+\pgfplots@zmin@reg=\dimen286
+\pgfplots@zmax@reg=\dimen287
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryplotmarks.code.tex
@@ -1045,7 +1073,27 @@ File: tikzlibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmar
 ks.code.tex
 File: pgflibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))) (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/pifont.sty
+)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplotstable 2025/08/14 v1.18.2 Table typesetting and Pretty-printing
+ (1.18.2)
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
+.code.tex
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
+.coltype.code.tex))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen288
+\ar@mcellbox=\box71
+\extrarowheight=\dimen289
+\NC@list=\toks53
+\extratabsurround=\skip94
+\backup@length=\skip95
+\ar@cellbox=\box72
+))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
 LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
 
@@ -1073,23 +1121,23 @@ Package: suffix 2006/07/15 1.5a Variant command support
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.sty
 (/usr/local/texlive/2026/texmf-dist/tex/generic/xstring/xstring.tex
-\xs_counta=\count475
-\xs_countb=\count476
+\xs_counta=\count477
+\xs_countb=\count478
 )
 Package: xstring 2023/08/22 v1.86 String manipulations (CT)
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-\AC@clearlist=\toks50
+\AC@clearlist=\toks54
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
 meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowinset=\dimen281
-\pgfarrowlength=\dimen282
-\pgfarrowwidth=\dimen283
-\pgfarrowlinewidth=\dimen284
+\pgfarrowinset=\dimen290
+\pgfarrowlength=\dimen291
+\pgfarrowwidth=\dimen292
+\pgfarrowlinewidth=\dimen293
 )
 (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
@@ -1105,76 +1153,65 @@ File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty
-Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen285
-\ar@mcellbox=\box69
-\extrarowheight=\dimen286
-\NC@list=\toks51
-\extratabsurround=\skip91
-\backup@length=\skip92
-\ar@cellbox=\box70
-)
-\TX@col@width=\dimen287
-\TX@old@table=\dimen288
-\TX@old@col=\dimen289
-\TX@target=\dimen290
-\TX@delta=\dimen291
-\TX@cols=\count477
-\TX@ftn=\toks52
+\TX@col@width=\dimen294
+\TX@old@table=\dimen295
+\TX@old@col=\dimen296
+\TX@target=\dimen297
+\TX@delta=\dimen298
+\TX@cols=\count479
+\TX@ftn=\toks55
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip93
-\multirow@cntb=\count478
-\multirow@dima=\skip94
-\bigstrutjot=\dimen292
+\multirow@colwidth=\skip96
+\multirow@cntb=\count480
+\multirow@dima=\skip97
+\bigstrutjot=\dimen299
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count479
-\algocf@hangindent=\skip95
+\c@AlgoLine=\count481
+\algocf@hangindent=\skip98
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count480
+\c@checkoddpage=\count482
 )
-\skiptotal=\skip96
-\skiplinenumber=\skip97
-\skiprule=\skip98
-\skiphlne=\skip99
-\skiptext=\skip100
-\skiplength=\skip101
-\algomargin=\skip102
-\skipalgocfslide=\skip103
-\algowidth=\dimen293
-\inoutsize=\dimen294
-\inoutindent=\dimen295
-\interspacetitleruled=\dimen296
-\interspacealgoruled=\dimen297
-\interspacetitleboxruled=\dimen298
-\algocf@ruledwidth=\skip104
-\algocf@inoutbox=\box71
-\algocf@inputbox=\box72
-\AlCapSkip=\skip105
-\AlCapHSkip=\skip106
-\algoskipindent=\skip107
-\algocf@nlbox=\box73
-\algocf@hangingbox=\box74
-\algocf@untilbox=\box75
-\algocf@skipuntil=\skip108
-\algocf@capbox=\box76
-\algocf@lcaptionbox=\skip109
-\algoheightruledefault=\skip110
-\algoheightrule=\skip111
-\algotitleheightruledefault=\skip112
-\algotitleheightrule=\skip113
-\c@algocfline=\count481
-\c@algocfproc=\count482
-\c@algocf=\count483
-\algocf@algoframe=\box77
-\algocf@algobox=\box78
+\skiptotal=\skip99
+\skiplinenumber=\skip100
+\skiprule=\skip101
+\skiphlne=\skip102
+\skiptext=\skip103
+\skiplength=\skip104
+\algomargin=\skip105
+\skipalgocfslide=\skip106
+\algowidth=\dimen300
+\inoutsize=\dimen301
+\inoutindent=\dimen302
+\interspacetitleruled=\dimen303
+\interspacealgoruled=\dimen304
+\interspacetitleboxruled=\dimen305
+\algocf@ruledwidth=\skip107
+\algocf@inoutbox=\box73
+\algocf@inputbox=\box74
+\AlCapSkip=\skip108
+\AlCapHSkip=\skip109
+\algoskipindent=\skip110
+\algocf@nlbox=\box75
+\algocf@hangingbox=\box76
+\algocf@untilbox=\box77
+\algocf@skipuntil=\skip111
+\algocf@capbox=\box78
+\algocf@lcaptionbox=\skip112
+\algoheightruledefault=\skip113
+\algoheightrule=\skip114
+\algotitleheightruledefault=\skip115
+\algotitleheightrule=\skip116
+\c@algocfline=\count483
+\c@algocfproc=\count484
+\c@algocf=\count485
+\algocf@algoframe=\box79
+\algocf@algobox=\box80
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
@@ -1188,54 +1225,54 @@ Package tocbasic Info: Loading of class-dependent code for package caption3
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen299
-\captionmargin=\dimen300
-\caption@leftmargin=\dimen301
-\caption@rightmargin=\dimen302
-\caption@width=\dimen303
-\caption@indent=\dimen304
-\caption@parindent=\dimen305
-\caption@hangindent=\dimen306
+\caption@tempdima=\dimen306
+\captionmargin=\dimen307
+\caption@leftmargin=\dimen308
+\caption@rightmargin=\dimen309
+\caption@width=\dimen310
+\caption@indent=\dimen311
+\caption@parindent=\dimen312
+\caption@hangindent=\dimen313
 )
-\c@caption@flags=\count484
-\c@continuedfloat=\count485
+\c@caption@flags=\count486
+\c@continuedfloat=\count487
 )
-\c@KVtest=\count486
-\sf@farskip=\skip114
-\sf@captopadj=\dimen307
-\sf@capskip=\skip115
-\sf@nearskip=\skip116
-\c@subfigure=\count487
-\c@subfigure@save=\count488
-\c@lofdepth=\count489
-\c@subtable=\count490
-\c@subtable@save=\count491
-\c@lotdepth=\count492
-\sf@top=\skip117
-\sf@bottom=\skip118
+\c@KVtest=\count488
+\sf@farskip=\skip117
+\sf@captopadj=\dimen314
+\sf@capskip=\skip118
+\sf@nearskip=\skip119
+\c@subfigure=\count489
+\c@subfigure@save=\count490
+\c@lofdepth=\count491
+\c@subtable=\count492
+\c@subtable@save=\count493
+\c@lotdepth=\count494
+\sf@top=\skip120
+\sf@bottom=\skip121
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count493
-\lst@gtempboxa=\box79
-\lst@token=\toks53
-\lst@length=\count494
-\lst@currlwidth=\dimen308
-\lst@column=\count495
-\lst@pos=\count496
-\lst@lostspace=\dimen309
-\lst@width=\dimen310
-\lst@newlines=\count497
-\lst@lineno=\count498
-\lst@maxwidth=\dimen311
+\lst@mode=\count495
+\lst@gtempboxa=\box81
+\lst@token=\toks56
+\lst@length=\count496
+\lst@currlwidth=\dimen315
+\lst@column=\count497
+\lst@pos=\count498
+\lst@lostspace=\dimen316
+\lst@width=\dimen317
+\lst@newlines=\count499
+\lst@lineno=\count500
+\lst@maxwidth=\dimen318
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
-\c@lstnumber=\count499
-\lst@skipnumbers=\count500
-\lst@framebox=\box80
+\c@lstnumber=\count501
+\lst@skipnumbers=\count502
+\lst@framebox=\box82
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2025/11/14 1.11b listings configuration
@@ -1306,25 +1343,25 @@ File: t1pplj.fd 2004/09/06 font definitions for T1/pplj.
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
-\MT@toks=\toks54
-\MT@tempbox=\box81
-\MT@count=\count501
+\MT@toks=\toks57
+\MT@tempbox=\box83
+\MT@count=\count503
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
 LaTeX Info: Redefining \leftprotrusion on input line 1085.
-\MT@prot@toks=\toks55
+\MT@prot@toks=\toks58
 LaTeX Info: Redefining \rightprotrusion on input line 1104.
 LaTeX Info: Redefining \textls on input line 1449.
-\MT@outer@kern=\dimen312
+\MT@outer@kern=\dimen319
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
-\MT@listname@count=\count502
+\MT@listname@count=\count504
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 944.
 LaTeX Info: Redefining \lslig on input line 944.
-\MT@outer@space=\skip119
+\MT@outer@space=\skip122
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
@@ -1356,23 +1393,23 @@ Package: mparhack 2021-05-02 v1.5 (T. Sgouros and S. Ulrich)
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen313
-\lightrulewidth=\dimen314
-\cmidrulewidth=\dimen315
-\belowrulesep=\dimen316
-\belowbottomsep=\dimen317
-\aboverulesep=\dimen318
-\abovetopsep=\dimen319
-\cmidrulesep=\dimen320
-\cmidrulekern=\dimen321
-\defaultaddspace=\dimen322
-\@cmidla=\count503
-\@cmidlb=\count504
-\@aboverulesep=\dimen323
-\@belowrulesep=\dimen324
-\@thisruleclass=\count505
-\@lastruleclass=\count506
-\@thisrulewidth=\dimen325
+\heavyrulewidth=\dimen320
+\lightrulewidth=\dimen321
+\cmidrulewidth=\dimen322
+\belowrulesep=\dimen323
+\belowbottomsep=\dimen324
+\aboverulesep=\dimen325
+\abovetopsep=\dimen326
+\cmidrulesep=\dimen327
+\cmidrulekern=\dimen328
+\defaultaddspace=\dimen329
+\@cmidla=\count505
+\@cmidlb=\count506
+\@aboverulesep=\dimen330
+\@belowrulesep=\dimen331
+\@thisruleclass=\count507
+\@lastruleclass=\count508
+\@thisrulewidth=\dimen332
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/textcase/textcase.sty
 Package: textcase 2025/02/16 v1.05 Text only upper/lower case changing (DPC)
@@ -1396,15 +1433,15 @@ Package scrlayer-scrpage Info: Makeing stand-alone element `pagehead' from
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
-\ttl@box=\box82
-\beforetitleunit=\skip120
-\aftertitleunit=\skip121
-\ttl@plus=\dimen326
-\ttl@minus=\dimen327
-\ttl@toksa=\toks56
-\titlewidth=\dimen328
-\titlewidthlast=\dimen329
-\titlewidthfirst=\dimen330
+\ttl@box=\box84
+\beforetitleunit=\skip123
+\aftertitleunit=\skip124
+\ttl@plus=\dimen333
+\ttl@minus=\dimen334
+\ttl@toksa=\toks59
+\titlewidth=\dimen335
+\titlewidthlast=\dimen336
+\titlewidthfirst=\dimen337
 
 
 Package titlesec Warning: Non standard sectioning command \section
@@ -1451,52 +1488,52 @@ Class scrreprt Warning: Usage of package `tocloft' together
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has chapter divisions on input line 51.
-\cftparskip=\skip122
-\cftbeforetoctitleskip=\skip123
-\cftaftertoctitleskip=\skip124
-\cftbeforepartskip=\skip125
-\cftpartnumwidth=\skip126
-\cftpartindent=\skip127
-\cftbeforechapskip=\skip128
-\cftchapindent=\skip129
-\cftchapnumwidth=\skip130
-\cftbeforesecskip=\skip131
-\cftsecindent=\skip132
-\cftsecnumwidth=\skip133
-\cftbeforesubsecskip=\skip134
-\cftsubsecindent=\skip135
-\cftsubsecnumwidth=\skip136
-\cftbeforesubsubsecskip=\skip137
-\cftsubsubsecindent=\skip138
-\cftsubsubsecnumwidth=\skip139
-\cftbeforeparaskip=\skip140
-\cftparaindent=\skip141
-\cftparanumwidth=\skip142
-\cftbeforesubparaskip=\skip143
-\cftsubparaindent=\skip144
-\cftsubparanumwidth=\skip145
-\cftbeforeloftitleskip=\skip146
-\cftafterloftitleskip=\skip147
-\cftbeforefigskip=\skip148
-\cftfigindent=\skip149
-\cftfignumwidth=\skip150
-\cftbeforelottitleskip=\skip151
-\cftafterlottitleskip=\skip152
-\cftbeforetabskip=\skip153
-\cfttabindent=\skip154
-\cfttabnumwidth=\skip155
-\cftbeforesubfigskip=\skip156
-\cftsubfigindent=\skip157
-\cftsubfignumwidth=\skip158
-\cftbeforesubtabskip=\skip159
-\cftsubtabindent=\skip160
-\cftsubtabnumwidth=\skip161
+\cftparskip=\skip125
+\cftbeforetoctitleskip=\skip126
+\cftaftertoctitleskip=\skip127
+\cftbeforepartskip=\skip128
+\cftpartnumwidth=\skip129
+\cftpartindent=\skip130
+\cftbeforechapskip=\skip131
+\cftchapindent=\skip132
+\cftchapnumwidth=\skip133
+\cftbeforesecskip=\skip134
+\cftsecindent=\skip135
+\cftsecnumwidth=\skip136
+\cftbeforesubsecskip=\skip137
+\cftsubsecindent=\skip138
+\cftsubsecnumwidth=\skip139
+\cftbeforesubsubsecskip=\skip140
+\cftsubsubsecindent=\skip141
+\cftsubsubsecnumwidth=\skip142
+\cftbeforeparaskip=\skip143
+\cftparaindent=\skip144
+\cftparanumwidth=\skip145
+\cftbeforesubparaskip=\skip146
+\cftsubparaindent=\skip147
+\cftsubparanumwidth=\skip148
+\cftbeforeloftitleskip=\skip149
+\cftafterloftitleskip=\skip150
+\cftbeforefigskip=\skip151
+\cftfigindent=\skip152
+\cftfignumwidth=\skip153
+\cftbeforelottitleskip=\skip154
+\cftafterlottitleskip=\skip155
+\cftbeforetabskip=\skip156
+\cfttabindent=\skip157
+\cfttabnumwidth=\skip158
+\cftbeforesubfigskip=\skip159
+\cftsubfigindent=\skip160
+\cftsubfignumwidth=\skip161
+\cftbeforesubtabskip=\skip162
+\cftsubtabindent=\skip163
+\cftsubtabnumwidth=\skip164
 )
-\newnumberwidth=\skip162
-\beforebibskip=\skip163
-\newchnumberwidth=\skip164
-\figurelabelwidth=\skip165
-\tablelabelwidth=\skip166
+\newnumberwidth=\skip165
+\beforebibskip=\skip166
+\newchnumberwidth=\skip167
+\figurelabelwidth=\skip168
+\tablelabelwidth=\skip169
 
 Using KOMA-command "deffootnote" for footnote setup
 (/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrtime.sty
@@ -1527,14 +1564,14 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count507
+\c@section@level=\count509
 ) (/usr/local/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen331
-\Hy@linkcounter=\count508
-\Hy@pagecounter=\count509
+\@linkdim=\dimen338
+\Hy@linkcounter=\count510
+\Hy@pagecounter=\count511
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
@@ -1544,7 +1581,7 @@ Now handling font encoding PD1 ...
 (/usr/local/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count510
+\Hy@SavedSpaceFactor=\count512
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
@@ -1559,9 +1596,9 @@ Package hyperref Info: Plain pages OFF on input line 4216.
 Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4468.
-\c@Hy@tempcnt=\count511
+\c@Hy@tempcnt=\count513
 LaTeX Info: Redefining \url on input line 4807.
-\XeTeXLinkMargin=\dimen332
+\XeTeXLinkMargin=\dimen339
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -1570,9 +1607,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count512
-\Field@Width=\dimen333
-\Fld@charsize=\dimen334
+\Fld@menulength=\count514
+\Field@Width=\dimen340
+\Fld@charsize=\dimen341
 Package hyperref Info: Hyper figures OFF on input line 6084.
 Package hyperref Info: Link nesting OFF on input line 6089.
 Package hyperref Info: Hyper index ON on input line 6092.
@@ -1580,15 +1617,15 @@ Package hyperref Info: backreferencing OFF on input line 6099.
 Package hyperref Info: Link coloring OFF on input line 6104.
 Package hyperref Info: Link coloring with OCG OFF on input line 6109.
 Package hyperref Info: PDF/A mode OFF on input line 6114.
-\Hy@abspage=\count513
-\c@Item=\count514
+\Hy@abspage=\count515
+\c@Item=\count516
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
-\Fld@listcount=\count515
-\c@bookmark@seq@number=\count516
+\Fld@listcount=\count517
+\c@bookmark@seq@number=\count518
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
@@ -1599,7 +1636,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 84.
 )
-\Hy@SectionHShift=\skip167
+\Hy@SectionHShift=\skip170
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 732.
 Package hyperref Info: Option `linktocpage' set `true' on input line 732.
@@ -1613,8 +1650,8 @@ Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks57
-\verbatim@line=\toks58
+\every@verbatim=\toks60
+\verbatim@line=\toks61
 \verbatim@in@stream=\read5
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/environ/environ.sty
@@ -1623,26 +1660,26 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (/usr/local/texlive/2026/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box83
-\tcb@upperbox=\box84
-\tcb@lowerbox=\box85
-\tcb@phantombox=\box86
-\c@tcbbreakpart=\count517
-\c@tcblayer=\count518
-\c@tcolorbox@number=\count519
-\l__tcobox_tmpa_box=\box87
-\l__tcobox_tmpa_dim=\dimen335
-\tcb@temp=\box88
-\tcb@temp=\box89
+\tcb@titlebox=\box85
+\tcb@upperbox=\box86
+\tcb@lowerbox=\box87
+\tcb@phantombox=\box88
+\c@tcbbreakpart=\count519
+\c@tcblayer=\count520
+\c@tcolorbox@number=\count521
+\l__tcobox_tmpa_box=\box89
+\l__tcobox_tmpa_dim=\dimen342
 \tcb@temp=\box90
 \tcb@temp=\box91
+\tcb@temp=\box92
+\tcb@temp=\box93
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '6.9.0'
-\c@tcbrastercolumn=\count520
-\c@tcbrasterrow=\count521
-\c@tcbrasternum=\count522
-\c@tcbraster=\count523
+\c@tcbrastercolumn=\count522
+\c@tcbrasterrow=\count523
+\c@tcbrasternum=\count524
+\c@tcbraster=\count525
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.9.0'
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
@@ -1654,7 +1691,7 @@ Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.co
 de.tex
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
-\l__tikzfill_img_box=\box92
+\l__tikzfill_img_box=\box94
 ))
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.9.0'
@@ -1665,9 +1702,9 @@ Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
 Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 )
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box93
-\tcb@totalupperbox=\box94
-\tcb@totallowerbox=\box95
+\tcb@testbox=\box95
+\tcb@totalupperbox=\box96
+\tcb@totallowerbox=\box97
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '6.9.0'
@@ -1675,10 +1712,10 @@ Library (tcolorbox): 'tcbhooks.code.tex' version '6.9.0'
 Library (tcolorbox): 'tcbtheorems.code.tex' version '6.9.0'
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '6.9.0'
-\tcbfitdim=\dimen336
-\tcb@lowerfitdim=\dimen337
-\tcb@upperfitdim=\dimen338
-\tcb@cur@hbadness=\count524
+\tcbfitdim=\dimen343
+\tcb@lowerfitdim=\dimen344
+\tcb@upperfitdim=\dimen345
+\tcb@cur@hbadness=\count526
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.te
 x
@@ -1692,7 +1729,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.9.0'
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.9.0'
 )
-\c@tcblisting=\count525
+\c@tcblisting=\count527
 )) (/usr/local/texlive/2026/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty
 Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
 )) (/usr/local/texlive/2026/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex
@@ -1714,19 +1751,19 @@ File: pgflibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 Library (tcolorbox): 'tcbposter.code.tex' version '6.9.0'
 )) (/usr/local/texlive/2026/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
-\everycr=\toks59
-\minrowclearance=\skip168
-\rownum=\count526
+\everycr=\toks62
+\minrowclearance=\skip171
+\rownum=\count528
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 227.
-Package hyperref Info: Option `linktocpage' set `true' on input line 227.
-Package hyperref Info: Option `breaklinks' set `true' on input line 227.
-Package hyperref Info: Option `pageanchor' set `true' on input line 227.
-Package hyperref Info: Option `plainpages' set `false' on input line 227.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 227.
+Package hyperref Info: Option `colorlinks' set `true' on input line 240.
+Package hyperref Info: Option `linktocpage' set `true' on input line 240.
+Package hyperref Info: Option `breaklinks' set `true' on input line 240.
+Package hyperref Info: Option `pageanchor' set `true' on input line 240.
+Package hyperref Info: Option `plainpages' set `false' on input line 240.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 240.
 
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 227.
-Package hyperref Info: Option `hypertexnames' set `true' on input line 227.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 240.
+Package hyperref Info: Option `hypertexnames' set `true' on input line 240.
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
@@ -1747,19 +1784,16 @@ Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
 )
-\BKM@id=\count527
+\BKM@id=\count529
 ))
-(./ClassicThesis.aux (./FrontBackmatter/DirtyTitlepage.aux)
-(./FrontBackmatter/Titlepage.aux) (./FrontBackmatter/Titleback.aux)
-(./FrontBackmatter/Dedication.aux) (./FrontBackmatter/Abstract.aux
-Package babel Info: 'ngerman' activates 'german' shorthands.
-(babel)             Reported on input line 5.
-)
+(./ClassicThesis.aux (./FrontBackmatter/Titlepage.aux)
+(./FrontBackmatter/Dedication.aux) (./FrontBackmatter/Abstract.aux)
 (./FrontBackmatter/Publications.aux) (./FrontBackmatter/Acknowledgments.aux)
 (./FrontBackmatter/Contents.aux) (./Chapters/Chapter01.aux)
 (./Chapters/Chapter02_EfficientLanguageModels.aux) (./Chapters/Chapter02.aux)
-(./Chapters/Chapter03.aux) (./Chapters/Chapter04.aux) (./Chapters/Chapter0A.aux
-) (./FrontBackmatter/Bibliography.aux) (./FrontBackmatter/Declaration.aux)
+(./Chapters/Chapter03.aux) (./Chapters/Chapter04.aux) (./Chapters/Chapter05.aux
+) (./Chapters/ConclusionAndFutureWork.aux) (./Chapters/Chapter0A.aux)
+(./FrontBackmatter/Bibliography.aux) (./FrontBackmatter/Declaration.aux)
 (./FrontBackmatter/Colophon.aux))
 \openout1 = `ClassicThesis.aux'.
 
@@ -1851,17 +1885,17 @@ Package biblatex Info: Reference segment=0 on input line 61.
 
 (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count528
-\scratchdimen=\dimen339
-\scratchbox=\box96
-\nofMPsegments=\count529
-\nofMParguments=\count530
-\everyMPshowfont=\toks60
-\MPscratchCnt=\count531
-\MPscratchDim=\dimen340
-\MPnumerator=\count532
-\makeMPintoPDFobject=\count533
-\everyMPtoPDFconversion=\toks61
+\scratchcounter=\count530
+\scratchdimen=\dimen346
+\scratchbox=\box98
+\nofMPsegments=\count531
+\nofMParguments=\count532
+\everyMPshowfont=\toks63
+\MPscratchCnt=\count533
+\MPscratchDim=\dimen347
+\MPnumerator=\count534
+\makeMPintoPDFobject=\count535
+\everyMPtoPDFconversion=\toks64
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1871,6 +1905,27 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2025-06-23 v0.14 Display of landscape pages in PDF
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.st
+y
+Package: pdflscape-nometadata 2025-06-23 v0.14 Display of landscape pages in PD
+F (HO)
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/lscapeenhanced/lscapeenhanced.sty
+Package: lscapeenhanced 2024-04-16 v1.0 improved lscape package
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xpatch/xpatch.sty
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+)
+Package lscapeenhanced Info: \landscape patched to make \textheight change opti
+onal on input line 72.
+\@lscapeenhanced@textheight=\skip172
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+))
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
@@ -1879,9 +1934,9 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count534
+\c@lstlisting=\count536
 Package tocbasic Info: setting babel extension for `lol' on input line 61.
-\scr@dte@lstlisting@maxnumwidth=\skip169
+\scr@dte@lstlisting@maxnumwidth=\skip173
 LaTeX Info: Redefining \microtypecontext on input line 61.
 Package microtype Info: Applying patch `item' on input line 61.
 Package microtype Info: Applying patch `toc' on input line 61.
@@ -1902,45 +1957,118 @@ Package microtype Info: No adjustment of character kerning.
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-\c@listings=\count535
-\cftbeforelistingsskip=\skip170
-\cftlistingsindent=\skip171
-\cftlistingsnumwidth=\skip172
-\c@loldepth=\count536
-\cftbeforeloltitleskip=\skip173
-\cftafterloltitleskip=\skip174
-\listingslabelwidth=\skip175
+\c@listings=\count537
+\cftbeforelistingsskip=\skip174
+\cftlistingsindent=\skip175
+\cftlistingsnumwidth=\skip176
+\c@loldepth=\count538
+\cftbeforeloltitleskip=\skip177
+\cftafterloltitleskip=\skip178
+\listingslabelwidth=\skip179
 Package hyperref Info: Link coloring ON on input line 61.
-\openout2 = `FrontBackmatter/DirtyTitlepage.aux'.
+\openout2 = `FrontBackmatter/Titlepage.aux'.
 
 
-(./FrontBackmatter/DirtyTitlepage.tex
+(./FrontBackmatter/Titlepage.tex
+<papers/TUL/exemple.pdf, id=43, 597.50829pt x 845.0471pt>
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf>
+Package pdftex.def Info: papers/TUL/exemple.pdf  used on input line 11.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+<papers/TUL/exemple.pdf, id=45, page=1, 597.50829pt x 845.0471pt>
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 1>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page1 used on input line 11.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 1>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page1 used on input line 11.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 1>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page1 used on input line 11.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 1>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page1 used on input line 11.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 1>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page1 used on input line 11.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [1
+
+
+
+ <./papers/TUL/exemple.pdf{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/u
+pdmap/pdftex.map}>]
+<papers/TUL/exemple.pdf, id=99, page=2, 597.50829pt x 845.0471pt>
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 2>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page2 used on input line 11.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 2>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page2 used on input line 11.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: papers/TUL/exemple.pdf Graphic file (type pdf)
+<use papers/TUL/exemple.pdf, page 2>
+Package pdftex.def Info: papers/TUL/exemple.pdf , page2 used on input line 11.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [2
+
+ <./papers/TUL/exemple.pdf>])
+\openout2 = `FrontBackmatter/Dedication.aux'.
+
+ (./FrontBackmatter/Dedication.tex)
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[3
+
+
+
+
+
+{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[4
+
+
+
+
+]
+\openout2 = `FrontBackmatter/Abstract.aux'.
+
+ (./FrontBackmatter/Abstract.tex
 LaTeX Font Info:    Trying to load font information for OT1+pplx on input line 
-8.
+12.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-8.
+12.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-8.
+12.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-8.
+12.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-8.
+12.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -1953,63 +2081,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[1
-
-
-{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
-al/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-\openout2 = `FrontBackmatter/Titlepage.aux'.
-
-
-(./FrontBackmatter/Titlepage.tex
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[2
-
-
-
-
-
-]
-<gfx/TFZsuperellipse_bw.pdf, id=55, 260.5755pt x 203.14595pt>
-File: gfx/TFZsuperellipse_bw.pdf Graphic file (type pdf)
-<use gfx/TFZsuperellipse_bw.pdf>
-Package pdftex.def Info: gfx/TFZsuperellipse_bw.pdf  used on input line 23.
-(pdftex.def)             Requested size: 170.71652pt x 133.09721pt.
-
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[3 <./gfx/TFZsuperellipse_bw.pdf>])
-\openout2 = `FrontBackmatter/Titleback.aux'.
-
- (./FrontBackmatter/Titleback.tex
-LaTeX Font Info:    Trying to load font information for TS1+pplj on input line 
-8.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ts1pplj.fd
-File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
-))
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[4
-
-
-
-]
-\openout2 = `FrontBackmatter/Dedication.aux'.
-
- (./FrontBackmatter/Dedication.tex)
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
 [5
-
-
-
-
 
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -2021,42 +2093,11 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 ]
-\openout2 = `FrontBackmatter/Abstract.aux'.
-
- (./FrontBackmatter/Abstract.tex
-LaTeX Font Info:    Trying to load font information for T1+fvm on input line 16
-.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/bera/t1fvm.fd
-File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
-)
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.30756pt on input line 16.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `fvm' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-)
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[7
-
-]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[8
-
-
-
-
-]
 \openout2 = `FrontBackmatter/Publications.aux'.
 
  (./FrontBackmatter/Publications.tex
-\blx@maxsegment@1=\count537
-\blx@sectionciteorder@1=\count538
+\blx@maxsegment@1=\count539
+\blx@sectionciteorder@1=\count540
 Package biblatex Info: Reference section=1 on input line 10.
 \openout3 = `ClassicThesis1-blx.aux'.
 
@@ -2064,9 +2105,21 @@ Package biblatex Info: Setting label 'refsection:1' on input line 10.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplj/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 13
+.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/bera/t1fvm.fd
+File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
+)
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 9.30756pt on input line 13.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `fvm' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 Package biblatex Info: Reference section=0 on input line 14.
 )
-Overfull \hbox (1.76471pt too wide) in paragraph at lines 16--78
+Overfull \hbox (1.76471pt too wide) in paragraph at lines 16--77
 []\T1/pplj/m/it/10.95 (-20) Attention\T1/pplj/m/n/10.95 (-20) : This re-quires 
 a sep-a-rate run of \T1/fvm/m/n/10.95 bibtex \T1/pplj/m/n/10.95 (-20) for your 
 \T1/fvm/m/n/10.95 refsection\T1/pplj/m/n/10.95 (-20) ,
@@ -2076,7 +2129,7 @@ a sep-a-rate run of \T1/fvm/m/n/10.95 bibtex \T1/pplj/m/n/10.95 (-20) for your
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[9
+[7
 
 
 
@@ -2084,7 +2137,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[10
+[8
 
 
 
@@ -2099,13 +2152,13 @@ LaTeX Font Info:    Font shape `T1/pplj/m/sl' in size <10.95> not available
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[11
+[9
 
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[12
+[10
 
 
 
@@ -2117,19 +2170,19 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Package tocbasic Info: character protrusion at toc deactivated on input line 11
 .
  (./ClassicThesis.toc
-Overfull \hbox (15.71709pt too wide) in paragraph at lines 9--9
+Overfull \hbox (15.56456pt too wide) in paragraph at lines 7--7
  [][] []\T1/pplj/m/n/10.95 (-20) The Trans-former, the best ma-chine lan-guage 
 learner? []  
  []
 
 
-Overfull \hbox (3.33008pt too wide) in paragraph at lines 20--20
+Overfull \hbox (3.33008pt too wide) in paragraph at lines 18--18
  [][] []\T1/pplj/m/n/10.95 (-20) The best train-ing ob-jec-tive for com-pres-si
 on []  
  []
 
 
-Overfull \hbox (31.66957pt too wide) in paragraph at lines 44--44
+Overfull \hbox (30.52213pt too wide) in paragraph at lines 42--42
  [][] []\T1/pplj/m/n/10.95 (-20) Motivation: Ac-ti-va-tions are more low-rank t
 han weights []  
  []
@@ -2138,24 +2191,24 @@ han weights []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[13
+[11
 
 
 
 ]
-Overfull \hbox (22.44344pt too wide) in paragraph at lines 124--124
+Overfull \hbox (22.44344pt too wide) in paragraph at lines 122--122
  [][] []\T1/pplj/m/n/10.95 (-20) Wolof-Specific Hu-BERT Con-tin-ued Pre-train-i
 ng []  
  []
 
 
-Overfull \hbox (12.4649pt too wide) in paragraph at lines 127--127
+Overfull \hbox (12.4649pt too wide) in paragraph at lines 125--125
  [][] []\T1/pplj/m/n/10.95 (-20) Supervised ASR Fine-Tuning and Eval-u-a-tion [
 ]  
  []
 
 
-Overfull \hbox (23.2944pt too wide) in paragraph at lines 130--130
+Overfull \hbox (23.2944pt too wide) in paragraph at lines 128--128
  [][] []\T1/pplj/m/n/10.95 (-20) From a Speech En-coder to a Wolof Speech LLM [
 ]  
  []
@@ -2164,7 +2217,12 @@ Overfull \hbox (23.2944pt too wide) in paragraph at lines 130--130
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[14])
+[12]
+Overfull \hbox (3.75697pt too wide) in paragraph at lines 164--164
+ [][] []\T1/pplj/m/n/10.95 (-20) Transformer MLPs as Key-Value Mem-o-ries []  
+ []
+
+)
 \tf@toc=\write5
 \openout5 = `ClassicThesis.toc'.
 
@@ -2172,67 +2230,86 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[15]
+[13]
 Package tocbasic Info: character protrusion at lof deactivated on input line 29
 .
  (./ClassicThesis.lof
-Overfull \hbox (31.68808pt too wide) in paragraph at lines 17--17
+Overfull \hbox (31.68808pt too wide) in paragraph at lines 14--14
  \T1/pplj/m/n/10.95 (-20) taken from [][]https://blog.squeezebits.com/vocabular
 y- 
  []
 
 
-Overfull \hbox (7.29114pt too wide) in paragraph at lines 23--23
+Overfull \hbox (7.29114pt too wide) in paragraph at lines 20--20
  [][] []\T1/pplj/m/n/10.95 (-20) Fixed-token scal-ing view of Chin-chilla and L
 lama 
  []
 
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[16
-
-]
-Overfull \hbox (8.4415pt too wide) in paragraph at lines 35--35
- \T1/pplj/m/n/10.95 (-20) perts. Fig-ure adapted from Jiang et al. [[][]67[][]]
-. []  
+Overfull \hbox (23.55229pt too wide) in paragraph at lines 22--22
+ \T1/pplj/m/n/10.95 (-20) taken from the orig-i-nal pa-per  ([][][]Xia et al., 
+2024[][]) []  
  []
 
 
-Overfull \hbox (13.44235pt too wide) in paragraph at lines 37--37
+Overfull \hbox (1.8566pt too wide) in paragraph at lines 24--24
+ [][] []\T1/pplj/m/n/10.95 (-20) Sequence-level dis-til-la-tion. The teacher fi
+rst gen- 
+ []
+
+
+Overfull \hbox (11.44049pt too wide) in paragraph at lines 25--25
+ [][] []\T1/pplj/m/n/10.95 (-20) Off-policy dis-til-la-tion. The stu-dent and t
+he teacher 
+ []
+
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[14
+
+]
+Overfull \hbox (20.58307pt too wide) in paragraph at lines 32--32
+ \T1/pplj/m/n/10.95 (-20) perts. Fig-ure adapted from ([][][]Jiang et al., 2024
+[][]). []  
+ []
+
+
+Overfull \hbox (18.27327pt too wide) in paragraph at lines 33--33
+ \T1/pplj/m/n/10.95 (-20) expert-choice pat-terns in NLLB-200. Fig-ure adapted 
+
+ []
+
+
+Overfull \hbox (13.44235pt too wide) in paragraph at lines 34--34
  [][] []\T1/pplj/m/n/10.95 (-20) LongCat-Flash ar-chi-tec-ture with zero-comput
 ation 
  []
 
 
-Overfull \hbox (4.21397pt too wide) in paragraph at lines 39--39
- \T1/pplj/m/n/10.95 (-20) The to-ken em-bed-ding is aug-mented with hashed 
- []
-
-
-Overfull \hbox (19.65245pt too wide) in paragraph at lines 43--43
- \T1/pplj/m/n/10.95 (-20) rank weights with a small cal-i-bra-tion dataset. [] 
- 
+Overfull \hbox (4.18927pt too wide) in paragraph at lines 34--34
+ \T1/pplj/m/n/10.95 (-20) from ([][][]Meituan Long-Cat Team et al., 2025[][]). 
+[]  
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[17]
-Overfull \hbox (20.09312pt too wide) in paragraph at lines 45--45
+[15]
+Overfull \hbox (20.09312pt too wide) in paragraph at lines 42--42
  [][] []\T1/pplj/m/n/10.95 (-20) Accelerating con-ver-gence through a joint los
 s []  
  []
 
 
-Overfull \hbox (17.91742pt too wide) in paragraph at lines 49--49
+Overfull \hbox (17.91742pt too wide) in paragraph at lines 46--46
  \T1/pplj/m/n/10.95 (-20) rank ma-tri-ces while gray boxes are non-compressed 
  []
 
 
-Overfull \hbox (7.71584pt too wide) in paragraph at lines 49--49
+Overfull \hbox (5.83281pt too wide) in paragraph at lines 46--46
  \T1/pplj/m/n/10.95 (-20) ones. $\OML/zplm/m/it/10.95 l[]$\T1/pplj/m/n/10.95 (-
 20) , $\OML/zplm/m/it/10.95 l[]$\T1/pplj/m/n/10.95 (-20) , ..., $\OML/zplm/m/it
 /10.95 l[]$\T1/pplj/m/n/10.95 (-20) , $\OML/zplm/m/it/10.95 l[]$ \T1/pplj/m/n/1
@@ -2240,24 +2317,24 @@ Overfull \hbox (7.71584pt too wide) in paragraph at lines 49--49
  []
 
 
-Overfull \hbox (20.54662pt too wide) in paragraph at lines 52--52
+Overfull \hbox (20.54662pt too wide) in paragraph at lines 49--49
  [][] []\T1/pplj/b/n/10.95 (-20) SVD Ini-tial-iza-tion im-proves the sample-eff
 iciency\T1/pplj/m/n/10.95 (-20) . 
  []
 
 
-Overfull \hbox (2.97409pt too wide) in paragraph at lines 52--52
+Overfull \hbox (2.97409pt too wide) in paragraph at lines 49--49
  \T1/pplj/m/n/10.95 (-20) Con-ver-gence when ini-tial-iz-ing low-rank weights 
  []
 
 
-Overfull \hbox (12.17441pt too wide) in paragraph at lines 56--56
+Overfull \hbox (12.17441pt too wide) in paragraph at lines 53--53
  [][] []\T1/pplj/m/n/10.95 (-20) Head shear-ing of the Whis-per em-bed-ding thr
 ough 
  []
 
 
-Overfull \hbox (0.93658pt too wide) in paragraph at lines 58--58
+Overfull \hbox (0.93658pt too wide) in paragraph at lines 55--55
  [][] []\T1/pplj/m/n/10.95 (-20) Activation sim-i-lar-i-ties be-tween all decod
 er-layer 
  []
@@ -2266,24 +2343,36 @@ er-layer
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[18])
+[16]
+Overfull \hbox (21.10683pt too wide) in paragraph at lines 68--68
+ [][] []\T1/pplj/m/n/10.95 (-20) Effective di-men-sion and rel-a-tive ex-pert w
+idth []  
+ []
+
+
+Overfull \hbox (16.65952pt too wide) in paragraph at lines 69--69
+ [][] []\T1/pplj/m/n/10.95 (-20) Training dy-nam-ics of the adap-tive ZoN gate.
+ []  
+ []
+
+)
 \tf@lof=\write6
 \openout6 = `ClassicThesis.lof'.
 
 Package tocbasic Info: character protrusion at lot deactivated on input line 39
 .
  (./ClassicThesis.lot
-Overfull \hbox (16.43225pt too wide) in paragraph at lines 22--22
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[17]
+Overfull \hbox (15.15933pt too wide) in paragraph at lines 19--19
  \T1/pplj/m/n/10.95 (-20) Larger vo-cab-u-lar-ies add pa-ram-e-ters. Ta-ble ada
 pted 
  []
 
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[19]
-Overfull \hbox (4.19553pt too wide) in paragraph at lines 27--27
+Overfull \hbox (4.19553pt too wide) in paragraph at lines 24--24
  [][] []\T1/pplj/b/n/10.95 (-20) Compressed mod-els save mem-ory and speedup 
  []
 
@@ -2291,34 +2380,56 @@ Overfull \hbox (4.19553pt too wide) in paragraph at lines 27--27
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[20]
-Overfull \hbox (0.14745pt too wide) in paragraph at lines 34--34
+[18]
+Overfull \hbox (0.14745pt too wide) in paragraph at lines 31--31
  [][] []\T1/pplj/m/n/10.95 (-20) Comparing the Wiki-text per-plex-ity con-ver-g
 ence 
  []
 
 
-Overfull \hbox (0.36024pt too wide) in paragraph at lines 34--34
+Overfull \hbox (0.36024pt too wide) in paragraph at lines 31--31
  \T1/pplj/m/n/10.95 (-20) of the three losses for 2M train-ing to-kens. []  
  []
 
 
-Overfull \hbox (5.82062pt too wide) in paragraph at lines 39--39
- \T1/pplj/m/n/10.95 (-20) pressed mod-els, with-out \T1/pplj/m/it/10.95 (-20) a
-ny \T1/pplj/m/n/10.95 (-20) fine-tun-ing. \T1/pplj/b/n/10.95 (-20) Prompt: 
+Overfull \hbox (13.76193pt too wide) in paragraph at lines 35--35
+ \T1/pplj/m/n/10.95 (-20) ing. \T1/pplj/b/n/10.95 (-20) Prompt: "Here the story
+ of Steve Jobs:" []  
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[21]
-Overfull \hbox (9.11462pt too wide) in paragraph at lines 46--46
+[19]
+Overfull \hbox (4.39517pt too wide) in paragraph at lines 36--36
+ \T1/pplj/m/n/10.95 (-20) pressed mod-els, with-out \T1/pplj/m/it/10.95 (-20) a
+ny \T1/pplj/m/n/10.95 (-20) fine-tun-ing. \T1/pplj/b/n/10.95 (-20) Prompt: 
+ []
+
+
+Overfull \hbox (9.11462pt too wide) in paragraph at lines 43--43
  [][] []\T1/pplj/m/n/10.95 (-20) ASR re-sults af-ter iden-ti-cal su-per-vised f
 ine-tuning. 
  []
 
-)
+
+Overfull \hbox (2.70926pt too wide) in paragraph at lines 51--51
+ [][] []\T1/pplj/m/n/10.95 (-20) We check pos-si-ble sam-ple size bi-ases for Q
+wen3- 
+ []
+
+
+Overfull \hbox (2.41772pt too wide) in paragraph at lines 52--52
+ [][] []\T1/pplj/m/n/10.95 (-20) Model ar-chi-tec-ture and train-ing bud-gets. 
+Dense- 
+ []
+
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[20])
 \tf@lot=\write7
 \openout7 = `ClassicThesis.lot'.
 
@@ -2326,19 +2437,15 @@ ine-tuning.
 \tf@lol=\write8
 \openout8 = `ClassicThesis.lol'.
 
-
+)
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[22])
+[21]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[23]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[24
+[22
 
 
 
@@ -2392,7 +2499,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [5]
-<figures/transformer.pdf, id=619, 344.31712pt x 415.5525pt>
+<figures/transformer.pdf, id=722, 344.31712pt x 415.5525pt>
 File: figures/transformer.pdf Graphic file (type pdf)
 <use figures/transformer.pdf>
 Package pdftex.def Info: figures/transformer.pdf  used on input line 153.
@@ -2422,7 +2529,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [9]
-<figures/embedding_parameter_ratio.pdf, id=752, 1174.87308pt x 666.65627pt>
+<figures/embedding_parameter_ratio.pdf, id=859, 1174.87308pt x 666.65627pt>
 File: figures/embedding_parameter_ratio.pdf Graphic file (type pdf)
 <use figures/embedding_parameter_ratio.pdf>
 Package pdftex.def Info: figures/embedding_parameter_ratio.pdf  used on input l
@@ -2444,12 +2551,12 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [10]
-<figures/figure6_accuracy.png, id=766, 416.2752pt x 298.9569pt>
+<figures/figure6_accuracy.png, id=874, 416.2752pt x 298.9569pt>
 File: figures/figure6_accuracy.png Graphic file (type png)
 <use figures/figure6_accuracy.png>
 Package pdftex.def Info: figures/figure6_accuracy.png  used on input line 470.
 (pdftex.def)             Requested size: 161.27856pt x 115.82634pt.
-<figures/figure6_cross_entropy.png, id=768, 420.3705pt x 298.9569pt>
+<figures/figure6_cross_entropy.png, id=876, 420.3705pt x 298.9569pt>
 File: figures/figure6_cross_entropy.png Graphic file (type png)
 <use figures/figure6_cross_entropy.png>
 Package pdftex.def Info: figures/figure6_cross_entropy.png  used on input line 
@@ -2464,7 +2571,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [12 <./figures/figure6_accuracy.png> <./figures/figure6_cross_entropy.png>]
-<figures/wei_emergent_abilities_figure.pdf, id=843, 472.76625pt x 321.2pt>
+<figures/wei_emergent_abilities_figure.pdf, id=954, 472.76625pt x 321.2pt>
 File: figures/wei_emergent_abilities_figure.pdf Graphic file (type pdf)
 <use figures/wei_emergent_abilities_figure.pdf>
 Package pdftex.def Info: figures/wei_emergent_abilities_figure.pdf  used on inp
@@ -2535,7 +2642,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [20]
-<figures/shearedllama.pdf, id=961, 389.455pt x 266.9975pt>
+<figures/shearedllama.pdf, id=1076, 389.455pt x 266.9975pt>
 File: figures/shearedllama.pdf Graphic file (type pdf)
 <use figures/shearedllama.pdf>
 Package pdftex.def Info: figures/shearedllama.pdf  used on input line 426.
@@ -2544,7 +2651,7 @@ Package pdftex.def Info: figures/shearedllama.pdf  used on input line 426.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[21 <./figures/shearedllama.pdf>]
+[21]
 Overfull \hbox (1.56523pt too wide) in paragraph at lines 522--523
  [][] 
  []
@@ -2553,7 +2660,7 @@ Overfull \hbox (1.56523pt too wide) in paragraph at lines 522--523
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[22]
+[22 <./figures/shearedllama.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -2570,7 +2677,11 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [26]
-<figures/switch_transformer_figure2.pdf, id=1066, 451.6875pt x 220.825pt>
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[27]
+<figures/switch_transformer_figure2.pdf, id=1194, 451.6875pt x 220.825pt>
 File: figures/switch_transformer_figure2.pdf Graphic file (type pdf)
 <use figures/switch_transformer_figure2.pdf>
 Package pdftex.def Info: figures/switch_transformer_figure2.pdf  used on input 
@@ -2580,23 +2691,19 @@ line 900.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[27]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
 [28 <./figures/switch_transformer_figure2.pdf>]
-<figures/loss_vs_log_params.pdf, id=1150, 722.7pt x 578.16pt>
+<figures/loss_vs_log_params.pdf, id=1270, 722.7pt x 578.16pt>
 File: figures/loss_vs_log_params.pdf Graphic file (type pdf)
 <use figures/loss_vs_log_params.pdf>
 Package pdftex.def Info: figures/loss_vs_log_params.pdf  used on input line 950
 .
 (pdftex.def)             Requested size: 161.27856pt x 129.02174pt.
-<figures/perp_vs_step.pdf, id=1151, 722.7pt x 578.16pt>
+<figures/perp_vs_step.pdf, id=1271, 722.7pt x 578.16pt>
 File: figures/perp_vs_step.pdf Graphic file (type pdf)
 <use figures/perp_vs_step.pdf>
 Package pdftex.def Info: figures/perp_vs_step.pdf  used on input line 954.
 (pdftex.def)             Requested size: 161.27856pt x 129.02174pt.
-<figures/fine_grained_moe_granularity_figure3a.pdf, id=1160, 133.49875pt x 133.
+<figures/fine_grained_moe_granularity_figure3a.pdf, id=1280, 133.49875pt x 133.
 49875pt>
 File: figures/fine_grained_moe_granularity_figure3a.pdf Graphic file (type pdf)
 
@@ -2617,11 +2724,17 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [30 <./figures/fine_grained_moe_granularity_figure3a.pdf>]
+LaTeX Font Info:    Trying to load font information for TS1+pplj on input line 
+1009.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ts1pplj.fd
+File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
+)
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [31]
-<figures/mixtral_expert_selection_domains.pdf, id=1371, 416.55624pt x 265.99374
+<figures/mixtral_expert_selection_domains.pdf, id=1490, 416.55624pt x 265.99374
 pt>
 File: figures/mixtral_expert_selection_domains.pdf Graphic file (type pdf)
 <use figures/mixtral_expert_selection_domains.pdf>
@@ -2633,7 +2746,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [32 <./figures/mixtral_expert_selection_domains.pdf>]
-<figures/nllb_moe_language_similarity_figure20.pdf, id=1453, 454.69875pt x 426.
+<figures/nllb_moe_language_similarity_figure20.pdf, id=1577, 454.69875pt x 426.
 59375pt>
 File: figures/nllb_moe_language_similarity_figure20.pdf Graphic file (type pdf)
 
@@ -2641,68 +2754,68 @@ File: figures/nllb_moe_language_similarity_figure20.pdf Graphic file (type pdf)
 Package pdftex.def Info: figures/nllb_moe_language_similarity_figure20.pdf  use
 d on input line 1101.
 (pdftex.def)             Requested size: 336.0pt x 315.2383pt.
-<figures/olmoe_unicode/copyright.png, id=1456, 170.6375pt x 193.72375pt>
+<figures/olmoe_unicode/copyright.png, id=1580, 170.6375pt x 193.72375pt>
 File: figures/olmoe_unicode/copyright.png Graphic file (type png)
 <use figures/olmoe_unicode/copyright.png>
 Package pdftex.def Info: figures/olmoe_unicode/copyright.png  used on input lin
 e 1171.
 (pdftex.def)             Requested size: 6.18121pt x 7.01999pt.
-<figures/olmoe_unicode/latin_l.png, id=1457, 60.225pt x 195.73125pt>
+<figures/olmoe_unicode/latin_l.png, id=1581, 60.225pt x 195.73125pt>
 File: figures/olmoe_unicode/latin_l.png Graphic file (type png)
 <use figures/olmoe_unicode/latin_l.png>
 Package pdftex.def Info: figures/olmoe_unicode/latin_l.png  used on input line 
 1171.
 (pdftex.def)             Requested size: 2.15955pt x 7.01999pt.
-<figures/olmoe_unicode/latin_i.png, id=1458, 41.15375pt x 249.93375pt>
+<figures/olmoe_unicode/latin_i.png, id=1582, 41.15375pt x 249.93375pt>
 File: figures/olmoe_unicode/latin_i.png Graphic file (type png)
 <use figures/olmoe_unicode/latin_i.png>
 Package pdftex.def Info: figures/olmoe_unicode/latin_i.png  used on input line 
 1171.
 (pdftex.def)             Requested size: 1.15543pt x 7.01999pt.
-<figures/olmoe_unicode/jarai_i.png, id=1459, 80.3pt x 190.7125pt>
+<figures/olmoe_unicode/jarai_i.png, id=1583, 80.3pt x 190.7125pt>
 File: figures/olmoe_unicode/jarai_i.png Graphic file (type png)
 <use figures/olmoe_unicode/jarai_i.png>
 Package pdftex.def Info: figures/olmoe_unicode/jarai_i.png  used on input line 
 1171.
 (pdftex.def)             Requested size: 2.95537pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_virama.png, id=1460, 125.46875pt x 196.735pt>
+<figures/olmoe_unicode/devanagari_virama.png, id=1584, 125.46875pt x 196.735pt>
 
 File: figures/olmoe_unicode/devanagari_virama.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_virama.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_virama.png  used on i
 nput line 1171.
 (pdftex.def)             Requested size: 4.47609pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_e.png, id=1461, 137.51375pt x 207.77625pt>
+<figures/olmoe_unicode/devanagari_e.png, id=1585, 137.51375pt x 207.77625pt>
 File: figures/olmoe_unicode/devanagari_e.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_e.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_e.png  used on input 
 line 1171.
 (pdftex.def)             Requested size: 4.6456pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_ka.png, id=1462, 184.69pt x 164.615pt>
+<figures/olmoe_unicode/devanagari_ka.png, id=1586, 184.69pt x 164.615pt>
 File: figures/olmoe_unicode/devanagari_ka.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_ka.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_ka.png  used on input
  line 1171.
 (pdftex.def)             Requested size: 7.87387pt x 7.01999pt.
-<figures/olmoe_unicode/cyrillic_sha.png, id=1463, 187.70125pt x 138.5175pt>
+<figures/olmoe_unicode/cyrillic_sha.png, id=1587, 187.70125pt x 138.5175pt>
 File: figures/olmoe_unicode/cyrillic_sha.png Graphic file (type png)
 <use figures/olmoe_unicode/cyrillic_sha.png>
 Package pdftex.def Info: figures/olmoe_unicode/cyrillic_sha.png  used on input 
 line 1171.
 (pdftex.def)             Requested size: 9.51163pt x 7.01999pt.
-<figures/olmoe_unicode/cyrillic_in.png, id=1464, 286.06876pt x 138.5175pt>
+<figures/olmoe_unicode/cyrillic_in.png, id=1588, 286.06876pt x 138.5175pt>
 File: figures/olmoe_unicode/cyrillic_in.png Graphic file (type png)
 <use figures/olmoe_unicode/cyrillic_in.png>
 Package pdftex.def Info: figures/olmoe_unicode/cyrillic_in.png  used on input l
 ine 1171.
 (pdftex.def)             Requested size: 14.49634pt x 7.01999pt.
-<figures/olmoe_unicode/cyrillic_a.png, id=1465, 112.42pt x 143.53625pt>
+<figures/olmoe_unicode/cyrillic_a.png, id=1589, 112.42pt x 143.53625pt>
 File: figures/olmoe_unicode/cyrillic_a.png Graphic file (type png)
 <use figures/olmoe_unicode/cyrillic_a.png>
 Package pdftex.def Info: figures/olmoe_unicode/cyrillic_a.png  used on input li
 ne 1171.
 (pdftex.def)             Requested size: 5.49782pt x 7.01999pt.
-<figures/olmoe_unicode/slovak_l.png, id=1466, 66.2475pt x 195.73125pt>
+<figures/olmoe_unicode/slovak_l.png, id=1590, 66.2475pt x 195.73125pt>
 File: figures/olmoe_unicode/slovak_l.png Graphic file (type png)
 <use figures/olmoe_unicode/slovak_l.png>
 Package pdftex.def Info: figures/olmoe_unicode/slovak_l.png  used on input line
@@ -2713,31 +2826,31 @@ File: figures/olmoe_unicode/copyright.png Graphic file (type png)
 Package pdftex.def Info: figures/olmoe_unicode/copyright.png  used on input lin
 e 1171.
 (pdftex.def)             Requested size: 6.18121pt x 7.01999pt.
-<figures/olmoe_unicode/persian_j.png, id=1467, 83.31125pt x 221.82875pt>
+<figures/olmoe_unicode/persian_j.png, id=1591, 83.31125pt x 221.82875pt>
 File: figures/olmoe_unicode/persian_j.png Graphic file (type png)
 <use figures/olmoe_unicode/persian_j.png>
 Package pdftex.def Info: figures/olmoe_unicode/persian_j.png  used on input lin
 e 1171.
 (pdftex.def)             Requested size: 2.63524pt x 7.01999pt.
-<figures/olmoe_unicode/dutch_ij.png, id=1468, 94.3525pt x 251.94125pt>
+<figures/olmoe_unicode/dutch_ij.png, id=1592, 94.3525pt x 251.94125pt>
 File: figures/olmoe_unicode/dutch_ij.png Graphic file (type png)
 <use figures/olmoe_unicode/dutch_ij.png>
 Package pdftex.def Info: figures/olmoe_unicode/dutch_ij.png  used on input line
  1171.
 (pdftex.def)             Requested size: 2.62889pt x 7.01999pt.
-<figures/olmoe_unicode/chinese_dot.png, id=1469, 79.29625pt x 79.29625pt>
+<figures/olmoe_unicode/chinese_dot.png, id=1593, 79.29625pt x 79.29625pt>
 File: figures/olmoe_unicode/chinese_dot.png Graphic file (type png)
 <use figures/olmoe_unicode/chinese_dot.png>
 Package pdftex.def Info: figures/olmoe_unicode/chinese_dot.png  used on input l
 ine 1171.
 (pdftex.def)             Requested size: 7.01898pt x 7.01999pt.
-<figures/olmoe_unicode/japanese_no.png, id=1470, 211.79124pt x 192.72pt>
+<figures/olmoe_unicode/japanese_no.png, id=1594, 211.79124pt x 192.72pt>
 File: figures/olmoe_unicode/japanese_no.png Graphic file (type png)
 <use figures/olmoe_unicode/japanese_no.png>
 Package pdftex.def Info: figures/olmoe_unicode/japanese_no.png  used on input l
 ine 1171.
 (pdftex.def)             Requested size: 7.71399pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_ra.png, id=1471, 101.37875pt x 164.615pt>
+<figures/olmoe_unicode/devanagari_ra.png, id=1595, 101.37875pt x 164.615pt>
 File: figures/olmoe_unicode/devanagari_ra.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_ra.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_ra.png  used on input
@@ -2753,7 +2866,7 @@ File: figures/olmoe_unicode/devanagari_virama.png Graphic file (type png)
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_virama.png  used on i
 nput line 1171.
 (pdftex.def)             Requested size: 4.47609pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_la.png, id=1472, 177.66376pt x 168.63pt>
+<figures/olmoe_unicode/devanagari_la.png, id=1596, 177.66376pt x 168.63pt>
 File: figures/olmoe_unicode/devanagari_la.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_la.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_la.png  used on input
@@ -2828,23 +2941,24 @@ unicode/cyrillic_a.png> <./figures/olmoe_unicode/slovak_l.png> <./figures/olmoe
 _unicode/persian_j.png> <./figures/olmoe_unicode/dutch_ij.png> <./figures/olmoe
 _unicode/chinese_dot.png> <./figures/olmoe_unicode/japanese_no.png> <./figures/
 olmoe_unicode/devanagari_ra.png> <./figures/olmoe_unicode/devanagari_la.png>]
-<figures/longcat_flash_architecture.pdf, id=1568, 328.22626pt x 188.705pt>
+<figures/longcat_flash_architecture.pdf, id=1696, 328.22626pt x 188.705pt>
 File: figures/longcat_flash_architecture.pdf Graphic file (type pdf)
 <use figures/longcat_flash_architecture.pdf>
 Package pdftex.def Info: figures/longcat_flash_architecture.pdf  used on input 
 line 1224.
 (pdftex.def)             Requested size: 336.0pt x 193.17624pt.
-<figures/key_value_memory_layer.pdf, id=1574, 380.42125pt x 121.45375pt>
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[35 <./figures/longcat_flash_architecture.pdf>]
+<figures/key_value_memory_layer.pdf, id=1770, 380.42125pt x 121.45375pt>
 File: figures/key_value_memory_layer.pdf Graphic file (type pdf)
 <use figures/key_value_memory_layer.pdf>
 Package pdftex.def Info: figures/key_value_memory_layer.pdf  used on input line
  1255.
 (pdftex.def)             Requested size: 336.0pt x 107.27434pt.
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[35 <./figures/longcat_flash_architecture.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -2857,7 +2971,7 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
 (Font)              scaled to size 8.50006pt on input line 1370.
-<figures/ngram_embedding_layer.pdf, id=1728, 696.6025pt x 435.6275pt>
+<figures/ngram_embedding_layer.pdf, id=1856, 696.6025pt x 435.6275pt>
 File: figures/ngram_embedding_layer.pdf Graphic file (type pdf)
 <use figures/ngram_embedding_layer.pdf>
 Package pdftex.def Info: figures/ngram_embedding_layer.pdf  used on input line 
@@ -2876,36 +2990,39 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [40]
-<figures/mrl_figure1.pdf, id=1830, 286.671pt x 138.5175pt>
+<figures/mrl_figure1.pdf, id=1959, 286.671pt x 138.5175pt>
 File: figures/mrl_figure1.pdf Graphic file (type pdf)
 <use figures/mrl_figure1.pdf>
 Package pdftex.def Info: figures/mrl_figure1.pdf  used on input line 1515.
 (pdftex.def)             Requested size: 336.0pt x 162.3607pt.
-<figures/matformer_figure1.pdf, id=1835, 554.07pt x 247.92625pt>
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[41 <./figures/mrl_figure1.pdf>]
+<figures/matformer_figure1.pdf, id=1980, 554.07pt x 247.92625pt>
 File: figures/matformer_figure1.pdf Graphic file (type pdf)
 <use figures/matformer_figure1.pdf>
 Package pdftex.def Info: figures/matformer_figure1.pdf  used on input line 1545
 .
 (pdftex.def)             Requested size: 336.0pt x 150.34576pt.
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[41 <./figures/mrl_figure1.pdf>]
 
 LaTeX Warning: Marginpar on page 42 moved.
 
-)
+
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[42 <./figures/matformer_figure1.pdf>]
+[42 <./figures/matformer_figure1.pdf>])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[43
+[43]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
+[44
 
 
 
@@ -2914,12 +3031,19 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[44]
+[45
+
+
+]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[46]
 \openout2 = `Chapters/Chapter02.aux'.
 
  (./Chapters/Chapter02.tex
 Chapter 3.
-<papers/lillama/overview.pdf, id=2020, 4386.3875pt x 3926.67pt>
+<papers/lillama/overview.pdf, id=2163, 4386.3875pt x 3926.67pt>
 File: papers/lillama/overview.pdf Graphic file (type pdf)
 <use papers/lillama/overview.pdf>
 Package pdftex.def Info: papers/lillama/overview.pdf  used on input line 9.
@@ -2936,7 +3060,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[45
+[47
 
 
 
@@ -2944,7 +3068,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[46]
+[48]
 Overfull \hbox (0.88692pt too wide) has occurred while \output is active
  []|[]|
  []
@@ -2953,13 +3077,17 @@ Overfull \hbox (0.88692pt too wide) has occurred while \output is active
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[47]
-<papers/lillama/stablerank_40p.pdf, id=2446, 867.24pt x 433.62pt>
+[49]
+<papers/lillama/stablerank_40p.pdf, id=2596, 867.24pt x 433.62pt>
 File: papers/lillama/stablerank_40p.pdf Graphic file (type pdf)
 <use papers/lillama/stablerank_40p.pdf>
 Package pdftex.def Info: papers/lillama/stablerank_40p.pdf  used on input line 
 71.
 (pdftex.def)             Requested size: 336.0pt x 167.99954pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 
 Overfull \hbox (5.53719pt too wide) in paragraph at lines 79--79
 |[]\T1/pplj/m/sc/10.95/80ls (-20) background: low-rank ap-prox-i-ma-tion of tra
@@ -2970,7 +3098,7 @@ ns-former
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[48 <./papers/lillama/stablerank_40p.pdf>]
+[50]
 Overfull \hbox (22.92413pt too wide) has occurred while \output is active
  []|[]|
  []
@@ -2979,18 +3107,18 @@ Overfull \hbox (22.92413pt too wide) has occurred while \output is active
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[49]
-<papers/lillama/Teacher.pdf, id=2466, 775.89874pt x 1261.71375pt>
+[51 <./papers/lillama/stablerank_40p.pdf>]
+<papers/lillama/Teacher.pdf, id=2622, 775.89874pt x 1261.71375pt>
 File: papers/lillama/Teacher.pdf Graphic file (type pdf)
 <use papers/lillama/Teacher.pdf>
 Package pdftex.def Info: papers/lillama/Teacher.pdf  used on input line 116.
 (pdftex.def)             Requested size: 100.80103pt x 163.91302pt.
-<papers/lillama/Student.pdf, id=2467, 775.89874pt x 1254.6875pt>
+<papers/lillama/Student.pdf, id=2623, 775.89874pt x 1254.6875pt>
 File: papers/lillama/Student.pdf Graphic file (type pdf)
 <use papers/lillama/Student.pdf>
 Package pdftex.def Info: papers/lillama/Student.pdf  used on input line 118.
 (pdftex.def)             Requested size: 100.80103pt x 163.00023pt.
-<papers/lillama/Teacher+Student.pdf, id=2468, 783.92876pt x 1274.7625pt>
+<papers/lillama/Teacher+Student.pdf, id=2624, 783.92876pt x 1274.7625pt>
 File: papers/lillama/Teacher+Student.pdf Graphic file (type pdf)
 <use papers/lillama/Teacher+Student.pdf>
 Package pdftex.def Info: papers/lillama/Teacher+Student.pdf  used on input line
@@ -3000,17 +3128,17 @@ Package pdftex.def Info: papers/lillama/Teacher+Student.pdf  used on input line
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[50]
+[52]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[51 <./papers/lillama/Teacher.pdf> <./papers/lillama/Student.pdf> <./papers/lil
+[53 <./papers/lillama/Teacher.pdf> <./papers/lillama/Student.pdf> <./papers/lil
 lama/Teacher+Student.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[52]
-<papers/lillama/strategies.pdf, id=2505, 4842.09pt x 4103.23885pt>
+[54]
+<papers/lillama/strategies.pdf, id=2665, 4842.09pt x 4103.23885pt>
 File: papers/lillama/strategies.pdf Graphic file (type pdf)
 <use papers/lillama/strategies.pdf>
 Package pdftex.def Info: papers/lillama/strategies.pdf  used on input line 181.
@@ -3020,8 +3148,8 @@ Package pdftex.def Info: papers/lillama/strategies.pdf  used on input line 181.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[53 <./papers/lillama/strategies.pdf>]
-<papers/lillama/pseudo-code.pdf, id=3001, 476.62904pt x 441.89984pt>
+[55 <./papers/lillama/strategies.pdf>]
+<papers/lillama/pseudo-code.pdf, id=3161, 476.62904pt x 441.89984pt>
 File: papers/lillama/pseudo-code.pdf Graphic file (type pdf)
 <use papers/lillama/pseudo-code.pdf>
 Package pdftex.def Info: papers/lillama/pseudo-code.pdf  used on input line 223
@@ -3031,15 +3159,15 @@ Package pdftex.def Info: papers/lillama/pseudo-code.pdf  used on input line 223
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[54]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[55 <./papers/lillama/pseudo-code.pdf>]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
 [56]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[57 <./papers/lillama/pseudo-code.pdf>]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[58]
 Overfull \hbox (20.17035pt too wide) in paragraph at lines 316--338
 [][] 
  []
@@ -3058,7 +3186,7 @@ Overfull \hbox (20.15776pt too wide) in paragraph at lines 360--377
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[57]
+[59]
 Overfull \hbox (6.72385pt too wide) in paragraph at lines 398--414
  [][] 
  []
@@ -3070,24 +3198,24 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[58]
+[60]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[59]
-<papers/lillama/rank_acc-1.pdf, id=3129, 433.62pt x 397.485pt>
+[61]
+<papers/lillama/rank_acc-1.pdf, id=3293, 433.62pt x 397.485pt>
 File: papers/lillama/rank_acc-1.pdf Graphic file (type pdf)
 <use papers/lillama/rank_acc-1.pdf>
 Package pdftex.def Info: papers/lillama/rank_acc-1.pdf  used on input line 475.
 
 (pdftex.def)             Requested size: 336.0pt x 308.01736pt.
-<papers/lillama/w_wo_svd-2.pdf, id=3132, 867.24pt x 433.62pt>
+<papers/lillama/w_wo_svd-2.pdf, id=3296, 867.24pt x 433.62pt>
 File: papers/lillama/w_wo_svd-2.pdf Graphic file (type pdf)
 <use papers/lillama/w_wo_svd-2.pdf>
 Package pdftex.def Info: papers/lillama/w_wo_svd-2.pdf  used on input line 482.
 
 (pdftex.def)             Requested size: 336.0pt x 167.99954pt.
-<papers/lillama/losses_convergence.pdf, id=3133, 1300.86pt x 433.62pt>
+<papers/lillama/losses_convergence.pdf, id=3297, 1300.86pt x 433.62pt>
 File: papers/lillama/losses_convergence.pdf Graphic file (type pdf)
 <use papers/lillama/losses_convergence.pdf>
 Package pdftex.def Info: papers/lillama/losses_convergence.pdf  used on input l
@@ -3104,20 +3232,20 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[60]
+[62]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[61 <./papers/lillama/rank_acc-1.pdf>]
+[63 <./papers/lillama/rank_acc-1.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[62 <./papers/lillama/w_wo_svd-2.pdf> <./papers/lillama/losses_convergence.pdf>
+[64 <./papers/lillama/w_wo_svd-2.pdf> <./papers/lillama/losses_convergence.pdf>
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[63]
+[65]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -3125,7 +3253,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[64]
+[66]
 Underfull \hbox (badness 4316) in paragraph at lines 652--652
 []|\T1/pplj/m/n/8 (+20) Steve Jobs was a young
  []
@@ -3206,33 +3334,33 @@ Underfull \hbox (badness 4954) in paragraph at lines 708--709
  []
 
 
-LaTeX Warning: Reference `ssec:svdllm' on page 65 undefined on input line 719.
+LaTeX Warning: Reference `ssec:svdllm' on page 67 undefined on input line 719.
 
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[65]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[66]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [67]
-
-LaTeX Warning: Marginpar on page 68 moved.
-
-
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[68])
+[68]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [69]
+
+LaTeX Warning: Marginpar on page 70 moved.
+
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[70])
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[71]
 \openout2 = `Chapters/Chapter03.aux'.
 
  (./Chapters/Chapter03.tex
@@ -3241,7 +3369,7 @@ Chapter 4.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[70
+[72
 
 
 
@@ -3251,8 +3379,8 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[71]
-<papers/BaldWhisper/images/layermerging.pdf, id=3262, 988.39845pt x 679.53876pt
+[73]
+<papers/BaldWhisper/images/layermerging.pdf, id=3427, 988.39845pt x 679.53876pt
 >
 File: papers/BaldWhisper/images/layermerging.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/layermerging.pdf>
@@ -3263,8 +3391,8 @@ put line 26.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[72 <./papers/BaldWhisper/images/layermerging.pdf>]
-<papers/BaldWhisper/images/headshearing.pdf, id=3472, 896.05345pt x 676.29874pt
+[74 <./papers/BaldWhisper/images/layermerging.pdf>]
+<papers/BaldWhisper/images/headshearing.pdf, id=3637, 896.05345pt x 676.29874pt
 >
 File: papers/BaldWhisper/images/headshearing.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/headshearing.pdf>
@@ -3275,27 +3403,27 @@ put line 53.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[73]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[74 <./papers/BaldWhisper/images/headshearing.pdf>]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
 [75]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[76]
-<papers/BaldWhisper/images/isoloss_wer_plot.pdf, id=3825, 852.65555pt x 671.833
+[76 <./papers/BaldWhisper/images/headshearing.pdf>]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[77]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[78]
+<papers/BaldWhisper/images/isoloss_wer_plot.pdf, id=3992, 852.65555pt x 671.833
 15pt>
 File: papers/BaldWhisper/images/isoloss_wer_plot.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/isoloss_wer_plot.pdf>
 Package pdftex.def Info: papers/BaldWhisper/images/isoloss_wer_plot.pdf  used o
 n input line 145.
 (pdftex.def)             Requested size: 302.39795pt x 238.27177pt.
-<papers/BaldWhisper/images/layer_similaritues.pdf, id=3827, 362.96716pt x 315.8
+<papers/BaldWhisper/images/layer_similaritues.pdf, id=3994, 362.96716pt x 315.8
 3257pt>
 File: papers/BaldWhisper/images/layer_similaritues.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/layer_similaritues.pdf>
@@ -3306,8 +3434,8 @@ Package pdftex.def Info: papers/BaldWhisper/images/layer_similaritues.pdf  used
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[77 <./papers/BaldWhisper/images/isoloss_wer_plot.pdf>]
-<figures/baldqwen.jpg, id=3858, 1204.5pt x 866.23625pt>
+[79 <./papers/BaldWhisper/images/isoloss_wer_plot.pdf>]
+<figures/baldqwen.jpg, id=4025, 1204.5pt x 866.23625pt>
 File: figures/baldqwen.jpg Graphic file (type jpg)
 <use figures/baldqwen.jpg>
 Package pdftex.def Info: figures/baldqwen.jpg  used on input line 207.
@@ -3316,37 +3444,20 @@ Package pdftex.def Info: figures/baldqwen.jpg  used on input line 207.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[78 <./papers/BaldWhisper/images/layer_similaritues.pdf>])
+[80 <./papers/BaldWhisper/images/layer_similaritues.pdf>])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[79 <./figures/baldqwen.jpg>]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[80]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[81
-
-
-
-
-]
+[81 <./figures/baldqwen.jpg>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [82]
-\openout2 = `Chapters/Chapter04.aux'.
-
- (./Chapters/Chapter04.tex
-Chapter 5.
-
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [83
+
 
 
 
@@ -3355,7 +3466,30 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [84]
-<papers/wolof_speech_lm/images/speech-pipeline.pdf, id=3962, 607.26875pt x 424.
+\openout2 = `Chapters/Chapter04.aux'.
+
+ (./Chapters/Chapter04.tex
+Chapter 5.
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[85
+
+
+
+]
+Overfull \hbox (0.9421pt too wide) in paragraph at lines 46--47
+\T1/pplj/m/n/10.95 (-20) Self-supervised mod-els such as wav2vec ([][][]Schnei-
+der et al., 2019[][]; [][][]Baevski
+ []
+
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[86]
+<papers/wolof_speech_lm/images/speech-pipeline.pdf, id=4129, 607.26875pt x 424.
 86002pt>
 File: papers/wolof_speech_lm/images/speech-pipeline.pdf Graphic file (type pdf)
 
@@ -3367,12 +3501,16 @@ d on input line 52.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[85 <./papers/wolof_speech_lm/images/speech-pipeline.pdf>]
+[87 <./papers/wolof_speech_lm/images/speech-pipeline.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[86]
-<papers/wolof_speech_lm/images/oolel_speech.pdf, id=4278, 531.00145pt x 512.802
+[88]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[89]
+<papers/wolof_speech_lm/images/oolel_speech.pdf, id=4461, 531.00145pt x 512.802
 17pt>
 File: papers/wolof_speech_lm/images/oolel_speech.pdf Graphic file (type pdf)
 <use papers/wolof_speech_lm/images/oolel_speech.pdf>
@@ -3383,16 +3521,12 @@ n input line 133.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[87]
+[90 <./papers/wolof_speech_lm/images/oolel_speech.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[88 <./papers/wolof_speech_lm/images/oolel_speech.pdf>]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[89]
-<papers/MRL/images/pipeline.pdf, id=4564, 1171.37625pt x 524.96124pt>
+[91]
+<papers/MRL/images/pipeline.pdf, id=4741, 1171.37625pt x 524.96124pt>
 File: papers/MRL/images/pipeline.pdf Graphic file (type pdf)
 <use papers/MRL/images/pipeline.pdf>
 Package pdftex.def Info: papers/MRL/images/pipeline.pdf  used on input line 198
@@ -3402,12 +3536,18 @@ Package pdftex.def Info: papers/MRL/images/pipeline.pdf  used on input line 198
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[90 <./papers/MRL/images/pipeline.pdf>]
+[92]
+Overfull \hbox (0.36723pt too wide) in paragraph at lines 217--218
+\T1/pplj/m/n/10.95 (-20) solve this am-bi-gu-ity through a task de-scrip-tion. 
+We train one prompted
+ []
+
+
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[91]
-<papers/MRL/images/models.pdf, id=4873, 2432.08624pt x 1685.29625pt>
+[93 <./papers/MRL/images/pipeline.pdf>]
+<papers/MRL/images/models.pdf, id=5052, 2432.08624pt x 1685.29625pt>
 File: papers/MRL/images/models.pdf Graphic file (type pdf)
 <use papers/MRL/images/models.pdf>
 Package pdftex.def Info: papers/MRL/images/models.pdf  used on input line 237.
@@ -3416,32 +3556,32 @@ Package pdftex.def Info: papers/MRL/images/models.pdf  used on input line 237.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[92]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[93 <./papers/MRL/images/models.pdf>]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
 [94]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[95]
-<papers/MRL/images/energy_evolution.pdf, id=5050, 867.24pt x 578.16pt>
+[95 <./papers/MRL/images/models.pdf>]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[96]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[97]
+<papers/MRL/images/energy_evolution.pdf, id=5230, 867.24pt x 578.16pt>
 File: papers/MRL/images/energy_evolution.pdf Graphic file (type pdf)
 <use papers/MRL/images/energy_evolution.pdf>
 Package pdftex.def Info: papers/MRL/images/energy_evolution.pdf  used on input 
 line 383.
 (pdftex.def)             Requested size: 268.80103pt x 179.20128pt.
-<papers/MRL/images/energy_100p.pdf, id=5051, 650.43pt x 578.16pt>
+<papers/MRL/images/energy_100p.pdf, id=5231, 650.43pt x 578.16pt>
 File: papers/MRL/images/energy_100p.pdf Graphic file (type pdf)
 <use papers/MRL/images/energy_100p.pdf>
 Package pdftex.def Info: papers/MRL/images/energy_100p.pdf  used on input line 
 390.
 (pdftex.def)             Requested size: 268.80103pt x 238.93504pt.
-<papers/MRL/images/recall_vs_nshot.pdf, id=5052, 578.16pt x 578.16pt>
+<papers/MRL/images/recall_vs_nshot.pdf, id=5232, 578.16pt x 578.16pt>
 File: papers/MRL/images/recall_vs_nshot.pdf Graphic file (type pdf)
 <use papers/MRL/images/recall_vs_nshot.pdf>
 Package pdftex.def Info: papers/MRL/images/recall_vs_nshot.pdf  used on input l
@@ -3451,12 +3591,12 @@ ine 397.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[96]
+[98]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[97 <./papers/MRL/images/energy_evolution.pdf>]
-<papers/MRL/images/costs.pdf, id=5078, 1734.48pt x 578.16pt>
+[99 <./papers/MRL/images/energy_evolution.pdf>]
+<papers/MRL/images/costs.pdf, id=5258, 1734.48pt x 578.16pt>
 File: papers/MRL/images/costs.pdf Graphic file (type pdf)
 <use papers/MRL/images/costs.pdf>
 Package pdftex.def Info: papers/MRL/images/costs.pdf  used on input line 426.
@@ -3465,21 +3605,25 @@ Package pdftex.def Info: papers/MRL/images/costs.pdf  used on input line 426.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[98 <./papers/MRL/images/energy_100p.pdf>]
+[100 <./papers/MRL/images/energy_100p.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[99 <./papers/MRL/images/recall_vs_nshot.pdf> <./papers/MRL/images/costs.pdf>])
+[101 <./papers/MRL/images/recall_vs_nshot.pdf> <./papers/MRL/images/costs.pdf>]
+)
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[102]
+\openout2 = `Chapters/Chapter05.aux'.
+
+ (./Chapters/Chapter05.tex
+Chapter 6.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[100]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[101
-
+[103
 
 
 
@@ -3489,7 +3633,148 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[102]
+[104]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[105]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[106]
+PGFPlots: reading {papers/zon/data/model_ratio99.csv}
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmss' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+PGFPlots: reading {papers/zon/data/moe_width_ratio99.csv}
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[107{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.en
+c}]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[108]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[109]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[110]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[111]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[112]
+<papers/zon/figures/figs/sparsity_rampup.pdf, id=5428, 296.83649pt x 210.21599p
+t>
+File: papers/zon/figures/figs/sparsity_rampup.pdf Graphic file (type pdf)
+<use papers/zon/figures/figs/sparsity_rampup.pdf>
+Package pdftex.def Info: papers/zon/figures/figs/sparsity_rampup.pdf  used on i
+nput line 644.
+(pdftex.def)             Requested size: 161.27856pt x 114.2174pt.
+<papers/zon/figures/figs/expected_sparsity.pdf, id=5429, 296.97765pt x 210.2159
+9pt>
+File: papers/zon/figures/figs/expected_sparsity.pdf Graphic file (type pdf)
+<use papers/zon/figures/figs/expected_sparsity.pdf>
+Package pdftex.def Info: papers/zon/figures/figs/expected_sparsity.pdf  used on
+ input line 649.
+(pdftex.def)             Requested size: 161.27856pt x 114.16287pt.
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[113 <./papers/zon/figures/figs/sparsity_rampup.pdf> <./papers/zon/figures/figs
+/expected_sparsity.pdf>]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[114]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[115]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[116])
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[117]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[118
+
+
+
+
+]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[119]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[120]
+\openout2 = `Chapters/ConclusionAndFutureWork.aux'.
+
+ (./Chapters/ConclusionAndFutureWork.tex
+Chapter 7.
+
+Overfull \hbox (2.23634pt too wide) in paragraph at lines 18--34
+[]\T1/pplj/m/n/10.95 (-20) For post-training \T1/pplj/b/n/10.95 (-20) model com
+-pres-sion\T1/pplj/m/n/10.95 (-20) , we pro-pose \T1/pplj/b/n/10.95 (-20) Lil-l
+ama\T1/pplj/m/n/10.95 (-20) , a method
+ []
+
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[121
+
+
+
+])
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[122]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[123]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[124
+
+
+
+
+]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[125
+
+
+]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[126]
 \openout2 = `Chapters/Chapter0A.aux'.
 
  (./Chapters/Chapter0A.tex
@@ -3500,7 +3785,7 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[103
+[127
 
 
 
@@ -3508,7 +3793,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[104
+[128
 
 
 
@@ -3517,223 +3802,174 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 \openout2 = `FrontBackmatter/Bibliography.aux'.
 
  (./FrontBackmatter/Bibliography.tex
-Overfull \hbox (7.9356pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Rishabh Agar-wal, Nino Vieil-lard, Yongchao Zhou, Pi
--otr Stanczyk,
+Overfull \hbox (5.60176pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/n/10.95 (-20) Policy Dis-til-la-tion of Lan-guage Mod-els: Learn-ing
+ from Self-Generated
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[105
+[129
 
 
 
 ]
-Overfull \hbox (38.5619pt too wide) in paragraph at lines 18--18
+Overfull \hbox (14.7821pt too wide) in paragraph at lines 18--18
 \T1/pplj/m/it/10.95 (-20) rep-re-sen-ta-tions for end-to-end speech recog-ni-ti
-on\T1/pplj/m/n/10.95 (-20) . Preprint, arXiv:2110.04590.
+on\T1/pplj/m/n/10.95 (-20) . Preprint, arXiv:2110.04590. 
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[106]
-Overfull \hbox (22.3179pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Christopher Clark, Ken-ton Lee, Ming-Wei Chang, Tom 
-Kwiatkowski,
- []
-
-
-Overfull \hbox (0.81291pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/it/10.95 (-20) pris-ing dif-fi-culty of nat-u-ral yes/no ques-tions\
-T1/pplj/m/n/10.95 (-20) . ArXiv, abs/1905.10044.
- []
-
-
+[130]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[107]
-Overfull \hbox (20.06013pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Jacob De-vlin, Ming-Wei Chang, Ken-ton Lee, and Kris
-tina Toutanova.
- []
-
-
-Overfull \hbox (24.01013pt too wide) in paragraph at lines 18--18
+[131]
+Overfull \hbox (0.23033pt too wide) in paragraph at lines 18--18
 \T1/pplj/m/it/10.95 (-20) sis: Find-ing sparse, train-able neu-ral net-works\T1
-/pplj/m/n/10.95 (-20) . Preprint, arXiv:1803.03635.
+/pplj/m/n/10.95 (-20) . Preprint, arXiv:1803.03635. 
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[108]
-Overfull \hbox (2.35454pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/it/10.95 (-20) Distil-Whisper: Ro-bust Knowl-edge Dis-til-la-tion vi
-a Large-Scale Pseudo
- []
-
-
-Overfull \hbox (1.96042pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Elodie Gau-thier, Lau-rent Be-sacier, Sylvie Voisin,
- Michael Melese,
- []
-
-
-Overfull \hbox (24.95769pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Elodie Gau-thier, Am-i-nata Ndi-aye, and Ab-doulaye 
-Guissé. ^^P  Kallaama:
+[132]
+Overfull \hbox (7.99533pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/n/10.95 (-20) gual, and Di-verse Dataset for Speech Gen-er-a-tion.^^
+Q In: \T1/pplj/m/it/10.95 (-20) arXiv:2501.15907\T1/pplj/m/n/10.95 (-20) . 
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[109]
-Overfull \hbox (5.74472pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/n/10.95 (-20) and Di-verse Dataset for Speech Gen-er-a-tion.^^Q In: 
-\T1/pplj/m/it/10.95 (-20) arXiv:2501.15907\T1/pplj/m/n/10.95 (-20) .
+[133]
+Overfull \hbox (9.28639pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/n/10.95 (-20) ^^P  Hu-BERT: Self-Supervised Speech Rep-re-sen-ta-tio
+n Learn-ing by Masked
  []
 
 
-Overfull \hbox (13.82545pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Cheng-Yu Hsieh, Chun-Liang Li, Chih-Kuan Yeh, Hootan
- Nakhost,
+Overfull \hbox (38.20804pt too wide) in paragraph at lines 18--18
+[][]\T1/pplj/m/n/10.95 (-20) Jiang, Al-bert Q. et al. (2024). \T1/pplj/m/it/10.
+95 (-20) Mix-tral of Ex-perts\T1/pplj/m/n/10.95 (-20) . arXiv preprint; ArXiv:2
+401.04088
  []
 
 
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[110]
-Overfull \hbox (36.47762pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Albert Q. Jiang et al. \T1/pplj/m/it/10.95 (-20) Mix
--tral of Ex-perts\T1/pplj/m/n/10.95 (-20) . arXiv preprint; ArXiv:2401.04088
- []
-
-
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[111]
-Overfull \hbox (10.97185pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/n/10.95 (-20) ski. \T1/pplj/m/it/10.95 (-20) Mea-sur-ing the in-trin
--sic di-men-sion of ob-jec-tive land-scapes\T1/pplj/m/n/10.95 (-20) . Preprint,
-
+Overfull \hbox (14.4513pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/n/10.95 (-20) Smith (2021). \T1/pplj/m/it/10.95 (-20) Deep en-coder,
+ shal-low de-coder: Reeval-u-at-ing non-autoregressive
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[112]
+[134]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[113]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[114]
-Overfull \hbox (4.53384pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Oriol Par-eras, Ger-ard I. Gál-lego, Fed-erico Costa
-, Cristina España-
+[135]
+Overfull \hbox (1.80046pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/n/10.95 (-20) (2018). \T1/pplj/m/it/10.95 (-20) Mea-sur-ing the in-t
+rin-sic di-men-sion of ob-jec-tive land-scapes\T1/pplj/m/n/10.95 (-20) . Prepri
+nt,
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[115]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[116]
-Overfull \hbox (1.21669pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Steffen Schnei-der, Alexei Baevski, Ro-nan Col-lober
-t, and Michael
+[136]
+Overfull \hbox (0.41913pt too wide) in paragraph at lines 18--18
+[][]\T1/pplj/m/n/10.95 (-20) Louizos, Chris-tos, Max Welling, and Diederik P. K
+ingma (2018). ^^P  Learn-
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[117]
-Overfull \hbox (22.16492pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Omkar Thawakar, Ash-mal Vayani, Salman Khan, Hisham 
-Cholakkal,
- []
-
-
-Overfull \hbox (7.48544pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/it/10.95 (-20) rate and lightweight fully trans-par-ent gpt\T1/pplj/
-m/n/10.95 (-20) . Preprint, arXiv:2402.16840.
+[137]
+Overfull \hbox (45.05392pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/it/10.95 (-20) anal-y-sis of a self-supervised speech rep-re-sen-ta-
+tion model\T1/pplj/m/n/10.95 (-20) . Preprint, arXiv:2107.04734. 
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[118]
-Overfull \hbox (4.41325pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/n/10.95 (-20) Damai Dai. \T1/pplj/m/it/10.95 (-20) Auxiliary-Loss-Fr
-ee Load Bal-anc-ing Strat-egy for Mixture-
- []
+[138]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-Overfull \hbox (12.51692pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/it/10.95 (-20) large lan-guage model in-te-gra-tion\T1/pplj/m/n/10.9
-5 (-20) . 2023. arXiv: [][]$\T1/fvm/m/n/10.95 2 3 0 7  . 0 3 9 1 7 $ [eess.AS][
-][]\T1/pplj/m/n/10.95 (-20) .
+[139]
+Overfull \hbox (2.28067pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/it/10.95 (-20) dis-til-la-tion in prac-tice: The mini-tron ap-proach
+\T1/pplj/m/n/10.95 (-20) . Preprint, arXiv:2408.11796. 
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[119]
-Overfull \hbox (6.24423pt too wide) in paragraph at lines 18--18
-\T1/pplj/m/n/10.95 (-20) with Large Lan-guage Mod-els.^^Q In: \T1/pplj/m/it/10.
-95 (-20) arXiv preprint arXiv:2308.01825
+[140]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[141]
+Overfull \hbox (37.85818pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/n/10.95 (-20) guage Model Prun-ing via Layer Col-lapse.^^Q In: \T1/p
+plj/m/it/10.95 (-20) arXiv preprint arXiv:2402.11187\T1/pplj/m/n/10.95 (-20) .
+ []
+
+
+Overfull \hbox (9.1227pt too wide) in paragraph at lines 18--18
+\T1/pplj/m/n/10.95 (-20) Vol. 235. Pro-ceed-ings of Ma-chine Learn-ing Re-searc
+h. PMLR, pp. 57101^^U
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[120]
-Overfull \hbox (24.7478pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Biao Zhang, Lixin Chen, Tong Liu, and Bo Zheng. ^^P 
- SMEC:Rethinking
+[142]
+Overfull \hbox (48.22662pt too wide) in paragraph at lines 18--18
+[][]\T1/pplj/m/n/10.95 (-20) Zhang, Biao, Lixin Chen, Tong Liu, and Bo Zheng (N
+ov. 2025). ^^P  SMEC:Rethinking
  []
 
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[121]
-Overfull \hbox (36.50293pt too wide) in paragraph at lines 18--18
-[]\T1/pplj/m/n/10.95 (-20) Gemma Team et al. \T1/pplj/m/it/10.95 (-20) Gemma 3 
-Tech-ni-cal Re-port\T1/pplj/m/n/10.95 (-20) . Preprint, arXiv:2503.19786.
+[143]
+Overfull \hbox (38.23181pt too wide) in paragraph at lines 18--18
+[][]\T1/pplj/m/n/10.95 (-20) al., Gemma Team et (2025). \T1/pplj/m/it/10.95 (-2
+0) Gemma 3 Tech-ni-cal Re-port\T1/pplj/m/n/10.95 (-20) . Preprint, arXiv:2503.1
+9786. 
  []
 
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[122]
+[144]
 \openout2 = `FrontBackmatter/Declaration.aux'.
 
  (./FrontBackmatter/Declaration.tex)
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[123
+[145
 
 
 
@@ -3745,7 +3981,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[124
+[146
 
 
 
@@ -3757,20 +3993,20 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[125
+[147
 
-] (./ClassicThesis.aux (./FrontBackmatter/DirtyTitlepage.aux)
-(./FrontBackmatter/Titlepage.aux) (./FrontBackmatter/Titleback.aux)
+] (./ClassicThesis.aux (./FrontBackmatter/Titlepage.aux)
 (./FrontBackmatter/Dedication.aux) (./FrontBackmatter/Abstract.aux)
 (./FrontBackmatter/Publications.aux) (./FrontBackmatter/Acknowledgments.aux)
 (./FrontBackmatter/Contents.aux) (./Chapters/Chapter01.aux)
 (./Chapters/Chapter02_EfficientLanguageModels.aux) (./Chapters/Chapter02.aux)
-(./Chapters/Chapter03.aux) (./Chapters/Chapter04.aux) (./Chapters/Chapter0A.aux
-) (./FrontBackmatter/Bibliography.aux) (./FrontBackmatter/Declaration.aux)
+(./Chapters/Chapter03.aux) (./Chapters/Chapter04.aux) (./Chapters/Chapter05.aux
+) (./Chapters/ConclusionAndFutureWork.aux) (./Chapters/Chapter0A.aux)
+(./FrontBackmatter/Bibliography.aux) (./FrontBackmatter/Declaration.aux)
 (./FrontBackmatter/Colophon.aux))
  ***********
 LaTeX2e <2025-11-01>
-L3 programming layer <2026-01-19>
+L3 programming layer <2020/03/25>
  ***********
 
 
@@ -3821,9 +4057,8 @@ blx-bibtex.def    2025/07/10 v3.21 biblatex compatibility (PK/MW)
 biblatex.def    2025/07/10 v3.21 biblatex compatibility (PK/MW)
 blx-natbib.def    2025/07/10 v3.21 biblatex compatibility (PK/MW)
 standard.bbx    2025/07/10 v3.21 biblatex bibliography style (PK/MW)
- numeric.bbx    2025/07/10 v3.21 biblatex bibliography style (PK/MW)
-numeric-comp.bbx    2025/07/10 v3.21 biblatex bibliography style (PK/MW)
-numeric-comp.cbx    2025/07/10 v3.21 biblatex citation style (PK/MW)
+authoryear.bbx    2025/07/10 v3.21 biblatex bibliography style (PK/MW)
+authoryear.cbx    2025/07/10 v3.21 biblatex citation style (PK/MW)
 biblatex.cfg    
    expl3.sty    2026-01-19 L3 programming layer (loader) 
 l3backend-pdftex.def    2025-10-09 L3 backend support: PDF output (pdfTeX)
@@ -3839,6 +4074,14 @@ graphics.sty    2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
     trig.sty    2023/12/02 v1.11 sin cos tan (DPC)
 graphics.cfg    2016/06/04 v1.11 sample graphics configuration
   pdftex.def    2025/09/29 v1.2d Graphics/color driver for pdftex
+pdfpages.sty    2025/07/23 v0.6g Insert pages of external PDF documents (AM)
+    calc.sty    2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+ eso-pic.sty    2025/12/10 v3.0d eso-pic (RN)
+  xcolor.sty    2024/09/29 v3.02 LaTeX color extensions (UK)
+   color.cfg    2016/01/02 v1.6 sample color configuration
+mathcolor.ltx
+dvipsnam.def    2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+pppdftex.def    2025/07/23 v0.6g Pdfpages driver for pdfTeX (AM)
     tikz.sty    2025-08-29 v3.1.11a (3.1.11a)
      pgf.sty    2025-08-29 v3.1.11a (3.1.11a)
   pgfrcs.sty    2025-08-29 v3.1.11a (3.1.11a)
@@ -3848,10 +4091,6 @@ pgfrcs.code.tex
 pgfsys.code.tex
 pgfsyssoftpath.code.tex    2025-08-29 v3.1.11a (3.1.11a)
 pgfsysprotocol.code.tex    2025-08-29 v3.1.11a (3.1.11a)
-  xcolor.sty    2024/09/29 v3.02 LaTeX color extensions (UK)
-   color.cfg    2016/01/02 v1.6 sample color configuration
-mathcolor.ltx
-dvipsnam.def    2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 pgfcore.code.tex
 pgfcomp-version-0-65.sty    2025-08-29 v3.1.11a (3.1.11a)
 pgfcomp-version-1-18.sty    2025-08-29 v3.1.11a (3.1.11a)
@@ -3863,6 +4102,9 @@ pgfmath.code.tex
 pgffor.code.tex
 tikz.code.tex
 pgfplots.sty    2025/08/14 v1.18.2 Data Visualization (1.18.2)
+pgfplotstable.sty    2025/08/14 v1.18.2 Table typesetting and Pretty-printing (
+1.18.2)
+   array.sty    2025/09/25 v2.6n Tabular extension package (FMi)
   pifont.sty    2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
     upzd.fd    2001/06/04 font definitions for U/pzd.
     upsy.fd    2001/06/04 font definitions for U/psy.
@@ -3873,7 +4115,6 @@ pgfplots.sty    2025/08/14 v1.18.2 Data Visualization (1.18.2)
  xstring.sty    2023/08/22 v1.86 String manipulations (CT)
  relsize.sty    2013/03/29 ver 4.1
 tabularx.sty    2023/12/11 v2.12a `tabularx' package (DPC)
-   array.sty    2025/09/25 v2.6n Tabular extension package (FMi)
 multirow.sty    2024/11/12 v2.9 Span multiple rows of a table
 algorithm2e.sty    2017/07/18 v5.2 algorithms environments
 ifoddpage.sty    2022/10/18 v1.2 Conditionals for odd/even page detection
@@ -3953,21 +4194,27 @@ ClassicThesis1-blx.bbl
 supp-pdf.mkii
 epstopdf-base.sty    2020-01-24 v2.11 Base part for package epstopdf
 epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+pdflscape.sty    2025-06-23 v0.14 Display of landscape pages in PDF
+pdflscape-nometadata.sty    2025-06-23 v0.14 Display of landscape pages in PDF 
+(HO)
+  lscape.sty    2020/05/28 v3.02 Landscape Pages (DPC)
+lscapeenhanced.sty    2024-04-16 v1.0 improved lscape package
+  xpatch.sty    2020/03/25 v0.3a Extending etoolbox patching commands
   mt-ppl.cfg    2005/11/16 v1.6 microtype config. file: Palatino (RS)
-FrontBackmatter/DirtyTitlepage.tex
+FrontBackmatter/Titlepage.tex
+papers/TUL/exemple.pdf
+papers/TUL/exemple.pdf
+papers/TUL/exemple.pdf
+papers/TUL/exemple.pdf
+FrontBackmatter/Dedication.tex
+FrontBackmatter/Abstract.tex
  ot1pplx.fd    2004/09/06 font definitions for OT1/pplx.
  omlzplm.fd    2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
  omszplm.fd    2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
  omxzplm.fd    2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
  ot1zplm.fd    2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-FrontBackmatter/Titlepage.tex
-gfx/TFZsuperellipse_bw.pdf
-FrontBackmatter/Titleback.tex
- ts1pplj.fd    2004/09/06 font definitions for TS1/pplj.
-FrontBackmatter/Dedication.tex
-FrontBackmatter/Abstract.tex
-   t1fvm.fd    2004/09/07 scalable font definitions for T1/fvm.
 FrontBackmatter/Publications.tex
+   t1fvm.fd    2004/09/07 scalable font definitions for T1/fvm.
 FrontBackmatter/Acknowledgments.tex
 FrontBackmatter/Contents.tex
 Chapters/Chapter01.tex
@@ -3983,6 +4230,7 @@ figures/switch_transformer_figure2.pdf
 figures/loss_vs_log_params.pdf
 figures/perp_vs_step.pdf
 figures/fine_grained_moe_granularity_figure3a.pdf
+ ts1pplj.fd    2004/09/06 font definitions for TS1/pplj.
 figures/mixtral_expert_selection_domains.pdf
 figures/nllb_moe_language_similarity_figure20.pdf
 figures/olmoe_unicode/copyright.png
@@ -4037,6 +4285,10 @@ papers/MRL/images/energy_evolution.pdf
 papers/MRL/images/energy_100p.pdf
 papers/MRL/images/recall_vs_nshot.pdf
 papers/MRL/images/costs.pdf
+Chapters/Chapter05.tex
+papers/zon/figures/figs/sparsity_rampup.pdf
+papers/zon/figures/figs/expected_sparsity.pdf
+Chapters/ConclusionAndFutureWork.tex
 Chapters/Chapter0A.tex
 lstlang1.sty    2025/11/14 1.11b listings language file
 FrontBackmatter/Bibliography.tex
@@ -4052,38 +4304,45 @@ Package logreq Info: Writing requests to 'ClassicThesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 64915 strings out of 467525
- 1494097 string characters out of 5418983
- 3037618 words of memory out of 5000000
- 90476 multiletter control sequences out of 15000+600000
- 846023 words of font info for 1387 fonts, out of 8000000 for 9000
+ 67291 strings out of 467525
+ 1544643 string characters out of 5418983
+ 3103761 words of memory out of 5000000
+ 92648 multiletter control sequences out of 15000+600000
+ 856434 words of font info for 1439 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 108i,23n,129p,11216b,3369s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/local/texlive/2026/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/local
-/texlive/2026/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/tex
-live/2026/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/
-2026/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2026
-/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2026/texmf-d
-ist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2026/texmf-dist/fon
-ts/type1/public/bera/fvmb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1
-/public/bera/fvmr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/
-bera/fvmro8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx
-9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr
-/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texli
-ve/2026/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2026/texm
-f-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts
-/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/
-urw/palatino/uplr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/pal
-atino/uplri8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/zapfding/
-uzdr.pfb>
-Output written on ClassicThesis.pdf (149 pages, 4182802 bytes).
+ 108i,23n,128p,11216b,3548s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
+cal/texlive/2026/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/local/texl
+ive/2026/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/
+2026/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2026
+/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2026/texm
+f-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2026/texmf-di
+st/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2026/texmf-dist/fonts
+/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/
+public/bera/fvmb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/b
+era/fvmr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/bera/fvmr
+o8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></u
+sr/local/texlive/2026/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/te
+xlive/2026/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2026/t
+exmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2026/texmf-dist/fo
+nts/type1/public/lm/lmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/pu
+blic/cm-super/sfrm1095.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/publ
+ic/cm-super/sfss0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
+/cm-super/sfti1095.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/pala
+tino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/up
+lr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
+fb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on ClassicThesis.pdf (169 pages, 4535309 bytes).
 PDF statistics:
- 6100 PDF objects out of 6186 (max. 8388607)
- 4096 compressed objects within 41 object streams
- 700 named destinations out of 1000 (max. 500000)
- 207687 words of extra memory for PDF output out of 221844 (max. 10000000)
+ 6625 PDF objects out of 7423 (max. 8388607)
+ 4514 compressed objects within 46 object streams
+ 797 named destinations out of 1000 (max. 500000)
+ 223712 words of extra memory for PDF output out of 266212 (max. 10000000)
 

@@ -1,0 +1,236 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{lof}{\ttl@tocsep }
+\@writefile{lot}{\ttl@tocsep }
+\def\mph@nr{23}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}{Adaptive Sparse Memory}}{103}{chapter.6}\protected@file@percent }
+\newlabel{ch:zon}{{6}{103}{Conclusion}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}{Introduction}}{103}{section.6.1}\protected@file@percent }
+\mph@setcol{ii:103}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}{Contemplating the MLP}}{104}{section.6.2}\protected@file@percent }
+\newlabel{sec:zon-memory}{{6.2}{104}{Contemplating the MLP}{section.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}{Transformer MLPs as Key-Value Memories}}{104}{subsection.6.2.1}\protected@file@percent }
+\mph@setcol{ii:104}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}{The Effective Dimensionality of the MLP}}{105}{subsection.6.2.2}\protected@file@percent }
+\newlabel{sec:zon-rank_observations}{{6.2.2}{105}{The Effective Dimensionality of the MLP}{subsection.6.2.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Measuring the rank}}{105}{paragraph*.118}\protected@file@percent }
+\mph@setcol{ii:105}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces We check possible sample size biases for Qwen3-30B-A3B, since MoE layers receive different number of tokens. We look to the correlation between the number of routed tokens per expert and the energy ratio $R@0.99$ and have foun none.}}{106}{table.caption.119}\protected@file@percent }
+\newlabel{tab:zon-moe_bias_checks}{{6.1}{106}{We check possible sample size biases for Qwen3-30B-A3B, since MoE layers receive different number of tokens. We look to the correlation between the number of routed tokens per expert and the energy ratio $R@0.99$ and have foun none}{table.caption.119}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Results.}}{106}{paragraph*.120}\protected@file@percent }
+\mph@setcol{ii:106}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Effective intermediate dimension across models}}{107}{figure.caption.121}\protected@file@percent }
+\newlabel{fig:zon-model_ratio99_activation}{{6.1}{107}{Effective intermediate dimension across models}{figure.caption.121}{}}
+\newlabel{fig:zon-model_ratio99}{{6.1}{107}{Effective intermediate dimension across models}{figure.caption.121}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Effective dimension and relative expert width}}{107}{figure.caption.122}\protected@file@percent }
+\newlabel{fig:zon-model_ratio99_width}{{6.2}{107}{Effective dimension and relative expert width}{figure.caption.122}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}{Learning to Select Key-Value Pairs Adaptively}}{107}{section.6.3}\protected@file@percent }
+\newlabel{sec:zon-sparse_gating}{{6.3}{107}{Learning to Select Key-Value Pairs Adaptively}{section.6.3}{}}
+\mph@setcol{ii:107}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}{ZeroNeuron Sparse Activation Gating}}{108}{subsection.6.3.1}\protected@file@percent }
+\newlabel{eq:zon-lg}{{6.5}{108}{ZeroNeuron Sparse Activation Gating}{equation.6.5}{}}
+\mph@setcol{ii:108}{\mph@nr}
+\newlabel{lst:zon-mlp}{{6.1}{109}{Simplified implementation of the ZoN MLP training forward pass}{lstlisting.6.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.1}{\ignorespaces Simplified implementation of the ZoN MLP training forward pass.}}{109}{lstlisting.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}{Structured Activation Sparsity of the MLP}}{109}{subsection.6.3.2}\protected@file@percent }
+\mph@setcol{ii:109}{\mph@nr}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.1}{Local and Global Sparsity Constraints}}{110}{subsubsection.6.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.2}{Parameterizing the Gate Network}}{110}{subsubsection.6.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.3}{Computational Efficiency}}{110}{subsubsection.6.3.2.3}\protected@file@percent }
+\mph@setcol{ii:110}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}{Experiments}}{111}{section.6.4}\protected@file@percent }
+\newlabel{sec:zon-results}{{6.4}{111}{Experiments}{section.6.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}{Experimental Setup}}{111}{subsection.6.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Implementation.}}{111}{paragraph*.124}\protected@file@percent }
+\mph@setcol{ii:111}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Model architecture and training budgets. Dense-600M uses a narrower MLP; the other architecture settings are shared.}}{112}{table.caption.125}\protected@file@percent }
+\newlabel{tab:zon-architecture}{{6.2}{112}{Model architecture and training budgets. Dense-600M uses a narrower MLP; the other architecture settings are shared}{table.caption.125}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Models.}}{112}{paragraph*.126}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{{Evaluation.}}{112}{paragraph*.127}\protected@file@percent }
+\mph@setcol{ii:112}{\mph@nr}
+\newlabel{fig:zon-rampup}{{6.3a}{113}{Results}{subfigure.6.3.1}{}}
+\newlabel{fig:zon-expected_sparsity}{{6.3b}{113}{Results}{subfigure.6.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Training dynamics of the adaptive ZoN gate.}}{113}{figure.caption.129}\protected@file@percent }
+\newlabel{fig:zon-training_dynamics}{{6.3}{113}{Training dynamics of the adaptive ZoN gate}{figure.caption.129}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Target sparsity schedule with the delay and linear ramp phases.}}}{113}{subfigure.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {The convergence of the expected sparsity.}}}{113}{subfigure.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}{Results}}{113}{subsection.6.4.2}\protected@file@percent }
+\mph@setcol{ii:113}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Benchmark accuracy (\%) for the dense and sparse models. CORE reports the mean centered score (\%). BB denotes BIG-bench.}}{114}{table.caption.128}\protected@file@percent }
+\newlabel{tab:zon-benchmarks}{{6.3}{114}{Benchmark accuracy (\%) for the dense and sparse models. CORE reports the mean centered score (\%). BB denotes BIG-bench}{table.caption.128}{}}
+\mph@setcol{ii:114}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Evaluation of Dense-1.2B (Dense) and ZoN-1.2B-A600M (Sparse). All entries are percentages; CORE is the mean centered score. $\%0$ measures the fraction of zeros predicted by ZoN MLP gates during inference. BB denotes BIG-bench.}}{115}{table.caption.130}\protected@file@percent }
+\newlabel{tab:zon-tasks}{{6.4}{115}{Evaluation of Dense-1.2B (Dense) and ZoN-1.2B-A600M (Sparse). All entries are percentages; CORE is the mean centered score. $\%0$ measures the fraction of zeros predicted by ZoN MLP gates during inference. BB denotes BIG-bench}{table.caption.130}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}{Generalization to Embedding Language Models}}{115}{section.6.5}\protected@file@percent }
+\newlabel{sec:zon-embedding_models}{{6.5}{115}{Generalization to Embedding Language Models}{section.6.5}{}}
+\mph@setcol{ii:115}{\mph@nr}
+\@writefile{toc}{\contentsline {paragraph}{{Experimental setup.}}{116}{paragraph*.131}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Performance of NV-Embed representations on classification and retrieval tasks. Scores are percentages. $k$ is the number of coordinates retained at inference; dense representations use all $d_{\text  {model}}$ coordinates. The dense baseline uses NV-Embed with a projector fine-tuned on each task and retains all coordinates. The best score in each column is bold and the second-highest distinct score is underlined.}}{116}{table.caption.132}\protected@file@percent }
+\newlabel{tab:zon-embedding_results}{{6.5}{116}{Performance of NV-Embed representations on classification and retrieval tasks. Scores are percentages. $k$ is the number of coordinates retained at inference; dense representations use all $d_{\text {model}}$ coordinates. The dense baseline uses NV-Embed with a projector fine-tuned on each task and retains all coordinates. The best score in each column is bold and the second-highest distinct score is underlined}{table.caption.132}{}}
+\@writefile{toc}{\contentsline {paragraph}{{Results.}}{116}{paragraph*.133}\protected@file@percent }
+\mph@setcol{ii:116}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {6.6}{Conclusion}}{117}{section.6.6}\protected@file@percent }
+\mph@setcol{ii:117}{\mph@nr}
+\@setckpt{Chapters/Chapter05}{
+\setcounter{page}{118}
+\setcounter{equation}{7}
+\setcounter{enumi}{3}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{3}
+\setcounter{chapter}{6}
+\setcounter{section}{6}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{3}
+\setcounter{table}{5}
+\setcounter{tabx@nest}{0}
+\setcounter{listtotal}{0}
+\setcounter{listcount}{0}
+\setcounter{liststart}{0}
+\setcounter{liststop}{0}
+\setcounter{citecount}{0}
+\setcounter{citetotal}{0}
+\setcounter{multicitecount}{0}
+\setcounter{multicitetotal}{0}
+\setcounter{instcount}{306}
+\setcounter{maxnames}{2}
+\setcounter{minnames}{1}
+\setcounter{maxitems}{3}
+\setcounter{minitems}{1}
+\setcounter{citecounter}{0}
+\setcounter{maxcitecounter}{0}
+\setcounter{savedcitecounter}{0}
+\setcounter{uniquelist}{0}
+\setcounter{uniquename}{0}
+\setcounter{refsection}{0}
+\setcounter{refsegment}{0}
+\setcounter{maxextratitle}{0}
+\setcounter{maxextratitleyear}{0}
+\setcounter{maxextraname}{0}
+\setcounter{maxextradate}{4}
+\setcounter{maxextraalpha}{0}
+\setcounter{abbrvpenalty}{50}
+\setcounter{highnamepenalty}{50}
+\setcounter{lownamepenalty}{25}
+\setcounter{maxparens}{3}
+\setcounter{parenlevel}{0}
+\setcounter{blx@maxsection}{1}
+\setcounter{mincomprange}{10}
+\setcounter{maxcomprange}{100000}
+\setcounter{mincompwidth}{1}
+\setcounter{afterword}{0}
+\setcounter{savedafterword}{0}
+\setcounter{annotator}{0}
+\setcounter{savedannotator}{0}
+\setcounter{author}{0}
+\setcounter{savedauthor}{0}
+\setcounter{bookauthor}{0}
+\setcounter{savedbookauthor}{0}
+\setcounter{commentator}{0}
+\setcounter{savedcommentator}{0}
+\setcounter{editor}{0}
+\setcounter{savededitor}{0}
+\setcounter{editora}{0}
+\setcounter{savededitora}{0}
+\setcounter{editorb}{0}
+\setcounter{savededitorb}{0}
+\setcounter{editorc}{0}
+\setcounter{savededitorc}{0}
+\setcounter{foreword}{0}
+\setcounter{savedforeword}{0}
+\setcounter{holder}{0}
+\setcounter{savedholder}{0}
+\setcounter{introduction}{0}
+\setcounter{savedintroduction}{0}
+\setcounter{namea}{0}
+\setcounter{savednamea}{0}
+\setcounter{nameb}{0}
+\setcounter{savednameb}{0}
+\setcounter{namec}{0}
+\setcounter{savednamec}{0}
+\setcounter{translator}{0}
+\setcounter{savedtranslator}{0}
+\setcounter{shortauthor}{0}
+\setcounter{savedshortauthor}{0}
+\setcounter{shorteditor}{0}
+\setcounter{savedshorteditor}{0}
+\setcounter{labelname}{0}
+\setcounter{savedlabelname}{0}
+\setcounter{institution}{0}
+\setcounter{savedinstitution}{0}
+\setcounter{lista}{0}
+\setcounter{savedlista}{0}
+\setcounter{listb}{0}
+\setcounter{savedlistb}{0}
+\setcounter{listc}{0}
+\setcounter{savedlistc}{0}
+\setcounter{listd}{0}
+\setcounter{savedlistd}{0}
+\setcounter{liste}{0}
+\setcounter{savedliste}{0}
+\setcounter{listf}{0}
+\setcounter{savedlistf}{0}
+\setcounter{location}{0}
+\setcounter{savedlocation}{0}
+\setcounter{organization}{0}
+\setcounter{savedorganization}{0}
+\setcounter{origlocation}{0}
+\setcounter{savedoriglocation}{0}
+\setcounter{origpublisher}{0}
+\setcounter{savedorigpublisher}{0}
+\setcounter{publisher}{0}
+\setcounter{savedpublisher}{0}
+\setcounter{language}{0}
+\setcounter{savedlanguage}{0}
+\setcounter{origlanguage}{0}
+\setcounter{savedoriglanguage}{0}
+\setcounter{pageref}{0}
+\setcounter{savedpageref}{0}
+\setcounter{textcitecount}{0}
+\setcounter{textcitetotal}{0}
+\setcounter{textcitemaxnames}{0}
+\setcounter{biburlbigbreakpenalty}{100}
+\setcounter{biburlbreakpenalty}{200}
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{200}
+\setcounter{biburllcpenalty}{100}
+\setcounter{smartand}{1}
+\setcounter{bbx:relatedcount}{0}
+\setcounter{bbx:relatedtotal}{0}
+\setcounter{parentequation}{0}
+\setcounter{AM@survey}{0}
+\setcounter{AlgoLine}{12}
+\setcounter{algocfline}{1}
+\setcounter{algocfproc}{1}
+\setcounter{algocf}{1}
+\setcounter{caption@flags}{2}
+\setcounter{continuedfloat}{0}
+\setcounter{KVtest}{0}
+\setcounter{subfigure}{0}
+\setcounter{subfigure@save}{2}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{subtable@save}{0}
+\setcounter{lotdepth}{1}
+\setcounter{lstnumber}{27}
+\setcounter{section@level}{0}
+\setcounter{Item}{13}
+\setcounter{bookmark@seq@number}{0}
+\setcounter{tcbbreakpart}{1}
+\setcounter{tcblayer}{0}
+\setcounter{tcolorbox@number}{20}
+\setcounter{tcbrastercolumn}{1}
+\setcounter{tcbrasterrow}{1}
+\setcounter{tcbrasternum}{1}
+\setcounter{tcbraster}{0}
+\setcounter{tcblisting}{0}
+\setcounter{lstlisting}{1}
+\setcounter{listings}{0}
+\setcounter{loldepth}{1}
+}

@@ -1,0 +1,26 @@
+\begin{table}[t]
+\caption{Model architecture and training budgets. Dense-600M uses a narrower MLP; the other architecture settings are shared.}
+\label{tab:zon_architecture}
+\begin{center}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Dense-600M} & \textbf{Dense-1.2B} & \textbf{ZoN-1.2B-A600M} \\
+\midrule
+Total parameters & 600,834,122 & 1,233,125,450 & 1,233,125,450 \\
+Transformer layers & \multicolumn{3}{c}{24} \\
+Hidden dimension & \multicolumn{3}{c}{1,536} \\
+Query heads & \multicolumn{3}{c}{12} \\
+Key/value heads & \multicolumn{3}{c}{12} \\
+MLP expansion multiplier & $2.417\times$ & \multicolumn{2}{c}{$8\times$} \\
+MLP intermediate dimension & 3,712 & \multicolumn{2}{c}{12,288} \\
+Vocabulary size & \multicolumn{3}{c}{32,768} \\
+Context length & \multicolumn{3}{c}{2,048} \\
+Sliding-window pattern & \multicolumn{3}{c}{\texttt{3:1}} \\
+\midrule
+Training tokens (approx.) & \multicolumn{3}{c}{13B} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}

@@ -17,11 +17,11 @@
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.32\textwidth}|>{\centering\arraybackslash}p{0.12\textwidth}|>{\centering\arraybackslash}p{0.12\textwidth}|>{\centering\arraybackslash}p{0.12\textwidth}|>{\centering\arraybackslash}p{0.12\textwidth}|>{\centering\arraybackslash}p{0.12\textwidth}}
 \toprule
 \textbf{Method} & \textbf{No Custom Kernel} & \textbf{No Ampere-only} & \textbf{Memory Gain} & \textbf{Is One-Shot} & \textbf{Calib. Data} \\  \hline
-SparseGPT \cite{frantar2023sparsegptmassivelanguagemodels} & \xmark & \xmark & \xmark & \cmark & - \\
-Wanda \cite{wanda} & \xmark & \xmark & \xmark & \cmark & - \\
-Teal \cite{TEAL} & \xmark & \xmark & \xmark & \cmark & - \\
-ShearedLLaMA \cite{xia2024sheared} & \cmark & \cmark & \cmark & \xmark & 52B\\ 
-Minitron \cite{minitron} & \cmark & \cmark & \cmark & \xmark & 94B \\
+SparseGPT \citep{frantar2023sparsegptmassivelanguagemodels} & \xmark & \xmark & \xmark & \cmark & - \\
+Wanda \citep{wanda} & \xmark & \xmark & \xmark & \cmark & - \\
+Teal \citep{TEAL} & \xmark & \xmark & \xmark & \cmark & - \\
+ShearedLLaMA \citep{xia2024sheared} & \cmark & \cmark & \cmark & \xmark & 52B\\ 
+Minitron \citep{minitron} & \cmark & \cmark & \cmark & \xmark & 94B \\
 \rowcolor[HTML]{EEE0CC}\textbf{Lillama} & \cmark & \cmark & \cmark & \cmark & \textbf{0.013B} \\
 \bottomrule
 \end{tabular}
@@ -32,7 +32,7 @@ Minitron \cite{minitron} & \cmark & \cmark & \cmark & \xmark & 94B \\
 
 As discussed earlier, compressing Large Language Models is a crucial challenge that can be achieved with several complementary approaches: quantization, pruning, and distillation. In this section, we introduce a new one-shot compression method that locally distills low-rank weights and satisfies the three objectives:
 \begin{enumerate}
-\item The compression algorithm must be compute-efficient, e.g., it should require minimal computational resources and run in a reasonable amount of time. For instance, the iterative magnitude pruning algorithm as done in \citet{frankle2019lottery}, is too costly to be applied to large-scale LLMs.
+\item The compression algorithm must be compute-efficient, e.g., it should require minimal computational resources and run in a reasonable amount of time. For instance, the iterative magnitude pruning algorithm as done in \citep{frankle2019lottery}, is too costly to be applied to large-scale LLMs.
 \item It must achieve fast convergence using as little training data as possible; this objective is often an issue with many model pruning methods that often require significant retraining after pruning to recover the lost performance.
 \item The method should not cause a significant drop in performance; ideally, all the capabilities of the original LLM should remain intact.
 \end{enumerate}
@@ -45,24 +45,24 @@ Figure~\ref{fig:overview} gives an intuitive overview of the proposed method, wh
 Our approach proposes to overcome some limitations of the compression approaches
 presented in Section \ref{sec:llm_compression}. Compared to unstructured pruning
 and semi-structured pruning, which result in models with sparse weights and do not achieve speedup without specially designed hardware-specific kernels, our approach, which shrinks
-the LLM weights, saves memory across all hardware and leads to speedup, as fewer computations are performed. Structured pruning approaches can be costly: for example, the pruning step of Sheared-LLaMA \citet{xia_sheared_2023} is five times as expensive as standard LM training, according to the authors. In contrast, thanks to local gradient updates, our approach is computationally efficient, allowing us to compress a 47B model within minutes on a single A100 GPU.
+the LLM weights, saves memory across all hardware and leads to speedup, as fewer computations are performed. Structured pruning approaches can be costly: for example, the pruning step of Sheared-LLaMA \citep{xia_sheared_2023} is five times as expensive as standard LM training, according to the authors. In contrast, thanks to local gradient updates, our approach is computationally efficient, allowing us to compress a 47B model within minutes on a single A100 GPU.
 
-There are also some low-rank decomposition approaches that compress models by approximating the pretrained matrices with lower-dimensional ones. Based on the observation by \citet{li2018measuring} that neural networks have lower intrinsic dimensions, \citet{aghajanyan2020intrinsic} show that Transformer language models also require lower intrinsic dimensions depending on the language task. However, \citet{yu_compressing_2023} and \citet{chen_drone} show that the weights in some pretrained Transformer models are full-rank, unlike their activations, and propose activation-aware compression methods. Our work is related to these approaches, as we also decompose the matrices of the models. However, we apply a lightweight layer-wise feature distillation objective to better recover from compression and propose different distillation strategies to accelerate convergence and improve performance.
+There are also some low-rank decomposition approaches that compress models by approximating the pretrained matrices with lower-dimensional ones. Based on the observation by \citep{li2018measuring} that neural networks have lower intrinsic dimensions, \citep{aghajanyan2020intrinsic} show that Transformer language models also require lower intrinsic dimensions depending on the language task. However, \citep{yu_compressing_2023} and \citep{chen_drone} show that the weights in some pretrained Transformer models are full-rank, unlike their activations, and propose activation-aware compression methods. Our work is related to these approaches, as we also decompose the matrices of the models. However, we apply a lightweight layer-wise feature distillation objective to better recover from compression and propose different distillation strategies to accelerate convergence and improve performance.
 
-Standard knowledge distillation is data-intensive when the student model's parameters are randomly initialized. Hence, this process is as costly as a standard pretraining stage. Layer-wise distillation can be more suitable in some cases, as intermediate layers may contain certain information, such as speaker identity or phonemes in pretrained speech models \citet{baevski2020wav2vec20frameworkselfsupervised}, \citet{pasad2022layerwiseanalysisselfsupervisedspeech}, \citet{chang2022distilhubertspeechrepresentationlearning}, \citet{chang2021explorationselfsupervisedpretrainedrepresentations}. We leverage the observation that layer activations are low-rank and approximate them with fewer parameters by distilling the Transformer layer activations into low-rank weights
+Standard knowledge distillation is data-intensive when the student model's parameters are randomly initialized. Hence, this process is as costly as a standard pretraining stage. Layer-wise distillation can be more suitable in some cases, as intermediate layers may contain certain information, such as speaker identity or phonemes in pretrained speech models \citep{baevski2020wav2vec20frameworkselfsupervised}, \citep{pasad2022layerwiseanalysisselfsupervisedspeech}, \citep{chang2022distilhubertspeechrepresentationlearning}, \citep{chang2021explorationselfsupervisedpretrainedrepresentations}. We leverage the observation that layer activations are low-rank and approximate them with fewer parameters by distilling the Transformer layer activations into low-rank weights
 initialized from the SVD of the base weights. This layer-wise distillation approach
 enables us to perform local gradient updates, hence making the distillation process cheaper.
 
 \section{Motivation: Activations are more low-rank than weights}
 \label{ssec:srank}
-In order to motivate the compression of the the models weights with SVD, the weights should have a low low-rank structure. However, previous studies \citet{chen_drone}, \citet{yu_compressing_2023} have shown that the weights of pretrained Transformer models are often full-rank, while their activations are more low-rank.
+In order to motivate the compression of the the models weights with SVD, the weights should have a low low-rank structure. However, previous studies \citep{chen_drone}, \citep{yu_compressing_2023} have shown that the weights of pretrained Transformer models are often full-rank, while their activations are more low-rank.
 We empirically confirm this observation on three recent models: Falcon-Mamba, Mistral-v0.1 7B, and Phi-2 3B. There are different measure for rank. In this study, we use a simpler one: stable rank ($srank$) as a proxy measure for rank. The stable rank of a matrix is defined as the following ratio:
 \begin{equation}
 \text{srank}(X) = \frac{\sum_{i=1}^{r} \sigma_i^2}{\sigma_1^2}
 \end{equation}
 with $X \in \mathbb{R}^{d_{1} \times d_{2}}$ being the input matrix (activations or weights), $r = \min(d_{1}, d_{2})$, and $\sigma_1 \geq \dots \geq \sigma_r$ the singular values of $X$.
 
-Figure~\ref{fig:srank} shows the stable rank of various weight matrices and layer activations for three models: Falcon-Mamba, Mistral-v0.1 7B, and Phi-2 3B. For all models, activations are significantly lower-rank than weight matrices, which confirms previously published results by \citet{yu_compressing_2023}.
+Figure~\ref{fig:srank} shows the stable rank of various weight matrices and layer activations for three models: Falcon-Mamba, Mistral-v0.1 7B, and Phi-2 3B. For all models, activations are significantly lower-rank than weight matrices, which confirms previously published results by \citep{yu_compressing_2023}.
 
 This does not only motivate the use of activations for compression, but also explains why applying SVD to weights alone does not work well as we will show in the experiments. How to explain the fact that weights are full-rank while activations are low-rank? This is an open question. We know that modern LLMs are pre-trained on large and diverse datasets from the web that represent lot of knowledge. Hence the weights of the model need to be full-rank to capture all this knowledge. However, for a given input of a specific task, only a subset of this knowledge is needed, which may explain the low-rank structure of activations.
 
@@ -98,7 +98,7 @@ with $A=U_{:,:r}S_{:r,:r}$ and $B=V_{:r,:}$ and the notation $_{:a, :b}$ refers 
 \subsection{Low-Rank Approximation from Feature}
 \label{ssec:pca}
 
-As discussed previously, many studies \citet{chen_drone}, \citet{yu_compressing_2023} have shown that the activations (i.e., features) of pretrained transformers are more low-rank than the weights. Recently, \citet{TEAL} show that transformer activations can be sparsified up to 60\%.
+As discussed previously, many studies \citep{chen_drone}, \citep{yu_compressing_2023} have shown that the activations (i.e., features) of pretrained transformers are more low-rank than the weights. Recently, \citep{TEAL} show that transformer activations can be sparsified up to 60\%.
 Hencce the motivation to use the activations of the linear layers to estimate the low-rank matrices.
 
 Let $\mathcal{D} = \{x_i \in \mathbb{R}^{d_{2}}\}_{1\leq i\leq N}$ be a calibration dataset, and $W \in \mathbb{R}^{d_{1} \times d_{2}}$ the parameters of a linear layer. Finding the low-rank matrix $\Delta W$ that best reproduces the activations $\{y=Wx\}~~~ \forall x\in \mathcal{D}$ involves solving:
@@ -138,7 +138,7 @@ where the Student module is parametrized with the low-rank matrices $\Delta \The
 \widehat{\Delta  \Theta^{(i)}} = \underset{{\Delta  \Theta^{(i)}}}{\mathrm{argmin}} \;\; \mathcal{L}^{(i)}(Y^{(i)}, \; \widehat{Y}^{(i)})
 \end{equation}
 where $\widehat{\Delta  \Theta^{(i)}}$ are the estimated low-rank matrices of the $i^{th}$ Student module and $\mathcal{L}^{(i)}(Y^{(i)}, \; \widehat{Y}^{(i)})$ is the loss measuring the distance between the activations of the Teacher and the Student.
-We opted for the same loss as \citet{chang2022distilhubertspeechrepresentationlearning} because we observed that the loss yields instabilities:
+We opted for the same loss as \citep{chang2022distilhubertspeechrepresentationlearning} because we observed that the loss yields instabilities:
 \begin{align}
 \mathcal{L}^{(i)} &= \mathcal{L}^{(i)}_{\ell_1} + \mathcal{L}^{(i)}_{\cos} \\
 &= \sum_{t=1}^{b} \left[ \frac{1}{D} \left\| Y^{(i)}_{t} - \widehat{Y}^{(i)}_{t} \right\|_1
@@ -148,7 +148,7 @@ where $D$ is the hidden vectors dimension, $\sigma$ is the sigmoid activation an
 However, as we show later, we extend the distillation process to non-linear modules, which requires numerical optimization. We also show that initializing the Student's low-rank parameters with SVD, rather than randomly, improves convergence.
 
 \subsection{Beyond Teacher-only Activations.}
-The second potential limitation of the approach described in Section \ref{ssec:pca} and equations above is that the Student and the Teacher modules take the same input $X$, which is the output of the previous layer of the Teacher. This means that the Student is trained from the activations of the Teacher module only, which are not available at inference time. \citet{yu_compressing_2023} use this approach to approximate the Linear Layers of Transformer models, referring to it as Atomic Feature Mimicking. Let $\widehat{Y}^{(i)}_{T} = \mathcal{S}^{(i)}(Y^{(i-1)}_{T}; \Delta \Theta^{(i)})$ be the output activations of the Student module when fed $Y^{(i-1)}_{T}$, the output activations of the Teacher at the previous layer $i-1$. The loss can then be written as:
+The second potential limitation of the approach described in Section \ref{ssec:pca} and equations above is that the Student and the Teacher modules take the same input $X$, which is the output of the previous layer of the Teacher. This means that the Student is trained from the activations of the Teacher module only, which are not available at inference time. \citep{yu_compressing_2023} use this approach to approximate the Linear Layers of Transformer models, referring to it as Atomic Feature Mimicking. Let $\widehat{Y}^{(i)}_{T} = \mathcal{S}^{(i)}(Y^{(i-1)}_{T}; \Delta \Theta^{(i)})$ be the output activations of the Student module when fed $Y^{(i-1)}_{T}$, the output activations of the Teacher at the previous layer $i-1$. The loss can then be written as:
 \begin{equation}
 \mathcal{L}^{(i)}_{T} = \mathcal{L}^{(i)}(Y^{(i)}_{T}, \; \widehat{Y}^{(i)}_{T})
 \end{equation}
@@ -232,7 +232,7 @@ The approach is straightforward to implement. Figure~\ref{fig:pseudocode_impl} s
 We evaluate our method on several Transformer-based LLMs: a 47B Mixture-of-Experts model (Mixtral-8x7B-v0.1), medium-sized LLMs (Mistral-v0.1 7B and Phi-3 14B), and a smaller model (Phi-2 3B).
 
 \subsubsection{Data.}
-For calibration, we use 13 million tokens randomly sampled from Slim-Orca \citet{SlimOrca}, an open-source replication of Orca \citet{mukherjee2023orca}. In preliminary experiments, we also tested other datasets such as RedPajama \citet{together2023redpajama}, but observed better results with instruction data.
+For calibration, we use 13 million tokens randomly sampled from Slim-Orca \citep{SlimOrca}, an open-source replication of Orca \citep{mukherjee2023orca}. In preliminary experiments, we also tested other datasets such as RedPajama \citep{together2023redpajama}, but observed better results with instruction data.
 
 \subsubsection{Implementation Details.}
 We implement our approach using version 4.44.2 of the Huggingface Transformers library~\citep{wolf2020huggingfaces} and PyTorch version 2.4.0+cu121. For all experiments, we use the AdamW optimizer with a learning rate of $8.6e^{-4}$. Note that since our approach is local, each student layer has its own optimizer. This also allows us to perform local gradient updates and avoid storing the entire large PyTorch computation graph in memory. All experiments were conducted on a single A100 GPU, regardless of the model.
@@ -242,7 +242,7 @@ When compressing the models using Algorithm~\ref{alg:two}, we set a minimum rank
 We apply the Teacher+Student loss, as illustrated in Figure~\hyperref[fig:distillaton]{2c}, to all models, as we found that this loss converges faster and generally performs better. Additionally, we use the bottom-first compression strategy, which proved to be effective and less memory-intensive than other strategies.
 
 \subsubsection{Evaluation.}
-To measure inference speed, we measure the \textit{prefell speed}, which is the time to forward a batch of prompts through the entire model and present the results in tokens per second. Using lm-evaluation-harness \citet{eval-harness}, we evaluate zero-shot performance on 9 downstream tasks: TruthfulQA (TruQA) \citet{lin-etal-2022-truthfulqa}, Social IQa (SIQA) \citet{sap2019social}, LogiQA \citet{liu2020logiqa}, WinoGrande (WinoG) \citet{sakaguchi2019winogrande}, ARC Easy (ARC-E) \citet{arc}, ARC Challenge (ARC-C) \citet{arc}, BoolQ \citet{boolq}, PIQA \citet{piqa}, and OpenBookQA (OBQA) \citet{obqa}. We compare non-compressed (0\%) and compressed variants.
+To measure inference speed, we measure the \textit{prefell speed}, which is the time to forward a batch of prompts through the entire model and present the results in tokens per second. Using lm-evaluation-harness \citep{eval-harness}, we evaluate zero-shot performance on 9 downstream tasks: TruthfulQA (TruQA) \citep{lin-etal-2022-truthfulqa}, Social IQa (SIQA) \citep{sap2019social}, LogiQA \citep{liu2020logiqa}, WinoGrande (WinoG) \citep{sakaguchi2019winogrande}, ARC Easy (ARC-E) \citep{arc}, ARC Challenge (ARC-C) \citep{arc}, BoolQ \citep{boolq}, PIQA \citep{piqa}, and OpenBookQA (OBQA) \citep{obqa}. We compare non-compressed (0\%) and compressed variants.
 We provide in Table~\ref{tab:task_metric_map} the metrics we used to evaluate the models in Section \ref{sec:xp}.
 \begin{table}[!ht]
 \centering
@@ -380,15 +380,15 @@ As shown by the Mistral fine-tuning results in Table~\ref{tab:ft_result}, the bo
 
 
 \section{Other Architectures and Modalities}
-In this section, we show the generalizability of our approach by evaluating it on the Mamba architecture for text \citet{gu2024mambalineartimesequencemodeling} and on the speech modality with Whisper \citet{radford2022robustspeechrecognitionlargescale}.
+In this section, we show the generalizability of our approach by evaluating it on the Mamba architecture for text \citep{gu2024mambalineartimesequencemodeling} and on the speech modality with Whisper \citep{radford2022robustspeechrecognitionlargescale}.
 We further evaluate it on a lower-resource African language in the appendix.
 \subsection{Mamba Architecture}
 
 The attention mechanism in the Transformer is limited by its increasing complexity as a function of the input sequence length.
-Therefore, Linear Attention Models have been proposed as alternatives to Transformers, in particular State Space Models, such as the Mamba architecture \citet{gu2024mambalineartimesequencemodeling}, which have shown promising results.
+Therefore, Linear Attention Models have been proposed as alternatives to Transformers, in particular State Space Models, such as the Mamba architecture \citep{gu2024mambalineartimesequencemodeling}, which have shown promising results.
 
 \paragraph{Method.} We tested our approach on two Mamba architectures: Mamba
-3B \citet{gu2024mambalineartimesequencemodeling} (\url{https://huggingface.co/state-spaces/mamba-2.8b-hf)} and Falcon-Mamba 7B (\url{https://huggingface.co/tiiuae/falcon-mamba-7b)}.
+3B \citep{gu2024mambalineartimesequencemodeling} (\url{https://huggingface.co/state-spaces/mamba-2.8b-hf)} and Falcon-Mamba 7B (\url{https://huggingface.co/tiiuae/falcon-mamba-7b)}.
 We compressed these models by 20\% using the same dataset and hyperparameters as in previous experiments with Transformers, with a minimum rank set to 1024 for both models.
 
 \paragraph{Results.} Table~\ref{tab:ssm} shows that, as for Transformers, Mamba-based Language Models can be efficiently compressed. Interestingly, the 20\% compressed Mamba 3B maintains 99\% of the performance.
@@ -439,15 +439,15 @@ Table~\ref{tab:mem-speed-mamba-ch2} further shows that compressed Mamba models a
 
 \subsection{Speech modality: Whisper}
 
-We evaluate next our approach on a state-of-the-art speech model: \textit{whisper-medium.en} \citet{radford2022robustspeechrecognitionlargescale}, a 764M parameters encoder-decoder speech recognition model trained on English.
+We evaluate next our approach on a state-of-the-art speech model: \textit{whisper-medium.en} \citep{radford2022robustspeechrecognitionlargescale}, a 764M parameters encoder-decoder speech recognition model trained on English.
 
 \paragraph{Method.} We take inspiration from the deep encoder,
-shallow decoder approach \citet{kasai2021deepencodershallowdecoder}, where the
+shallow decoder approach \citep{kasai2021deepencodershallowdecoder}, where the
 authors observe that the decoder in encoder-decoder models does not need to be very deep to achieve good performance.
 Therefore, we keep the encoder unchanged and remove 70\% of the decoder's parameters. We then approximate the low-rank matrices using the same method and hyperparameters described in Section \ref{sec:xp}.
-\paragraph{Data.} For calibration, we used 60\% of randomly sampled examples from Librispeech-train-100 \citet{librispeech}. We also fine-tuned the compressed model on a subset of 10 hours of speech randomly sampled from Librispeech-train-100.
+\paragraph{Data.} For calibration, we used 60\% of randomly sampled examples from Librispeech-train-100 \citep{librispeech}. We also fine-tuned the compressed model on a subset of 10 hours of speech randomly sampled from Librispeech-train-100.
 
-\paragraph{Results.} We evaluate the models' Word Error Rate (WER), memory footprint and latency on an out-of-distribution test dataset: the test split of the English Fleurs dataset \citet{fleurs}.
+\paragraph{Results.} We evaluate the models' Word Error Rate (WER), memory footprint and latency on an out-of-distribution test dataset: the test split of the English Fleurs dataset \citep{fleurs}.
 
 \begin{table}[!ht]
     {\small{
@@ -716,7 +716,7 @@ The Civil War had many consequences, both positive and negative. Some positive c
 \end{table*}
 
 \subsection{Comparisons.}
-Table~\ref{tab:comparisons} shows that our approach outperforms SliceGPT \citet{ashkboos_slicegpt_2024}, a one-shot compression method for LLMs. Our approach also compares favorably with SVD-LLM \citet{svdllm} in Section \ref{ssec:svdllm}.
+Table~\ref{tab:comparisons} shows that our approach outperforms SliceGPT \citep{ashkboos_slicegpt_2024}, a one-shot compression method for LLMs. Our approach also compares favorably with SVD-LLM \citep{svdllm} in Section \ref{ssec:svdllm}.
 
 \subsection{Can this approach work for low-resource and under-represented languages?}
 \label{sec:hausa-ch2}

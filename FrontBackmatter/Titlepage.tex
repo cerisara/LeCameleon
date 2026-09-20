@@ -1,37 +1,12 @@
-%*******************************************************
-% Titlepage
-%*******************************************************
-\begin{titlepage}
-    %\pdfbookmark[1]{\myTitle}{titlepage}
-    % if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
-    \begin{addmargin}[-1cm]{-3cm}
-    \begin{center}
-        \large
-
-        \hfill
-
-        \vfill
-
-        \begingroup
-            \color{CTtitle}\spacedallcaps{\myTitle} \\ \bigskip
-        \endgroup
-
-        \spacedlowsmallcaps{\myName}
-
-        \vfill
-
-        \includegraphics[width=6cm]{gfx/TFZsuperellipse_bw} \\ \medskip
-
-        \mySubtitle \\ \medskip
-        %\myDegree \\
-        %\myDepartment \\
-        %\myFaculty \\
-        %\myUni \\ \bigskip
-
-        \myTime\ -- \myVersion
-
-        \vfill
-
-    \end{center}
-  \end{addmargin}
-\end{titlepage}
+% University of Lorraine cover generated from papers/TUL/exemple.tex.
+% Compile it from papers/TUL with:
+%   pdflatex -interaction=nonstopmode -halt-on-error exemple.tex
+% Only its title page is included.
+\begingroup
+% Preserve the standalone cover fonts when embedding its PDF.
+\ifdefined\pdfinclusioncopyfonts\pdfinclusioncopyfonts=1\fi
+% Keep the template draft timestamp off the institutional cover.
+\providecommand{\PrelimText}{}
+\renewcommand{\PrelimText}{}
+\includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{papers/TUL/exemple.pdf}
+\endgroup

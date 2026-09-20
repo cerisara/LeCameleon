@@ -41,10 +41,12 @@
     \list{publisher}{1}{%
       {IEEE}%
     }
-    \strng{namehash}{ITMACS1}
+    \strng{namehash}{IT+1}
     \strng{fullhash}{ITMACS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2006}
+    \field{labeldatesource}{}
     \field{sortinit}{I}
     \field{sortinithash}{I}
     \field{booktitle}{Proceedings of the Fourth International Conference on
@@ -97,6 +99,9 @@
     \strng{fullhash}{LUKMMAZlSSR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{extradate}{1}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{booktitle}{Proceedings of the Second European Conference on
@@ -145,6 +150,9 @@
     \strng{fullhash}{LUWQHRMASR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{extradate}{2}
+    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{booktitle}{Proceedings of the Third International Conference on
@@ -170,6 +178,8 @@
     \strng{fullhash}{MA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{issn}{0896-3207}
@@ -226,6 +236,8 @@
     \strng{fullhash}{MAcGSSADFEJSR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{booktitle}{Proceedings of the Tenth International Conference
@@ -275,6 +287,8 @@
     \strng{fullhash}{THYSMMAHYLSR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{}
     \field{sortinit}{T}
     \field{sortinithash}{T}
     \field{issn}{1520-9202}

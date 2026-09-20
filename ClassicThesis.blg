@@ -2,9 +2,7 @@ This is BibTeX, Version 0.99e (TeX Live 2026)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: ClassicThesis.aux
 The style file: biblatex.bst
-A level-1 auxiliary file: FrontBackmatter/DirtyTitlepage.aux
 A level-1 auxiliary file: FrontBackmatter/Titlepage.aux
-A level-1 auxiliary file: FrontBackmatter/Titleback.aux
 A level-1 auxiliary file: FrontBackmatter/Dedication.aux
 A level-1 auxiliary file: FrontBackmatter/Abstract.aux
 A level-1 auxiliary file: FrontBackmatter/Publications.aux
@@ -15,6 +13,8 @@ A level-1 auxiliary file: Chapters/Chapter02_EfficientLanguageModels.aux
 A level-1 auxiliary file: Chapters/Chapter02.aux
 A level-1 auxiliary file: Chapters/Chapter03.aux
 A level-1 auxiliary file: Chapters/Chapter04.aux
+A level-1 auxiliary file: Chapters/Chapter05.aux
+A level-1 auxiliary file: Chapters/ConclusionAndFutureWork.aux
 A level-1 auxiliary file: Chapters/Chapter0A.aux
 A level-1 auxiliary file: FrontBackmatter/Bibliography.aux
 A level-1 auxiliary file: FrontBackmatter/Declaration.aux
@@ -34,7 +34,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 29500 items from 5000.
+Reallocated field_info (elt_size=4) to 29920 items from 5000.
 Database file #1: ClassicThesis-blx.bib
 Database file #2: Bibliography.bib
 Database file #3: papers/MRL/custom.bib
@@ -49,45 +49,45 @@ Warning--you've exceeded 500, the entry-string-size, for entry grattafiori2024ll
 while executing--line 2728 of file biblatex.bst
 *Please notify the bibstyle designer*
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 175 entries,
+You've used 178 entries,
             6402 wiz_defined-function locations,
-            2144 strings with 76591 characters,
-and the built_in function-call counts, 4417123 in all, are:
-= -- 422452
-> -- 36936
-< -- 7062
-+ -- 178963
-- -- 18574
-* -- 318728
-:= -- 613015
+            2162 strings with 78332 characters,
+and the built_in function-call counts, 4568241 in all, are:
+= -- 436204
+> -- 37388
+< -- 7158
++ -- 184476
+- -- 18773
+* -- 332113
+:= -- 632747
 add.period$ -- 0
-call.type$ -- 175
-change.case$ -- 174
-chr.to.int$ -- 129
-cite$ -- 348
-duplicate$ -- 501082
-empty$ -- 324260
-format.name$ -- 32083
-if$ -- 818296
+call.type$ -- 178
+change.case$ -- 177
+chr.to.int$ -- 135
+cite$ -- 354
+duplicate$ -- 518487
+empty$ -- 337018
+format.name$ -- 32777
+if$ -- 846895
 int.to.chr$ -- 0
-int.to.str$ -- 445
+int.to.str$ -- 481
 missing$ -- 0
-newline$ -- 16215
-num.names$ -- 8370
-pop$ -- 97486
+newline$ -- 17086
+num.names$ -- 8572
+pop$ -- 100280
 preamble$ -- 1
-purify$ -- 6879
+purify$ -- 7226
 quote$ -- 0
-skip$ -- 45882
+skip$ -- 46914
 stack$ -- 0
-substring$ -- 806762
-swap$ -- 52078
-text.length$ -- 8070
-text.prefix$ -- 176
+substring$ -- 832855
+swap$ -- 55577
+text.length$ -- 8183
+text.prefix$ -- 179
 top$ -- 1
-type$ -- 5938
+type$ -- 6040
 warning$ -- 0
-while$ -- 80502
+while$ -- 83057
 width$ -- 0
-write$ -- 16041
+write$ -- 16909
 (There were 2 warnings)

@@ -1,0 +1,30 @@
+\begin{table}[t]
+\centering
+\caption{Performance of NV-Embed representations on classification and retrieval
+tasks. Scores are percentages. $k$ is the number of coordinates retained at
+inference; dense representations use all $d_{\text{model}}$ coordinates.
+The dense baseline uses NV-Embed with a projector fine-tuned on each task
+and retains all coordinates. The best score in each column is bold and the second-highest
+distinct score is underlined.}
+\label{tab:embedding_results}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llc|cc|cc}
+\toprule
+& & & \multicolumn{2}{c|}{\textbf{Classification}} & \multicolumn{2}{c}{\textbf{Retrieval}} \\
+& & & \multicolumn{2}{c|}{Top-1 Acc. (\%) $\uparrow$} & \multicolumn{2}{c}{NDCG@10 (\%) $\uparrow$} \\
+\cmidrule{4-5}\cmidrule{6-7}
+Category & Method & Dim. & MTOPIntent & Banking77 & NFCorpus & SciFact \\
+\midrule
+Dense & Fine-tuned & $d_{\text{model}}$ & \underline{93.96} & \underline{93.73} & 55.01 & \textbf{84.87} \\
+\midrule
+& CSR & 256 & \textbf{96.85} & \textbf{94.38} & \textbf{56.12} & 73.20 \\
+& CSR & 128 & \textbf{96.85} & \textbf{94.38} & 54.64 & 73.20 \\
+\cmidrule{2-7}
+\rowcolor{ratioDenseD!40!white}
+\cellcolor{white} & ZoN (ours) & 256 & 91.68 & 92.93 & \underline{55.46} & \underline{82.06} \\
+\rowcolor{ratioDenseD!40!white}
+\cellcolor{white}\multirow{-4}{*}{Sparse} & ZoN (ours) & 128 & 90.04 & 91.02 & 52.14 & 81.23 \\
+\bottomrule
+\end{tabular}
+\end{table}

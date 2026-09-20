@@ -1,0 +1,85 @@
+%********************************************************************
+% Overall conclusion and future work
+%********************************************************************
+\chapter{Overall Conclusion and Future Work}
+
+\section{Overall Conclusion}
+The promises of scaling laws, where scaling up model size gives rise to new capabilities, 
+are colliding with a harsh reality: training these large models and running inference 
+is costly. The whole research question is how to scale language models efficiently,
+both for training and inference. It is fortunate that pre-trained LLMs exhibit
+redundancy at different levels, that can be leveraged to make them efficient
+at post-training or pre-training. We show that one example of 
+such redundancy is expressed in the fact that pre-trained Transformer's exhibit 
+low-rank structure in their activations.
+Our contributions exploit this observation to make LLMs efficient mainly in two
+directions: \textbf{model compression} using activations and \textbf{activation sparsity}.
+
+For post-training \textbf{model compression}, we propose \textbf{Lillama}, a method that locally distills the
+activations of Transformer layers into low-rank weights. This local optimization makes
+the approach more efficient than prior work: it enables compressing, on a single GPU,
+LLMs that would not otherwise fit on one. To achieve speedup, the method does not require
+specialized GPU kernels, unlike weight-sparsity approaches such as Wanda or SparseGPT.
+The approach is also sample-efficient, requiring only 13M tokens, compared to methods
+like Sheared-Llama, which uses 50B tokens for compression, or Minitron, which uses over
+100B. Sample efficiency is an important property in post-training compression, as it
+directly affects the fairness of the approach---for instance, its viability for
+under-represented languages. This is why we specifically studied Whisper compression in
+a low-resource setting, using Bambara as a case study. In this work, \textbf{BaldWhisper}, we
+again distill input/output embedding activations into low-rank weights, but push
+compression further by reducing the number of layers. To preserve the method's sample
+efficiency, we do this by merging layers rather than removing them,
+to stay close to the original model.
+The resulting model is 2x faster while maintaining most of the performance.
+
+For \textbf{activation sparsity}, we first study the eigenstructure of \textbf{Matryoshka
+embedding LLMs} in multilingual and multimodal representation learning. We show
+that Matryoshka embeddings, viewed as a form of structured activation sparsity,
+leave room for more effective use of the representation space: most of the
+activation energy is concentrated in relatively few principal components.
+The fixed slicing opertor applied on the embedding vectors 
+does not preserve all the information needed for downstream tasks while
+introducing redundancy. We make the same observation for dense MLPs in
+autoregressive LLMs: their intermediate activations occupy a subspace
+substantially smaller than the allocated dimension. Sparse MoEs, however,
+project each token into a smaller subspaces of the available intermediate dimension, 
+and we showed that those small subspaes are used more fully. 
+These observations motivate an approach where the MLP has a large intermediate
+dimension but each token select only the needed intermediate coordinates adaptively 
+rather than activating the whole available space.
+We introduce \textbf{ZeroNeuron (ZoN)}, an input-dependent
+gating mechanism that learns which coordinates to activate while constraining. 
+With approximately 600M active parameters per
+token, the 1.2B ZoN model matches the aggregate performance of its dense
+counterpart and outperforms a dense model of comparable active parameters.
+These results show that model capacity can be preserved while reducing
+the parameters activated for each input, and the such sparsity
+can be exploited by GPU Kernels to accelerate training and inference.
+
+\section{Future Work}
+We believe in sparsity, and we expect the most performant neural systems
+of the future to be sparsely activated. The remaining question is how
+this sparsity should be designed. We do not believe that TopK-based
+mixtures of experts or sparse memory layers are the right long-term
+answer: there is no reason to impose the same activation budget on
+every token, regardless of the task or its difficulty. Moreover, under
+current hardware constraints, distributed TopK routing incurs substantial
+Cross-GPU expert communication is one of the biggest challenges in
+scaling fine-grained sparsity, and approaches such as LatentMoE are
+trying to address it. Maybe this will not be a problem
+in few years with the next generation of hardware where a single GPU 
+with TB of vRAM that can train multi-trillion parameters LLMs on a single GPU. 
+But beyond the engineering issues, TopK-based
+routing also faces the stability problems discussed earlier, including
+dead experts and expert collapse. Rather than putting patches everywhere
+to keep TopK-based sparsity working, we believe it can be beneficial to fundamentally
+revisit how sparsity is learned. We bilieve that such approaches must be adaptive, communication-efficient,
+and stable by design. ZoN is our first step in this direction. We plan
+to investigate its scalability through larger models and longer training
+runs, while developing GPU kernels that translate its learned sparsity
+into actual computational savings.
+
+The conclusion of this thesis is therefore the beginning of many things
+to come, rather than the end of this research. We believe that learning
+when, where, and how much to compute will be central to building more
+capable and efficient neural systems.

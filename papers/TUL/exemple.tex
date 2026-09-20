@@ -1,0 +1,159 @@
+%             Exemple d'utilisation de la classe thesul
+%             ------------------------------------------
+%
+%
+% (de manière generale, les commandes de thesul sont celles
+% qui ne sont pas complètement en minuscules)
+%
+% Voir la documentation complète pour plus de détails.
+%
+%
+% D. Roegel, 30 mars 2013
+%
+\documentclass[11pt]{thesul}
+%----------------------------------------------------------------------
+%                     Chargement de quelques packages
+%----------------------------------------------------------------------
+
+% Si l'on veut produire une version PDF avec des hyperliens :
+%\usepackage[pageanchor=false]{tulhypref}
+
+% Si on veut le style de bibliographie named :
+%\usepackage{named}
+
+% Pour les figures :
+\usepackage{graphicx}
+
+% Si on veut des mini-tables des matières (utiliser minitoc-hyper 
+% en conjonction avec tulhypref) :
+\usepackage[french]{minitoc}
+
+
+%-------------------------------------------------------------------
+%                             Marges
+%-------------------------------------------------------------------
+
+% pour positionner les vraies marges:
+%\SetRealMargins{1mm}{1mm}
+
+%-------------------------------------------------------------------
+%                             En-têtes
+%-------------------------------------------------------------------
+
+% Les en-têtes: quelques exemples
+%\UppercaseHeadings 
+%\UnderlineHeadings
+%\newcommand\bfheadings[1]{{\bf #1}}
+%\FormatHeadingsWith{\bfheadings}
+%\FormatHeadingsWith{\uppercase}
+%\FormatHeadingsWith{\underline}
+\newcommand\upun[1]{\uppercase{\underline{\underline{#1}}}}
+\FormatHeadingsWith\upun
+
+\newcommand\itheadings[1]{\textit{#1}}
+\FormatHeadingsWith{\itheadings}
+
+% pour avoir un trait sous l'en-tete:
+\setlength{\HeadRuleWidth}{0.4pt}
+
+%-------------------------------------------------------------------
+%                         Les références
+%-------------------------------------------------------------------
+
+\NoChapterNumberInRef
+\NoChapterPrefix
+
+%-------------------------------------------------------------------
+%                           Brouillons
+%-------------------------------------------------------------------
+
+% ceci ajoute une marque « brouillon » et la date
+%\ThesisDraft
+
+%-------------------------------------------------------------------
+%                   Pour collecter un glossaire et un index
+%-------------------------------------------------------------------
+
+\makeglossary
+\makeindex
+
+\begin{document}
+
+
+      \OddHead={{\leftmark\rightmark}{\hfil\slshape\rightmark}}
+      \EvenHead={{\leftmark}{{\slshape\leftmark}\hfil}}
+      \OddFoot={\hfil\thepage}
+      \EvenFoot={\thepage\hfil}
+      \pagestyle{ThesisHeadingsII}
+
+%-------------------------------------------------------------------
+%                          Encadrements
+%-------------------------------------------------------------------
+
+% encadre les chapitres dans la table des matières:
+% (ces commandes doivent figurer apres \begin{document}
+
+\FrameChaptersInToc  
+%\FramePartsInToc
+
+
+%-------------------------------------------------------------------
+%            Réinitialisation de la numérotation des chapitres
+%-------------------------------------------------------------------
+
+% Si la commande suivante est présente,
+% elle doit figurer APRÈS \begin{document}
+% et avant la première commande \part
+\ResetChaptersAtParts 
+
+%-------------------------------------------------------------------
+%               mini-tables des matières par chapitre
+%-------------------------------------------------------------------
+
+% préparer les mini-tables des matières par chapitre.
+% (commande de minitoc.sty)
+\dominitoc
+
+%-------------------------------------------------------------------
+%                         Page de titre:
+%-------------------------------------------------------------------
+
+\ThesisTitle{Le Caméléon}
+\ThesisDate{10 décembre 2026}
+\ThesisAuthor{Yaya Sy}
+
+% Type de la these
+\ThesisUL
+
+% Jury:
+
+% (ne pas mettre de \\ apres la dernière entree)
+
+% Exemple de création d'une nouvelle catégorie dans le jury:
+
+\NewJuryCategory{family}{\it Membre de la famille :}
+                        {\it Membres de la famille :}
+\NewJuryCategory{Directeurs}{\it Directeur de th\`ese :}
+                            {\it Directeurs de th\`ese :}
+
+\Directeurs={Christophe Cerisara&Professeur des universités\\
+             &Université de Lorraine, France\\
+             Irina Illina&Maîtresse de conférence\\
+             &Universtié de Lorraine, France
+}
+
+\def\blanc{\hspace*{1cm}}
+
+\President    = {Maxime Amblard&Professeur des universités\\
+                &Université de Lorraine, France}
+\Rapporteurs  = {Anthony Larcher &Professeur des universités\\
+                &Le Mans Université, France\\
+                Benoît Crabbé&Professeur des universtiés\\
+                &Université Paris Cité, France
+                 }
+\Examinateurs = {Marie Candito&Maîtresse de conférence\\
+                 &Université Paris Cité, France}
+%\Invites=       {}
+\MakeThesisTitlePage
+
+\end{document}
