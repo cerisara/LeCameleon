@@ -160,7 +160,7 @@
 \contentsline {paragraph}{{Synthetic data.}}{102}{paragraph*.116}%
 \contentsline {paragraph}{{Beyond Matryoshka slicing.}}{102}{paragraph*.117}%
 \contentsline {section}{\numberline {5.8}{Conclusion}}{102}{section.5.8}%
-\contentsline {chapter}{\numberline {6}{Adaptive Sparse Memory}}{103}{chapter.6}%
+\contentsline {chapter}{\numberline {6}{Adaptive Neural Activity Transformer}}{103}{chapter.6}%
 \contentsline {section}{\numberline {6.1}{Introduction}}{103}{section.6.1}%
 \contentsline {section}{\numberline {6.2}{Contemplating the MLP}}{104}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}{Transformer MLPs as Key-Value Memories}}{104}{subsection.6.2.1}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  21 SEP 2026 07:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  21 SEP 2026 07:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4302,7 +4302,7 @@ Package logreq Info: Writing requests to 'ClassicThesis.run.xml'.
 Here is how much of TeX's memory you used:
  67313 strings out of 467525
  1545405 string characters out of 5418983
- 3117324 words of memory out of 5000000
+ 3118324 words of memory out of 5000000
  92673 multiletter control sequences out of 15000+600000
  856068 words of font info for 1433 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
@@ -4335,7 +4335,7 @@ ic/cm-super/sfss0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
 tino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/up
 lr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on ClassicThesis.pdf (169 pages, 4539573 bytes).
+Output written on ClassicThesis.pdf (169 pages, 4539747 bytes).
 PDF statistics:
  6661 PDF objects out of 7423 (max. 8388607)
  4550 compressed objects within 46 object streams
