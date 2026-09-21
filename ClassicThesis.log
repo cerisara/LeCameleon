@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  20 SEP 2026 23:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.8)  21 SEP 2026 07:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2182,12 +2182,6 @@ on []
  []
 
 
-Overfull \hbox (30.52213pt too wide) in paragraph at lines 42--42
- [][] []\T1/pplj/m/n/10.95 (-20) Motivation: Ac-ti-va-tions are more low-rank t
-han weights []  
- []
-
-
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -2196,19 +2190,19 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 ]
-Overfull \hbox (22.44344pt too wide) in paragraph at lines 122--122
+Overfull \hbox (22.44344pt too wide) in paragraph at lines 124--124
  [][] []\T1/pplj/m/n/10.95 (-20) Wolof-Specific Hu-BERT Con-tin-ued Pre-train-i
 ng []  
  []
 
 
-Overfull \hbox (12.4649pt too wide) in paragraph at lines 125--125
+Overfull \hbox (12.4649pt too wide) in paragraph at lines 127--127
  [][] []\T1/pplj/m/n/10.95 (-20) Supervised ASR Fine-Tuning and Eval-u-a-tion [
 ]  
  []
 
 
-Overfull \hbox (23.2944pt too wide) in paragraph at lines 128--128
+Overfull \hbox (23.2944pt too wide) in paragraph at lines 130--130
  [][] []\T1/pplj/m/n/10.95 (-20) From a Speech En-coder to a Wolof Speech LLM [
 ]  
  []
@@ -2218,7 +2212,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [12]
-Overfull \hbox (3.75697pt too wide) in paragraph at lines 164--164
+Overfull \hbox (3.75697pt too wide) in paragraph at lines 166--166
  [][] []\T1/pplj/m/n/10.95 (-20) Transformer MLPs as Key-Value Mem-o-ries []  
  []
 
@@ -2309,17 +2303,17 @@ Overfull \hbox (17.91742pt too wide) in paragraph at lines 46--46
  []
 
 
-Overfull \hbox (5.83281pt too wide) in paragraph at lines 46--46
+Overfull \hbox (3.04277pt too wide) in paragraph at lines 46--46
  \T1/pplj/m/n/10.95 (-20) ones. $\OML/zplm/m/it/10.95 l[]$\T1/pplj/m/n/10.95 (-
 20) , $\OML/zplm/m/it/10.95 l[]$\T1/pplj/m/n/10.95 (-20) , ..., $\OML/zplm/m/it
 /10.95 l[]$\T1/pplj/m/n/10.95 (-20) , $\OML/zplm/m/it/10.95 l[]$ \T1/pplj/m/n/1
-0.95 (-20) are the layer in-dexes. []  
+0.95 (-20) are the layer in-dices. []  
  []
 
 
-Overfull \hbox (20.54662pt too wide) in paragraph at lines 49--49
- [][] []\T1/pplj/b/n/10.95 (-20) SVD Ini-tial-iza-tion im-proves the sample-eff
-iciency\T1/pplj/m/n/10.95 (-20) . 
+Overfull \hbox (0.87671pt too wide) in paragraph at lines 49--49
+ [][] []\T1/pplj/b/n/10.95 (-20) SVD ini-tial-iza-tion im-proves sam-ple ef-fi-
+ciency\T1/pplj/m/n/10.95 (-20) . 
  []
 
 
@@ -2372,11 +2366,6 @@ pted
  []
 
 
-Overfull \hbox (4.19553pt too wide) in paragraph at lines 24--24
- [][] []\T1/pplj/b/n/10.95 (-20) Compressed mod-els save mem-ory and speedup 
- []
-
-
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -2392,9 +2381,9 @@ Overfull \hbox (0.36024pt too wide) in paragraph at lines 31--31
  []
 
 
-Overfull \hbox (13.76193pt too wide) in paragraph at lines 35--35
- \T1/pplj/m/n/10.95 (-20) ing. \T1/pplj/b/n/10.95 (-20) Prompt: "Here the story
- of Steve Jobs:" []  
+Overfull \hbox (29.97646pt too wide) in paragraph at lines 35--35
+ \T1/pplj/m/n/10.95 (-20) tuning. \T1/pplj/b/n/10.95 (-20) Prompt: "Here the st
+ory of Steve Jobs:" []  
  []
 
 
@@ -2402,9 +2391,14 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [19]
-Overfull \hbox (4.39517pt too wide) in paragraph at lines 36--36
+Overfull \hbox (7.9686pt too wide) in paragraph at lines 36--36
  \T1/pplj/m/n/10.95 (-20) pressed mod-els, with-out \T1/pplj/m/it/10.95 (-20) a
-ny \T1/pplj/m/n/10.95 (-20) fine-tun-ing. \T1/pplj/b/n/10.95 (-20) Prompt: 
+ny \T1/pplj/m/n/10.95 (-20) fine-tuning. \T1/pplj/b/n/10.95 (-20) Prompt: 
+ []
+
+
+Overfull \hbox (4.06195pt too wide) in paragraph at lines 37--37
+ \T1/pplj/m/n/10.95 (-20) 30% com-pressed InkubaLM model for the Hausa 
  []
 
 
@@ -2478,15 +2472,15 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <9> not available
-(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 99.
+(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 98.
 LaTeX Font Info:    Font shape `T1/fvm/m/sl' will be
-(Font)              scaled to size 7.65005pt on input line 99.
+(Font)              scaled to size 7.65005pt on input line 98.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [4]
-Overfull \hbox (8.54797pt too wide) in paragraph at lines 139--139
+Overfull \hbox (8.54797pt too wide) in paragraph at lines 138--138
 |[]\T1/pplj/m/sc/10.95/80ls (-20) the trans-former, the best ma-chine lan-guage
  learner?| 
  []
@@ -2499,13 +2493,13 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [5]
-<figures/transformer.pdf, id=722, 344.31712pt x 415.5525pt>
+<figures/transformer.pdf, id=725, 344.31712pt x 415.5525pt>
 File: figures/transformer.pdf Graphic file (type pdf)
 <use figures/transformer.pdf>
-Package pdftex.def Info: figures/transformer.pdf  used on input line 153.
+Package pdftex.def Info: figures/transformer.pdf  used on input line 152.
 (pdftex.def)             Requested size: 252.0pt x 304.13705pt.
 LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 
-160.
+159.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
@@ -2529,21 +2523,22 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [9]
-<figures/embedding_parameter_ratio.pdf, id=859, 1174.87308pt x 666.65627pt>
+<figures/embedding_parameter_ratio.pdf, id=861, 1174.87308pt x 666.65627pt>
 File: figures/embedding_parameter_ratio.pdf Graphic file (type pdf)
 <use figures/embedding_parameter_ratio.pdf>
 Package pdftex.def Info: figures/embedding_parameter_ratio.pdf  used on input l
-ine 427.
+ine 426.
 (pdftex.def)             Requested size: 336.0pt x 190.65004pt.
 
-Underfull \hbox (badness 6825) in paragraph at lines 429--429
-[][]|\T1/pplj/m/n/10 (+20) Pro-por-tion of the size in MB of em-bed-ding pa-ram
+Underfull \hbox (badness 10000) in paragraph at lines 428--428
+[][]|\T1/pplj/m/n/10 (+20) Share of model stor-age oc-cu-pied by em-bed-ding pa
 -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--429
-\T1/pplj/m/n/10 (+20) e-ters across dif-fer-ent model sizes. Data taken from
+Underfull \hbox (badness 3158) in paragraph at lines 428--428
+\T1/pplj/m/n/10 (+20) ram-e-ters across dif-fer-ent model sizes. Data taken fro
+m
  []
 
 
@@ -2551,16 +2546,16 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [10]
-<figures/figure6_accuracy.png, id=874, 416.2752pt x 298.9569pt>
+<figures/figure6_accuracy.png, id=875, 416.2752pt x 298.9569pt>
 File: figures/figure6_accuracy.png Graphic file (type png)
 <use figures/figure6_accuracy.png>
-Package pdftex.def Info: figures/figure6_accuracy.png  used on input line 470.
+Package pdftex.def Info: figures/figure6_accuracy.png  used on input line 469.
 (pdftex.def)             Requested size: 161.27856pt x 115.82634pt.
-<figures/figure6_cross_entropy.png, id=876, 420.3705pt x 298.9569pt>
+<figures/figure6_cross_entropy.png, id=877, 420.3705pt x 298.9569pt>
 File: figures/figure6_cross_entropy.png Graphic file (type png)
 <use figures/figure6_cross_entropy.png>
 Package pdftex.def Info: figures/figure6_cross_entropy.png  used on input line 
-474.
+473.
 (pdftex.def)             Requested size: 161.27856pt x 114.6996pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -2571,11 +2566,11 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [12 <./figures/figure6_accuracy.png> <./figures/figure6_cross_entropy.png>]
-<figures/wei_emergent_abilities_figure.pdf, id=954, 472.76625pt x 321.2pt>
+<figures/wei_emergent_abilities_figure.pdf, id=956, 472.76625pt x 321.2pt>
 File: figures/wei_emergent_abilities_figure.pdf Graphic file (type pdf)
 <use figures/wei_emergent_abilities_figure.pdf>
 Package pdftex.def Info: figures/wei_emergent_abilities_figure.pdf  used on inp
-ut line 515.
+ut line 514.
 (pdftex.def)             Requested size: 336.0pt x 228.28395pt.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -2642,7 +2637,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [20]
-<figures/shearedllama.pdf, id=1076, 389.455pt x 266.9975pt>
+<figures/shearedllama.pdf, id=1083, 389.455pt x 266.9975pt>
 File: figures/shearedllama.pdf Graphic file (type pdf)
 <use figures/shearedllama.pdf>
 Package pdftex.def Info: figures/shearedllama.pdf  used on input line 426.
@@ -2652,7 +2647,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [21]
-Overfull \hbox (1.56523pt too wide) in paragraph at lines 522--523
+Overfull \hbox (1.56523pt too wide) in paragraph at lines 521--522
  [][] 
  []
 
@@ -2681,36 +2676,28 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [27]
-<figures/switch_transformer_figure2.pdf, id=1194, 451.6875pt x 220.825pt>
+<figures/switch_transformer_figure2.pdf, id=1204, 451.6875pt x 220.825pt>
 File: figures/switch_transformer_figure2.pdf Graphic file (type pdf)
 <use figures/switch_transformer_figure2.pdf>
 Package pdftex.def Info: figures/switch_transformer_figure2.pdf  used on input 
-line 900.
+line 913.
 (pdftex.def)             Requested size: 336.0pt x 164.27727pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [28 <./figures/switch_transformer_figure2.pdf>]
-<figures/loss_vs_log_params.pdf, id=1270, 722.7pt x 578.16pt>
+<figures/loss_vs_log_params.pdf, id=1282, 722.7pt x 578.16pt>
 File: figures/loss_vs_log_params.pdf Graphic file (type pdf)
 <use figures/loss_vs_log_params.pdf>
-Package pdftex.def Info: figures/loss_vs_log_params.pdf  used on input line 950
+Package pdftex.def Info: figures/loss_vs_log_params.pdf  used on input line 963
 .
 (pdftex.def)             Requested size: 161.27856pt x 129.02174pt.
-<figures/perp_vs_step.pdf, id=1271, 722.7pt x 578.16pt>
+<figures/perp_vs_step.pdf, id=1283, 722.7pt x 578.16pt>
 File: figures/perp_vs_step.pdf Graphic file (type pdf)
 <use figures/perp_vs_step.pdf>
-Package pdftex.def Info: figures/perp_vs_step.pdf  used on input line 954.
+Package pdftex.def Info: figures/perp_vs_step.pdf  used on input line 967.
 (pdftex.def)             Requested size: 161.27856pt x 129.02174pt.
-<figures/fine_grained_moe_granularity_figure3a.pdf, id=1280, 133.49875pt x 133.
-49875pt>
-File: figures/fine_grained_moe_granularity_figure3a.pdf Graphic file (type pdf)
-
-<use figures/fine_grained_moe_granularity_figure3a.pdf>
-Package pdftex.def Info: figures/fine_grained_moe_granularity_figure3a.pdf  use
-d on input line 985.
-(pdftex.def)             Requested size: 302.39795pt x 302.46341pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
@@ -2720,207 +2707,214 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 pdfTeX warning: pdflatex (file ./figures/perp_vs_step.pdf): PDF inclusion: mult
 iple pdfs with page group included in a single page
 >]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+<figures/fine_grained_moe_granularity_figure3a.pdf, id=1377, 133.49875pt x 133.
+49875pt>
+File: figures/fine_grained_moe_granularity_figure3a.pdf Graphic file (type pdf)
 
-
-[30 <./figures/fine_grained_moe_granularity_figure3a.pdf>]
+<use figures/fine_grained_moe_granularity_figure3a.pdf>
+Package pdftex.def Info: figures/fine_grained_moe_granularity_figure3a.pdf  use
+d on input line 998.
+(pdftex.def)             Requested size: 302.39795pt x 302.46341pt.
 LaTeX Font Info:    Trying to load font information for TS1+pplj on input line 
-1009.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ts1pplj.fd
+1022.
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ts1pplj.fd
 File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[31]
-<figures/mixtral_expert_selection_domains.pdf, id=1490, 416.55624pt x 265.99374
+[30]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[31 <./figures/fine_grained_moe_granularity_figure3a.pdf>]
+<figures/mixtral_expert_selection_domains.pdf, id=1500, 416.55624pt x 265.99374
 pt>
 File: figures/mixtral_expert_selection_domains.pdf Graphic file (type pdf)
 <use figures/mixtral_expert_selection_domains.pdf>
 Package pdftex.def Info: figures/mixtral_expert_selection_domains.pdf  used on 
-input line 1075.
+input line 1088.
 (pdftex.def)             Requested size: 336.0pt x 214.56488pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[32 <./figures/mixtral_expert_selection_domains.pdf>]
-<figures/nllb_moe_language_similarity_figure20.pdf, id=1577, 454.69875pt x 426.
+[32]
+<figures/nllb_moe_language_similarity_figure20.pdf, id=1520, 454.69875pt x 426.
 59375pt>
 File: figures/nllb_moe_language_similarity_figure20.pdf Graphic file (type pdf)
 
 <use figures/nllb_moe_language_similarity_figure20.pdf>
 Package pdftex.def Info: figures/nllb_moe_language_similarity_figure20.pdf  use
-d on input line 1101.
+d on input line 1114.
 (pdftex.def)             Requested size: 336.0pt x 315.2383pt.
-<figures/olmoe_unicode/copyright.png, id=1580, 170.6375pt x 193.72375pt>
+<figures/olmoe_unicode/copyright.png, id=1523, 170.6375pt x 193.72375pt>
 File: figures/olmoe_unicode/copyright.png Graphic file (type png)
 <use figures/olmoe_unicode/copyright.png>
 Package pdftex.def Info: figures/olmoe_unicode/copyright.png  used on input lin
-e 1171.
+e 1184.
 (pdftex.def)             Requested size: 6.18121pt x 7.01999pt.
-<figures/olmoe_unicode/latin_l.png, id=1581, 60.225pt x 195.73125pt>
+<figures/olmoe_unicode/latin_l.png, id=1524, 60.225pt x 195.73125pt>
 File: figures/olmoe_unicode/latin_l.png Graphic file (type png)
 <use figures/olmoe_unicode/latin_l.png>
 Package pdftex.def Info: figures/olmoe_unicode/latin_l.png  used on input line 
-1171.
+1184.
 (pdftex.def)             Requested size: 2.15955pt x 7.01999pt.
-<figures/olmoe_unicode/latin_i.png, id=1582, 41.15375pt x 249.93375pt>
+<figures/olmoe_unicode/latin_i.png, id=1525, 41.15375pt x 249.93375pt>
 File: figures/olmoe_unicode/latin_i.png Graphic file (type png)
 <use figures/olmoe_unicode/latin_i.png>
 Package pdftex.def Info: figures/olmoe_unicode/latin_i.png  used on input line 
-1171.
+1184.
 (pdftex.def)             Requested size: 1.15543pt x 7.01999pt.
-<figures/olmoe_unicode/jarai_i.png, id=1583, 80.3pt x 190.7125pt>
+<figures/olmoe_unicode/jarai_i.png, id=1526, 80.3pt x 190.7125pt>
 File: figures/olmoe_unicode/jarai_i.png Graphic file (type png)
 <use figures/olmoe_unicode/jarai_i.png>
 Package pdftex.def Info: figures/olmoe_unicode/jarai_i.png  used on input line 
-1171.
+1184.
 (pdftex.def)             Requested size: 2.95537pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_virama.png, id=1584, 125.46875pt x 196.735pt>
+<figures/olmoe_unicode/devanagari_virama.png, id=1527, 125.46875pt x 196.735pt>
 
 File: figures/olmoe_unicode/devanagari_virama.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_virama.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_virama.png  used on i
-nput line 1171.
+nput line 1184.
 (pdftex.def)             Requested size: 4.47609pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_e.png, id=1585, 137.51375pt x 207.77625pt>
+<figures/olmoe_unicode/devanagari_e.png, id=1528, 137.51375pt x 207.77625pt>
 File: figures/olmoe_unicode/devanagari_e.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_e.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_e.png  used on input 
-line 1171.
+line 1184.
 (pdftex.def)             Requested size: 4.6456pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_ka.png, id=1586, 184.69pt x 164.615pt>
+<figures/olmoe_unicode/devanagari_ka.png, id=1529, 184.69pt x 164.615pt>
 File: figures/olmoe_unicode/devanagari_ka.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_ka.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_ka.png  used on input
- line 1171.
+ line 1184.
 (pdftex.def)             Requested size: 7.87387pt x 7.01999pt.
-<figures/olmoe_unicode/cyrillic_sha.png, id=1587, 187.70125pt x 138.5175pt>
+<figures/olmoe_unicode/cyrillic_sha.png, id=1530, 187.70125pt x 138.5175pt>
 File: figures/olmoe_unicode/cyrillic_sha.png Graphic file (type png)
 <use figures/olmoe_unicode/cyrillic_sha.png>
 Package pdftex.def Info: figures/olmoe_unicode/cyrillic_sha.png  used on input 
-line 1171.
+line 1184.
 (pdftex.def)             Requested size: 9.51163pt x 7.01999pt.
-<figures/olmoe_unicode/cyrillic_in.png, id=1588, 286.06876pt x 138.5175pt>
+<figures/olmoe_unicode/cyrillic_in.png, id=1531, 286.06876pt x 138.5175pt>
 File: figures/olmoe_unicode/cyrillic_in.png Graphic file (type png)
 <use figures/olmoe_unicode/cyrillic_in.png>
 Package pdftex.def Info: figures/olmoe_unicode/cyrillic_in.png  used on input l
-ine 1171.
+ine 1184.
 (pdftex.def)             Requested size: 14.49634pt x 7.01999pt.
-<figures/olmoe_unicode/cyrillic_a.png, id=1589, 112.42pt x 143.53625pt>
+<figures/olmoe_unicode/cyrillic_a.png, id=1532, 112.42pt x 143.53625pt>
 File: figures/olmoe_unicode/cyrillic_a.png Graphic file (type png)
 <use figures/olmoe_unicode/cyrillic_a.png>
 Package pdftex.def Info: figures/olmoe_unicode/cyrillic_a.png  used on input li
-ne 1171.
+ne 1184.
 (pdftex.def)             Requested size: 5.49782pt x 7.01999pt.
-<figures/olmoe_unicode/slovak_l.png, id=1590, 66.2475pt x 195.73125pt>
+<figures/olmoe_unicode/slovak_l.png, id=1533, 66.2475pt x 195.73125pt>
 File: figures/olmoe_unicode/slovak_l.png Graphic file (type png)
 <use figures/olmoe_unicode/slovak_l.png>
 Package pdftex.def Info: figures/olmoe_unicode/slovak_l.png  used on input line
- 1171.
+ 1184.
 (pdftex.def)             Requested size: 2.3755pt x 7.01999pt.
 File: figures/olmoe_unicode/copyright.png Graphic file (type png)
 <use figures/olmoe_unicode/copyright.png>
 Package pdftex.def Info: figures/olmoe_unicode/copyright.png  used on input lin
-e 1171.
+e 1184.
 (pdftex.def)             Requested size: 6.18121pt x 7.01999pt.
-<figures/olmoe_unicode/persian_j.png, id=1591, 83.31125pt x 221.82875pt>
+<figures/olmoe_unicode/persian_j.png, id=1534, 83.31125pt x 221.82875pt>
 File: figures/olmoe_unicode/persian_j.png Graphic file (type png)
 <use figures/olmoe_unicode/persian_j.png>
 Package pdftex.def Info: figures/olmoe_unicode/persian_j.png  used on input lin
-e 1171.
+e 1184.
 (pdftex.def)             Requested size: 2.63524pt x 7.01999pt.
-<figures/olmoe_unicode/dutch_ij.png, id=1592, 94.3525pt x 251.94125pt>
+<figures/olmoe_unicode/dutch_ij.png, id=1535, 94.3525pt x 251.94125pt>
 File: figures/olmoe_unicode/dutch_ij.png Graphic file (type png)
 <use figures/olmoe_unicode/dutch_ij.png>
 Package pdftex.def Info: figures/olmoe_unicode/dutch_ij.png  used on input line
- 1171.
+ 1184.
 (pdftex.def)             Requested size: 2.62889pt x 7.01999pt.
-<figures/olmoe_unicode/chinese_dot.png, id=1593, 79.29625pt x 79.29625pt>
+<figures/olmoe_unicode/chinese_dot.png, id=1536, 79.29625pt x 79.29625pt>
 File: figures/olmoe_unicode/chinese_dot.png Graphic file (type png)
 <use figures/olmoe_unicode/chinese_dot.png>
 Package pdftex.def Info: figures/olmoe_unicode/chinese_dot.png  used on input l
-ine 1171.
+ine 1184.
 (pdftex.def)             Requested size: 7.01898pt x 7.01999pt.
-<figures/olmoe_unicode/japanese_no.png, id=1594, 211.79124pt x 192.72pt>
+<figures/olmoe_unicode/japanese_no.png, id=1537, 211.79124pt x 192.72pt>
 File: figures/olmoe_unicode/japanese_no.png Graphic file (type png)
 <use figures/olmoe_unicode/japanese_no.png>
 Package pdftex.def Info: figures/olmoe_unicode/japanese_no.png  used on input l
-ine 1171.
+ine 1184.
 (pdftex.def)             Requested size: 7.71399pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_ra.png, id=1595, 101.37875pt x 164.615pt>
+<figures/olmoe_unicode/devanagari_ra.png, id=1538, 101.37875pt x 164.615pt>
 File: figures/olmoe_unicode/devanagari_ra.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_ra.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_ra.png  used on input
- line 1171.
+ line 1184.
 (pdftex.def)             Requested size: 4.32207pt x 7.01999pt.
 File: figures/olmoe_unicode/devanagari_ka.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_ka.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_ka.png  used on input
- line 1171.
+ line 1184.
 (pdftex.def)             Requested size: 7.87387pt x 7.01999pt.
 File: figures/olmoe_unicode/devanagari_virama.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_virama.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_virama.png  used on i
-nput line 1171.
+nput line 1184.
 (pdftex.def)             Requested size: 4.47609pt x 7.01999pt.
-<figures/olmoe_unicode/devanagari_la.png, id=1596, 177.66376pt x 168.63pt>
+<figures/olmoe_unicode/devanagari_la.png, id=1539, 177.66376pt x 168.63pt>
 File: figures/olmoe_unicode/devanagari_la.png Graphic file (type png)
 <use figures/olmoe_unicode/devanagari_la.png>
 Package pdftex.def Info: figures/olmoe_unicode/devanagari_la.png  used on input
- line 1171.
+ line 1184.
 (pdftex.def)             Requested size: 7.3954pt x 7.01999pt.
 
-Underfull \hbox (badness 1173) in paragraph at lines 1171--1171
+Underfull \hbox (badness 1173) in paragraph at lines 1184--1184
 []|[][][][][][] \T1/pplj/m/n/9 (+20) (100%) [][][][][][] (100%) [][][][][][] (9
 5%)
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 1171--1171
+Underfull \hbox (badness 1546) in paragraph at lines 1184--1184
 []|[][][][][][] \T1/pplj/m/n/9 (+20) (100%) [][][][][][] (94%) [][][][][][] (90
 %)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1171--1171
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1184
 []|[][][][][][] \T1/pplj/m/n/9 (+20) (100%) [][][][][][] (100%)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1171--1171
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1184
 [][][][][][] \T1/pplj/m/n/9 (+20) (100%) [][][][][][] (100%)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1171--1171
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1184
 [][][][][][] \T1/pplj/m/n/9 (+20) (100%) [][][][][][] (100%)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1171--1171
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1184
 [][][][][][] \T1/pplj/m/n/9 (+20) (100%) [][][][][][]
  []
 
 
-Underfull \hbox (badness 2635) in paragraph at lines 1171--1171
+Underfull \hbox (badness 2635) in paragraph at lines 1184--1184
 \T1/pplj/m/n/9 (+20) (81%) [][][][][][] (80%) [][][][][][] (78%)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1171--1171
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1184
 []|[][][][][][] \T1/pplj/m/n/9 (+20) (92%) [][][][][][] (91%)
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 1171--1171
+Underfull \hbox (badness 1496) in paragraph at lines 1184--1184
 [][][][][][] \T1/pplj/m/n/9 (+20) (83%) [][][][][][] (78%) [][][][][][]
  []
 
 
-Underfull \hbox (badness 4543) in paragraph at lines 1171--1171
+Underfull \hbox (badness 4543) in paragraph at lines 1184--1184
 [][][][][][] \T1/pplj/m/n/9 (+20) (21%) [][][][][][] (20%) [][][][][][] (18%)
  []
 
@@ -2928,11 +2922,29 @@ Underfull \hbox (badness 4543) in paragraph at lines 1171--1171
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[33 <./figures/nllb_moe_language_similarity_figure20.pdf>]
+[33 <./figures/mixtral_expert_selection_domains.pdf>]
+<figures/longcat_flash_architecture.pdf, id=1635, 328.22626pt x 188.705pt>
+File: figures/longcat_flash_architecture.pdf Graphic file (type pdf)
+<use figures/longcat_flash_architecture.pdf>
+Package pdftex.def Info: figures/longcat_flash_architecture.pdf  used on input 
+line 1237.
+(pdftex.def)             Requested size: 336.0pt x 193.17624pt.
+
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[34 <./figures/olmoe_unicode/copyright.png> <./figures/olmoe_unicode/latin_l.pn
+[34 <./figures/nllb_moe_language_similarity_figure20.pdf>]
+<figures/key_value_memory_layer.pdf, id=1698, 380.42125pt x 121.45375pt>
+File: figures/key_value_memory_layer.pdf Graphic file (type pdf)
+<use figures/key_value_memory_layer.pdf>
+Package pdftex.def Info: figures/key_value_memory_layer.pdf  used on input line
+ 1267.
+(pdftex.def)             Requested size: 336.0pt x 107.27434pt.
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[35 <./figures/olmoe_unicode/copyright.png> <./figures/olmoe_unicode/latin_l.pn
 g> <./figures/olmoe_unicode/latin_i.png> <./figures/olmoe_unicode/jarai_i.png> 
 <./figures/olmoe_unicode/devanagari_virama.png> <./figures/olmoe_unicode/devana
 gari_e.png> <./figures/olmoe_unicode/devanagari_ka.png> <./figures/olmoe_unicod
@@ -2941,28 +2953,11 @@ unicode/cyrillic_a.png> <./figures/olmoe_unicode/slovak_l.png> <./figures/olmoe
 _unicode/persian_j.png> <./figures/olmoe_unicode/dutch_ij.png> <./figures/olmoe
 _unicode/chinese_dot.png> <./figures/olmoe_unicode/japanese_no.png> <./figures/
 olmoe_unicode/devanagari_ra.png> <./figures/olmoe_unicode/devanagari_la.png>]
-<figures/longcat_flash_architecture.pdf, id=1696, 328.22626pt x 188.705pt>
-File: figures/longcat_flash_architecture.pdf Graphic file (type pdf)
-<use figures/longcat_flash_architecture.pdf>
-Package pdftex.def Info: figures/longcat_flash_architecture.pdf  used on input 
-line 1224.
-(pdftex.def)             Requested size: 336.0pt x 193.17624pt.
-
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[35 <./figures/longcat_flash_architecture.pdf>]
-<figures/key_value_memory_layer.pdf, id=1770, 380.42125pt x 121.45375pt>
-File: figures/key_value_memory_layer.pdf Graphic file (type pdf)
-<use figures/key_value_memory_layer.pdf>
-Package pdftex.def Info: figures/key_value_memory_layer.pdf  used on input line
- 1255.
-(pdftex.def)             Requested size: 336.0pt x 107.27434pt.
-
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[36 <./figures/key_value_memory_layer.pdf>]
+[36 <./figures/longcat_flash_architecture.pdf> <./figures/key_value_memory_laye
+r.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -2970,12 +2965,12 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
-(Font)              scaled to size 8.50006pt on input line 1370.
-<figures/ngram_embedding_layer.pdf, id=1856, 696.6025pt x 435.6275pt>
+(Font)              scaled to size 8.50006pt on input line 1382.
+<figures/ngram_embedding_layer.pdf, id=1867, 696.6025pt x 435.6275pt>
 File: figures/ngram_embedding_layer.pdf Graphic file (type pdf)
 <use figures/ngram_embedding_layer.pdf>
 Package pdftex.def Info: figures/ngram_embedding_layer.pdf  used on input line 
-1397.
+1409.
 (pdftex.def)             Requested size: 336.0pt x 210.12248pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
@@ -2985,25 +2980,25 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[39 <./figures/ngram_embedding_layer.pdf>]
+[39]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[40]
-<figures/mrl_figure1.pdf, id=1959, 286.671pt x 138.5175pt>
+[40 <./figures/ngram_embedding_layer.pdf>]
+<figures/mrl_figure1.pdf, id=1968, 286.671pt x 138.5175pt>
 File: figures/mrl_figure1.pdf Graphic file (type pdf)
 <use figures/mrl_figure1.pdf>
-Package pdftex.def Info: figures/mrl_figure1.pdf  used on input line 1515.
+Package pdftex.def Info: figures/mrl_figure1.pdf  used on input line 1527.
 (pdftex.def)             Requested size: 336.0pt x 162.3607pt.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[41 <./figures/mrl_figure1.pdf>]
-<figures/matformer_figure1.pdf, id=1980, 554.07pt x 247.92625pt>
+[41]
+<figures/matformer_figure1.pdf, id=1989, 554.07pt x 247.92625pt>
 File: figures/matformer_figure1.pdf Graphic file (type pdf)
 <use figures/matformer_figure1.pdf>
-Package pdftex.def Info: figures/matformer_figure1.pdf  used on input line 1545
+Package pdftex.def Info: figures/matformer_figure1.pdf  used on input line 1557
 .
 (pdftex.def)             Requested size: 336.0pt x 150.34576pt.
 
@@ -3014,7 +3009,7 @@ LaTeX Warning: Marginpar on page 42 moved.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[42 <./figures/matformer_figure1.pdf>])
+[42 <./figures/mrl_figure1.pdf> <./figures/matformer_figure1.pdf>])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -3043,7 +3038,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
  (./Chapters/Chapter02.tex
 Chapter 3.
-<papers/lillama/overview.pdf, id=2163, 4386.3875pt x 3926.67pt>
+<papers/lillama/overview.pdf, id=2181, 4386.3875pt x 3926.67pt>
 File: papers/lillama/overview.pdf Graphic file (type pdf)
 <use papers/lillama/overview.pdf>
 Package pdftex.def Info: papers/lillama/overview.pdf  used on input line 9.
@@ -3069,16 +3064,11 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [48]
-Overfull \hbox (0.88692pt too wide) has occurred while \output is active
- []|[]|
- []
-
-
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [49]
-<papers/lillama/stablerank_40p.pdf, id=2596, 867.24pt x 433.62pt>
+<papers/lillama/stablerank_40p.pdf, id=2613, 867.24pt x 433.62pt>
 File: papers/lillama/stablerank_40p.pdf Graphic file (type pdf)
 <use papers/lillama/stablerank_40p.pdf>
 Package pdftex.def Info: papers/lillama/stablerank_40p.pdf  used on input line 
@@ -3108,17 +3098,17 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [51 <./papers/lillama/stablerank_40p.pdf>]
-<papers/lillama/Teacher.pdf, id=2622, 775.89874pt x 1261.71375pt>
+<papers/lillama/Teacher.pdf, id=2637, 775.89874pt x 1261.71375pt>
 File: papers/lillama/Teacher.pdf Graphic file (type pdf)
 <use papers/lillama/Teacher.pdf>
 Package pdftex.def Info: papers/lillama/Teacher.pdf  used on input line 116.
 (pdftex.def)             Requested size: 100.80103pt x 163.91302pt.
-<papers/lillama/Student.pdf, id=2623, 775.89874pt x 1254.6875pt>
+<papers/lillama/Student.pdf, id=2638, 775.89874pt x 1254.6875pt>
 File: papers/lillama/Student.pdf Graphic file (type pdf)
 <use papers/lillama/Student.pdf>
 Package pdftex.def Info: papers/lillama/Student.pdf  used on input line 118.
 (pdftex.def)             Requested size: 100.80103pt x 163.00023pt.
-<papers/lillama/Teacher+Student.pdf, id=2624, 783.92876pt x 1274.7625pt>
+<papers/lillama/Teacher+Student.pdf, id=2639, 783.92876pt x 1274.7625pt>
 File: papers/lillama/Teacher+Student.pdf Graphic file (type pdf)
 <use papers/lillama/Teacher+Student.pdf>
 Package pdftex.def Info: papers/lillama/Teacher+Student.pdf  used on input line
@@ -3138,7 +3128,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [54]
-<papers/lillama/strategies.pdf, id=2665, 4842.09pt x 4103.23885pt>
+<papers/lillama/strategies.pdf, id=2678, 4842.09pt x 4103.23885pt>
 File: papers/lillama/strategies.pdf Graphic file (type pdf)
 <use papers/lillama/strategies.pdf>
 Package pdftex.def Info: papers/lillama/strategies.pdf  used on input line 181.
@@ -3149,7 +3139,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [55 <./papers/lillama/strategies.pdf>]
-<papers/lillama/pseudo-code.pdf, id=3161, 476.62904pt x 441.89984pt>
+<papers/lillama/pseudo-code.pdf, id=3174, 476.62904pt x 441.89984pt>
 File: papers/lillama/pseudo-code.pdf Graphic file (type pdf)
 <use papers/lillama/pseudo-code.pdf>
 Package pdftex.def Info: papers/lillama/pseudo-code.pdf  used on input line 223
@@ -3203,19 +3193,19 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [61]
-<papers/lillama/rank_acc-1.pdf, id=3293, 433.62pt x 397.485pt>
+<papers/lillama/rank_acc-1.pdf, id=3308, 433.62pt x 397.485pt>
 File: papers/lillama/rank_acc-1.pdf Graphic file (type pdf)
 <use papers/lillama/rank_acc-1.pdf>
 Package pdftex.def Info: papers/lillama/rank_acc-1.pdf  used on input line 475.
 
 (pdftex.def)             Requested size: 336.0pt x 308.01736pt.
-<papers/lillama/w_wo_svd-2.pdf, id=3296, 867.24pt x 433.62pt>
+<papers/lillama/w_wo_svd-2.pdf, id=3311, 867.24pt x 433.62pt>
 File: papers/lillama/w_wo_svd-2.pdf Graphic file (type pdf)
 <use papers/lillama/w_wo_svd-2.pdf>
 Package pdftex.def Info: papers/lillama/w_wo_svd-2.pdf  used on input line 482.
 
 (pdftex.def)             Requested size: 336.0pt x 167.99954pt.
-<papers/lillama/losses_convergence.pdf, id=3297, 1300.86pt x 433.62pt>
+<papers/lillama/losses_convergence.pdf, id=3312, 1300.86pt x 433.62pt>
 File: papers/lillama/losses_convergence.pdf Graphic file (type pdf)
 <use papers/lillama/losses_convergence.pdf>
 Package pdftex.def Info: papers/lillama/losses_convergence.pdf  used on input l
@@ -3380,7 +3370,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [73]
-<papers/BaldWhisper/images/layermerging.pdf, id=3427, 988.39845pt x 679.53876pt
+<papers/BaldWhisper/images/layermerging.pdf, id=3442, 988.39845pt x 679.53876pt
 >
 File: papers/BaldWhisper/images/layermerging.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/layermerging.pdf>
@@ -3392,7 +3382,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [74 <./papers/BaldWhisper/images/layermerging.pdf>]
-<papers/BaldWhisper/images/headshearing.pdf, id=3637, 896.05345pt x 676.29874pt
+<papers/BaldWhisper/images/headshearing.pdf, id=3653, 896.05345pt x 676.29874pt
 >
 File: papers/BaldWhisper/images/headshearing.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/headshearing.pdf>
@@ -3416,14 +3406,14 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [78]
-<papers/BaldWhisper/images/isoloss_wer_plot.pdf, id=3992, 852.65555pt x 671.833
+<papers/BaldWhisper/images/isoloss_wer_plot.pdf, id=4008, 852.65555pt x 671.833
 15pt>
 File: papers/BaldWhisper/images/isoloss_wer_plot.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/isoloss_wer_plot.pdf>
 Package pdftex.def Info: papers/BaldWhisper/images/isoloss_wer_plot.pdf  used o
 n input line 145.
 (pdftex.def)             Requested size: 302.39795pt x 238.27177pt.
-<papers/BaldWhisper/images/layer_similaritues.pdf, id=3994, 362.96716pt x 315.8
+<papers/BaldWhisper/images/layer_similaritues.pdf, id=4010, 362.96716pt x 315.8
 3257pt>
 File: papers/BaldWhisper/images/layer_similaritues.pdf Graphic file (type pdf)
 <use papers/BaldWhisper/images/layer_similaritues.pdf>
@@ -3435,7 +3425,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [79 <./papers/BaldWhisper/images/isoloss_wer_plot.pdf>]
-<figures/baldqwen.jpg, id=4025, 1204.5pt x 866.23625pt>
+<figures/baldqwen.jpg, id=4041, 1204.5pt x 866.23625pt>
 File: figures/baldqwen.jpg Graphic file (type jpg)
 <use figures/baldqwen.jpg>
 Package pdftex.def Info: figures/baldqwen.jpg  used on input line 207.
@@ -3489,7 +3479,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [86]
-<papers/wolof_speech_lm/images/speech-pipeline.pdf, id=4129, 607.26875pt x 424.
+<papers/wolof_speech_lm/images/speech-pipeline.pdf, id=4145, 607.26875pt x 424.
 86002pt>
 File: papers/wolof_speech_lm/images/speech-pipeline.pdf Graphic file (type pdf)
 
@@ -3510,7 +3500,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [89]
-<papers/wolof_speech_lm/images/oolel_speech.pdf, id=4461, 531.00145pt x 512.802
+<papers/wolof_speech_lm/images/oolel_speech.pdf, id=4479, 531.00145pt x 512.802
 17pt>
 File: papers/wolof_speech_lm/images/oolel_speech.pdf Graphic file (type pdf)
 <use papers/wolof_speech_lm/images/oolel_speech.pdf>
@@ -3526,7 +3516,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [91]
-<papers/MRL/images/pipeline.pdf, id=4741, 1171.37625pt x 524.96124pt>
+<papers/MRL/images/pipeline.pdf, id=4758, 1171.37625pt x 524.96124pt>
 File: papers/MRL/images/pipeline.pdf Graphic file (type pdf)
 <use papers/MRL/images/pipeline.pdf>
 Package pdftex.def Info: papers/MRL/images/pipeline.pdf  used on input line 198
@@ -3547,7 +3537,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [93 <./papers/MRL/images/pipeline.pdf>]
-<papers/MRL/images/models.pdf, id=5052, 2432.08624pt x 1685.29625pt>
+<papers/MRL/images/models.pdf, id=5069, 2432.08624pt x 1685.29625pt>
 File: papers/MRL/images/models.pdf Graphic file (type pdf)
 <use papers/MRL/images/models.pdf>
 Package pdftex.def Info: papers/MRL/images/models.pdf  used on input line 237.
@@ -3569,19 +3559,23 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [97]
-<papers/MRL/images/energy_evolution.pdf, id=5230, 867.24pt x 578.16pt>
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+
+[98]
+<papers/MRL/images/energy_evolution.pdf, id=5254, 867.24pt x 578.16pt>
 File: papers/MRL/images/energy_evolution.pdf Graphic file (type pdf)
 <use papers/MRL/images/energy_evolution.pdf>
 Package pdftex.def Info: papers/MRL/images/energy_evolution.pdf  used on input 
 line 383.
 (pdftex.def)             Requested size: 268.80103pt x 179.20128pt.
-<papers/MRL/images/energy_100p.pdf, id=5231, 650.43pt x 578.16pt>
+<papers/MRL/images/energy_100p.pdf, id=5255, 650.43pt x 578.16pt>
 File: papers/MRL/images/energy_100p.pdf Graphic file (type pdf)
 <use papers/MRL/images/energy_100p.pdf>
 Package pdftex.def Info: papers/MRL/images/energy_100p.pdf  used on input line 
 390.
 (pdftex.def)             Requested size: 268.80103pt x 238.93504pt.
-<papers/MRL/images/recall_vs_nshot.pdf, id=5232, 578.16pt x 578.16pt>
+<papers/MRL/images/recall_vs_nshot.pdf, id=5256, 578.16pt x 578.16pt>
 File: papers/MRL/images/recall_vs_nshot.pdf Graphic file (type pdf)
 <use papers/MRL/images/recall_vs_nshot.pdf>
 Package pdftex.def Info: papers/MRL/images/recall_vs_nshot.pdf  used on input l
@@ -3591,12 +3585,13 @@ ine 397.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[98]
+[99 <./papers/MRL/images/energy_evolution.pdf> <./papers/MRL/images/energy_100p
+.pdf>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[99 <./papers/MRL/images/energy_evolution.pdf>]
-<papers/MRL/images/costs.pdf, id=5258, 1734.48pt x 578.16pt>
+[100 <./papers/MRL/images/recall_vs_nshot.pdf>]
+<papers/MRL/images/costs.pdf, id=5291, 1734.48pt x 578.16pt>
 File: papers/MRL/images/costs.pdf Graphic file (type pdf)
 <use papers/MRL/images/costs.pdf>
 Package pdftex.def Info: papers/MRL/images/costs.pdf  used on input line 426.
@@ -3605,12 +3600,7 @@ Package pdftex.def Info: papers/MRL/images/costs.pdf  used on input line 426.
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
-[100 <./papers/MRL/images/energy_100p.pdf>]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
-
-[101 <./papers/MRL/images/recall_vs_nshot.pdf> <./papers/MRL/images/costs.pdf>]
-)
+[101 <./papers/MRL/images/costs.pdf>])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -3674,14 +3664,14 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 [112]
-<papers/zon/figures/figs/sparsity_rampup.pdf, id=5425, 296.83649pt x 210.21599p
+<papers/zon/figures/figs/sparsity_rampup.pdf, id=5441, 296.83649pt x 210.21599p
 t>
 File: papers/zon/figures/figs/sparsity_rampup.pdf Graphic file (type pdf)
 <use papers/zon/figures/figs/sparsity_rampup.pdf>
 Package pdftex.def Info: papers/zon/figures/figs/sparsity_rampup.pdf  used on i
 nput line 648.
 (pdftex.def)             Requested size: 161.27856pt x 114.2174pt.
-<papers/zon/figures/figs/expected_sparsity.pdf, id=5426, 296.97765pt x 210.2159
+<papers/zon/figures/figs/expected_sparsity.pdf, id=5442, 296.97765pt x 210.2159
 9pt>
 File: papers/zon/figures/figs/expected_sparsity.pdf Graphic file (type pdf)
 <use papers/zon/figures/figs/expected_sparsity.pdf>
@@ -3732,7 +3722,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
  (./Chapters/ConclusionAndFutureWork.tex
 Chapter 7.
 
-Overfull \hbox (2.23634pt too wide) in paragraph at lines 18--34
+Overfull \hbox (2.23634pt too wide) in paragraph at lines 17--33
 []\T1/pplj/m/n/10.95 (-20) For post-training \T1/pplj/b/n/10.95 (-20) model com
 -pres-sion\T1/pplj/m/n/10.95 (-20) , we pro-pose \T1/pplj/b/n/10.95 (-20) Lil-l
 ama\T1/pplj/m/n/10.95 (-20) , a method
@@ -3989,7 +3979,13 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 ]
 \openout2 = `FrontBackmatter/Colophon.aux'.
 
- (./FrontBackmatter/Colophon.tex)
+ (./FrontBackmatter/Colophon.tex
+Overfull \hbox (7.05562pt too wide) in paragraph at lines 10--13
+\T1/pplj/m/n/10.95 (-20) This doc-u-ment was type-set us-ing the ty-po-graph-i-
+cal style \T1/fvm/m/n/10.95 classicthesis
+ []
+
+)
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
@@ -4304,11 +4300,11 @@ Package logreq Info: Writing requests to 'ClassicThesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67311 strings out of 467525
- 1545382 string characters out of 5418983
- 3107084 words of memory out of 5000000
- 92666 multiletter control sequences out of 15000+600000
- 856434 words of font info for 1439 fonts, out of 8000000 for 9000
+ 67313 strings out of 467525
+ 1545405 string characters out of 5418983
+ 3117324 words of memory out of 5000000
+ 92673 multiletter control sequences out of 15000+600000
+ 856068 words of font info for 1433 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,23n,128p,11216b,3548s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -4339,10 +4335,10 @@ ic/cm-super/sfss0800.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public
 tino/uplb8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/up
 lr8a.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb></usr/local/texlive/2026/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on ClassicThesis.pdf (169 pages, 4537439 bytes).
+Output written on ClassicThesis.pdf (169 pages, 4539573 bytes).
 PDF statistics:
- 6639 PDF objects out of 7423 (max. 8388607)
- 4528 compressed objects within 46 object streams
- 799 named destinations out of 1000 (max. 500000)
- 223712 words of extra memory for PDF output out of 266212 (max. 10000000)
+ 6661 PDF objects out of 7423 (max. 8388607)
+ 4550 compressed objects within 46 object streams
+ 801 named destinations out of 1000 (max. 500000)
+ 223728 words of extra memory for PDF output out of 266212 (max. 10000000)
 

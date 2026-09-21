@@ -1,12 +1,12 @@
 %************************************************
 \chapter{Background on Efficient Language Models}\label{ch:efficient_lm}
 %************************************************
-We've discussed Transformer and how scaling them yields strong improvement in natural language tasks.
-However, scaling a Transformer-based language model is costly in training compute but also in inference
-budget. We discuss in this Chapter LLM efficiency mainly though the lens of \textbf{model compression} and \textbf{activation sparsity},
+We've discussed Transformers and how scaling them yields substantial improvements on natural language tasks.
+However, scaling a Transformer-based language model is costly in terms of both training and inference
+compute. In this chapter, we discuss LLM efficiency mainly through the lens of \textbf{model compression} and \textbf{activation sparsity},
 since our contributions concern these two aspects. 
-We present common approaches to make LLMs efficient to scale during training, 
-but also to serve efficiently during inference.
+We present common approaches for scaling LLMs efficiently during training
+and serving them efficiently during inference.
 
 When talking about \textit{efficiency} in LLMs, there are some important concepts to know. 
 The first distinction is between \textbf{compute-boundness} and \textbf{memory-boundness}.
@@ -16,38 +16,38 @@ peak compute of the hardware, but also how well the model and the implementation
 A model or a task is memory-bound when the bottleneck is instead the movement of data:
 loading weights, reading activations, writing tensors, or moving the KV-cache from the GPU memory.
 Depending on whether we are training, doing prefill, or decoding tokens, these two concepts
-do not have the same consequences. This distinction explains why diffusion based
-LLMs such LlaDa or Gemma-Diffusion are much faster than autoregressive LLMs.
-Diffusion LLMs are compute-bound such that they are more FLOP-Intensive than autoregressive LLMs.
-So, since the decoding is parallel it reduces the data-movement compared to autoregressive LLMs,
+do not have the same consequences. This distinction explains why diffusion-based
+LLMs such as LLaDA or Gemma-Diffusion are much faster than autoregressive LLMs.
+Diffusion LLMs are compute-bound and more FLOP-intensive than autoregressive LLMs.
+However, their parallel decoding reduces data movement relative to autoregressive decoding
 and leads to faster generation.
 
 LLM training is mostly compute-bound, because training is highly parallel. 
 Many tokens are processed at once, and the forward and backward passes are dominated by large matrix multiplications.
-So the key metrics to check are \textbf{FLOPS}(how many Floating Point Operations are executed per second), 
-\textbf{MFU}(measures how much of the theoretical peak compute of the hardware is really used),
-and \textbf{Tokens/s} (The number of tokens processed per second).
+So the key metrics to check are \textbf{FLOPS} (how many floating-point operations are executed per second),
+\textbf{MFU} (how much of the theoretical peak compute of the hardware is really used),
+and \textbf{Tokens/s} (the number of tokens processed per second).
 The goal is to make the model perform a lot of useful operations per second while minimizing communication:
 between GPUs, between CPU and GPU, and between HBM and the compute units of the GPU. 
 This is why training efficiency is not only about reducing the number of parameters.
 It is also about keeping the hardware busy. We will later see that small dense models, sparse models,
 and compressed models do not all use the hardware in the same way. FLOPS and MFU
-are hardware-oriented numbers, so they are often completed by \textbf{Tokens/s}, which measures
-at which speed the model is consuming the training data.
+are hardware-oriented numbers, so they are often complemented by \textbf{Tokens/s}, which measures
+how quickly the model consumes the training data.
 
-LLM inference can be compute-bound, but is more often memory-bound because tokens are generated token by token.
+LLM inference can be compute-bound, but is more often memory-bound because tokens are generated one at a time.
 At each decoding step, the model has to read its weights and the KV-cache to produce only one new token,
 which creates a lot of memory traffic for a relatively small amount of computation.
 There are two phases in LLM inference. The first is the \textbf{prefill}, where the system prompt,
 the user prompt and the context are fed in parallel to the LLM. This phase is closer to training
 and is often compute-bound. The second phase is \textbf{decoding}, where the model generates the text
-token per token. This is usually the bottleneck, because the model repeatedly accesses the same weights
+token by token. This is usually the bottleneck, because the model repeatedly accesses the same weights
 and an increasingly large KV-cache. This difference is important because a model that
-requires more FLOPS can sometimes be faster if it uses the hardware better or moves less memory.
+requires more FLOPS can sometimes be faster if it uses the hardware better or moves less data.
 The key metrics for inference follow these two phases. For prefill, we usually look at
 \textbf{Time To First Token} (TTFT), which measures how long the user waits before seeing the first
 generated token, and \textbf{prefill Tokens/s}, which measures how fast the prompt is processed.
-These two metrics are related, but they are not exactly inverse because TTFT also includes overheads
+These two metrics are related, but they are not exact inverses because TTFT also includes overheads
 and the generation of the first token. For decoding, we look at \textbf{Time Per Output Token} (TPOT),
 which measures the time needed to generate one new token, and \textbf{generated Tokens/s}, which
 measures how many new tokens are produced per second. These two metrics describe the same decoding
@@ -67,7 +67,7 @@ weights and KV-cache memory.
         \midrule
         \multirow{3}{*}{Training}
         & FLOPS~$\uparrow$
-        & Number of floating point operations per second. \\
+        & Number of floating-point operations per second. \\
         \cmidrule(l){2-3}
         & MFU~$\uparrow$
         & Fraction of the theoretical hardware compute that is effectively used. \\
@@ -87,7 +87,7 @@ weights and KV-cache memory.
         & Time needed to generate one new token. \\
         \cmidrule(l){2-3}
         & Generated Tokens/s~$\uparrow$
-        & Number of new tokens generated per second. It is the inverse view of TPOT. \\
+        & Number of new tokens generated per second. It is the reciprocal of TPOT. \\
         \midrule
         Training and inference
         & Memory footprint~$\downarrow$
@@ -98,8 +98,8 @@ weights and KV-cache memory.
     \label{tab:efficiency-metrics}
 \end{table*}
 
-We detail in the next sections some approaches to make LLMs efficient on the key metrics we presented,
-both inference and tranining. This part is heavily inspired by the blogpost we wrote in collaboration 
+In the next sections, we detail approaches for improving LLM efficiency on these key metrics
+during both inference and training. This part is heavily inspired by the blog post we wrote in collaboration
 with the Datacraft team in 2024: 
 \url{https://medium.com/@yayasy-nlp/a-comprehensive-overview-of-large-language-models-compression-methods-8b59dd0ff4f8}
 
@@ -116,28 +116,28 @@ where the objective is not only to be compute-optimal during training, but also 
 inference-optimality. The idea is to train smaller models much longer than what the training-optimal
 rule would suggest, so that they remain small at inference time while still performing well.
 We then present the approach of \textit{``train large, then compress''} \citep{li2020trainlargecompressrethinking}, 
-which consists of training a large model first, then compress it by keeping the most important components of the model, 
+which consists of training a large model first, then compressing it by keeping the most important components of the model,
 or by distilling the knowledge of this large model into smaller ones.
 
-\subsection{Llama small models or how to account inference-optimality}
-The Llama series of models \citep{touvron2023llamaopenefficientfoundation, touvron2023llama2openfoundation, grattafiori2024llama3herdmodels}, 
-were among the first to strongly push the idea that
+\subsection{Small Llama Models, or How to Account for Inference Optimality}
+The Llama series of models \citep{touvron2023llamaopenefficientfoundation, touvron2023llama2openfoundation, grattafiori2024llama3herdmodels}
+was among the first to strongly push the idea that
 training should also account for inference compute. Instead of only following what
-Chinchilla compute-optimality suggests \citep{hoffmann2022training}, they train small models on much more
+Chinchilla compute-optimality suggests \citep{hoffmann2022training}, they train small models on many more
 tokens. The result is a model that is not training-optimal according to Chinchilla, 
 but is much more efficient at inference time: it is smaller, cheaper to run, and still very performant.
 This point is important for open models. A smaller but strong model can be deployed more
 easily by independent users, especially those who do not have access to large compute
-resources. The release Llama~1 \citep{touvron2023llamaopenefficientfoundation} 
+resources. The release of Llama~1 \citep{touvron2023llamaopenefficientfoundation}
 and Llama~2 \citep{touvron2023llama2openfoundation} in 2023 enabled the emergence of 
 an ecosystem of open-source tools for local LLM usage with projects such as Llama-cpp, Llama-index,
-and Ollama becoming central for running and using LLMs outside large GPUs clusters.
+and Ollama becoming central for running and using LLMs outside large GPU clusters.
 Llama~3 \citep{grattafiori2024llama3herdmodels} pushed this idea further by training models such as the 8B model on
-$16.55$ trillion tokens. In this work they develop their own scaling laws where
-their estimated model size and training tokens compute allocation advocates
-for training smaller models on more tokens. Table \ref{tab:llama_scaling} presents
+$16.55$ trillion tokens. In this work, the authors develop their own scaling laws, whose
+estimated compute allocation between model size and training tokens favors
+training smaller models on more tokens. Table \ref{tab:llama_scaling} presents
 the estimated number of parameters that should be trained for a fixed budget
-of $16.55$ trilion tokens by Kaplan, Chinchilla and Llama scaling laws. 
+of $16.55$ trillion tokens by Kaplan, Chinchilla and Llama scaling laws.
 
 \begin{table}[t]
     \centering
@@ -167,10 +167,10 @@ This explains why the Llama~3 scaling-law estimates differ from those of Kaplan 
 By the time Llama~3 was released, the field had evolved considerably in terms of data quality, 
 model design, and optimization techniques for large-scale LLM training.
 
-More importantly, the Llama~3 advocates training small models much longer, beyond what is compute-optimal.
-Figure \ref{fig:chinchilla_llama} presents Llama~3 8B and Llama~3 70B in the chinchila compute-optimal
-estimate. We can see the Llama~3 models are trained beyond of what is compute-optimal.
-While this is costly at training time, the resulting small models are stronger and efficient to serve for
+More importantly, the Llama~3 work advocates training small models much longer, beyond what is compute-optimal.
+Figure \ref{fig:chinchilla_llama} compares Llama~3 8B and Llama~3 70B with the Chinchilla compute-optimal
+estimate. We can see that the Llama~3 models are trained beyond what is compute-optimal.
+While this is costly at training time, the resulting small models are stronger and more efficient to serve for
 inference.
 
 \begin{figure}[!ht]
@@ -265,13 +265,13 @@ inference.
 \end{figure}
 
 \subsection{Unstructured Pruning}
-Instead of training small for longer, another approach to produce small models is to train
-large models first and then compress them or distill them in efficient architecture. 
+Instead of training small models for longer, another approach to produce small models is to train
+large models first and then compress them or distill them into efficient architectures.
 Compressing larger and more powerful pre-trained models is a viable alternative. 
 This can be achieved using many complementary methods: pruning, distillation, quantization, and more.
 
-The intuition of pruning is identifying unimportant weights in the network and removing them when 
-possible or setting them to zero. There are two main pruning methods: \textbf{unstructured pruning} 
+The intuition behind pruning is to identify unimportant weights in the network and remove them when
+possible or set them to zero. There are two main pruning methods: \textbf{unstructured pruning}
 and \textbf{structured pruning}.
 
 \subsubsection{Unstructured Pruning}
@@ -366,38 +366,38 @@ In pretrained LLMs, achieving such high sparsity without significantly
 degrading performance remains difficult. Similarly, unstructured sparsity can provide 
 speed-ups only at high sparsity levels and with specialized GPU kernels.
 Another approach is \textbf{semi-structured sparsity}, which constrains a \textit{pattern} 
-in the the positions of the removed weights. For example, $2{:}4$ sparsity removes exactly 
+in the positions of the removed weights. For example, $2{:}4$ sparsity removes exactly
 two weights from every group of four. This regular pattern facilitates
 the development of GPU kernels that can accelerate computation in hardware. 
 
 SparseGPT~\citep{frantar2023sparsegpt} and Wanda~\citep{sun2024wanda} are two popular post-training 
 methods that support both unstructured and semi-structured sparsity. 
 SparseGPT uses activations collected from a small calibration dataset to estimate the effect of removing each weight. 
-After pruning a weight, the remainings are adjusted to compensate for the resulting reconstruction error.
+After pruning a weight, the remaining weights are adjusted to compensate for the resulting reconstruction error.
 Wanda is much simpler and cheaper: it removes weights that are both small and connected to weakly activated features.
 For each weight $W_{ij}$, Wanda computes the importance score $S_{ij} = \left|W_{ij}\right| \left\|\mathbf{X}_{j}\right\|_{2}$,
 where $\left|W_{ij}\right|$ is the magnitude of the weight and $\left\|\mathbf{X}_{j}\right\|_{2}$ is the $\ell_2$ norm of its corresponding
-input feature over the calibration data. Weights with lower score are removed.
-Beyond SparseGPT and Wanda, many works proposed new unstructured/semi-structured algorithms.
-Some proposing improved weight-importance criteria, such as Plug-and-Play~\citep{zhang2024plugandplay}, 
+input feature over the calibration data. Weights with lower scores are removed.
+Beyond SparseGPT and Wanda, many studies have proposed new unstructured and semi-structured algorithms.
+These include improved weight-importance criteria, such as Plug-and-Play~\citep{zhang2024plugandplay},
 non-uniform sparsity allocation across layers, such as OWL~\citep{yin2024owl}, or methods that iteratively
 refine the initial pruning mask, such as DSnoT~\citep{zhang2024dsnot}.
 
-\subsection{Stutcured Pruning}
-Unstructured Pruning works well but the resulting models require specific implementations to accelerate
-inference or reduce memory requirements. To easily achieve acceleration and memory gain out-of-the box,
+\subsection{Structured Pruning}
+Unstructured pruning works well, but the resulting models require specific implementations to accelerate
+inference or reduce memory requirements. To easily achieve acceleration and memory savings out of the box,
 it is better to shrink components of the model. This is the purpose of \textbf{Structured Pruning} 
 which is illustrated in Figure \ref{fig:structured}.
 In structured pruning, entire substructures (or blocks) are removed directly, 
-for example, the Attention Heads, Rows/Columns of the matrices, or even whole layers.
-Since entire substructures are pruned, Structure pruning imposes more constraints compared
+for example, the attention heads, rows or columns of the matrices, or even whole layers.
+Since entire substructures are pruned, Structured pruning imposes more constraints compared
 to unstructured pruning or semi-structured pruning where individual weights are removed
-more independently and freely. This explains why unstructured pruning usually perform better
-than structured pruning. However, structured pruning has more potential
-in improving inference and reducing memory footprint.
+more independently and freely. This explains why unstructured pruning usually performs better
+than structured pruning. However, structured pruning has greater potential
+to accelerate inference and reduce the memory footprint.
 
 \textbf{LLM-Pruner} \citep{ma2023llmpruner} uses gradient information to
-estimate the importance and removes the least important groups. The method can
+estimate group importance and removes the least important groups. The method can
 remove approximately $20\%$ of the parameters of LLaMA-7B while retaining
 $89.8\%$ of its original performance without post-training. 
 However, more aggressive parameter reduction generally leads to a significant
@@ -408,10 +408,10 @@ heads, MLP dimensions, and hidden dimensions. Since binary masks are not
 directly differentiable, the method uses a continuous reparameterization to
 learn which structures should be removed. The authors prune LLaMA2-7B into
 models containing $2.7$B and $1.3$B parameters, and continue their training on
-$50$B tokens using the language modeling loss. The pruned model converges fastly
+$50$B tokens using the language modeling loss. The pruned model converges quickly
 as shown in Figure~\ref{fig:sheared_llama}, which shows the speed of convergence
-of the pruned model compared to from scratch training. Hence, pruning larger models then
-continued pre-training can be a good approach for creating small models than training
+of the pruned model compared with training from scratch. Hence, pruning larger models and then
+continuing pretraining can be a better way to create small models than training
 them from scratch. Although the resulting models do not retain the full performance
 of LLaMA2-7B, they are competitive with models of similar sizes trained on much
 larger datasets. The Minitron~\citep{muralidharan2024compact,
@@ -436,8 +436,8 @@ through one-shot structured pruning of Llama~3.1 8B.\footnote{
 \url{https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/}}
 The pruned models were then trained using knowledge distillation, 
 with the logits of Llama~3.1 8B and 70B used as training targets.
-On the other side, Ministral~3~\citep{liu2026ministral3} uses a cascaded pruning and distillation. Starting from Mistral Small~3.1 24B, the authors successively 
-produce a smaller model at each stage which trained using the logits of the original model. 
+Meanwhile, Ministral~3~\citep{liu2026ministral3} uses cascaded pruning and distillation. Starting from Mistral Small~3.1 24B, the authors successively
+produce a smaller model at each stage, which is trained using the logits of the original model.
 This ``prune--distill--repeat'' procedure is similar to Minitron.
 
 There are some approaches that focus specifically on layer pruning, 
@@ -446,8 +446,7 @@ For example, \textbf{ShortGPT}~\citep{men2024shortgpt} measures the contribution
 of each layer using the cosine similarity between its input and output activations. 
 The intuition is that an unimportant layer does not substantially modify 
 its input representation. Therefore, layers whose input and output activations 
-are highly similar can be removed. However, layer pruning incurs a big performance
-drop and the resulting model needs additional training. Layer pruning generally 
+are highly similar can be removed. However, layer pruning generally
 incurs a significant performance drop, and the resulting model often requires 
 additional training to recover. It is therefore interesting to ask whether, 
 in decoder-only LLMs, high layer similarity is a misleading signal for pruning. 
@@ -524,15 +523,15 @@ and long-chain reasoning capabilities~\citep{wang2025fewerlayers,he2026pop}.
     \label{fig:structured}
 \end{figure}
 \subsection{The best training objective for compression}
-We mentionned distillation for compressing large models capacity in small models,
-but there many other objectives.
+We mentioned distillation as a way to compress the capacity of large models into small models,
+but there are many other objectives.
 What are the best training objectives for compressing LLMs and training
 small LLMs? The common training objective for compression is maximum likelihood
 estimation, but small LLMs take time to learn. Hence,
 it has been proposed to use training objectives that give more \textit{learning signal}
 to the small LLM. Let's list them and see how they're used in recent LLM releases.
 
-\subsubsection{Sequence Level Distillation}
+\subsubsection{Sequence-Level Distillation}
 \begin{figure}[!ht]
     \centering
     \definecolor{distillnode}{HTML}{EEE0CC}
@@ -605,11 +604,11 @@ to the small LLM. Let's list them and see how they're used in recent LLM release
 
 In sequence-level distillation, the small model is trained on texts generated by a larger and more capable model. 
 This approach is illustrated in Figure~\ref{fig:sequence-level-distillation}. 
-The concept was introduced by \citep{kim2016sequence} for machine translation, 
+The concept was introduced for machine translation~\citep{kim2016sequence},
 where the translations generated by the teacher are used as targets for the student.
 In the context of LLMs, this approach became popular with Alpaca~\citep{taori2023alpaca}. Alpaca trained a small LLaMA model on $52$K instruction--response 
 pairs generated by the closed-source \texttt{text-davinci-003} model.
-However, generating useful synthetic data is not as that simple. 
+However, generating useful synthetic data is not that simple.
 The generated answers must be correct, diverse, sufficiently difficult, 
 and representative of the capabilities that we want to model. 
 The data must also be filtered to remove redundant, low-quality, or unsafe examples. 
@@ -623,9 +622,8 @@ the generation on a large collection of synthetic personas representing
 different backgrounds, occupations, and perspectives.
 
 There has also been a debate about whether a student trained on teacher-generated data 
-can outperform its teacher. This appears possible on specific tasks: \citep{hsieh2023distilling}, 
-for example, show that a much smaller model can outperform a few-shot-prompted teacher 
-by learning from both its answers and its rationales. 
+can outperform its teacher. This appears possible on specific tasks: for example, a much smaller model can outperform a teacher prompted with a few examples
+by learning from both its answers and its rationales~\citep{hsieh2023distilling}.
 However, this does not mean that the student becomes generally more capable than 
 the teacher. Such improvements often require generating multiple candidate 
 responses and retaining only the best ones through correctness verification, 
@@ -712,7 +710,7 @@ This approach provides a richer
 training signal since the student learns from the teacher's probability 
 distribution over the vocabulary at every token position, rather than from only 
 the generated token. This process is illustrated in Figure~\ref{fig:off-policy-distillation}.
-The data is forwarded through both the student and the teacher, which produce 
+The data are passed through both the student and the teacher, which produce
 a probability distribution over the vocabulary at each token position of 
 the gold answer. The student distribution is then compared with the teacher 
 distribution on the same data. The loss can be designed in different ways, 
@@ -744,9 +742,9 @@ on its previous outputs. It may therefore encounter contexts resulting
 from its own mistakes that were never observed during training.
 \textbf{On-policy distillation} addresses this mismatch by allowing the student to generate 
 sequences during training and using the teacher to provide feedback on the states 
-visited by the student. \citep{agarwal2024onpolicy} show that knowledge distillation 
-is more effective when the student learns from feedback on its own generated sequences. 
-Their method outperforms distillation based only on fixed teacher-generated data.
+visited by the student. Prior work shows that knowledge distillation
+is more effective when the student learns from feedback on its own generated sequences~\citep{agarwal2024onpolicy}.
+This method outperforms distillation based only on fixed teacher-generated data.
 
 Figure~\ref{fig:on-policy-distillation} illustrates the process of on-policy distillation. 
 The student takes a prompt and generates an answer, which is then evaluated by 
@@ -755,12 +753,12 @@ token position of the student-generated sequence. The training loss can be desig
 in different ways, using, for example, the forward or reverse Kullback--Leibler 
 divergence or the Jensen--Shannon divergence.
 On-policy distillation can be understood through the lens of \textbf{reinforcement learning}: 
-the student generations can be seen as actions, while the teacher provides the
-reward on those actions. Since the reward is differentiable, it
-not necessarily use policy-gradient algorithms such as REINFORCE. 
+the student's generations can be seen as actions, while the teacher provides the
+reward on those actions. Since the reward is differentiable, training
+does not necessarily require policy-gradient algorithms such as REINFORCE.
 The student can instead be trained directly by minimizing the token-level divergence 
 from the teacher distribution.
-Following studies have extended on-policy distillation beyond the compression 
+Subsequent studies have extended on-policy distillation beyond the compression
 of small models and used it as a post-training framework. Recently, 
 \textbf{On-Policy Self-Distillation} has emerged as a new post-training 
 approach~\citep{zhao2026selfdistilled}. In this setting, the student and 
@@ -839,27 +837,42 @@ provides dense token-level feedback on this response.
     \caption{On-policy distillation. The student first samples an output, then the teacher evaluates this student-generated output.}
     \label{fig:on-policy-distillation}
 \end{figure}
-\begin{insightbox}[breakable]{Our contributions to LLM Compression}
-In the domain of compression domain we make two contributions that compress pre-trained Transformers:
+\section{Our contribution to model compression}
+Our contributions address two limitations of post-training compression for
+pre-trained Transformers:
 \begin{enumerate}
-    \item We explore low-rank decomposition for compressing pretrained LLMs
-    and propose \textbf{Lillama}, a method that combines low-rank weight
-    approximation with layer-wise distillation. We address the \textbf{training--inference mismatch} 
-    by making layer-wise distillation more \textbf{on-policy}: each student layer 
-    is trained on activations produced by preceding student layers.
+    \item We study low-rank decomposition for compressing pretrained LLMs and
+    propose \textbf{Lillama}. The method combines low-rank weight
+    approximation with layer-wise distillation, and it explicitly addresses the
+    \textbf{training--inference mismatch} discussed so far by making the distillation more
+    \textbf{on-policy}: each student layer is trained on activations produced by
+    preceding student layers, rather than on teacher-only features. 
+    Compared with unstructured or semi-structured pruning methods such as
+    \textbf{SparseGPT}~\citep{frantar2023sparsegpt} and
+    \textbf{Wanda}~\citep{sun2024wanda}, which rely on sparse weight formats
+    and specialized kernels to achieve speedup, Lillama shrinks the parameters
+    of the LLM and naturally saves computation. It also differs
+    from structured pruning pipelines such as
+    \textbf{Sheared LLaMA}~\citep{xia2024sheared} and
+    \textbf{Minitron}~\citep{muralidharan2024compact,sreenivas2024minitron},
+    which require more expensive retraining stages after pruning. In contrast,
+    Lillama keeps the compression local and one-shot: it compresses only
+    selected layers, initializes them with SVD, and distills them with a small
+    calibration set while preserving the dense execution path and the original
+    model structure.
 
-    \item Post-training compression often leaves the LM head untouched,
-    as compressing it can distort the output probability distribution
-    and require retraining to recover performance. We propose
-    \textbf{BaldWhisper}, showing that low-rank compression of Whisper's LM head, 
-    combined with feature distillation, offers a good speed--accuracy trade-off 
-    despite the constraints of the \textbf{softmax bottleneck}. 
-    We also explore \textbf{layer merging} as an alternative to layer
-    pruning, reducing decoder depth to lower self-attention and
-    cross-attention costs during autoregressive decoding, which is
-    \textbf{memory-bounded}.
+    \item Post-training compression often leaves the LM head untouched because
+    compressing it can distort the output probability distribution and force a
+    costly recovery stage. We propose \textbf{BaldWhisper}, showing that
+    low-rank compression of the head together with feature distillation offers a
+    good speed--accuracy trade-off despite the \textbf{softmax bottleneck}.
+    We also study \textbf{layer merging} as an alternative to layer pruning,
+    reducing decoder depth to lower self-attention and cross-attention costs
+    during autoregressive decoding, which is \textbf{memory-bound}. This
+    places our work in the same compression regime as low-rank approximations,
+    distillation, and structured pruning, but targets a part of the model that
+    is commonly left untouched in standard post-training compression pipelines.
 \end{enumerate}
-\end{insightbox}
 
 \section{Activation Sparsity}
 While post-training compression of LLMs has proved to be an effective approach
@@ -867,13 +880,13 @@ to create small LLMs, larger LLMs nevertheless remain more performant.
 They generalize better, contain more knowledge, and are much better at
 in-context learning. However, as discussed, they are also more costly to train
 and to serve for inference. Can we get some of the benefits of large models,
-but with a cheaper training and inference cost? Sparse activation is one answer
+but at a lower training and inference cost? Sparse activation is one answer
 to this question. The model dynamically selects which parameters should be used 
 for the current input token. The selected parameters are called \textbf{active parameters}, 
 while the others remain inactive for this specific input.
-When associated with efficient GPU Kernels, sparsity reduces the activation memory, 
+When associated with efficient GPU kernels, sparsity reduces the activation memory,
 so it gives more room for larger batches and hence higher training and inference \textbf{throughput}. 
-It can also accelerate the end to end decoding speed.
+It can also accelerate the end-to-end decoding speed.
 
 Sparse activations make it possible to partly decouple model size from
 computation, and provide new scaling axes compared to dense models:
@@ -889,7 +902,7 @@ computation, and provide new scaling axes compared to dense models:
 Training sparse models is difficult because the process of selecting which
 parameters to activate is often discrete and therefore not directly
 differentiable. However, the know-how has evolved a lot, especially for
-sparse Mixture-of-Experts, which is now the most successful class of sparse models at
+sparse mixtures of experts, which are now the most successful class of sparse models at
 scale. We will present different classes of sparse models, their pros and cons,
 and particularly the optimization tricks that make their training possible.
 
@@ -905,9 +918,9 @@ and particularly the optimization tricks that make their training possible.
 \end{figure}
 
 \subsubsection{The MoE layer}
-In a sparse MoE, the weight matrix $\mathbf{W}$ is split into $e$ subweights called experts,
+In a sparse MoE, the weight matrix $\mathbf{W}$ is split into $e$ submatrices called experts,
 $\mathbf{W}_1, \ldots, \mathbf{W}_e$. The model is trained to decide which
-experts are useful for the current input $\mathbf{x}$, and only compute these
+experts are useful for the current input $\mathbf{x}$, and evaluates only these
 experts. Thus, the model can contain many parameters, while each token only
 activates a small fraction of them. The selection of the experts is performed 
 by a router network $R_\theta$ and
@@ -915,7 +928,7 @@ the top-$k$ operator. More formally, let $\mathbf{x} \in \mathbb{R}^{d_1}$ be
 the input, and let each expert $\mathbf{W}_j \in \mathbb{R}^{d_1 \times d_e}$.
 The router produces one logit, or score, per expert,
 $\mathbf{r}=R_\theta(\mathbf{x}) \in \mathbb{R}^{e}$. The top-$k$ operator is
-first applied on these router logits to select the subset of active experts,
+first applied to these router logits to select the subset of active experts,
 $S = \{j \mid r_j \in \mathrm{TopK}(\mathbf{r}, k)\}$. Then, the routing
 weights are computed with a softmax only over these selected experts. Thus, for
 each selected expert $j \in S$, we have
@@ -932,15 +945,15 @@ The output of the MoE layer is then projected back to the model dimension $d_{mo
 
 \subsubsection{The nice scaling properties of MoEs}
 MoEs give a way to increase the capacity of the model without increasing 
-the computation by the same factor. Switch Transformer~\citep{switch} shows that at FLOP-matched
+the computation by the same factor. Switch Transformer~\citep{switch} shows that at a FLOP-matched
 budget, increasing the number of experts improves the overall performance.
 This means increasing the model parameters while keeping the same number of
 activated parameters is beneficial. Figure~\ref{fig:switch} illustrates this. 
 On the left plot, we can see that keeping the number of activated parameters fixed,
-while increasing the number of experts, leads to strong improvement. However,
+while increasing the number of experts, leads to substantial improvements. However,
 it doesn't seem linear, and at some point increasing the number of parameters
-without increasing the number of activated parameters stop being beneficial.
-And since bigger models converges faster, large MoEs accelerate also the training
+without increasing the number of activated parameters stops being beneficial.
+And since bigger models converge faster, large MoEs also accelerate training
 as shown by the right plot.
 
 \begin{figure}[!ht]
@@ -955,13 +968,13 @@ as shown by the right plot.
     \caption{Scaling properties of Switch Transformer. Increasing the number of experts improves performance and sample efficiency at equal computational budget. Figure from \citep{switch}.}
     \label{fig:switch}
 \end{figure}
-The sparsity has been pushed much farther in recent sparse MoEs. The DeepSeek
+Sparsity has been pushed much further in recent sparse MoEs. The DeepSeek
 series particularly pushed fine-grained experts and very sparse activation.
 DeepSeek-V3 uses $256$ routed experts and activates only $8$ of them for each
-token, which represents approximately $97\%$ of sparsity~\citep{deepseekai2024deepseekv3}. 
-DeepSeek-V4-Pro pushes this even further: $384$ routed experts and activates only $6$ per
+token, which represents approximately $97\%$ sparsity~\citep{deepseekai2024deepseekv3}.
+DeepSeek-V4-Pro pushes this even further: it has $384$ routed experts and activates only $6$ per
 token, so more than $98\%$ of the routed experts are inactive at each
-step~\citep{deepseekai2026deepseekv4}. Since MoEs decouple parameters
+step~\citep{deepseekai2026deepseekv4}. Since MoEs decouple parameter
 scaling from computation, recent models therefore scale to
 multi-trillion-parameter sparse MoEs, such as Kimi-K3 with $2.8$T parameters
 and $104$B active parameters~\citep{moonshotai2026kimik3}, or Qwen3.8-Max with
@@ -978,7 +991,7 @@ In \citep{krajewski2024scaling}, the authors study this effect while keeping the
 model size and the number of training tokens fixed. 
 As illustrated in Figure~\ref{fig:fine-grained-moe-granularity}, 
 their main result is that increasing granularity usually improves loss, 
-probably because it gives to the router more flexibility to combine experts. 
+probably because it gives the router more flexibility to combine experts.
 The model can represent a more precise mixture of skills. 
 \begin{figure}[!ht]
     \centering
@@ -988,17 +1001,17 @@ The model can represent a more precise mixture of skills.
 \end{figure}
 
 \subsubsection{Stabilizing MoEs}
-While pushing large, sparse and granular MoEs results in strong efficient models,
-it also results in challenging training. This is true in terms of infrastructure,
-since more experts creates a communication overhead between nodes and GPUs, and
-irregular GPUs memory loading when some experts are used more than other.
-But it is also true in terms of optimization dynamics, since the topk-based router
-is not a differentiable operation, it hurts the optimization dynamics and require
-many tricks to optimize training.
+Scaling large, sparse, and fine-grained MoEs produces strong, efficient models,
+but also makes training challenging. This is true in terms of infrastructure:
+more experts create communication overhead between nodes and GPUs, as well as
+uneven GPU memory use when some experts are used more than others.
+It is also true in terms of optimization dynamics: TopK-based routing
+is not differentiable, which complicates optimization and requires
+many tricks to stabilize training.
 
 \paragraph{Load Balancing.} The router must learn to distribute tokens across experts.
 If most tokens are routed to the same few experts, these experts become
-overloaded, while the other experts are almost not trained. Their hosting GPUs
+overloaded, while the other experts receive almost no training. Their hosting GPUs
 also receive more work than the others, which unbalances the GPU cluster.
 Switch Transformer avoids this by adding what is called a \textbf{load balancing}
 auxiliary loss, a loss added to the language modeling loss to encourage more
@@ -1035,7 +1048,7 @@ Balancing}~\citep{moonshotai2026kimik3}, which computes an expert-specific
 threshold from the quantiles of the router scores such that overused experts
 receive a harder threshold and underused experts receive an easier one.
 
-\paragraph{Waking the deads.} Even with load balancing constraints,
+\paragraph{Waking the Dead.} Even with load balancing constraints,
 large-scale fine-grained sparse MoEs can lead to instabilities. And some of
 them are silent. In Step 3.5 Flash~\citep{stepfun2026step35flash}, 
 the authors report what they call \textbf{dead experts}, 
@@ -1047,7 +1060,7 @@ almost no gradient. But the Step 3.5 Flash report also shows a more subtle case:
 the router statistics can look healthy, while the expert itself is collapsing.
 The expert is selected, but its activations are not meaningful, and its parameter norms
 become stagnant or decay.
-A recent blogpost\footnote{
+A recent blog post\footnote{
     \url{https://alltoall.notion.site/save-lower-layer-moe-experts-llal}
 } on ultra-sparse MoEs makes a similar observation: lower-layer
 experts can silently collapse even when training loss, validation loss and load
@@ -1057,16 +1070,16 @@ temporarily compute the language modeling loss using the output of the collapsin
 so they are "forced" to become useful.
 
 \subsubsection{Are "experts" really experts?}
-There is a debate about the possibility of experts to specialize in some
-domain. So far, there is no clear observed \textbf{expert specialization} in MoE LLMs,
+There is a debate about whether experts can specialize in particular
+domains. So far, there is no clear evidence of \textbf{expert specialization} in MoE LLMs,
 at least not in the intuitive sense of "specialization" on domains such as code,
 math, literature, etc. Mixtral is among the first open sparse MoE LLMs to study
 this question directly~\citep{jiang_mixtral_2024}. 
 The authors measure how often each expert is selected on different subsets of
 The Pile, such as ArXiv, GitHub, PubMed, PhilPapers or Wikipedia. If experts
 were domain experts, we would expect some experts to be often selected
-for some domains. But this is not what happen. As shown in
-Figure~\ref{fig:mixtral-expert-selection-domains}, the routing to different domains is
+for some domains. But this is not what happens. As shown in
+Figure~\ref{fig:mixtral-expert-selection-domains}, the routing across different domains is
 mostly uniform. However, they find that neighboring tokens in the sequence
 tend to be assigned to the same experts.
 
@@ -1087,8 +1100,8 @@ As shown in Figure~\ref{fig:nllb-moe-language-similarity}, the late decoder MoE
 layer clearly separates languages: languages from the same family tend to select
 similar experts. The early encoder layer also shows some language-expert
 specialization. This suggests that expert specialization exists, but it is
-not necessarily a clean semantic specialization. This finding is somehow
-validated in OLMoE, where the authors observe a strong vocabulary-level
+not necessarily a clean semantic specialization. This finding is also
+supported by observations in OLMoE, where the authors observe a strong vocabulary-level
 specialization of experts~\citep{muennighoff2025olmoe}. Some experts specialize
 in scripts or alphabets, others in punctuation, religious terms, dates, places,
 family words, or technical tokens. In other words, experts can specialize, but
@@ -1183,17 +1196,17 @@ reports that Shazeer once intuited:
 In this view, increasing the number of experts while keeping the number of
 activated parameters fixed mainly increases the model's knowledge capacity.
 It does not increase the computation spent on each token. So the gain should
-be weaker on tasks where the bottleneck is more compute than more memorized
+be weaker on tasks that require more computation rather than more memorized
 knowledge. The natural next step is therefore to make sparse LLMs adaptive:
 use more experts when the token or the task is hard, and use fewer experts
 when it is not.
 
-This intuition is now well shared in the field, and many works propose ways
+This intuition is now widely shared in the field, and many works propose ways
 to make MoE routing compute-adaptive\footnote{
-    See this blogpost for an overview of the approaches
+    See this blog post for an overview of the approaches
     \url{https://huggingface.co/blog/Spico/dynamic-routing}
-}. \citep{huang2024hardertasksneedexperts} propose a routing strategy inspired by
-TopP decoding. Contrary to TopK, TopP does not activate a fixed number of experts.
+}. One proposed routing strategy is inspired by
+TopP decoding~\citep{huang2024hardertasksneedexperts}. Unlike TopK, TopP does not activate a fixed number of experts.
 It sorts the router probabilities and keeps the smallest set of experts whose
 cumulative probability is above a threshold $p$. When the router is confident,
 only a few experts are used. When the distribution is flatter, more experts are
@@ -1202,13 +1215,13 @@ activated.
 Another approach is to replace the hard TopK operation with a continuous ReLU
 router \citep{wang2025remoefullydifferentiablemixtureofexperts}. In that case,
 experts with positive router scores are active, and sparsity is encouraged during
-training with a regularization on these scores. The number of active experts is
+training by regularizing these scores. The number of active experts is
 therefore not fixed, but emerges from the input and from training.
 
 The most commonly used adaptive sparse MoE approach at scale is probably the
 \textbf{zero-computation expert}. This method adds identity experts that
 let the input pass through without computation.
-This approach is for example used in LongCat-Flash
+This approach is used, for example, in LongCat-Flash
 \citep{meituanlongcatteam2025longcatflashtechnicalreport}, 
 where they encourage a sparsity budget by selecting $K$ experts among both
 FFN experts and zero-computation experts. The constraint is 
@@ -1245,10 +1258,9 @@ irrelevant for another one. The natural idea is therefore to make the MLP sparse
 While this approach is less common than MoE to build sparse Transformers, it has
 some interesting advantages.
 
-The idea to augment neural networks with a large memory is not new \citep{weston2015memorynetworks},
-but in the context of LLMs it has been systemized by
-\citep{lample2019largememorylayersproduct}, where the approach is made
-efficient and scalable to modern LLM scale.
+The idea of augmenting neural networks with a large memory is not new \citep{weston2015memorynetworks},
+but it has been developed into an efficient approach
+that can scale to modern LLMs~\citep{lample2019largememorylayersproduct}.
 
 \begin{figure}[tb]
     \centering
@@ -1259,7 +1271,7 @@ efficient and scalable to modern LLM scale.
     \label{fig:key-value-memory-layer}
 \end{figure}
 
-Using the notation of \citep{lample2019largememorylayersproduct},
+Following the notation used in prior work~\citep{lample2019largememorylayersproduct},
 a memory layer is a function $m:\mathbb{R}^{d}\to\mathbb{R}^{n}$. Given an input
 $x \in \mathbb{R}^{d}$, a query network produces a query vector
 $q(x)\in\mathbb{R}^{d_q}$. This query is compared to a set of trainable keys
@@ -1291,10 +1303,10 @@ is impossible to achieve in the current form.
 There are some efficient alternatives to this, which we will
 present next.
 
-\subsubsection{Scaling Memory Layer}
+\subsubsection{Scaling Memory Layers}
 \paragraph{Product-Key Memory}
 Product-Key Memory (PKM) \citep{lample2019largememorylayersproduct} 
-makes the keys search scalable by using a product structure.
+makes key search scalable by using a product structure.
 Instead of searching through one huge set of keys, PKM trains two smaller sets of keys,
 $\mathcal{K}_1$ and $\mathcal{K}_2$. A full key is not stored directly. It is
 formed by combining one key from the first set and one key from the second set.
@@ -1321,9 +1333,9 @@ by improving several practical weak points of PKM.
 First, they increase the diversity of the values that can be activated. 
 They achieve this by halving the value dimension $D_v$, which allows them to double the
 number of values while keeping the number of activated value parameters
-fixed. The model can access to more smaller values, and compose a richer output.
-Second, they observe that PKM is \textbf{memory-bound} during trainnig. A very large
-sparse memory layer is cheap in FLOPS, but it can be expensive in memory access and
+fixed. The model can access more, smaller values and compose a richer output.
+Second, they observe that PKM is \textbf{memory-bound} during training. A very large
+sparse memory layer requires few FLOPs, but it can be expensive in memory access and
 communication. By splitting the huge memory into several smaller memories
 placed across the network, UltraMem avoids concentrating all memory access 
 in a single blocking operation. The memory lookups become smaller and more distributed, 
@@ -1334,7 +1346,7 @@ for the query-key retrieval.
 \paragraph{Mixture of Million Experts}
 Another direction is to keep the product-key retrieval mechanism, but remove the
 key-value memory interpretation. This is the idea of PEER (Parameter Efficient
-Expert Retrieval), proposed by \citep{he2024mixturemillionexperts}. Conceptually,
+Expert Retrieval)~\citep{he2024mixturemillionexperts}. Conceptually,
 PEER is similar to a very fine-grained MoE. Instead of a simple linear layer,
 the router uses product keys to retrieve experts efficiently, as in PKM, 
 but each retrieved item is not a value vector stored in memory but a tiny MLP expert.
@@ -1348,7 +1360,7 @@ layer more naturally connected to MoE scaling and granularity: instead of having
 a few large experts, PEER pushes the idea to the extreme by using a large
 number of very small experts, while product-key retrieval keeps the routing cost
 cheap. Listing~\ref{lst:peer-forward} gives the intuition of the forward pass,
-following the pseudo-code of \citep{he2024mixturemillionexperts}.
+following the pseudocode in the original paper~\citep{he2024mixturemillionexperts}.
 
 \begin{lstlisting}[
   float=tb,
@@ -1401,9 +1413,9 @@ def peer_forward(self, x):
     \label{fig:ngram-embedding-layer}
 \end{figure}
 Some solutions exist to augment the LLM memory without the complexity
-and cost of searching in a large key-value store. 
+and cost of searching a large key-value store.
 Embedding memory layers can be seen as a special case of sparse key-value memory
-layers, where the keys are not learned dense vectors but fixed discrete indexes.
+layers, where the keys are not learned dense vectors but fixed discrete indices.
 For a standard embedding table, the key is simply the token index, and the value
 is the corresponding embedding vector. During the forward pass, each token
 $x_i$ maps to exactly one index. In that sense, the retrieval is a TopK with
@@ -1420,11 +1432,11 @@ More generally, the embedding table can store not only token embeddings, but als
 \citep{roy2022ngrammeraugmentingtransformerslatent,liu2026scalingembeddingsoutperformsscaling}
 to augment the model memory.
 This approach is used and has been studied in many architectures, including
-LongCat-Flash~\citep{liu2026scalingembeddingsoutperformsscaling} or Qwen3.8-Flash-Next
+LongCat-Flash~\citep{liu2026scalingembeddingsoutperformsscaling} and Qwen3.8-Flash-Next
 \footnote{
     \url{https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf}
 }
-Figure~\ref{fig:ngram-embedding-layer} shows how N-gram Embedding is used in
+Figure~\ref{fig:ngram-embedding-layer} shows how n-gram embeddings are used in
 LongCat-Flash-Lite. The embedding memories are used only in the input embedding
 module, before the Transformer layers. For each token position $i$, the model
 forms left-context n-grams ending at the current token, such as $(B,C)$ or
@@ -1435,10 +1447,10 @@ Transformer stack.
 
 There are several ways to inject embedding-memory information into a Transformer
 architecture. LongCat-Flash-Lite \citep{liu2026scalingembeddingsoutperformsscaling} 
-uses it to construct the input token representations to the Transformer backbone.
+uses it to construct the input token representations for the Transformer backbone.
 Qwen3.8-Flash-Next instead injects the retrieved n-gram vectors inside the
 Transformer, at a selected layer.
-They found that when the n-gram vocabulary is
+The authors found that when the n-gram vocabulary is
 scaled by adding extra parameters, loss decreases monotonically, while downstream
 performance stagnates, as shown in Table~\ref{tab:qwen-ngram-vocab-scaling}.
 
@@ -1521,7 +1533,7 @@ domain embeddings~\citep{gritsch-etal-2025-nexus}.
 Activation sparsity reduces the number of parameters used for each token, 
 but it does not reduce the memory footprint of the model,
 since the full model parameters must be hosted in memory. 
-Another line of approach is \textbf{Matryoshka Learning}, where a single model is
+Another approach is \textbf{Matryoshka Learning}, where a single model is
 trained to nest multiple model or embedding sizes within it. At inference time,
 it is possible to use the embedding dimension or model size that fits the
 compute and memory budget.
@@ -1531,12 +1543,12 @@ dimensions $\mathcal{D} = \{d_1, d_2, \ldots, d_m\}$, MRL trains these
 dimensions jointly by summing the task loss over the different representation
 sizes: $\mathcal{L}_{\mathrm{MRL}} = \sum_{d \in \mathcal{D}} \mathcal{L}\left(y, f_{d}(x)\right)$
 where $x$ is the full representation and $f_d$ selects or projects it to a
-$d$-dimensional representation. Most of time, this function is simply a slicing operation
+$d$-dimensional representation. Most of the time, this function is simply a slicing operation
 that selects the first $d$ dimensions of the representation, but it can also be a learned projection. 
-MRL framework is illustrated in Figure~\ref{fig:mrl-figure1} and
-is used in a lot in retrieval models. It helps reduce the disk usage of the embedding
-store, and allows a trade off between retrieval speed and accuracy.
-MRL can be seen as an activation sparsity since slicing a vector $x_{[:d]}$
+The MRL framework is illustrated in Figure~\ref{fig:mrl-figure1} and
+is widely used in retrieval models. It helps reduce the disk usage of the embedding
+store, and allows a trade-off between retrieval speed and accuracy.
+MRL can be seen as a form of activation sparsity since slicing a vector $x_{[:d]}$
 means implicitly setting the remaining dimensions $x_{[d:]}$ to zero.
 
 
@@ -1559,19 +1571,33 @@ depending on the compute and memory budget.
 
 
 
-\begin{insightbox}[breakable]{Our contributions to Activation Sparsity}
+\section{Our contribution to activation sparsity}
 Our contributions examine the limitations of fixed representation
 sizes and explore more adaptive sparsity:
 \begin{enumerate}
     \item We study Matryoshka Representation Learning (MRL) across speech
     and text. We show that MRL doesn't achieve optimal sparsity,
-    as matryoshka embeddings concentrate information
-    in relatively few components leaving the remaining unused. 
+    as Matryoshka embeddings concentrate information
+    in relatively few components, leaving the remainder unused.
     This suggests scope for more effective sparsity than fixed prefix slicing.
 
     \item In a preliminary study, still ongoing at the time of writing,
     we explore \textbf{ZeroNeuron}, an adaptive, fine-grained,
-    differentiable sparsity mechanism for both MLP activations
-    and embedding representations.
+    differentiable activation-sparsity mechanism for MLP activations and
+    embedding representations. ZoN follows the same motivation as fine-grained
+    MoEs and sparse memory layers: a larger hidden representation can be used,
+    but only a subset of coordinates should be active for each input
+    token~\citep{krajewski2024scaling,lample2019largememorylayersproduct,
+    he2024mixturemillionexperts}. However, unlike TopK-based MoE routing or
+    memory lookup, ZoN does not select a fixed number of experts or retrieve
+    a subset of keys through explicit routing; instead, it learns a pointwise
+    gate over the intermediate coordinates of the dense MLP. This preserves the
+    dense tensor-parallel communication pattern while allowing the level of
+    sparsity to vary with the input, which is the key difference from
+    discrete expert routing and memory retrieval
+    methods~\citep{huang2024hardertasksneedexperts,
+    wang2025remoefullydifferentiablemixtureofexperts,
+    huang2025ultrasparsememorynetwork}. ZeroNeuron realizes a communication-
+    efficient form of adaptive activation sparsity directly in the standard
+    MLP computation.
 \end{enumerate}
-\end{insightbox}

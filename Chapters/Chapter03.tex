@@ -4,22 +4,22 @@
 
 \section{Introduction}
 
-In the previsous chapter we showed that our proposed low-rank compression significantly speedup the \textit{Time to First Token} (TTF), i.e., the \textit{prefiling phase} while still maintaining most of the base performance.
-However the method shows limited speedup the end-to-end \textit{decoding} latency. For example, on Whisper the overall latency speedup is only $1.13\times$.
-This is because autoregressive decoding is mostly \textit{memory-bound}. At each decoding step, the model processes only a single token. Instead, the dominant cost comes from repeatedly loading the model weights and KV-cache from GPU memory. 
+In the previous chapter, we showed that our proposed low-rank compression significantly reduces the \textit{time to first token} (TTFT), i.e., the duration of the \textit{prefill phase}, while maintaining most of the base performance.
+However, the method provides only a limited reduction in end-to-end \textit{decoding} latency. For example, on Whisper the overall latency speedup is only $1.13\times$.
+This is because autoregressive decoding is mostly \textit{memory-bound}. At each decoding step, the model processes only a single token. The dominant cost comes from repeatedly loading the model weights and KV-cache from GPU memory.
 Since memory bandwidth, rather than compute throughput, becomes the limiting factor, reducing the number of arithmetic operations in the linear layers alone has only a modest impact on decoding latency.
-We can also notice that the low-rank architecture can further introduce memory bandwith bottleneck since instead of a single linear matrix multiplication $xW$ we do $(xW_{1})W_{2}$. 
-This further introduces intermediate activations and data movement. Specific GPU kernels
+The low-rank architecture can also introduce a memory bandwidth bottleneck: instead of a single matrix multiplication $xW$, we compute $(xW_{1})W_{2}$.
+This introduces intermediate activations and data movement. Specific GPU kernels
 are needed to achieve substantial speedup with this compression approach.
 
-To further accelerate end-to-end inference without any GPU kernel, we need to reduce not only the computational complexity of the model but also the amount of data transferred from memory.
-Motivated by these observations, this chapter introduces a compression method that achieve substantial speedup by combining low-rank compression and layer merging to reduce the number of KV-cache layers, 
+To further accelerate end-to-end inference without specialized GPU kernels, we need to reduce not only the computational complexity of the model but also the amount of data transferred from memory.
+Motivated by these observations, this chapter introduces a compression method that achieves substantial speedup by combining low-rank compression and layer merging to reduce the number of KV-cache layers,
 leading to significantly larger end-to-end speedups. The method, named \emph{BaldWhisper}, is a two-stage decoder compression method designed to preserve accuracy in the data-scarce setting.
-First, we reduce the decoder depth which lowers weight traffic and reduces the number of key--value cache layers used during generation. Second, we compress Whisper's shared input/output embedding matrix through activation-aware low-rank decomposition.
+First, we reduce the decoder depth, which lowers weight traffic and reduces the number of key--value cache layers used during generation. Second, we compress Whisper's shared input/output embedding matrix through activation-aware low-rank decomposition.
 This matrix accounts for more than half of the decoder parameters in small multilingual Whisper models.
 
-Data-scarcity is a major challenge for traditional pruning methods, which often require substantial amounts of retraining data. For example, Distill-Whisper \citep{distill-whisper} prunes the English-only version of Whisper \citep{whisper} and further retrained on 21k hours of ASR data, a quantity not available for many languages. This leads us to a central question: \emph{How to compress a pre-trained ASR model (Whisper) when only a small quantity of supervised data is available?}
-We study this questin through the compression of Whisper for Bambara, a low-resource language with limited amount of ASR dataset at the time of this work. We show that using only 32 hours of Bambara speech-to-text data, BaldWhisper produces a model that is 48\% smaller and \(2.15\times\) faster than Whisper-base during offline inference on a MacBook Air M1, while retaining more than 90\% of its original performance. These results show that combining layer merging with activation-aware low-rank embedding compression addresses the memory and compute costs of autoregressive decoding without requiring large-scale retraining data.
+Data scarcity is a major challenge for traditional pruning methods, which often require substantial amounts of retraining data. For example, Distil-Whisper \citep{distill-whisper} prunes the English-only version of Whisper \citep{whisper} and then retrains it on 21k hours of ASR data, a quantity not available for many languages. This leads us to a central question: \emph{How can we compress a pretrained ASR model (Whisper) when only a small amount of supervised data is available?}
+We study this question through the compression of Whisper for Bambara, a low-resource language with limited ASR data at the time of this work. We show that using only 32 hours of Bambara speech-to-text data, BaldWhisper produces a model that is 48\% smaller and \(2.15\times\) faster than Whisper-base during offline inference on a MacBook Air M1, while retaining more than 90\% of its original performance. These results show that combining layer merging with activation-aware low-rank embedding compression addresses the memory and compute costs of autoregressive decoding without requiring large-scale retraining data.
 
 \begin{figure}[ht]
     \centering
@@ -31,7 +31,7 @@ We study this questin through the compression of Whisper for Bambara, a low-reso
 Before presenting our method, we discuss some approaches related to this work.
 
 \paragraph{Deep encoder, shallow decoder.}
-We take inspiration from \citep{kasai2021deepencodershallowdecoder}, who show that the decoder part of an encoder--decoder architecture can be very shallow while remaining accurate and becoming faster. We likewise compress primarily the decoder of Whisper. In contrast to their approach, which trains encoder--decoder models from scratch, we begin with a pretrained Whisper model and compress its decoder.
+We take inspiration from work showing that the decoder of an encoder--decoder architecture can be very shallow while remaining accurate and becoming faster~\citep{kasai2021deepencodershallowdecoder}. We likewise compress primarily the decoder of Whisper. In contrast to their approach, which trains encoder--decoder models from scratch, we begin with a pretrained Whisper model and compress its decoder.
 
 \paragraph{Distil-Whisper.}
 Distil-Whisper~\citep{distill-whisper} compresses Whisper-large by removing 30 of its 32 decoder layers. The pruned model is then retrained on approximately 21,000 hours of speech using sequence-level knowledge distillation~\citep{kim2016sequence}. Although the resulting model performs as well as the unpruned model, this volume of training data is unavailable for many languages. Instead of removing layers, we merge them to limit the performance loss.
@@ -60,7 +60,7 @@ We target offline, on-device decoding. Because the encoder runs once per utteran
 
 \subsection{Stage 1: Layer Merging}
 
-To accelerate inference with a minimal accuracy loss, we reduce the decoder depth by merging layers instead of removing them. Let \(\theta^{(l)}\) denote the parameters of layer \(l\). Figure~\ref{fig:layermerging-bw} illustrates this stage. The Whisper-base decoder contains six layers, giving the consecutive pairs
+To accelerate inference with minimal accuracy loss, we reduce the decoder depth by merging layers instead of removing them. Let \(\theta^{(l)}\) denote the parameters of layer \(l\). Figure~\ref{fig:layermerging-bw} illustrates this stage. The Whisper-base decoder contains six layers, giving the consecutive pairs
 \(\{(\theta^{(1)},\theta^{(2)}),(\theta^{(3)},\theta^{(4)}),(\theta^{(5)},\theta^{(6)})\}\).
 We merge each pair through a weighted average:
 \begin{equation}
@@ -148,7 +148,7 @@ We use Bayesian optimization to select the merging weights \(\alpha\), which con
 \end{figure}
 
 \paragraph{Why merge adjacent layers?}
-Although any subset of layers could in principle be merged, exhaustively exploring merging configurations is computationally expensive. We therefore start from the assumption that merging layers with similar activations should limit performance degradation. We compute decoder-layer activations by forwarding the supervised validation corpus through Whisper-base, then compare every pair of layers. Figure~\ref{fig:similarities-bw} shows that adjacent layers tend to have similar activations, supporting the decision to merge consecutive pairs.
+Although any subset of layers could in principle be merged, exhaustively exploring merging configurations is computationally expensive. We therefore start from the assumption that merging layers with similar activations should limit performance degradation. We compute decoder-layer activations by passing the supervised validation corpus through Whisper-base, then compare every pair of layers. Figure~\ref{fig:similarities-bw} shows that adjacent layers tend to have similar activations, supporting the decision to merge consecutive pairs.
 
 \begin{figure}[ht]
     \centering
@@ -158,9 +158,9 @@ Although any subset of layers could in principle be merged, exhaustively explori
 \end{figure}
 
 \paragraph{Comparison to brute-force search.}
-One approach is to search which layer to remove by testing all combinations. Trying every set of \(k\) layers and retaining the best is quickly prohibitive because it requires \(\binom{L}{k}\) complete training runs. For Whisper-large with \(L=32\) and \(k=3\), this would require \(\binom{32}{3}=4960\) runs.
-On the other side, with our approach, 10 to 20 small training runs are sufficient to determine the
-weights of layer merging.
+One approach is to identify which layers to remove by testing all combinations. Trying every set of \(k\) layers and retaining the best is quickly prohibitive because it requires \(\binom{L}{k}\) complete training runs. For Whisper-large with \(L=32\) and \(k=3\), this would require \(\binom{32}{3}=4960\) runs.
+In contrast, our approach requires only 10 to 20 small training runs to determine the
+layer-merging weights.
 
 \paragraph{Confidence intervals.}
 At a \(1.54\times\) speedup, layer merging obtains a WER of \(34.77\%\pm2.44\%\), statistically indistinguishable from the \(33.11\%\pm2.41\%\) baseline. Even at a \(2.15\times\) speedup, the WER of \(36.49\%\pm2.47\%\) represents a modest and predictable degradation.
@@ -215,4 +215,4 @@ some of the lost performance.
 
 We introduced BaldWhisper, a compression approach for Whisper in low-resource settings. Merging adjacent decoder layers rather than simply pruning them limits the performance loss, while low-rank feature distillation compresses the large shared embedding matrix without discarding vocabulary items needed for code-switching. Using only 32 hours of Bambara speech, the final model is \(2.15\times\) faster and 48\% smaller than Whisper-base while retaining more than 90\% of its performance.
 
-Several directions could further improve this tradeoff. The merging weights \(\alpha\) and \(\beta\) could be specialized per layer, and more sophisticated merging functions~\citep{yadav2023tiesmergingresolvinginterferencemerging,yu2024languagemodelssupermario} could replace the weighted average. Because the method operates on standard Whisper Transformer blocks, it should transfer to other languages; validating that transfer remains future work.
+Several directions could further improve this trade-off. The merging weights \(\alpha\) and \(\beta\) could be specialized per layer, and more sophisticated merging functions~\citep{yadav2023tiesmergingresolvinginterferencemerging,yu2024languagemodelssupermario} could replace the weighted average. Because the method operates on standard Whisper Transformer blocks, it should transfer to other languages; validating that transfer remains future work.

@@ -10,22 +10,22 @@
 \let\cleardoublepage\relax
 
 \chapter*{Abstract}
-Scaling model sizes of Large Language Models (LLMs) opened many capabilities that don't 
-emerged at small scale. However, with model scale comes training and inference costs. 
+Scaling up large language models (LLMs) has unlocked many capabilities that do not
+emerge at smaller scales. However, larger models also incur greater training and inference costs.
 How can we scale model capacity while limiting its computational cost, particularly at inference time?
-We show that, contrary to sparse LLMs, dense LLM activations exhibit a low-rank structure, 
+We show that, unlike sparse LLMs, dense LLM activations exhibit a low-rank structure,
 suggesting that only a fraction of their representations is relevant during inference. 
 Based on this observation, we study efficiency through (1) model compression and (2) activation sparsity.
 For model compression, we propose methods that compress LLMs by locally distilling 
 their activations into low-rank weights, which greatly reduces inference and training costs. 
-For activation sparsity, we first study Matryoshka Embedding LLMs as a form of 
+For activation sparsity, we first study Matryoshka embedding LLMs as a form of
 structured sparsity and show that they concentrate information in a few coordinates, 
 wasting compute on the remaining ones. We therefore explore adaptive sparsity, 
 where the model learns to allocate the optimal amount of sparsity depending on the input.
 We propose \textit{ZeroNeuron}, a new method for learning adaptive structured activation sparsity for fast
 pre-training and inference. The method is based on stretching approaches and has
-many advantages over TopK-based activation sparisty, such as being differentiable and
-limiting cross-gpus communication in distributed training.  
+many advantages over TopK-based activation sparsity, such as being differentiable and
+limiting cross-GPU communication in distributed training.
 \endgroup
 
 \vfill

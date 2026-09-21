@@ -1,10 +1,10 @@
 %************************************************
-\chapter{Modeling the Language}\label{ch:introduction}
+\chapter{Modeling Language}\label{ch:introduction}
 %************************************************
 \section{A dialog between Shannon and Chomsky}
-It is curious that we still don't know where the expression \textit{language model} come from and when it etablishes. 
-Not the notion of what is a \textit{language model} but the \textit{expression} itself. 
-Because for the notion, we know that the idea of language model is quite old and one of the earliest 
+It is curious that we still don't know where the expression \textit{language model} comes from or when it became established.
+We mean the \textit{expression} itself, rather than the concept.
+The concept of a language model is quite old, and one of the earliest
 formulations closely related to what we now call language modeling can be found in Shannon's 
 work on information theory~\citep{shannon1948mathematical}\footnote{
     This intuition was already explored by Markov in 1913~\citep{1913_lm};
@@ -24,7 +24,7 @@ but exhibit regularities characteristic of the language.
 \end{quote}
 If English sentences have a statistical structure, then a statistical model that 
 captures this structure should be able to generate sequences that look like English.
-But what is this statistical model? How can we estimate it? Later on, again Shannon gives a more operational view:
+But what is this statistical model? How can we estimate it? Later, Shannon gives a more operational view:
 
 \begin{quote}
     \small\itshape
@@ -36,8 +36,8 @@ But what is this statistical model? How can we estimate it? Later on, again Shan
     \normalfont--- Claude E. Shannon, \textit{A Mathematical Theory of Communication (1948)}
     \end{flushright}
 \end{quote}
-Shannon, meanwhile, describes a statistical 
-model of English but, importantly, did not call it \textit{language models}.
+Shannon thus describes a statistical
+model of English but does not call it a \textit{language model}.
 The story takes a different turn in the early 1970s. In 1974, a team at IBM working 
 on speech recognition described a statistical model closely related to Shannon's formulation and explicitly 
 called it a \textit{language model}. In their probabilistic decomposition of speech recognition, 
@@ -49,8 +49,8 @@ This work is therefore probably one of the earliest uses of the expression \text
 in essentially its modern statistical sense: a probability distribution over linguistic sequences 
 estimated from language data.
 
-Calling these systems as such could suggest that they are
-a linguistic model of a language. But does a better statistical model of English mean a better model of this language?
+Calling these systems language models could suggest that they are
+linguistic models of a language. But does a better statistical model of English mean a better model of the language itself?
 The idea that statistical learning can capture linguistic structure is compatible 
 with usage-based and connectionist approaches. Nativist approaches, 
 however, question whether statistical learning alone is sufficient to explain linguistic knowledge.
@@ -82,28 +82,27 @@ Second, even if we consider a statistical model with unbounded memory,
 Chomsky's criticism goes beyond model capacity. His broader claim is that \textbf{language is innate},
 biologically programmed in the human brain~\citep{chomsky1965aspects} and 
 cannot be learned simply by accumulating statistics over observed linguistic data.
-The main argument is the \textit{poverty of stimulus}: a child learns its native language rapidly, 
-despite being exposed to limited, noisy, and incomplete examples. This is possible because the infants
-implement structural biases that help learn and generalize linguistic structures from few examples.
+The main argument is the \textit{poverty of stimulus}: a child learns their native language rapidly,
+despite being exposed to limited, noisy, and incomplete examples. According to this account, infants have structural biases that help them learn and generalize linguistic structures from a few examples.
 Chomsky's theory holds that human linguistic competence depends on internal constraints 
 that cannot be inferred from experience alone.
 
 It is not straightforward, however, to translate this notion of innateness into 
 the language of machine learning. Does Chomsky's argument imply that general-purpose 
 learning architectures are inherently incapable of acquiring language from data alone? 
-Or can we instead design computational architectures and general learning objective whose inductive biases make 
+Or can we instead design computational architectures and general learning objectives whose inductive biases make
 the acquisition of linguistic structure easier?
 \footnote{For Chomsky, this question is not really interesting, 
     as reproducing linguistic behavior with an artificial architecture is not, 
     by itself, an explanation of human language acquisition: 
     \url{https://www.youtube.com/watch?v=PZQOIuuQiJA}}
-Maybe we can also posit the question in the reverse: does learning from experience alone help 
-learning the structure latent in language? Even though modern machine learning algorithms are still far from matching 
+Maybe we can also reverse the question: can learning from experience alone help
+uncover the structure latent in language? Even though modern machine learning algorithms are still far from matching
 the data efficiency of human children, substantial progress has been made by
-designing learning architectures that optimizes the language modeling objective, which results
-in profiency linguistic competence of such systems.
+designing learning architectures that optimize the language modeling objective, improving
+the linguistic competence of these systems.
 
-The language modeling objective, as Shannon describes it, is learning to prectict
+The language modeling objective, as Shannon describes it, is to learn to predict
 the next symbol from a fixed number of previous symbols.
 These symbols can be letters or words, but nowadays they are usually tokens, units that can form a word or a subword. 
 More formally, the probability of picking a token $s_i$ given a sequence of previous tokens $s_{<i} = (s_1, s_2, \ldots, s_{i-1})$ is written as $P(s_i \mid s_{<i})$.
@@ -118,11 +117,11 @@ Each individual probability can be defined from a score over the vocabulary:
     {\sum_{v \in \mathcal{V}} \mathrm{score}(s_{<i}, v)}.
 \end{equation}
 Here, $\mathrm{score}_\theta(x, y)$ measures how strongly the context $x$ is associated with the next token $y$, and $\mathcal{V}$ is the token vocabulary.
-The function $\mathrm{score}(x, y)$ can be designed very freely but in neural language model, it is often the exponential of the dot product
+The function $\mathrm{score}(x, y)$ can be designed very freely but in neural language models, it is often the exponential of the dot product
 between the context vector of $x$ and the token vector $y$.
 
-Using Maximum Likelihood Estimation, the probabilities of the sequence can be estimated by a statistical model parameterized 
-by $\theta$ on a large training corpus $\mathcal{C}$ of texts:
+Using maximum likelihood estimation, we can estimate sequence probabilities with a statistical model parameterized
+by $\theta$ and trained on a large corpus $\mathcal{C}$ of texts:
 \begin{equation}
     \theta^* = \arg\max_\theta
     \sum_{s \in \mathcal{C}} \sum_{i=1}^{|s|}
@@ -137,11 +136,11 @@ and knowledge acquisition, and discuss how scaling this architecture leads to fu
 in knowledge and linguistic competence.
 
 \section{The Transformer, the best machine language learner?}
-While \citep{bahdanau2015neural} improved neural machine translation by adding attention
-to an RNN-based encoder--decoder, \citep{vaswani2017attention} proposed replacing recurrence
-with attention in the Transformer. Removing recurrent dependencies allows all token positions
+Earlier work improved neural machine translation by adding attention
+to an RNN-based encoder--decoder~\citep{bahdanau2015neural}. The Transformer
+replaced recurrence with attention~\citep{vaswani2017attention}. Removing recurrent dependencies allows all token positions
 within a layer to be processed in parallel during training, making the architecture more
-parallelisable and easier to scale. Figure~\ref{fig:decoder-only-transformer} presents the
+parallelizable and easier to scale. Figure~\ref{fig:decoder-only-transformer} presents the
 decoder-only Transformer architecture used for autoregressive language modeling.
 The model stacks $N$ layers, each containing a self-attention module followed by an MLP,
 before an output head computes the next-token probability distribution. We next discuss
@@ -156,8 +155,8 @@ structures.
 \end{figure}
 
 \subsection{Attention}
-The innovation of Transformer is to remove the RNN and replace it fully with
-\textbf{Mult-Head Attention (MHA)}. Given $\mathbf{X} \in \mathbb{R}^{T \times d_{\mathrm{model}}}$,
+The innovation of the Transformer is to remove the RNN and replace it entirely with
+\textbf{Multi-Head Attention (MHA)}. Given $\mathbf{X} \in \mathbb{R}^{T \times d_{\mathrm{model}}}$,
 the sequence of token embeddings for $T$ positions, MHA projects the sequence into queries, keys
 and values for $H$ heads:
 \begin{equation}
@@ -191,8 +190,8 @@ positions are set to $-\infty$, so token $i$ can only attend to tokens $j \leq i
 with $\mathbf{W}^{O} \in \mathbb{R}^{H d_v \times d_{\mathrm{model}}}$. Each head can therefore
 learn a different projection of the same context.
 
-Having multiple independant heads is beneficial since it has been shown
-that \textbf{different attention heads play linguistically-interpretable roles}. 
+Having multiple independent heads is beneficial since it has been shown
+that \textbf{different attention heads play linguistically interpretable roles}.
 Some specialize in positional relations, syntactic
 dependencies, coreference, or other linguistically interpretable patterns
 \citep{clark-etal-2019-bert,voita-etal-2019-analyzing}. However, attention
@@ -211,8 +210,8 @@ previous tokens would be projected again to recompute their keys and values. The
 of previous tokens. However, this cache grows linearly with the sequence length, and it is easy to
 run out of memory when generating very long texts. To reduce the KV-Cache, we need to reduce the
 dimensionality of keys and values.
-Among the popular approaches to reduce the KV-Cache, \textbf{Group Query Attention (GQA)}
-shares key-value pairs to multiple query heads. Intuitively, the keys and values have fewer heads
+Among the popular approaches to reduce the KV-Cache, \textbf{Grouped-Query Attention (GQA)}
+shares key-value pairs across multiple query heads. Intuitively, the keys and values have fewer heads
 than the queries:
 \begin{align}
     \mathbf{K}, \mathbf{V} &\in \mathbb{R}^{T \times h_g \times h_{\mathrm{dim}}}, \\
@@ -235,15 +234,15 @@ by allowing each query to attend to only a subset of previous tokens.
 
 
 \subsection{Multilayer Perceptron}
-After the attention layer, the conetextualized tokens are fed into the Multilayer Perceptron (MLP). While attention is a token-mixing operation, the MLP is a channel-mixing operation, each token is forwarded independantly into the MLP. In the original Transformer's paper, the MLP is defined as:
+After the attention layer, the contextualized tokens are fed into the multilayer perceptron (MLP). While attention mixes information across tokens, the MLP mixes information across channels: each token is processed independently. In the original Transformer paper, the MLP is defined as:
 $$
 \text{MLP}(x) = f(\textbf{x}\textbf{W}_{up})\textbf{W}_{down}
 $$
 where $f(\cdot)$ is the non-linear activation function, 
 $\textbf{W}_{\text{up}} \in \mathbb{R}^{d_{\text{model}} \times d_{\text{inter}}}$ 
-project the input token $\mathbf{x} \in \mathbb{R}^{d_{\text{model}}}$ in higher dimension, 
-with $d_{\text{model}} \ll d_{\text{inter}}$. And finally, $\textbf{W}_{\text{down}} \in \mathbb{R}^{d_{\text{inter}} \times d_{\text{model}}}$,
-projects backs to the model dimension.
+projects the input token $\mathbf{x} \in \mathbb{R}^{d_{\text{model}}}$ into a higher-dimensional space,
+with $d_{\text{model}} \ll d_{\text{inter}}$. Finally, $\textbf{W}_{\text{down}} \in \mathbb{R}^{d_{\text{inter}} \times d_{\text{model}}}$,
+projects back to the model dimension.
 Modern LLMs often replace this simple MLP with a gated linear unit variant. Instead of applying
 only one non-linearity to the expanded representation, the block learns two projections: one
 projection $\mathbf{V}_{\text{up}}$ produces the values, and the other projection
@@ -260,8 +259,8 @@ $\mathbf{W}_{\text{up}}$ gates them. Omitting bias terms, these alternatives can
     \mathrm{MLP}_{\mathrm{ReGLU}}(\mathbf{x})
     &= \left(\mathrm{ReLU}(\mathbf{x}\mathbf{W}_{\text{up}}) \odot \mathbf{x}\mathbf{V}_{\text{up}}\right)\mathbf{W}_{\text{down}}.
 \end{align}
-Here $\odot$ denotes element-wise multiplication. \ref{tab:gated_mlp} gives the performance of each activation on SuperGLUE benchmark. 
-We can see that SiLU activation gives better results, this explains why many LLMs use it as activations: Mistral-v0.1, Granite, etc.
+Here, $\odot$ denotes element-wise multiplication. Table~\ref{tab:gated_mlp} gives the performance of each activation on the SuperGLUE benchmark.
+The SiLU-based variant gives better results, which helps explain why many LLMs, including Mistral-v0.1 and Granite, use it.
 \begin{table*}[h!]
     \centering
     \setlength{\tabcolsep}{8pt}
@@ -278,8 +277,8 @@ We can see that SiLU activation gives better results, this explains why many LLM
     \caption{Average SuperGLUE score for gated MLP variants.}
     \label{tab:gated_mlp}
 \end{table*}
-It is difficult to explain why gated MLP with work better with some activations than other. 
-Citing \citep{shazeer2020gluvariants}, the author of gated MLPs:
+It is difficult to explain why gated MLPs work better with some activations than others.
+As the author of the study puts it~\citep{shazeer2020gluvariants}:
 \begin{quote}
     \small\itshape
     ``We offer no explanation as to why these architectures seem to work; we attribute their
@@ -289,9 +288,9 @@ Citing \citep{shazeer2020gluvariants}, the author of gated MLPs:
     \normalfont--- Noam Shazeer, \textit{GLU Variants Improve Transformer (2020)}
     \end{flushright}
 \end{quote}
-In modern LLM architectures, the MLP parameters can occupy over to $90\%$ of the total model parameters. 
+In modern LLM architectures, MLP parameters can account for over $90\%$ of the total model parameters.
 It has been shown that MLP layers play an important role in storing knowledge acquired during web-scale pretraining. 
-\citep{geva-etal-2021-transformer} interpret the MLP as a key--value memory:
+One interpretation treats the MLP as a key--value memory~\citep{geva-etal-2021-transformer}:
 each column of \(\mathbf{W}_{\text{up}}\) in the MLP represents a key
 \(\mathbf{k}_i\) that detects linguistic patterns seen during training, while
 each row of \(\mathbf{W}_{\text{down}}\) represents the corresponding value
@@ -377,7 +376,7 @@ more strongly to the MLP output. This mechanism can be schematized as follows:
     \end{tabularx}
 
     \caption{
-    Examples of MLP key--value memory pairs identified by
+    Examples of MLP key--value memory pairs identified in prior work
     \citep{geva-etal-2021-transformer}.
     For each value vector $\mathbf{v}^{\ell}_{i}$, \emph{Top prediction}
     is the vocabulary token receiving the highest score when the value is
@@ -390,7 +389,7 @@ more strongly to the MLP output. This mechanism can be schematized as follows:
     }
     \label{tab:ffn-key-value-examples}
 \end{table*}
-The MLP does not only store lexical knowledge. At some point, this lexical knowledge coincides 
+The MLP does not only store lexical knowledge. In some cases, this lexical knowledge coincides
 with factual knowledge. When a key detecting the prefix \textit{The capital of France is} 
 is strongly associated with a value representing \textit{Paris}, this lexical key--value memory 
 turns out to also encode world knowledge. 
@@ -405,7 +404,7 @@ intuition can guide the design of an adaptive sparse memory layer.
 \subsubsection{Language Modeling Head}
 Well, the tokens are contextualized thanks to the multi-head attention, and each token retrieves 
 the relevant knowledge encoded within the MLP. This process is repeated for $L$ layers and at the end
-produces a context vector $\textbf{c}_{<i}$ that is ready for next token prediction 
+produces a context vector $\textbf{c}_{<i}$ that is ready for next-token prediction
 using the language modeling head (LM Head or output embedding):
 
 \begin{equation}
@@ -414,24 +413,24 @@ using the language modeling head (LM Head or output embedding):
     {\sum_{v \in \mathcal{V}} \mathrm{\exp}(\mathbf{c}_{<i} \mathbf{W}_v)}.
 \end{equation}
 where $W \in \mathbb{R}^{d \times |\mathcal{V}|}$ is the LM Head weight matrix.
-The LM Head weight is another important component of large-scale Transformer LLMs. It is closely linked to the tokenizer: 
+The LM head weight matrix is another important component of large-scale Transformer LLMs. It is closely linked to the tokenizer:
 the vocabulary size determines the number of parameters in the output projection, 
 while the quality of tokenization affects how easily the model learns and, ultimately, its performance.
-Recent tokenizers use a large vocabulary due to the diversity of tokens that can be infered from a web scale data. 
-Hence, the LM Head weight can occupy a huge amount of parameters in the LLM, particulary for small LLMs. Figure \ref{fig:emb-param-ratio} shows the memory
+Recent tokenizers use large vocabularies to capture the diversity of tokens in web-scale data.
+Hence, the LM head can account for a large share of the parameters in an LLM, particularly in small models. Figure \ref{fig:emb-param-ratio} shows the memory
 occupied by the input/output embedding parameters for different model sizes, including dense and quantized ones.
 We can see that the embedding and LM Head parameters represent a larger fraction of the model 
 when the Transformer backbone is small\footnote{Quantization is usually not applied to the embedding weights.}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/embedding_parameter_ratio.pdf}
-    \caption{Proportion of the size in MB of embedding parameters across different model sizes.
+    \caption{Share of model storage occupied by embedding parameters across different model sizes.
     Data taken from \href{https://blog.squeezebits.com/vocabulary-trimming-methods}{https://blog.squeezebits.com/vocabulary-trimming-methods}.}
     \label{fig:emb-param-ratio}
 \end{figure}
 This is mainly caused by the large vocabulary of the models. A common solution to reduce the size by half is
-weight tying \citep{press-wolf-2017-using}, which shares the input and output embedding. Almost all small LLMs use weight tying, which haven't
-proven to hurt parameters, while still reducing a lot the model's parameters.
+weight tying \citep{press-wolf-2017-using}, which shares the input and output embedding matrices. Almost all small LLMs use weight tying, which can substantially
+reduce the model's parameter count without hurting performance.
 
 Another approach to reducing the number of parameters occupied by the LM head
 is to factorize its weight matrix into two low-rank matrices. This strategy was
@@ -448,20 +447,20 @@ where $\mathbf{W}_1\in\mathbb{R}^{d\times r}$,
 $\mathbf{W}_2\in\mathbb{R}^{r\times V}$, and $r\ll H$. This reduces the
 LM-head parameter count from $dV$ to $dr+rV$.
 
-However, this bottlneck architecture can hurt optimization. 
+However, this bottleneck architecture can hurt optimization.
 Some works have identified what is known as the
 \textit{softmax bottleneck}~\citep{yang2018breakingsoftmaxbottleneck}:
 a low-dimensional LM head can only produce a limited variety of output
 distributions. Therefore, reducing its rank too aggressively can limit the
-model's ability to predict complex token distributions. \citep{godey2024smalllanguagemodelsunderperform}
-studied this by compressing the LM Head rank dimension at different sizes and found that smaller rank
-hurts performance and limits the expressiviness of the probability distribution as shown in Figure \ref{fig:lm_head_botlnck}. 
+model's ability to predict complex token distributions. A study of LM heads
+with different ranks found that reducing the rank
+hurts performance and limits the expressiveness of the output distribution~\citep{godey2024smalllanguagemodelsunderperform}, as shown in Figure~\ref{fig:lm_head_botlnck}.
 More importantly, this also hurts the learning signal during training \citep{godey2026lostbackpropagationlmhead}.
-There are many solutions to avoid the \textit{softmax bottleneck}. Since this phenomen arises mainly when
-$r \ll V$, an obvious solution is to augment $r$ or reduce $V$ the voabulary size. Reducing the vocabulary size can be
-achieved using a tokenizer with few tokens or falling back to a character or bytes tokenizers.
-It is also technically possible after training to remove tokens in the input/embedding embedding.
-But this is risky as it can affect critical tokens. This discussion is releated to the research we will present
+There are many solutions to avoid the \textit{softmax bottleneck}. Since this phenomenon arises mainly when
+$r \ll V$, an obvious solution is to increase $r$ or reduce the vocabulary size $V$. Reducing the vocabulary size can be
+achieved using a tokenizer with fewer tokens or falling back to a character- or byte-level tokenizer.
+It is also technically possible after training to remove tokens from the input and output embeddings.
+But this is risky as it can affect critical tokens. This discussion is related to the research we will present
 later, which proposes to reduce the rank of the LM Head instead of pruning tokens in multilingual transformer models.
 \begin{figure}[ht]
     \centering
@@ -477,7 +476,7 @@ later, which proposes to reduce the rank of the LM Head instead of pruning token
     \label{fig:lm_head_botlnck}
 \end{figure}
 
-\subsection{A Transformer is never enough large}
+\subsection{A Transformer Is Never Large Enough}
 What made the Transformer architecture particularly successful in language
 modeling is its ability to scale both the number of parameters and the amount
 of training data. Since Transformer training can be efficiently parallelized
@@ -490,36 +489,36 @@ should the model be, and on how many tokens should it be trained?
 
 Denoting the number of parameters by $N$, the number of training tokens by $D$,
 and the training compute by $C$, the compute cost of a dense Transformer can be
-approximated as $C \approx 6ND$. So given a training budget $C$ fixed 
-(how many training flops is available for training), how much
-the model size should take in this compute and how much the training tokens should take in this budget.
+approximated as $C \approx 6ND$. Given a fixed training budget $C$
+(the number of floating-point operations available for training), how should
+we allocate compute between model size and training tokens?
 Both Kaplan \citep{kaplan2020scaling} and Chinchilla \citep{hoffmann2022training} 
-scaling find that the compute-optimal model size and dataset size  follow power laws 
+scaling laws indicate that the compute-optimal model size and dataset size follow power laws
 in the compute budget: $N_{\mathrm{opt}} \propto C^{\alpha}$ and $D_{\mathrm{opt}} \propto C^{\beta}$.
-\textbf{Kaplan scaling laws} estimate that the compute-optimal allocation with 
+\textbf{Kaplan scaling laws} estimate the compute-optimal allocation as
 $N_{\mathrm{opt}} \propto C^{0.73}$ and  $D_{\mathrm{opt}} \propto C^{0.27}$.
 Thus, model size should increase much faster than training data, 
 which favors very large models trained on comparatively few tokens. 
-On the other side, the \textbf{Chinchilla scaling laws}
-later find that model size and training data should instead scale approximately equally:
+On the other hand, the \textbf{Chinchilla scaling laws}
+later found that model size and training data should instead scale approximately equally:
 $N_{\mathrm{opt}} \propto C^{0.5}$ and $D_{\mathrm{opt}} \propto C^{0.5}$.
 
 Beyond guiding compute allocation, scaling laws also reveal how model capabilities
 evolve with scale. While performance often improves predictably as training compute
 increases, some abilities appear only after the model reaches a certain scale. The
 model may remain close to random performance across several scales before suddenly
-crossing a plateau and acquiring a new ability. \citep{wei2022emergent} identify
-several such \textit{emergent abilities} as shown in Figure~\ref{fig:wei-emergent-abilities}.
+crossing a plateau and acquiring a new ability. Several such
+\textit{emergent abilities} have been identified~\citep{wei2022emergent}, as shown in Figure~\ref{fig:wei-emergent-abilities}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1.0\linewidth]{figures/wei_emergent_abilities_figure.pdf}
     \caption{Examples of emergent abilities in large language models.
     Figure from \citep{wei2022emergent}. 
-    A capacity is emergent when the score surpasses the random baseline 
-    while it wasn't at smaller scale.}
+    An ability is emergent when its score surpasses the random baseline
+    after remaining near that baseline at smaller scales.}
     \label{fig:wei-emergent-abilities}
 \end{figure}
-We can see that many linguistic skills such as language understanding, specially
+We can see that many linguistic skills such as language understanding, especially
 for low-resource languages, only show up at a given model scale.
 Then a question arises. Is there a point beyond which increasing the number of parameters no longer
 produces meaningful improvements? Testing this hypothesis directly is difficult,
@@ -528,8 +527,8 @@ Classical scaling laws predict \textit{diminishing returns}: test loss continues
 to decrease with scale, but each additional increase in model size produces a
 smaller improvement~\citep{kaplan2020scaling,hoffmann2022training}. However,
 whether this implies diminishing returns in model capabilities depends on how
-performance is measured. \citep{sinha2026illusion} argue that short-task
-benchmarks may create an illusion of saturation. Even small improvements in
+performance is measured. It has been argued that short-task
+benchmarks may create an illusion of saturation~\citep{sinha2026illusion}. Even small improvements in
 single-step accuracy can compound into large improvements in the length of tasks
 that a model can reliably execute. Therefore, diminishing returns on loss or
 short-task accuracy do not necessarily imply diminishing returns in practical

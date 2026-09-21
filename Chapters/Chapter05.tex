@@ -1,5 +1,5 @@
 % Adapted from papers/zon/iclr2027_conference.tex.
-\chapter[Adaptive Sparse Memory]{Adaptive Sparse Memory Transformer}\label{ch:zon}
+\chapter[Adaptive Sparse Memory]{Adaptive Neural Activity Transformer}\label{ch:zon}
 
 \definecolor{ratioMoE}{HTML}{7F5539}
 \definecolor{ratioDenseA}{HTML}{9C6644}
@@ -14,12 +14,12 @@ language models. We study redundancy in the intermediate activations of Transfor
 MLPs and introduce \textbf{ZeroNeuron (ZoN)}, an input-dependent gate that selects
 which intermediate coordinates to activate for each token. We then return to
 embedding models to examine adaptive coordinate selection beyond vector slicing
-as done in MRL.
+as used in MRL.
 
 As stated earlier, increasing LLM size improves performance but also raises training costs.
-The question is how to train large models efficiently at smaller computational cost.
+The question is how to train large models efficiently at a lower computational cost.
 Sparsity, particularly MoEs, has emerged as an
-effective solution for training large language models economically. In these models, the transformer's
+effective solution for training large language models economically. In these models, the Transformer's
 MLP is replaced by larger matrices, but only parts of them are activated for each input token.
 MoEs can be viewed as activation sparsity applied to groups of channels: only a subset of
 these groups is activated for each token. Keeping the total matrix size and sparsity fixed while reducing
@@ -48,10 +48,10 @@ and UltraSparse \citep{huang2025ultrasparsememorynetwork} reduce this cost throu
 but TopK selection still adds computational cost as the candidate set grows.
 When the memory is distributed across GPUs, tokens need to be sent to
 the GPUs hosting their selected memory slots. 
-TopK-based sparsity require all-to-all communication and these data transfers make sparse
-memory layers communication-bound, eespecially when the memory spans many GPUs.
+TopK-based sparsity requires all-to-all communication, and these data transfers make sparse
+memory layers communication-bound, especially when the memory spans many GPUs.
 Moreover, the discrete selection made by TopK is not differentiable,
-which can make routing harder to optimize at fine-grained high sparsity.
+which can make routing harder to optimize at high levels of fine-grained sparsity.
 Finally, TopK uses a fixed selection budget: every token activates the same number of
 key-value pairs, regardless of the difficulty of the task.
 
@@ -62,13 +62,13 @@ We go beyond standard sparse memory designs and TopK with the following contribu
     \item We motivate this approach by observing that MLP intermediate activations mostly lie
     in a subspace much smaller than the full available space.
     We show that granular MoE experts compress input representations into narrower
-    spaces which occupy more fully this small vectorial space. These observations
+    spaces that their activations occupy more fully. These observations
     motivate learning to select which intermediate coordinates to activate.
     \item To select the needed key-value pairs for each token, we revisit stretching
-    methods to learn activation sparsity in a differentiable almost everywhere way.
+    methods to learn activation sparsity in a way that is differentiable almost everywhere.
     The sparse gating is adaptive and applied pointwise, which is advantageous
     in distributed training as it allows each GPU to activate
-    its local memory slots without needing to dispatch token representation as in TopK-based routing.
+    its local memory slots without needing to dispatch token representations as in TopK-based routing.
     This enables retaining the communication pattern of a dense tensor-parallel MLP in distributed training,
     which is simply an all-reduce and not the all-to-all in TopK-based activation sparsity.
 \end{enumerate}
@@ -92,20 +92,20 @@ A possible interpretation of the MLP is to consider it as a key-value memory lay
 $\mathbf{x}\textbf{W}_{\text{k}}$ scores how well the input matches each key.
 The activation function \(\sigma\) transforms these scores into weights,
 which are then used to aggregate the corresponding value entries in \(\mathbf{W}_{\mathrm{v}}\).
-Usually, the dimension $d_{\text{inter}}$, named \textit{intermediate dimension},
+Usually, the dimension $d_{\text{inter}}$, called the \textit{intermediate dimension},
 is much larger than $d_{\text{model}}$, often $4\times$, so it provides a large set of keys.
-What kind of information is stored in this memory is still an active open question.
-\citep{geva-etal-2021-transformer} found that those key-value pairs act as lexical dictionaries,
+The kind of information stored in this memory remains an open research question.
+Previous work found that these key-value pairs act as lexical dictionaries~\citep{geva-etal-2021-transformer},
 where some keys are associated with specific lexical tokens.
 Such associations can also reflect factual knowledge, as when a representation of ``The capital of France is'' retrieves information associated with ``Paris''.
 
 If the MLP can be seen as a memory layer, it is arguable that this memory can be sparse,
 since a given input may not need to activate all the key-value pairs.
-It is conceivable that an input needs only to retrieve some needed key-value pairs.
-If so, one could design a sparse activation gating that predicts ahead of time
+It is conceivable that an input needs to retrieve only a subset of the key-value pairs.
+If so, one could design a sparse activation gate that predicts ahead of time
 which key-value memory pairs are needed for a given token representation.
 But to motivate this approach, we first need to examine whether the intermediate activations contain redundancy
-that a sparse gating could exploit. If so, we need then to design such sparse gating function.
+that a sparse gate could exploit. If so, we then need to design such a sparse gating function.
 
 \subsection{The Effective Dimensionality of the MLP}
 \label{sec:zon-rank_observations}
@@ -116,7 +116,7 @@ Most activation energy is concentrated in a subspace with far fewer dimensions t
 \end{insightbox}
 
 \paragraph{Measuring the rank} We measure the effective dimensionality of the intermediate activations relative to their allocated width
-$d_{\text{inter}}$ in dense and MoE transformers.
+$d_{\text{inter}}$ in dense and MoE Transformers.
 We collect the key-projection activations before the nonlinearity using a calibration dataset $\mathcal{D}$.
 For any input token $\mathbf{x} \in \mathcal{D}$, we define
 $\mathcal{K} = \{ \mathbf{k} = \mathbf{x}\textbf{W}_{k} \}_{\mathbf{x} \in \mathcal{D}}$ with $\mathbf{k} \in \mathbb{R}^{d_{\text{inter}} }$.
@@ -145,15 +145,15 @@ the activation energy. For example, if $R@1.0 = 0.4$, then about 40\% of the
 dimensions are needed to represent all the activation energy. In practice,
 because of numerical precision and small eigenvalue tails, reaching exactly
 100\% can be unstable. We therefore use $p=0.99$ in our experiments.
-Overall the metric used is related to effective rank and stable rank, but
+Overall, the metric used is related to effective rank and stable rank, but
 provides more flexibility by varying $p$.
 
 \begin{table}[!htbp]
     \setlength{\abovecaptionskip}{3pt}
     \caption{We check possible sample size biases for Qwen3-30B-A3B, since
-    MoE layers receive different number of tokens.
-    We look to the correlation between the number of routed tokens
-    per expert and the energy ratio $R@0.99$ and have foun none.}
+    MoE layers receive different numbers of tokens.
+    We examine the correlation between the number of routed tokens
+    per expert and the energy ratio $R@0.99$ and find none.}
     \label{tab:zon-moe_bias_checks}
     \centering
     \begin{tabularx}{\linewidth}{@{}Xr@{}}
@@ -170,22 +170,22 @@ provides more flexibility by varying $p$.
 
 \paragraph{Results.} Figure~\ref{fig:zon-model_ratio99_activation} shows the percentage of dimensions needed to
 represent 99\% of the activation energy. We can see that all dense models
-have low effective dimension. This is true also for very low dimensional models
+have low effective dimension. This is also true for models with very low dimensions
 such as Monad. The linear projection already limits the covariance rank to at most
 $\min(d_{\text{model}},d_{\text{inter}})$, so expanding to $d_{\text{inter}}>d_{\text{model}}$
 necessarily leaves linear dependencies among the intermediate coordinates.
 Hence, the intermediate activations of dense models contain considerable redundancy.
 As shown in Figure~\ref{fig:zon-model_ratio99_width}, fine-grained sparse MoEs reduce this redundancy
-by projecting the input representation in different smaller subspaces.
+by projecting the input representation into different, smaller subspaces.
 For example, Qwen3-30B-A3B has a total intermediate dimension of 98,304,
 organized into 128 subspaces of 768 dimensions each.
-Each token is projected on 8 of these subspaces.
-Hence, the higher energy ratio of MoEs reflects fuller use of its smaller intermediate subspaces.
+Each token is projected into 8 of these subspaces.
+Hence, the higher energy ratio of MoEs reflects fuller use of their smaller intermediate subspaces.
 Since experts receive different numbers of tokens, we also check whether this affects
 the measured ratio. For Qwen3-30B-A3B, Table~\ref{tab:zon-moe_bias_checks} shows negligible
 linear correlation between the number of routed tokens and the ratio ($\rho=0.0799$).
 These observations motivate an approach where the MLP intermediate dimension
-is large but each token only selects its needed subspace.
+is large but each token selects only the subspace it needs.
 
 \begin{figure}[t]
 \centering
@@ -247,7 +247,7 @@ is large but each token only selects its needed subspace.
 \caption[Effective intermediate dimension across models]{Mean $R@0.99$ across models, with model dimensions alongside.
 Higher $R@0.99$ means that more activation components are needed to represent
 99\% of the activation energy. For MoEs, $e_{\text{inter}}$ is the intermediate
-dimension per expert and $d_{\text{inter}}$ is the total interemediate dimension
+dimension per expert and $d_{\text{inter}}$ is the total intermediate dimension
 of the model.}
 \label{fig:zon-model_ratio99_activation}
 \label{fig:zon-model_ratio99}
@@ -309,9 +309,9 @@ Ratios are measured within each expert, relative to $e_{\text{inter}}$.}
 We showed that dense MLP activations occupy only part of the available intermediate space.
 MoEs instead maintain a large total intermediate space, but each input token is projected
 into smaller subspaces that are used more fully.
-This motivates a large intermediate dimension but only selecting individual memory slots for each input token.
+This motivates using a large intermediate dimension while selecting only the memory slots needed for each input token.
 To avoid the fixed selection budget and token dispatch of TopK-based sparse memory layers,
-we propose a new structured sparse gating that learns to zero-out intermediate coordinates
+we propose a new structured sparse gate that learns to zero out intermediate coordinates
 for each input token.
 \subsection{ZeroNeuron Sparse Activation Gating}
 We revisit the hard-concrete distribution \citep{louizos2018learning}, originally
@@ -353,8 +353,8 @@ we define ZeroNeuron ${\mathrm{ZoN}}(\mathbf{x})$, a revised hard-concrete distr
     \end{gathered}
     $}
 \end{equation}
-It is possible to encourage sparsity using $l_0$ regularization
-which is the expected number of active output coordinates and has a differentiable closed form:
+It is possible to encourage sparsity using $l_0$ regularization.
+The expected number of active output coordinates has a differentiable closed form:
 \begin{equation}
     \mathbb{E}\!\left[\|\mathbf{z}\|_0\right] = \sum_{i=1}^{d_{\text{inter}}}
     \operatorname{sigmoid}\!\left(\log\alpha_i(\mathbf{x})-\beta\log(-l)\right).
@@ -420,28 +420,28 @@ def mlp_zon(x, W_k, W_v, act_fn, a, beta=1.0, l=-0.01):
     return o, avg_active
 \end{lstlisting}
 
-Recalling the MLP definition as key-value memory, its sparsely activated version can be written as:
+Using the definition of the MLP as a key-value memory, we can write its sparsely activated version as:
 \begin{align}
     \text{MLP}_{\text{ZoN}}(\mathbf{x}) = \sigma((\mathbf{x} \textbf{W}_{\text{k}}) \odot \mathbf{z}) \textbf{W}_{\text{v}}
 \end{align}
-where $\mathbf{z} \in \mathbb{R}^{d_{\text{inter}}}$ is the output of the activation sparsity gating
+where $\mathbf{z} \in \mathbb{R}^{d_{\text{inter}}}$ is the output of the sparse activation gate
 $\mathbf{z} = {\mathrm{ZoN}}(\mathbf{x})$.
-Since $\mathbf{z}$ predicts ahead of time the coordinates $d_{\text{inter}}$ to zero out
+Since $\mathbf{z}$ predicts ahead of time which of the $d_{\text{inter}}$ coordinates to zero out
 for this input token, it decides which key-value pairs to ignore. Hence,
 the sparsity is structured and can be leveraged to accelerate training provided a GPU kernel can exploit this sparsity.
 For the predicted sparsity to be used for sparse computation in both
 $\textbf{W}_{\text{k}}$ and $\textbf{W}_{\text{v}}$, the non-linear activation
 $\sigma$ must preserve zeros: $\sigma(0) = 0$. This ensures that coordinates
 zeroed out by the gate remain zero after the activation. Fortunately, this holds
-for common activations in modern transformer MLPs, such as SiLU, ReLU, and
+for common activations in modern Transformer MLPs, such as SiLU, ReLU, and
 $\mathrm{ReLU}^{2}$.
 Listing~\ref{lst:zon-mlp} provides a dense reference implementation of the gated MLP in PyTorch.
 It computes both matrix multiplications densely; realizing computational savings
 requires a kernel that skips the coordinates predicted to be inactive.
 
 \subsubsection{Local and Global Sparsity Constraints}
-While the provided implementation is illustrated on a single MLP layer, the transformer
-model has $L$ layers of such MLP. Each of them has its own sparse gating.
+While the provided implementation is illustrated on a single MLP layer, the Transformer
+model has $L$ such MLP layers. Each has its own sparse gate.
 The sparsity constraint can be applied either locally or globally. When applying
 the sparsity constraint locally, each MLP layer converges to the specified
 target sparsity.
@@ -450,16 +450,16 @@ sparsity across layers is constrained. Individual layers can therefore use
 different sparsity levels, allowing the model to allocate more active neurons to
 layers that require greater capacity while inducing higher sparsity
 in less demanding layers. This provides greater flexibility while maintaining
-the desired overall compute budget. In our setting, we use global sparsity
-constraint as it gives more flexibility. Hence we define
-the average expected number of active gates across all MLP layers $L$ as
+the desired overall compute budget. In our setting, we use a global sparsity
+constraint for greater flexibility. Hence, we define
+the average expected number of active gates across all $L$ MLP layers as
 $\mathbb{E}_{\text{L}}\!\left[\|\mathbf{Z}\|_0\right] = \frac{1}{L} \sum_{l=1}^{L}\mathbb{E}_{l}\!\left[\|\mathbf{z}\|_0\right].$
-Putting $\mathbb{E}_{\text{L}}\!\left[\|\mathbf{Z}\|_0\right]$ in Equation~\ref{eq:zon-lg}
-as expected sparsity, will optimize the constrained global sparsity across all layers.
+Using $\mathbb{E}_{\text{L}}\!\left[\|\mathbf{Z}\|_0\right]$ as the expected sparsity in Equation~\ref{eq:zon-lg}
+enforces the global sparsity constraint across all layers.
 
 \subsubsection{Parameterizing the Gate Network}
 The design of the gate network $\boldsymbol{\alpha}(\mathbf{x})$
-is free and can be made complex, non-linear and deep. However,
+is flexible: the network can be complex, non-linear, and deep. However,
 its parameter count must remain manageable as the intermediate dimension grows.
 We found that the gating network can be very small without hurting performance.
 We parameterize the gate logits with a low-rank projection:
@@ -470,7 +470,7 @@ We parameterize the gate logits with a low-rank projection:
 Here, $\mathbf{A}_1\in\mathbb{R}^{d_{\text{model}}\times r}$ and
 $\mathbf{A}_2\in\mathbb{R}^{r\times d_{\text{inter}}}$.
 The bias $\mathbf{b}\in\mathbb{R}^{d_{\text{inter}}}$ controls the initial gate activity.
-We found a small rank is sufficient, so we fix in our experiments $r = d_{\text{model}} / 8$.
+We found that a small rank is sufficient, so in our experiments we fix $r = d_{\text{model}} / 8$.
 We do not yet understand why such small gating networks work well. One possible
 explanation is that the sigmoid is applied independently to each coordinate, so
 each gating decision can be made without modeling interactions among all
@@ -483,20 +483,20 @@ The proposed sparse activation gating offers several opportunities to reduce tra
 inference costs relative to dense models and other TopK-based sparse models such
 as MoEs and sparse memory layers.
 
-First, the approach is a trainable structured activation sparsity. The sparsity
+First, the approach learns structured activation sparsity. The sparsity
 emerges quickly during training and a sparse GPU kernel can exploit this to skip
 computation of the zeroed-out coordinates to accelerate training and inference.
 Given the predicted sparse gates $\mathbf{z} \in \mathbb{R}^{t \times d_{\text{inter}}}$ for $t$ tokens,
 the corresponding predicted zero gates in $W_\text{k}$ and $W_\text{v}$ can be skipped
-during the MLP forward and backward. There are many sparse GPU kernels in the literature
+during the MLP forward and backward passes. There are many sparse GPU kernels in the literature
 that can be adapted to accelerate training and inference, such as DejaVu
 ~\citep{liu2023dejavucontextualsparsity} or TEAL~\citep{TEAL}.
 
 Second, the proposed sparsification approach is pointwise:
 the sigmoid and stretching apply independently
 to each coordinate. Compared to TopK-based activation sparsity,
-this makes the approach less communication bound in
-distributed training, especially in tensor parallelism sharding.
+this makes the approach less communication-bound in
+distributed training, especially with tensor-parallel sharding.
 Suppose the gates and the two MLP projections are sharded
 along the intermediate dimension across $N$ GPUs.
 Each GPU predicts its local gates from the same input $\mathbf{x}$ and applies
@@ -504,9 +504,9 @@ Each GPU predicts its local gates from the same input $\mathbf{x}$ and applies
 $\mathbf{y}_i$ to the output. An all-reduce then sums these contributions across
 GPUs and gives each GPU the full output $\mathbf{y}=\sum_{i=1}^{N}\mathbf{y}_i$.
 This is the same output communication used in a dense tensor-parallel MLP.
-This approach uses therefore less communication than TopK-based
+This approach therefore uses less communication than TopK-based
 routing that needs to dispatch token representations to the
-GPU hosting their selected memory slots.
+GPUs hosting their selected memory slots.
 
 The main possible disadvantage of the proposed approach is
 that different tokens can activate different MLP intermediate coordinates,
@@ -523,16 +523,16 @@ and the cost of grouping the tokens.
 \subsection{Experimental Setup}
 \paragraph{Implementation.}
 Our experiments are based on nanochat, a minimalist GPT implementation optimized
-for dense training. For fair comparisons, we keep unchanged the hyperparameter
-settings, which have been optimized for dense models. Transformer matrices,
+for dense training. For fair comparisons, we keep the hyperparameter
+settings unchanged, which have been optimized for dense models. Transformer matrices,
 including the sparse gate network projections, are optimized with Muon.
 The embeddings, the output head, biases, and scalar parameters use AdamW.
 In each MLP, the gate network uses two linear projections with a bottleneck
 of $d_{\text{model}}/8$ and a learned output bias. We set $\beta=1$ and $l=-0.01$.
-The gates are initialized to keep almost all coordinates active at the beginning of the training.
-The gradient signal of the sparsity loss can be as strong as the language modeling
+The gates are initialized to keep almost all coordinates active at the beginning of training.
+The gradient signal from the sparsity loss can be as strong as that from the language modeling
 loss at the beginning of training.
-So, we introduce a sparsity rampup where we leave sparsity unconstrained
+We therefore introduce a sparsity ramp-up in which we leave sparsity unconstrained
 for the first 1,000 steps, then linearly increase the target sparsity over 4,000 steps.
 The constraint is applied to the average expected sparsity across layers,
 with a Lagrange multiplier updated at each training step.
@@ -568,12 +568,12 @@ Training tokens (approx.) & \multicolumn{3}{c}{13B} \\
 
 \paragraph{Models.}
 We train three models: Dense-600M, a 600M dense model, Dense-1.2B, a 1.2B dense model, and
-ZoN-1.2B-A600M a 1.2B dense model with 600M active parameters using our proposed approach.
+ZoN-1.2B-A600M, a 1.2B model with 600M active parameters using our proposed approach.
 All three models are trained on approximately 13B tokens, with their architecture
 settings summarized in Table~\ref{tab:zon-architecture}. Dense-1.2B uses the same
 MLP dimensions as ZoN-1.2B-A600M, while Dense-600M uses a narrower MLP to match its
-approximate active parameter count. This setup helps us study whether at same
-active parameters, increasing the total model parameters improves the performance.
+approximate active parameter count. This setup helps us study whether, for the same number of
+active parameters, increasing the total number of model parameters improves performance.
 
 \paragraph{Evaluation.}
 We use the DataComp-LM CORE evaluation setup
@@ -584,7 +584,7 @@ and few-shot settings. The evaluator scores multiple-choice and schema tasks by
 selecting the answer with the highest average log-probability over the scored
 continuation. For completion tasks, every target token must be the model's most
 likely prediction given the preceding reference tokens. We report raw task accuracies
-and the aggregate CORE score. To compute CORE aggregated score, each
+and the aggregate CORE score. To compute the aggregate CORE score, each
 task accuracy $a$ is first centered as $(a-b)/(1-b)$, where $b$ is the task's random
 baseline.
 
@@ -744,7 +744,7 @@ but $k$ can be chosen freely during inference, depending on the budget.
 For retrieval, we train a linear projector of shape
 $d_{\text{model}}\times d_{\text{model}}$ on top of the embeddings, alongside
 the gate projector. For classification, we instead use a two-layer perceptron,
-with linear projectors $d_{\text{model}}$ to $4d_{\text{model}}$ and back to $d_{\text{model}}$,
+with linear projections from $d_{\text{model}}$ to $4d_{\text{model}}$ and back to $d_{\text{model}}$,
 with a ReLU activation between them. In both settings, the gate network uses
 a hidden dimension of $r=d_{\text{model}} / 4$, with $d_{\text{model}}$ being
 4096 for NV-Embed.
@@ -810,6 +810,6 @@ preserve much of the retrieval performance.
 
 Together with Chapter~\ref{ch:mrl}, these results conclude the activation-sparsity
 part of the thesis: representational capacity need not be used uniformly for every
-input. Learned adpative activation sparsity allow the amount of sparsity to depend on the input. 
+input. Learned adaptive activation sparsity allows the amount of sparsity to depend on the input.
 Turning this flexibility into reliable runtime gains requires sparse implementations that exploit the learned
 activation patterns efficiently.
